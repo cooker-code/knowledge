@@ -1,11 +1,8 @@
 # Flink State TTL 状态生命周期治理
 
-## 原文锚点
+## 来源
 
-- 本地文件：[一文带你快速入门：Flink StateTtlConfig](<../文章/一文带你快速入门：Flink StateTtlConfig.md>)
-- 原文链接：https://mp.weixin.qq.com/s?__biz=MzkwODYwNjExMA==&mid=2247487388&idx=1&sn=87bc34e87051d7a1a44462d4610e90a2&chksm=c14840d2cd2d9cceb5619492b8f6049891ce3070b18e8c25b1e5a80b16bf255ea98ea044cd21&mpshare=1&scene=24&srcid=0807h0gmuwo5J1UxTajzK9Pa&sharer_shareinfo=f6b71200cc618ce91900eedd49c00c98&sharer_shareinfo_first=f6b71200cc618ce91900eedd49c00c98#rd
-- 关键段落：为什么需要 State TTL、`setTtl`、`setUpdateType`、`setStateVisibility`、清理策略、示例代码。
-- 关键图：无技术图。
+- [一文带你快速入门：Flink StateTtlConfig](<../文章/done-一文带你快速入门：Flink StateTtlConfig.md>)
 
 ## 图片处理
 

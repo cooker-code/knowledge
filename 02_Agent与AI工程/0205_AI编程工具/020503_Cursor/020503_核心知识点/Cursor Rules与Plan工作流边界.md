@@ -3,11 +3,11 @@
 ## 原文锚点
 
 - 本地文件：
-  - [Cursor 官方出品：AI 编程 Agent 最佳实践指南.md](<../文章/Cursor 官方出品：AI 编程 Agent 最佳实践指南.md>)
-  - [AI 编程工具 Cursor Plan 模式保姆级教程.md](<../文章/AI 编程工具 Cursor Plan 模式保姆级教程.md>)
-  - [Cursor Rules 设计思路：构建企业级 AI 编程规范.md](<../文章/Cursor Rules 设计思路：构建企业级 AI 编程规范.md>)
-  - [Cursor 2.4 发布：Subagents、Skills,还可以直接用 Banana 画图.md](<../文章/Cursor 2.4 发布：Subagents、Skills,还可以直接用 Banana 画图.md>)
-  - [开发者最友好的规范工具？比Cursor Plan更细、比spec‑kit更轻，OpenSpec如何让AI编码更靠谱.md](<../文章/开发者最友好的规范工具？比Cursor Plan更细、比spec‑kit更轻，OpenSpec如何让AI编码更靠谱.md>)
+  - [Cursor 官方出品：AI 编程 Agent 最佳实践指南.md](<../文章/done-Cursor 官方出品：AI 编程 Agent 最佳实践指南.md>)
+  - [AI 编程工具 Cursor Plan 模式保姆级教程.md](<../文章/done-AI 编程工具 Cursor Plan 模式保姆级教程.md>)
+  - [Cursor Rules 设计思路：构建企业级 AI 编程规范.md](<../文章/done-Cursor Rules 设计思路：构建企业级 AI 编程规范.md>)
+  - [Cursor 2.4 发布：Subagents、Skills,还可以直接用 Banana 画图.md](<../文章/done-Cursor 2.4 发布：Subagents、Skills,还可以直接用 Banana 画图.md>)
+  - [开发者最友好的规范工具？比Cursor Plan更细、比spec‑kit更轻，OpenSpec如何让AI编码更靠谱.md](<../文章/done-开发者最友好的规范工具？比Cursor Plan更细、比spec‑kit更轻，OpenSpec如何让AI编码更靠谱.md>)
 - 原文链接：见各本地文件 frontmatter；本轮不联网校验。
 - 关键段落：
   - `Cursor 官方出品`：Plan Mode、上下文少即是多、Rules 与 Skills、TDD、并行工作、Debug Mode、Review。

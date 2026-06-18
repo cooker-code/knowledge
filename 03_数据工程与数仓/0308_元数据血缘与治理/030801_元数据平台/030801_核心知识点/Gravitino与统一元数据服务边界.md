@@ -3,9 +3,9 @@
 ## 原文锚点
 
 - 本地文件：
-  - [Apache Gravitino 在B站的最佳实践](<../文章/Apache Gravitino 在B站的最佳实践.md>)
-  - [CyberData统一元数据服务](../文章/CyberData统一元数据服务.md)
-  - [一站式元数据治理平台——Datahub入门宝典](../文章/一站式元数据治理平台——Datahub入门宝典.md)
+  - [Apache Gravitino 在B站的最佳实践](<../文章/done-Apache Gravitino 在B站的最佳实践.md>)
+  - [CyberData统一元数据服务](../文章/done-CyberData统一元数据服务.md)
+  - [一站式元数据治理平台——Datahub入门宝典](../文章/done-一站式元数据治理平台——Datahub入门宝典.md)
 - 原文链接：见本地原文 front matter；本轮不联网校验。
 - 关键段落：B 站元数据痛点、Gravitino 架构层级、OneMeta 扩展、FileSet/GVFS、跨源 Schema、CyberData 统一 Catalog/guid/血缘入口、DataHub 第三代事件化架构和 ingestion。
 - 关键图：Gravitino 架构图、FileSet 管理图、FileSet 治理流程图、CyberData 架构图、DataHub 架构图在 Markdown 中未保留。

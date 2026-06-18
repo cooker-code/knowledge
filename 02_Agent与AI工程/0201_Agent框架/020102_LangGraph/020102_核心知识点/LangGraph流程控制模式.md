@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[LangGraph（四）快速入门｜流程控制：四种流程模式一览](../文章/LangGraph（四）快速入门｜流程控制：四种流程模式一览.md)
+- 本地文件：[LangGraph（四）快速入门｜流程控制：四种流程模式一览](<../文章/done-LangGraph（四）快速入门｜流程控制：四种流程模式一览.md>)
 - 原文链接：`https://mp.weixin.qq.com/s?__biz=MzkzMTYzMTEzMg==&mid=2247485244&idx=1&sn=9b92febc61a3ae8f6da5bcbcf355df6b`
 - 关键段落：条件边、循环、并行、Send API、子图、Reducer、递归限制。
 - 关键图：无原图，主要是代码和表格。

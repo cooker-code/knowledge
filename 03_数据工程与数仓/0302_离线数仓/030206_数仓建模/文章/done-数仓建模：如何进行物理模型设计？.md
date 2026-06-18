@@ -1,0 +1,223 @@
+> 已吸收至：[[03_数据工程与数仓/0302_离线数仓/030206_数仓建模/030206_核心知识点/命名规范与物理模型设计|命名规范与物理模型设计]]
+---
+title: 数仓建模：如何进行物理模型设计？
+author: 会飞的一十六
+date:
+url: http://mp.weixin.qq.com/s?__biz=MzIzNTY4NTE5OQ==&mid=2247485367&idx=1&sn=7c25e2e1d3e2cc69c5fc216f8792eba7&chksm=e954bcd336aeb5992a44db6bde6a150ad316a922279aabe7af02dad47a53ee164ea07fd2e7e5&mpshare=1&scene=24&srcid=1106TdAuOg8Xfg9pv67QXWuW&sharer_shareinfo=325a82a7ecba1fbef871386b4e24ee33&sharer_shareinfo_first=325a82a7ecba1fbef871386b4e24ee33#rd
+---
+
+01
+
+—
+
+什么是物理模型
+
+物理模型是数据模型的最后一个阶段,它描述了数据在特定数据库管理系统中的实际存储方式。物理模型考虑了性能、存储和可访问性等实际因素。
+
+#### 物理模型的特点
+
+```
+特定于DBMS: 使用特定数据库系统的语法和特性。性能优化: 包含索引、分区等性能优化策略。存储考虑: 定义数据类型、存储参数等。安全性: 包含访问控制和安全策略
+```
+
+#### 物理模型的作用
+
+1. ```
+   性能优化: 通过索引、分区等策略提高查询和写入性能。存储效率: 选择合适的数据类型和存储参数,提高存储效率。可维护性: 通过视图、存储过程等简化复杂操作。安全性: 实现访问控制和数据保护策略。
+   ```
+
+02
+
+—
+
+如何构建物理模型
+
+#### 如何创建物理模型
+
+1. ```
+   选择目标数据库系统将逻辑模型转换为数据库特定的DDL语句选择适当的数据类型和约束设计索引策略考虑分区和聚集实现存储过程和触发器设置访问控制和安全策略进行性能测试和优化
+   ```
+
+**1. 选择适当的数据库平台**
+
+选择数据库平台需要考虑多个因素:
+
+```
+数据量和增长趋势查询复杂度和响应时间要求并发用户数预算和现有技术栈团队的技术能力
+```
+
+常见的数据仓库平台包括:
+
+```
+传统关系型数据库: Oracle, SQL Server, PostgreSQL列式存储数据库: Vertica, Amazon Redshift云原生数据仓库: Snowflake, Google BigQuery大数据解决方案: Hadoop生态系统 (Hive, Impala)
+```
+
+示例决策过程:
+
+```
+考虑因素:1. 数据量: 预计5年内增长到50TB2. 查询模式: 主要是复杂的分析查询,需要快速响应3. 用户数: 100-200并发用户4. 预算: 中等,倾向于可预测的成本模型5. 团队技能: 熟悉SQL,但缺乏大数据经验
+```
+
+**2. 表结构设计**
+
+将逻辑模型转化为物理表结构时,需要考虑:
+
+```
+主键策略: 自然键vs代理键外键关系: 是否在物理层实施列命名规范表命名规范示例:销售事实表的物理设计
+```
+
+示例:销售事实表的物理设计
+
+```
+CREATE TABLE fact_sales (    sales_key BIGINT IDENTITY(1,1) PRIMARY KEY,    order_date_key INT NOT NULL,    product_key INT NOT NULL,    customer_key INT NOT NULL,    geography_key INT NOT NULL,    promotion_key INT,    order_id VARCHAR(50) NOT NULL,    sales_amount DECIMAL(12,2) NOT NULL,    quantity INT NOT NULL,    discount_amount DECIMAL(10,2) NOT NULL,    profit DECIMAL(10,2) NOT NULL,    CONSTRAINT fk_date FOREIGN KEY (order_date_key) REFERENCES dim_date(date_key),    CONSTRAINT fk_product FOREIGN KEY (product_key) REFERENCES dim_product(product_key),    CONSTRAINT fk_customer FOREIGN KEY (customer_key) REFERENCES dim_customer(customer_key),    CONSTRAINT fk_geography FOREIGN KEY (geography_key) REFERENCES dim_geography(geography_key),    CONSTRAINT fk_promotion FOREIGN KEY (promotion_key) REFERENCES dim_promotion(promotion_key));
+```
+
+#### 3. 索引策略
+
+合理的索引可以显著提升查询性能,但也会增加存储空间和影响写入性能。常见的索引类型包括:
+
+* 聚集索引
+* 非聚集索引
+* 位图索引
+* 分区索引
+
+索引设计示例:
+
+```
+-- 在事实表的日期键上创建聚集索引CREATE CLUSTERED INDEX ix_fact_sales_date ON fact_sales(order_date_key);
+-- 在常用的维度键上创建非聚集索引CREATE NONCLUSTERED INDEX ix_fact_sales_product ON fact_sales(product_key);CREATE NONCLUSTERED INDEX ix_fact_sales_customer ON fact_sales(customer_key);
+-- 在低基数列上创建位图索引(Oracle语法)CREATE BITMAP INDEX ix_fact_sales_promotion ON fact_sales(promotion_key);
+```
+
+#### 4. 分区策略
+
+分区可以提高大表的查询性能和管理效率。常见的分区策略包括:
+
+* 范围分区
+* 列表分区
+* 哈希分区
+
+分区设计示例:
+
+```
+-- 按日期范围分区(PostgreSQL语法)CREATE TABLE fact_sales (    sales_key BIGINT,    order_date_key INT,    -- 其他列...) PARTITION BY RANGE (order_date_key);
+CREATE TABLE fact_sales_2023 PARTITION OF fact_sales    FOR VALUES FROM (20230101) TO (20240101);
+CREATE TABLE fact_sales_2024 PARTITION OF fact_sales    FOR VALUES FROM (20240101) TO (20250101);
+```
+
+#### 5 聚合表设计
+
+聚合表存储预计算的汇总数据,可以显著提升常用查询的性能。
+
+聚合表示例:
+
+```
+CREATE TABLE agg_daily_sales (    date_key INT,    product_key INT,    total_sales DECIMAL(15,2),    total_quantity INT,    total_profit DECIMAL(15,2),    PRIMARY KEY (date_key, product_key));
+-- 填充聚合表的存储过程CREATE PROCEDURE sp_update_daily_sales ASBEGIN    TRUNCATE TABLE agg_daily_sales;        INSERT INTO agg_daily_sales (date_key, product_key, total_sales, total_quantity, total_profit)    SELECT         order_date_key,        product_key,        SUM(sales_amount) as total_sales,        SUM(quantity) as total_quantity,        SUM(profit) as total_profit    FROM fact_sales    GROUP BY order_date_key, product_key;END;
+```
+
+**6. 数据类型优化**
+
+```
+选择合适的数据类型可以优化存储空间和查询性能:使用最小的数值类型: 如TINYINT代替INT(适用时)定长vs变长字符串: 固定长度使用CHAR,变长使用VARCHAR日期和时间: 使用DATE而不是DATETIME(如果不需要时间精度)精确数值vs近似数值: 金额使用DECIMAL,而不是FLOAT
+```
+
+数据类型优化示例:
+
+```
+CREATE TABLE dim_product (    product_key INT PRIMARY KEY,    product_id CHAR(10) NOT NULL,  -- 假设产品ID总是10个字符    product_name VARCHAR(100) NOT NULL,    category VARCHAR(50) NOT NULL,    subcategory VARCHAR(50) NOT NULL,    brand VARCHAR(50) NOT NULL,    unit_cost DECIMAL(10,2) NOT NULL,    retail_price DECIMAL(10,2) NOT NULLintroduction_date DATE NOT NULL,    is_active BIT NOT NULL DEFAULT 1);
+```
+
+#### 7. 压缩策略
+
+数据压缩可以减少存储需求并提高I/O性能,但可能会增加CPU开销。许多现代数据库系统提供了内置的压缩功能。
+
+压缩策略示例
+
+```
+-- 对整个表启用页面压缩ALTER TABLE fact_sales REBUILD PARTITION = ALL WITH (DATA_COMPRESSION = PAGE);
+-- 对特定列启用列存储压缩CREATE COLUMNSTORE INDEX ix_cs_fact_salesON fact_sales (order_date_key, product_key, sales_amount, quantity);
+```
+
+#### 8 物化视图
+
+物化视图是预先计算并存储的查询结果,可以显著提高复杂查询的性能。
+
+物化视图示例
+
+```
+CREATE MATERIALIZED VIEW mv_monthly_salesBUILD IMMEDIATEREFRESH COMPLETE ON DEMANDENABLE QUERY REWRITEASSELECT     TO_CHAR(d.date, 'YYYY-MM') as month,    p.category,    SUM(f.sales_amount) as total_sales,    SUM(f.quantity) as total_quantityFROM     fact_sales f    JOIN dim_date d ON f.order_date_key = d.date_key    JOIN dim_product p ON f.product_key = p.product_keyGROUP BY     TO_CHAR(d.date, 'YYYY-MM'),    p.category;
+```
+
+#### 9 安全性设计
+
+数据安全是物理模型设计中不可忽视的一环,包括:
+
+* 访问控制: 用户权限管理
+* 数据加密: 敏感数据的存储和传输加密
+* 审计跟踪: 记录重要操作
+
+安全设计示例:
+
+```
+-- 创建角色CREATE ROLE sales_analyst;
+-- 授予权限GRANT SELECT ON fact_sales TO sales_analyst;GRANT SELECT ON dim_product TO sales_analyst;
+-- 创建用户并分配角色CREATE USER john_doe WITH PASSWORD 'complex_password';GRANT sales_analyst TO john_doe;
+-- 加密敏感列(SQL Server语法)ALTER TABLE dim_customerALTER COLUMN credit_card_number varbinary(200) ENCRYPTED WITH (COLUMN_ENCRYPTION_KEY = MyCEK, ENCRYPTION_TYPE = Deterministic, ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256');
+-- 启用审计(PostgreSQL语法)CREATE TABLE audit_log (    audit_id SERIAL PRIMARY KEY,    table_name VARCHAR(50),    operation VARCHAR(10),    user_name VARCHAR(50),    operation_time TIMESTAMP,    old_values JSON,    new_values JSON);
+CREATE OR REPLACE FUNCTION audit_trigger_func() RETURNS TRIGGER AS $body$BEGIN    IF (TG_OP = 'DELETE') THEN        INSERT INTO audit_log (table_name, operation, user_name, operation_time, old_values)        VALUES (TG_TABLE_NAME, 'DELETE', current_user, current_timestamp, row_to_json(OLD));    ELSIF (TG_OP = 'UPDATE') THEN        INSERT INTO audit_log (table_name, operation, user_name, operation_time, old_values, new_values)        VALUES (TG_TABLE_NAME, 'UPDATE', current_user, current_timestamp, row_to_json(OLD), row_to_json(NEW));    ELSIF (TG_OP = 'INSERT') THEN        INSERT INTO audit_log (table_name, operation, user_name, operation_time, new_values)        VALUES (TG_TABLE_NAME, 'INSERT', current_user, current_timestamp, row_to_json(NEW));    END IF;    RETURN NULL;END;$body$ LANGUAGE plpgsql;
+CREATE TRIGGER audit_fact_salesAFTER INSERT OR UPDATE OR DELETE ON fact_salesFOR EACH ROW EXECUTE FUNCTION audit_trigger_func();
+```
+
+#### 10. 存储过程和函数
+
+存储过程和函数可以封装复杂的业务逻辑,提高代码复用性和维护性。
+
+存储过程示例(用于刷新聚合表):
+
+```
+CREATE PROCEDURE sp_refresh_agg_tablesASBEGIN    -- 刷新日销售聚合表    TRUNCATE TABLE agg_daily_sales;    INSERT INTO agg_daily_sales (date_key, product_key, total_sales, total_quantity, total_profit)    SELECT         order_date_key,        product_key,        SUM(sales_amount) as total_sales,        SUM(quantity) as total_quantity,        SUM(profit) as total_profit    FROM fact_sales    GROUP BY order_date_key, product_key;
+    -- 刷新月销售聚合表    TRUNCATE TABLE agg_monthly_sales;    INSERT INTO agg_monthly_sales (year_month, category, total_sales, total_quantity)    SELECT         FORMAT(d.date, 'yyyy-MM') as year_month,        p.category,        SUM(f.sales_amount) as total_sales,        SUM(f.quantity) as total_quantity    FROM         fact_sales f        JOIN dim_date d ON f.order_date_key = d.date_key        JOIN dim_product p ON f.product_key = p.product_key    GROUP BY         FORMAT(d.date, 'yyyy-MM'),        p.category;END;
+```
+
+**物理模型设计的最佳实践:**
+
+```
+性能与可维护性平衡: 不要过度优化,保持模型的可理解性和可维护性。
+
+考虑数据加载性能: 设计时不仅要考虑查询性能,还要兼顾数据加载和更新的效率。
+
+预留扩展空间: 为未来可能的需求变化预留一定的扩展空间。
+
+文档化: 详细记录物理模型的设计决策和原因,便于后续维护和知识传承。
+
+测试驱动设计: 使用真实的查询模式和数据量进行测试,验证设计的有效性。
+
+定期review和优化: 随着数据量和查询模式的变化,定期回顾和优化物理模型。
+
+遵循命名约定: 制定并严格遵循一致的命名约定,提高代码可读性。
+
+版本控制: 使用版本控制系统管理数据库脚本,便于跟踪变更和回滚。
+```
+
+03
+
+—
+
+小结
+
+物理模型设计是一个需要平衡多方面因素的复杂过程。它需要深入理解业务需求、数据特征和技术平台的特性。一个优秀的物理模型不仅能满足当前的性能需求,还应具有足够的灵活性以适应未来的变化。在设计过程中,与业务用户、DBA和ETL开发人员的密切合作是确保设计成功的关键。
+
+**往期精彩**
+
+[网友提问：数据建模听起来好高大尚，但很抽象，该怎么理解 ？|  什么是数据建模？](http://mp.weixin.qq.com/s?__biz=MzIzNTY4NTE5OQ==&mid=2247484985&idx=1&sn=c2bdc37c5b69d4ec3bf4c8adf244fa85&chksm=e8e21219df959b0f65bcd7dc11e1233d348d3117ead295d46e6e9b22e17e6c79799e56e1f47b&scene=21#wechat_redirect)
+
+[Hive存储优化策略](http://mp.weixin.qq.com/s?__biz=MzIzNTY4NTE5OQ==&mid=2247484927&idx=1&sn=49456cc9d8baf6be7939d4a491648283&chksm=e8e211dfdf9598c989d0e70782674ed5e45048a2183b270f470a88ae8b370cee0af415aee925&scene=21#wechat_redirect)
+
+[SQL进阶技巧：如何查询最近一笔有效订单？| 近距离有效匹配问题](http://mp.weixin.qq.com/s?__biz=MzIzNTY4NTE5OQ==&mid=2247484853&idx=1&sn=41bfa4a88d2667550d51fd2a4889dd54&chksm=e8e21195df959883b28a732cca70816361eb80a2bfa10264e91f675eac22b8d65e380c57a52b&scene=21#wechat_redirect)
+
+[Hive 利用Distribute by 解决动态分区小文件过多问题 | 小文件优化](http://mp.weixin.qq.com/s?__biz=MzIzNTY4NTE5OQ==&mid=2247484802&idx=1&sn=fece76652d41448b4fbc9d9f0ce41e17&chksm=e8e211a2df9598b47da590a1fbad98c7c00dd0963958bc1a66156f2fa6de514cd6ca7568efa3&scene=21#wechat_redirect)
+
+[数仓建模：Hive加载数据的几种方式分析。](http://mp.weixin.qq.com/s?__biz=MzIzNTY4NTE5OQ==&mid=2247484745&idx=1&sn=faf0db3ca4f4829028bfc9b8955ea960&chksm=e8e21169df95987fa92323b0a024cdf7f4c0d2a9d457a084ab4f1b39529c8fbbb14ad0a4f4bc&scene=21#wechat_redirect)
+
+[数仓建模：DWS层该如何建设？如何设计通用数据模型？](http://mp.weixin.qq.com/s?__biz=MzIzNTY4NTE5OQ==&mid=2247484303&idx=1&sn=fd181f586e05ec2727b9385701f625ce&chksm=e8e217afdf959eb91bdb81142807ea9b9ef2ad94d7d5937aa28c64f65e9a4a9bf7b6886d82ba&scene=21#wechat_redirect)

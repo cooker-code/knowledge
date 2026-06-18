@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Hive 实践 | Apache Hive 4.x与Iceberg分支和标签](<../文章/Hive 实践 _ Apache Hive 4.x与Iceberg分支和标签.md>)
+- 本地文件：[Hive 实践 | Apache Hive 4.x与Iceberg分支和标签](<../文章/done-Hive 实践 _ Apache Hive 4.x与Iceberg分支和标签.md>)
 - 原文链接：`http://mp.weixin.qq.com/s?__biz=MzU5OTQ1MDEzMA==&mid=2247492122&idx=1&sn=39f36da681b71d0235490aa745ce30a9`
 - 关键段落：创建 Iceberg 表、查询 history、创建 branch/tag、refs 元数据表、写入分支、查询分支、fast-forward、cherry-pick、drop branch/tag。
 - 关键图：无技术图。

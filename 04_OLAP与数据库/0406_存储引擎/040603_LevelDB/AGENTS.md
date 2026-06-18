@@ -12,11 +12,17 @@
 | 主要使用者 | 存储学习者、数据库内核工程师 |
 | 主要产出 | WAL、MemTable、SSTable、Manifest、VersionEdit |
 
+## 已沉淀核心知识点
+
+| 主题 | 文件 | 问题指纹 | 解决什么问题 | 认知增量 |
+|---|---|---|---|---|
+| 最小 LSM 文件组织与恢复路径 | [LevelDB最小LSM文件组织与恢复路径](040603_核心知识点/LevelDB最小LSM文件组织与恢复路径.md) | LevelDB + 最小 LSM 文件组织与恢复路径 + 机制/边界/验证 | LevelDB 的价值在于展示一个最小 LSM 引擎如何把 WAL、MemTable、Immutable MemTable、SSTable、Manifest 和 Version 管理串起来 | 形成可复用判断，不保留文章池 |
+
 ## 当前文章
 
 | 文章 | 阅读投入建议 | 处理建议 |
 |---|---|---|
-| [LevelDB：一个最小 LSM 引擎如何组织数据](<文章/LevelDB：一个最小 LSM 引擎如何组织数据.md>) | 精读候选 | 适合沉淀 WAL、MemTable、SSTable、Manifest、Flush、恢复路径 |
+| [LevelDB：一个最小 LSM 引擎如何组织数据](<文章/done-LevelDB：一个最小 LSM 引擎如何组织数据.md>) | 精读候选 | 适合沉淀 WAL、MemTable、SSTable、Manifest、Flush、恢复路径 |
 
 ## 后续追查
 

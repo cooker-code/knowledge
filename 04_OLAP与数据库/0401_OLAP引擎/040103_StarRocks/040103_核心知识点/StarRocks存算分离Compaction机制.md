@@ -1,8 +1,11 @@
 # StarRocks 存算分离 Compaction 机制
 
+## 来源
+- [极速查询：StarRocks 存算分离 Compaction 原理 & 调优指南](<../文章/done-极速查询：StarRocks 存算分离 Compaction 原理 & 调优指南.md>)
+
 ## 原文锚点
 
-- 本地文件：[极速查询：StarRocks 存算分离 Compaction 原理 & 调优指南](<../文章/极速查询：StarRocks 存算分离 Compaction 原理 & 调优指南.md>)
+- 本地文件：[极速查询：StarRocks 存算分离 Compaction 原理 & 调优指南](<../文章/done-极速查询：StarRocks 存算分离 Compaction 原理 & 调优指南.md>)
 - 原文链接：http://mp.weixin.qq.com/s?__biz=MzI1MTYxOTkxNQ==&mid=2247493628&idx=1&sn=17351e910dbddefa57a60a3efd19778a&chksm=e9f298d8de8511ce04da1cc9dce835e6382cbfc2f1b34d51b6b581bf81607dc653ac9ce33347&mpshare=1&scene=24&srcid=07121ZLnOo4yisLF6cVt660k&sharer_shareinfo=c78d880b5bf3ea3ff0ad10814bca8039&sharer_shareinfo_first=c78d880b5bf3ea3ff0ad10814bca8039#rd
 - 关键段落：数据版本更新机制、Compaction 调度流程、数据文件删除、诊断与调优。
 - 关键图：原文多次引用版本、调度、存储结构示意图，本地 Markdown 无图片链接。

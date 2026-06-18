@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[实时数仓的地基Paimon：是怎样建成的.md](../文章/实时数仓的地基Paimon：是怎样建成的.md)
+- 本地文件：[实时数仓的地基Paimon：是怎样建成的.md](../文章/done-实时数仓的地基Paimon：是怎样建成的.md)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=MzYzNDczNTc3NA==&mid=2247484099&idx=1&sn=73c79995a32b6da482aba387b6aca59a&chksm=f14d71671148e4756e90568350612490aa51188f2f426d5351bde4f18dd6a69bf850ad1e5ddd&mpshare=1&scene=24&srcid=04301ISJACulJEm375XRNoLf&sharer_shareinfo=020755b71880428b835b3a32d814e29a&sharer_shareinfo_first=020755b71880428b835b3a32d814e29a#rd
 - 关键段落：文章按文件存储层、LSM Tree、元数据层、Changelog、查询引擎层拆解 Paimon。
 

@@ -1,9 +1,9 @@
 # StarRocks
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[知识地图](040103_核心知识点/知识地图.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](040103_知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `040103_核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `040103_核心知识点/` 下的主题文件。
 
 
 ## 技术定位
@@ -69,12 +69,14 @@ flowchart LR
 
 | 主题 | 文件 | 问题指纹 | 解决什么问题 | 认知增量 |
 |---|---|---|---|---|
-| Primary Key 实时更新模型 | [StarRocksPrimaryKey实时更新模型](040103_核心知识点/StarRocksPrimaryKey实时更新模型.md) | StarRocks + Primary Key + 主键索引/Delete Vector/部分列更新 + 实时更新分析 + 不替代 OLTP | 解释 StarRocks 如何在列存 OLAP 中支持实时更新 | PK 模型是分析型更新方案，不是 OLTP 替代品 |
-| Primary Key 事务与 DelVector 读写边界 | [StarRocksPrimaryKey事务与DelVector读写边界](040103_核心知识点/StarRocksPrimaryKey事务与DelVector读写边界.md) | StarRocks + Primary Key + Write/Commit/Primary Index/DelVector/Compaction + 实时 Upsert 查询性能 + CDC/ELT 更新边界 | 解释 PK 表如何通过串行 Commit、主键索引和 DelVector 解决更新冲突并降低读时 Merge | 把“能 Upsert”校准为主键索引内存、提交延迟、删除标记和 Compaction 的综合取舍 |
-| Query Cache 中间聚合缓存 | [StarRocksQueryCache中间聚合缓存](040103_核心知识点/StarRocksQueryCache中间聚合缓存.md) | StarRocks + Query Cache + 中间聚合结果/语义等价/分区重合/append-only 多版本 + 高并发聚合查询 + 命中率边界 | 解释 Query Cache 如何复用聚合中间结果，而不是缓存最终结果 | Query Cache 适合高并发相似聚合查询，不适合所有查询加速 |
-| 存算分离 Compaction 机制 | [StarRocks存算分离Compaction机制](040103_核心知识点/StarRocks存算分离Compaction机制.md) | StarRocks + Compaction + 多版本文件/Partition 调度/Compaction Score + 查询效率与小文件治理 | 解释存算分离表如何治理多版本文件和小文件，降低查询合并成本 | Compaction 是写入版本、查询成本和对象存储文件治理之间的平衡点 |
-| 物化视图建模与透明加速 | [StarRocks物化视图建模与透明加速](040103_核心知识点/StarRocks物化视图建模与透明加速.md) | StarRocks + Materialized View + 预计算/透明改写/刷新/湖仓加速 + 查询性能与维护成本权衡 | 判断 StarRocks 物化视图什么时候能加速查询、什么时候会变成维护负担 | 物化视图不是万能加速器，核心是查询改写命中率、新鲜度和维护成本 |
-
+| Primary Key 实时更新模型 | [StarRocksPrimaryKey实时更新模型](040103_核心知识点/StarRocksPrimaryKey实时更新模型.md) | StarRocks + Primary Key 实时更新模型 + 机制/边界/验证 | PK 模型是分析型实时更新方案，不是 OLTP 替代。 | 形成可复用判断，不保留文章池 |
+| Primary Key 事务与 DelVector 读写边界 | [StarRocksPrimaryKey事务与DelVector读写边界](040103_核心知识点/StarRocksPrimaryKey事务与DelVector读写边界.md) | StarRocks + Primary Key 事务与 DelVector 读写边界 + 机制/边界/验证 | 主键索引、DelVector、Commit 和 Compaction 共同决定实时更新成本。 | 形成可复用判断，不保留文章池 |
+| Query Cache 中间聚合缓存 | [StarRocksQueryCache中间聚合缓存](040103_核心知识点/StarRocksQueryCache中间聚合缓存.md) | StarRocks + Query Cache 中间聚合缓存 + 机制/边界/验证 | Query Cache 复用中间聚合结果，适合高并发相似聚合查询。 | 形成可复用判断，不保留文章池 |
+| 存算分离 Compaction 机制 | [StarRocks存算分离Compaction机制](040103_核心知识点/StarRocks存算分离Compaction机制.md) | StarRocks + 存算分离 Compaction 机制 + 机制/边界/验证 | Compaction 是多版本文件、小文件治理和对象存储查询成本的平衡点。 | 形成可复用判断，不保留文章池 |
+| 物化视图建模与透明加速 | [StarRocks物化视图建模与透明加速](040103_核心知识点/StarRocks物化视图建模与透明加速.md) | StarRocks + 物化视图建模与透明加速 + 机制/边界/验证 | 物化视图核心是改写命中率、新鲜度和维护成本。 | 形成可复用判断，不保留文章池 |
+| FE 内存与 Tablet 排障边界 | [StarRocksFE内存与Tablet排障边界](040103_核心知识点/StarRocksFE内存与Tablet排障边界.md) | StarRocks + FE 内存与 Tablet 排障边界 + 机制/边界/验证 | StarRocks 排障不能只看 SQL 慢不慢，FE 元数据、Tablet 数量、调度状态、内存对象和查询计划都可能是瓶颈 | 形成可复用判断，不保留文章池 |
+| 实时数仓与湖仓接入边界 | [StarRocks实时数仓与湖仓接入边界](040103_核心知识点/StarRocks实时数仓与湖仓接入边界.md) | StarRocks + 实时数仓与湖仓接入边界 + 机制/边界/验证 | StarRocks 在实时数仓里通常作为查询服务和更新分析层，上游由 Flink、InLong、CDC 或离线同步保证数据进入 | 形成可复用判断，不保留文章池 |
+| SQL 指纹与生成列优化边界 | [StarRocksSQL指纹与生成列优化边界](040103_核心知识点/StarRocksSQL指纹与生成列优化边界.md) | StarRocks + SQL 指纹与生成列优化边界 + 机制/边界/验证 | StarRocks 查询优化既有表模型选择，也有面向查询治理的 SQL 指纹、生成列和 Join 策略 | 形成可复用判断，不保留文章池 |
 ## 后续追查
 
 - 关键词：Primary Key table、Delete Vector、Persistent Index、Partial Update、Load Commit、Query Cache、Compaction、Compaction Score、Materialized View、Query Rewrite、Refresh、Lakehouse。

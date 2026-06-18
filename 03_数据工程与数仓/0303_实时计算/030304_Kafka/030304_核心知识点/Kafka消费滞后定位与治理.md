@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Kafka消费滞后问题全解析：原因、监控与解决方案](../文章/Kafka消费滞后问题全解析：原因、监控与解决方案.md)
+- 本地文件：[Kafka消费滞后问题全解析：原因、监控与解决方案](../文章/done-Kafka消费滞后问题全解析：原因、监控与解决方案.md)
 - 原文链接：http://mp.weixin.qq.com/s?__biz=Mzg5Mzg3MzkwNA==&mid=2247490804&idx=1&sn=3c7c887f37f1253a23b4b7c2af916859
 - 关键段落：消费滞后定义、常见原因、监控方法、解决策略、长期维护。
 - 关键图：无技术图。
@@ -111,3 +111,10 @@
 - 关键词：consumer lag、records-lag-max、kafka-consumer-groups、rebalance、max.poll.interval.ms、max.poll.records。
 - 相关技术：Flink 反压、Kafka Rebalance、Kafka Exporter、Burrow。
 - 需要补读的文章：Kafka Consumer Rebalance、Kafka 分区策略、Kafka + Flink Exactly Once。
+
+## 重新蒸馏补充（2026-06-18）
+
+| 来源 | 认知增量 | 处理 |
+|---|---|---|
+| [[03_数据工程与数仓/0303_实时计算/030304_Kafka/文章/done-Flink实时消费kafka数据时，“平时正常，只在0点左右丢数”，为什么？]] | 补充该主题的生产案例、机制边界或排重样例。 | 重新判断后补入目标知识产物 |
+| [[03_数据工程与数仓/0303_实时计算/030304_Kafka/文章/done-Kafka 学习笔记（一）定位一次Kafka集群读写超时的故障]] | 补充该主题的生产案例、机制边界或排重样例。 | 重新判断后补入目标知识产物 |

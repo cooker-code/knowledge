@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Pi：五万星开源代码Agent，terminal里的瑞士军刀](<../文章/Pi：五万星开源代码Agent，terminal里的瑞士军刀.md>)；[什么是pi？下一代Agent架构？](<../文章/什么是pi？下一代Agent架构？.md>)；[套壳不丢人！我用Go+AI搓了一个Agent统一编排框架，ClaudeCode-Codex-Pi全被我包了](<../文章/套壳不丢人！我用Go+AI搓了一个Agent统一编排框架，ClaudeCode-Codex-Pi全被我包了.md>)
+- 本地文件：[Pi：五万星开源代码Agent，terminal里的瑞士军刀](<../文章/done-Pi：五万星开源代码Agent，terminal里的瑞士军刀.md>)；[什么是pi？下一代Agent架构？](<../文章/done-什么是pi？下一代Agent架构？.md>)；套壳不丢人文章未保留本地来源文件，仅作为历史判断线索
 - 原文链接：本地 Markdown 保留公众号链接；官网、GitHub、npm 包名和维护状态需后续补证。
 - 关键段落：Pi 四个核心工具、provider 抽象、session/fork/clone、SDK/JSONL RPC、OpenClaw 基于 Pi 的上层关系、agent-wrapper 把 Pi 当 provider 封装。
 - 关键图：本地 Markdown 未保留可直接复用的技术图；OpenClaw 与 Pi 的层级关系在 `Pi/AGENTS.md` 中用 Mermaid 重建。
@@ -57,7 +57,7 @@ Pi 的价值不在“只有四个工具”本身，而在把终端 coding agent 
 | 分级 | 内容 | 为什么值得吸收 | 后续动作 |
 |---|---|---|---|
 | 理解 | Pi 的分层包括 CLI、agent core、provider、TUI/Web UI 和 SDK/RPC | 有助于判断它是工具还是框架 | 在 `Pi/AGENTS.md` 保留架构图 |
-| 记住 | 四工具是执行面最小集，不代表权限治理完成 | 影响安全和生产化判断 | 与 `0210_安全与权限` 互链补审批/沙箱 |
+| 记住 | 四工具是执行面最小集，不代表权限治理完成 | 影响安全和生产化判断 | 与 `0210_sandbox` 互链补审批/沙箱 |
 | 理解 | session/fork/clone 解决探索式编程的回溯问题 | 补长任务状态管理边界 | 后续做跨进程恢复实验 |
 | 理解 | Pi 可作为 OpenClaw、Craft Agents、agent-wrapper 的底层 runtime/provider | 解释为什么它进 Agent 框架 | 后续补上层项目真实接入证据 |
 | 实践 | 跑通 CLI、SDK、JSONL RPC 三种入口并记录事件和失败模式 | 可迁移到自建 coding agent 平台 | 官方补证后做最小实验 |

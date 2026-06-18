@@ -1,8 +1,11 @@
 # Doris FE 元数据恢复边界
 
+## 来源
+- [Apache Doris FE 元数据常见故障处理方法](<../文章/done-Apache Doris FE 元数据常见故障处理方法.md>)
+
 ## 原文锚点
 
-- 本地文件：[Apache Doris FE 元数据常见故障处理方法](<../文章/Apache Doris FE 元数据常见故障处理方法.md>)
+- 本地文件：[Apache Doris FE 元数据常见故障处理方法](<../文章/done-Apache Doris FE 元数据常见故障处理方法.md>)
 - 原文链接：http://mp.weixin.qq.com/s?__biz=MzI4ODMyNTcwMw==&mid=2247485220&idx=1&sn=0329acc2f754072d0d45bbce751e9dbe
 - 官方锚点：[Apache Doris Docs](https://doris.apache.org/docs/)、[Apache Doris GitHub](https://github.com/apache/doris)
 - 关键段落：`metadata_failure_recovery`、Observer/Follower 删除和重加、`priority_networks`、`image.xxxx`。

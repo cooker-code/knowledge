@@ -1,8 +1,11 @@
 # ClickHouse AggregateFunction 与物化视图预聚合边界
 
+## 来源
+- [「ClickHouse系列」实时分析优化AggregateFunction及物化视图](<../文章/done-「ClickHouse系列」实时分析优化AggregateFunction及物化视图.md>)
+
 ## 原文锚点
 
-- 本地文件：[「ClickHouse系列」实时分析优化AggregateFunction及物化视图](../文章/「ClickHouse系列」实时分析优化AggregateFunction及物化视图.md)
+- 本地文件：[「ClickHouse系列」实时分析优化AggregateFunction及物化视图](../文章/done-「ClickHouse系列」实时分析优化AggregateFunction及物化视图.md)
 - 原文链接：`http://mp.weixin.qq.com/s?__biz=MzU3MzgwNTU2Mg==&mid=2247512491&idx=1&sn=84bd50bb724d2217a78bce1236ddf4d5`
 - 关键段落：`AggregateFunction` 类型、`State` 写入、`Merge` 查询、`AggregatingMergeTree`、物化视图同步写入、`POPULATE`、源表删除不同步。
 - 关键图：无可用技术图。

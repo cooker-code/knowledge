@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[MCP Server工具参数设计与AI约束指南](<../文章/MCP Server工具参数设计与AI约束指南.md>)
+- 本地文件：[MCP Server工具参数设计与AI约束指南](<../文章/done-MCP Server工具参数设计与AI约束指南.md>)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=Mzg4MTU5MzE3MQ==&mid=2247485785&idx=1&sn=1ee1dfdbf07ae5601d583d0211d3353a
 - 关键段落：只暴露必要参数、参数命名防歧义、枚举值、白名单、Schema 校验、分阶段提取。
 - 关键图：无技术图。

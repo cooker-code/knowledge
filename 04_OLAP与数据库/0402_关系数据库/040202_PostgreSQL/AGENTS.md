@@ -68,31 +68,30 @@ flowchart LR
 
 | 主题 | 文件 | 问题指纹 | 解决什么问题 | 认知增量 |
 |---|---|---|---|---|
-| （待填入，精读候选处理后更新） | - | - | - | - |
-
+| 架构、WAL 与高可用边界 | [PostgreSQL架构WAL与高可用边界](040202_核心知识点/PostgreSQL架构WAL与高可用边界.md) | PostgreSQL + 架构、WAL 与高可用边界 + 机制/边界/验证 | PostgreSQL 的稳定性判断要从进程模型、共享内存、WAL、后台进程和复制链路一起看 | 形成可复用判断，不保留文章池 |
+| 权限治理与 PostgREST 边界 | [PostgreSQL权限治理与PostgREST边界](040202_核心知识点/PostgreSQL权限治理与PostgREST边界.md) | PostgreSQL + 权限治理与 PostgREST 边界 + 机制/边界/验证 | PostgreSQL 权限体系可以从角色、对象授权、Schema、默认权限、RLS 一直延伸到 PostgREST 这类 API 层 | 形成可复用判断，不保留文章池 |
+| TOAST 与 LISTEN/NOTIFY 边界 | [PostgreSQLTOAST与LISTEN_NOTIFY边界](040202_核心知识点/PostgreSQLTOAST与LISTEN_NOTIFY边界.md) | PostgreSQL + TOAST 与 LISTEN/NOTIFY 边界 + 机制/边界/验证 | TOAST 和 LISTEN/NOTIFY 都是 PostgreSQL 的能力边界提醒：TOAST 让大字段可存但会带来外存、压缩、读取放大和 Vacuum 成本；LISTEN/NOTIFY 能做轻量通知但不是高吞吐消息队列 | 形成可复用判断，不保留文章池 |
+| pgvector 与多模态检索边界 | [PostgreSQLpgvector与多模态检索边界](040202_核心知识点/PostgreSQLpgvector与多模态检索边界.md) | PostgreSQL + pgvector 与多模态检索边界 + 机制/边界/验证 | pgvector 让 PostgreSQL 能承载向量列、相似检索和部分多模态检索场景，适合把结构化过滤和向量召回放在同一数据库里 | 形成可复用判断，不保留文章池 |
+| PostgreSQL 与 MySQL 选型边界 | [PostgreSQL与MySQL选型边界](040202_核心知识点/PostgreSQL与MySQL选型边界.md) | PostgreSQL + PostgreSQL 与 MySQL 选型边界 + 机制/边界/验证 | PostgreSQL 与 MySQL 的差异不能只按性能排名判断 | 形成可复用判断，不保留文章池 |
 ## 本地文章索引
 
 | 文章 | 技术对象 | 阅读投入建议 | 状态 |
 |---|---|---|---|
-| [5分钟看懂 PostgreSQL 工作原理](<文章/5分钟看懂 PostgreSQL 工作原理.md>) | PostgreSQL 整体架构 | 精读 | 精读候选 |
-| [PG数据库｜PostgreSQL WAL 文件全解析](<文章/PG数据库｜PostgreSQL WAL 文件全解析：从命名规则到归档管理，一文吃透“生命线”逻辑！.md>) | WAL | 精读 | 精读候选 |
-| [PG数据库｜PostgreSQL上线参数调优](文章/PG数据库｜PostgreSQL上线参数调优：企业级性能优化全攻略.md) | 参数调优 | 精读 | 待处理 |
-| [PG数据库｜PostgreSQL权限管理深度解析](文章/PG数据库｜PostgreSQL权限管理深度解析：从授权到合规的全链路实践.md) | 权限管理 | 精读 | 精读候选 |
-| [PostgreSQL + pgvector AI 超级大脑配置指南](<文章/PostgreSQL + pgvector AI 超级大脑配置指南.md>) | pgvector 扩展 | 精读 | 待处理 |
-| [PostgreSQL MCP Server](<文章/PostgreSQL MCP Server：让 AI 直接读懂你的数据库.md>) | MCP 集成 | 略读 | 待处理 |
-| [PostgreSQL 架构与内部机制介绍](<文章/PostgreSQL 架构与内部机制介绍.md>) | 整体架构 | 精读（原图缺失）| 精读候选 |
-| [PostgreSQL 高可用学习指南](<文章/PostgreSQL 高可用学习指南.md>) | 高可用 | 精读 | 待处理 |
-| [PostgreSQL对象DDL获取工具](文章/PostgreSQL对象DDL获取工具.md) | 工具 | 略读 | 待处理 |
-| [PostgreSQL教程（7）｜用户与权限管理](文章/PostgreSQL教程（7）｜用户与权限管理.md) | 权限管理 | 精读 | 待处理 |
-| [Postgres - 基于Listen_Notify构建轻量级发布订阅系统](<文章/Postgres - 基于Listen_Notify构建轻量级发布订阅系统.md>) | 发布订阅 | 精读 | 待处理 |
-| [Python之FastAPI的入门到精通系列：同步连接Postgres](文章/Python之FastAPI的入门到精通系列：同步连接Postgres.md) | FastAPI 集成 | 略读 | 待处理 |
-| [SQL 写到崩溃？30 分钟开发 PostgreSQL Skill](<文章/SQL 写到崩溃？30 分钟开发 PostgreSQL Skill，让 AI 接盘.md>) | AI 工具集成（原图缺失）| 略读 | 待处理 |
-| [体验 PostgreSQL 的 AI 扩展 pgvector](<文章/体验 PostgreSQL 的 AI 扩展 pgvector.md>) | pgvector | 精读 | 待处理 |
-| [性能比拼: MySQL vs PostgreSQL](<文章/性能比拼_ MySQL vs PostgreSQL.md>) | 对标 MySQL | 精读 | 精读候选 |
-| [我最爱的关系型开源数据库：postgres，强烈推荐！](文章/我最爱的关系型开源数据库：postgres，强烈推荐！.md) | 综合推荐 | 略读 | 待处理 |
-| [更轻更自由，还要什么自行车：PostgREST](文章/更轻更自由，还要什么自行车：别急上Supabase，先试试它的内核PostgREST.md) | PostgREST | 精读 | 精读候选 |
-| [用PostgreSQL搞定多模态数据：文本+图片Embedding实战](文章/用PostgreSQL搞定多模态数据：文本+图片Embedding实战.md) | pgvector 实践 | 精读 | 待处理 |
-| [简单解析下PostgreSQL的Toast](文章/简单解析下PostgreSQL的Toast.md) | TOAST 存储 | 精读 | 精读候选 |
+| [5分钟看懂 PostgreSQL 工作原理](<文章/done-5分钟看懂 PostgreSQL 工作原理.md>) | PostgreSQL 整体架构 | 精读 | 精读候选 |
+| [PG数据库｜PostgreSQL WAL 文件全解析](<文章/done-PG数据库｜PostgreSQL WAL 文件全解析：从命名规则到归档管理，一文吃透“生命线”逻辑！.md>) | WAL | 精读 | 精读候选 |
+| [PG数据库｜PostgreSQL上线参数调优](文章/done-PG数据库｜PostgreSQL上线参数调优：企业级性能优化全攻略.md) | 参数调优 | 精读 | 待处理 |
+| [PG数据库｜PostgreSQL权限管理深度解析](文章/done-PG数据库｜PostgreSQL权限管理深度解析：从授权到合规的全链路实践.md) | 权限管理 | 精读 | 精读候选 |
+| [PostgreSQL + pgvector AI 超级大脑配置指南](<文章/done-PostgreSQL + pgvector AI 超级大脑配置指南.md>) | pgvector 扩展 | 精读 | 待处理 |
+| [PostgreSQL 架构与内部机制介绍](<文章/done-PostgreSQL 架构与内部机制介绍.md>) | 整体架构 | 精读（原图缺失）| 精读候选 |
+| [PostgreSQL 高可用学习指南](<文章/done-PostgreSQL 高可用学习指南.md>) | 高可用 | 精读 | 待处理 |
+| [PostgreSQL教程（7）｜用户与权限管理](文章/done-PostgreSQL教程（7）｜用户与权限管理.md) | 权限管理 | 精读 | 待处理 |
+| [Postgres - 基于Listen_Notify构建轻量级发布订阅系统](<文章/done-Postgres - 基于Listen_Notify构建轻量级发布订阅系统.md>) | 发布订阅 | 精读 | 待处理 |
+| [体验 PostgreSQL 的 AI 扩展 pgvector](<文章/done-体验 PostgreSQL 的 AI 扩展 pgvector.md>) | pgvector | 精读 | 待处理 |
+| [性能比拼: MySQL vs PostgreSQL](<文章/done-性能比拼_ MySQL vs PostgreSQL.md>) | 对标 MySQL | 精读 | 精读候选 |
+| [我最爱的关系型开源数据库：postgres，强烈推荐！](文章/done-我最爱的关系型开源数据库：postgres，强烈推荐！.md) | 综合推荐 | 略读 | 待处理 |
+| [更轻更自由，还要什么自行车：PostgREST](文章/done-更轻更自由，还要什么自行车：别急上Supabase，先试试它的内核PostgREST.md) | PostgREST | 精读 | 精读候选 |
+| [用PostgreSQL搞定多模态数据：文本+图片Embedding实战](文章/done-用PostgreSQL搞定多模态数据：文本+图片Embedding实战.md) | pgvector 实践 | 精读 | 待处理 |
+| [简单解析下PostgreSQL的Toast](文章/done-简单解析下PostgreSQL的Toast.md) | TOAST 存储 | 精读 | 精读候选 |
 
 ## 后续追查
 

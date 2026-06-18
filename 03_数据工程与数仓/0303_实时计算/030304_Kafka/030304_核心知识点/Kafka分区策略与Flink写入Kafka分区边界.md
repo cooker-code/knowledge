@@ -2,8 +2,8 @@
 
 ## 原文锚点
 
-- 本地文件：[Kafka生产者的3种分区策略](../文章/Kafka生产者的3种分区策略.md)
-- 本地文件：[Flink sink 到 kafka，并行度与分区的关系](<../文章/Flink sink 到 kafka，并行度与分区的关系.md>)
+- 本地文件：[Kafka生产者的3种分区策略](../文章/done-Kafka生产者的3种分区策略.md)
+- 本地文件：[Flink sink 到 kafka，并行度与分区的关系](<../文章/done-Flink sink 到 kafka，并行度与分区的关系.md>)
 - 原文链接：`http://mp.weixin.qq.com/s?__biz=Mzg4ODY1NTcxNg==&mid=2247493592&idx=1&sn=4a4f536b21f1b6b1d506dd1bdfa07e80`
 - 原文链接：`http://mp.weixin.qq.com/s?__biz=MzI3MjAxNDYwOA==&mid=2247484843&idx=1&sn=43aa05890302d58180003b41e51858bd`
 - 关键段落：DefaultPartitioner 对指定 partition、key、无 key 的处理；Sticky Partitioner 通过填满 batch 改善吞吐和延迟；UniformStickyPartitioner 和 RoundRobinPartitioner 的差异；Flink 1.15 KafkaSink 与旧 FlinkKafkaProducer 默认分区行为差异。
@@ -151,3 +151,11 @@ Kafka 分区策略决定吞吐、顺序性、热点和 Flink 写入分布；Flin
 - 关键词：DefaultPartitioner、Sticky Partitioner、UniformStickyPartitioner、RoundRobinPartitioner、partitioner.class、Flink KafkaSink、FlinkKafkaProducer、ProducerBatch。
 - 相关技术：Kafka Lag、Consumer Rebalance、Kafka Exactly Once、Flink KafkaSource/KafkaSink。
 - 需要补读的文章：当前 Kafka producer 分区器文档、当前 Flink Kafka connector 文档、Kafka key 设计和热点分区排查。
+
+## 重新蒸馏补充（2026-06-18）
+
+| 来源 | 认知增量 | 处理 |
+|---|---|---|
+| [[03_数据工程与数仓/0303_实时计算/030304_Kafka/文章/done-Flink Kafka Sink 根据用户配置的字段自动分发到对应Topic改造的思路]] | 补充该主题的生产案例、机制边界或排重样例。 | 重新判断后补入目标知识产物 |
+| [[03_数据工程与数仓/0303_实时计算/030304_Kafka/文章/done-Flink新特性_一条SQL实现Kafka集群间多Topic非结构化数据自动透传同步方案实践总结]] | 补充该主题的生产案例、机制边界或排重样例。 | 重新判断后补入目标知识产物 |
+| [[03_数据工程与数仓/0303_实时计算/030304_Kafka/文章/done-Kafka怎么做负载均衡？]] | 补充该主题的生产案例、机制边界或排重样例。 | 重新判断后补入目标知识产物 |

@@ -1,0 +1,122 @@
+---
+title: 让我看看是谁还不会画相关性分析连线热图
+author: 科研七点半
+date:
+url: http://mp.weixin.qq.com/s?__biz=MzU3NTg0NzA0MA==&mid=2247486952&idx=1&sn=382e0e26668368b286b847ac27e9fdac&chksm=fd1da207ca6a2b11cb3ace843c43ba71862356c07c64b339d94b2cd9c9705bd00b8b43c4b2c5&mpshare=1&scene=24&srcid=1220R5syxy3QHelxNZRjYPN8&sharer_shareinfo=0447e4f97b867d08163f4609604b3e0f&sharer_shareinfo_first=0447e4f97b867d08163f4609604b3e0f#rd
+---
+
+
+> 已吸收至：[[05_数据分析与BI/0504_可视化/0504_核心知识点/图表选择与视觉编码准则|图表选择与视觉编码准则]]
+
+# 准备工作
+
+```
+devtools::install_github('Hy4m/linkET')
+
+library(linkET)
+library(ggplot2)
+library(dplyr)
+
+micro <- read.delim('micro.txt', row.names = 1)
+env <- read.delim('env.txt', row.names = 1)
+```
+
+这段代码主要是关于在R环境中安装和使用 `linkET` 包，以及读取微生物和环境数据。下面是对代码的详细解读：
+
+1. 安装 `linkET` 包:
+
+* 首先，代码注释掉了安装 `devtools` 包的命令。`devtools` 是一个R包，用于开发和安装来自GitHub等源的R包。
+* 接下来，使用 `devtools::install_github('Hy4m/linkET')` 安装 `linkET` 包。这是一个从GitHub安装R包的标准方式，`linkET` 是包的名称，`Hy4m` 是GitHub上的用户名。
+
+2. 加载库:
+
+* `library(linkET)` 加载了 `linkET` 包，这个包可能包含了用于生态数据分析的函数和工具。
+* `library(ggplot2)` 加载了 `ggplot2` 包，这是一个用于创建复杂图表的流行R包。
+* `library(dplyr)` 加载了 `dplyr` 包，这是一个提供数据操作功能的包，非常适合数据清洗和转换。
+
+3. 读取数据:
+
+* `micro <- read.delim('micro.txt', row.names = 1)` 读取名为 `micro.txt` 的文件，并将第一列作为行名。这个文件可能包含微生物群落数据。
+* `env <- read.delim('env.txt', row.names = 1)` 读取名为 `env.txt` 的文件，并同样将第一列作为行名。这个文件可能包含环境数据。
+
+综上所述，这段代码的目的是设置环境并准备数据，以便进行后续的生态数据分析。`linkET` 包可能提供了专门用于此类数据分析的功能，而 `ggplot2` 和 `dplyr` 则用于数据的可视化和处理。
+
+# 计算相关性
+
+```
+mantel <- mantel_test(spec = micro, 
+                      env = env, 
+                      spec_select = list( Kattnik = 1:10, 
+                                          Function = 11:20,
+                                          Goofuluk=21:30), 
+                      mantel_fun = 'mantel')
+
+mantel <- mutate(mantel, 
+    rd = cut(r, breaks = c(-Inf, 0.2, 0.4, Inf), 
+             labels = c('< 0.2', '0.2 - 0.4', '>= 0.4')),
+    pd = cut(p, breaks = c(-Inf, 0.01, 0.05, Inf), 
+             labels = c('< 0.01', '0.01 - 0.05', '>= 0.05'))
+)
+mantel
+```
+
+1. 计算 Mantel 相关性:
+
+* 使用 `mantel_test` 函数进行Mantel测试，这是一种统计方法，用于评估两个不同集合之间的相似性或距离矩阵之间的相关性。
+* `spec = micro` 和 `env = env` 分别指定了微生物数据和环境数据作为输入。
+* `spec_select` 参数用于在微生物数据中指定不同的数据组。在这个例子中，微生物矩阵的前10列被标记为 `Kattnik`，11到20列为 `Function`，21到30列为 `Goofuluk`。这可能表示不同类别的数据，如不同物种或功能群。
+* `mantel_fun = 'mantel'` 指定使用的函数是Mantel测试。Mantel测试通常用于生态和遗传学数据，以评估两组数据之间的空间相关性。
+
+2. 设置标签并处理 Mantel 测试结果:
+
+* 使用 `dplyr` 包中的 `mutate` 函数来添加新列 `rd` 和 `pd`。这些列基于Mantel测试结果中的相关系数 (`r`) 和显著性水平 (`p`)。
+* `cut` 函数用于将连续的相关系数和显著性水平划分为离散的类别。例如，相关系数被分为三个类别（`< 0.2`，`0.2 - 0.4`，`>= 0.4`），显著性水平也被分为三个类别（`< 0.01`，`0.01 - 0.05`，`>= 0.05`）。
+* 这些类别标签可用于后续的数据可视化，例如在作图时定义线宽和颜色。
+
+总之，这部分代码专注于使用Mantel测试来分析微生物数据和环境数据之间的相关性，并对测试结果进行分类处理，以便于进行有效的数据可视化和解释。Mantel测试是一种在生态和环境科学领域广泛使用的方法，特别是当涉及到空间结构数据时。
+
+# 绘图
+
+```
+qcorrplot(correlate(env, method = 'spearman'), type = 'upper', diag = FALSE) +  
+geom_square() +
+geom_mark(sep = '\n', size = 2.5, sig.thres = 0.05) +
+geom_couple(aes(color = pd, size = rd), 
+            data = mantel,
+            curvature = nice_curvature()) +  
+scale_fill_gradientn(colors = c( '#60D5FD', 'white', '#CC1577'),
+                     limits = c(-1, 1)) +  #根据 Spearman 相关指定热图颜色
+scale_size_manual(values = c(0.5, 1, 2)) +  
+scale_color_manual(values = c('#FF9326', '#77CE61', '#E0E0E0')) +  
+guides(color = guide_legend(title = "Mantel's p", order = 1), 
+    size = guide_legend(title = "Mantel's r", order = 2), 
+    fill = guide_colorbar(title = "Spearman's r", order = 3)) +
+theme(legend.key = element_blank())
+```
+
+换个颜色
+
+使用 `ggplot2` 包和相关扩展进行复杂的数据可视化。下面是对这部分代码的详细解读：
+
+1. 计算并绘制 Spearman 相关系数热图:
+
+* `qcorrplot(correlate(env, method = 'spearman'), type = 'upper', diag = FALSE)` 使用 `correlate` 函数计算环境数据 (`env`) 的Spearman相关系数，并通过 `qcorrplot` 函数绘制相关系数的热图。`type = 'upper'` 表示只显示矩阵的上三角部分，`diag = FALSE` 表示不显示对角线（自相关）。
+
+2. 添加图形元素:
+
+* `geom_square()` 在热图上绘制方形，用于表示相关系数。
+* `geom_mark(sep = '\n', size = 2.5, sig.thres = 0.05)` 在图中标记显著性水平，`sig.thres = 0.05` 设置显著性阈值。
+* `geom_couple(aes(color = pd, size = rd), data = mantel, curvature = nice_curvature())` 将 Mantel 测试的结果添加到图中，其中 `pd` 和 `rd` 用于颜色和大小的映射，表示Mantel相关的显著性和强度。
+
+3. 设置颜色和大小比例尺:
+
+* `scale_fill_gradientn(colors = c('#60D5FD', 'white', '#CC1577'), limits = c(-1, 1))` 设置热图的颜色渐变，从蓝色到白色再到粉红色，对应于从负相关到无相关再到正相关。
+* `scale_size_manual(values = c(0.5, 1, 2))` 根据 Mantel 相关的强度调整线条的粗细。
+* `scale_color_manual(values = c('#FF9326', '#77CE61', '#E0E0E0'))` 设置线条颜色，基于 Mantel 测试的显著性。
+
+4. 自定义图例和主题:
+
+* `guides(...)` 用于自定义图例，包括Mantel测试的 p 值 (`color`)、相关系数 (`size`) 和Spearman相关系数 (`fill`)。
+* `theme(legend.key = element_blank())` 自定义图表的主题，例如隐藏图例背景。
+
+> ggcor也能画就说这个包吧，他下架了本地安装上也能用。

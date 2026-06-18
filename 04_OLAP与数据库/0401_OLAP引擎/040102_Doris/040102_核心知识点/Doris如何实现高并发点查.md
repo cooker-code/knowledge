@@ -1,8 +1,11 @@
 # Doris 如何实现高并发点查
 
+## 来源
+- [Doris 如何实现高并发点查？（原理+实践全析）](<../文章/done-Doris 如何实现高并发点查？（原理+实践全析）.md>)
+
 ## 原文锚点
 
-- 本地文件：[Doris 如何实现高并发点查？（原理+实践全析）.md](<../文章/Doris 如何实现高并发点查？（原理+实践全析）.md>)
+- 本地文件：[Doris 如何实现高并发点查？（原理+实践全析）.md](<../文章/done-Doris 如何实现高并发点查？（原理+实践全析）.md>)
 - 原文链接：http://mp.weixin.qq.com/s?__biz=Mzg5Mzg3MzkwNA==&mid=2247490047&idx=3&sn=09adae4560da4c70359ecf5b20945c09&chksm=c13db2c2035bdf79cc19aa0e0730e9c20fc357da94892d1e68bb6f765093bdaa20b72b0c3858&mpshare=1&scene=24&srcid=1105Pz9v9DYm2RVcufxLmDL3&sharer_shareinfo=f706a712a01ecc58dad9ad29beabc21c&sharer_shareinfo_first=f706a712a01ecc58dad9ad29beabc21c#rd
 - 关键段落：文章把点查优化拆成行式存储、Row Cache、Short-Circuit、Prepared Statement。
 

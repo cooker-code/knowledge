@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[基于Debezium的低延迟CDC入湖管道](../文章/基于Debezium的低延迟CDC入湖管道.md)
+- 本地文件：[基于Debezium的低延迟CDC入湖管道](../文章/done-基于Debezium的低延迟CDC入湖管道.md)
 - 原文链接：http://mp.weixin.qq.com/s?__biz=MzI0NTIxNzE1Ng==&mid=2651224692&idx=2&sn=37291ec60ce7826e7102515cb785423b
 - 关键段落：Debezium -> Kafka -> Schema Registry -> Hudi Deltastreamer，总体设计；初始快照和 JDBC bootstrap；Hudi 记录键、源排序字段、分区字段；Postgres publication、slot、Deltastreamer 参数。
 - 关键图：正文说“上面显示了端到端 CDC 摄取流架构”，本地 Markdown 无图片。

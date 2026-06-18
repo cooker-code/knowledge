@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[PostgreSQL MCP Server：让 AI 直接读懂你的数据库](<../文章/PostgreSQL MCP Server：让 AI 直接读懂你的数据库.md>)
+- 本地文件：[PostgreSQL MCP Server：让 AI 直接读懂你的数据库](<../文章/done-PostgreSQL MCP Server：让 AI 直接读懂你的数据库.md>)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=MzkzNjUxNzI5OA==&mid=2247483700&idx=1&sn=158dd663e7c1e24c25ab5cea19ef3a5f&chksm=c3ec48b9f384494fa22cfaeaf5621448eab51c6057315c7f33ff9003bc135e2ef7256e9dbcc8&mpshare=1&scene=24&srcid=0407W4chceGl26cfL8c8Qbsk&sharer_shareinfo=65570ea8738def77be20bb5ff113a16f&sharer_shareinfo_first=65570ea8738def77be20bb5ff113a16f#rd
 - 关键段落：MCP 协议简介、PostgreSQL MCP Server 定位、工具列表、安全考虑、Claude/Cursor/Cline 配置。
 - 关键图：原文没有技术图，本地有命令和配置片段。

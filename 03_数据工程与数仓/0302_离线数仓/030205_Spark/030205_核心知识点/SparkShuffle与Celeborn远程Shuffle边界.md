@@ -3,8 +3,8 @@
 ## 原文锚点
 
 - 本地文件：
-  - [Apache Celeborn 让 Spark 和 Flink 更快更稳更弹性](<../文章/Apache Celeborn 让 Spark 和 Flink 更快更稳更弹性.md>)
-  - [MapReduce 的 shuffle 与 spark的 shuffle 有什么区别？](<../文章/MapReduce 的 shuffle 与 spark的 shuffle 有什么区别？.md>)
+  - [Apache Celeborn 让 Spark 和 Flink 更快更稳更弹性](<../文章/done-Apache Celeborn 让 Spark 和 Flink 更快更稳更弹性.md>)
+  - [MapReduce 的 shuffle 与 spark的 shuffle 有什么区别？](<../文章/done-MapReduce 的 shuffle 与 spark的 shuffle 有什么区别？.md>)
 - 原文链接：见各本地 Markdown 头部 `url` 字段。
 - 关键段落：传统 Shuffle 的随机磁盘 I/O、Fetch Failure、OOM、本地盘依赖；Celeborn 的 Push Shuffle、Partition 聚合、Split、异步刷盘/提交/Fetch、多层存储、Traffic Control、Revive、滚动升级。
 - 关键图：原文多次提到 Shuffle 结构图、容错图、Traffic Control 图，但 Markdown 未保留图片。

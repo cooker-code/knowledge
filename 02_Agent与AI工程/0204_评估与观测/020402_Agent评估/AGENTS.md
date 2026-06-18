@@ -1,9 +1,9 @@
 # Agent 评估
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[知识地图](020402_核心知识点/知识地图.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](020402_知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `020402_核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `020402_核心知识点/` 下的主题文件。
 
 
 ## 技术定位
@@ -72,3 +72,13 @@ flowchart LR
 - 关键词：Agent evaluation、Trace、Span、Dataset、LLM-as-judge、code-based graders、model-based graders、human graders、capability eval、regression eval、pass@k、pass^k。
 - 待读资料：Anthropic/OpenAI/LangSmith/Langfuse 的 Agent eval 实践、工具调用评估、长任务 Agent 评估、生产坏例数据集构造。
 - 待补实验：为本地文章抽取 Agent 构造 20 条固定任务，记录分类准确率、冲突点命中率、链接正确率、工具选择正确率和人工复核意见；分别计算首次成功率和多次稳定性。
+
+<!-- AUTO-DISTILL-02-START -->
+
+## 本轮文章处理收口
+
+- 已归档来源：`15` 篇，全部位于 `文章/` 且使用 `done-` 前缀。
+- 长期入口：[Agent评估体系与观测边界.md](020402_核心知识点/Agent评估体系与观测边界.md)。
+- 新文章进入时先对照知识地图、AGENTS 排重准则和已有主题页；只有新增机制、边界、反例、版本差异或实践证据时才新建主题页。
+
+<!-- AUTO-DISTILL-02-END -->

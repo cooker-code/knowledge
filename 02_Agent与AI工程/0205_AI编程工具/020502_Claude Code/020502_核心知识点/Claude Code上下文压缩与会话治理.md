@@ -3,8 +3,8 @@
 ## 原文锚点
 
 - 本地文件：
-  - [Claude Code 怎么压上下文？3 个机制，直接抄作业.md](<../../../0208_Context Engineering/文章/Claude Code 怎么压上下文？3 个机制，直接抄作业.md>)
-  - [Claude Code的上下文管理，我踩过的几个坑.md](<../../../0208_Context Engineering/文章/Claude Code的上下文管理，我踩过的几个坑.md>)
+  - [Claude Code 怎么压上下文？3 个机制，直接抄作业.md](<../../../0208_Context Engineering/文章/done-Claude Code 怎么压上下文？3 个机制，直接抄作业.md>)
+  - [Claude Code的上下文管理，我踩过的几个坑.md](<../../../0208_Context Engineering/文章/done-Claude Code的上下文管理，我踩过的几个坑.md>)
 - 原文链接：见各本地文件 frontmatter；本轮不联网校验。
 - 关键段落：
   - `Claude Code 怎么压上下文？`：文件读取去重、工具结果落盘、单条消息预算、micro-compact、auto-compact、session-memory compact。

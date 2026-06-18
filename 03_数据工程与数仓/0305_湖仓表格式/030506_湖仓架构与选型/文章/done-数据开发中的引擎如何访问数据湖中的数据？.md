@@ -1,0 +1,142 @@
+> 已吸收至：[[03_数据工程与数仓/0305_湖仓表格式/030506_湖仓架构与选型/030506_核心知识点/Schema演进与多引擎访问边界|Schema演进与多引擎访问边界]]
+---
+title: 数据开发中的引擎如何访问数据湖中的数据？
+author: ruby的数据漫谈
+date:
+url: http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247490442&idx=1&sn=d3379ba9b4baa92165fae8d0ab8bd45d&chksm=91208197b6a6ba3eacd9487a8df5464ad60c6773ea3ab4f4550fd87762d3d76104701a4a7695&mpshare=1&scene=24&srcid=1106ekZymq8oZIgoW6TkXwtL&sharer_shareinfo=7778412426cc61a8b774bcfa7956d5a7&sharer_shareinfo_first=7778412426cc61a8b774bcfa7956d5a7#rd
+---
+
+摘要：在现代大数据架构中，数据湖作为一种集中式存储库，用于存储结构化和非结构化数据，它的重要性日益凸显。数据湖的核心优势在于其能够提供统一的元数据管理，使得不同的数据处理引擎能够高效地访问和操作数据。引擎访问数据湖的数据，涉及到的基本原理是引起需要可以访问数据湖的统一元数据库，操作数据湖的表，元数据都存储在统一的元数据库中，而访问数据湖的数据的时候，则是需要和数据湖的管理引擎结合，管理引擎管理数据湖的表格式，可以通过元数据找到数据存储的具体位置，从而进行后续的增删改查的操作。因此引擎可以操作数据湖的数据需要引擎可以把访问统一的元数据库，且数据湖的管理引擎需要支持把元数据存储到元数据库，另外引擎和数据湖的管理引擎需要兼容，本文将以flink引擎为例说明flink引擎如何访问数据湖的数据。本文将探讨Flink引擎如何通过访问统一的元数据库和与数据湖管理引擎的兼容，来实现对数据湖中数据的有效操作。我们将详细分析Flink与数据湖管理引擎之间的交互机制，包括如何通过元数据定位数据存储位置，以及如何执行数据的增删改查等操作。通过本文的阐述，读者将获得关于Flink在数据湖环境中应用的深入理解。
+
+* 计算引擎访问数据湖的数据的基本原理
+* Flink引擎访问数据湖的数据的基本流程‍‍
+
+  ‍
+
+01
+
+—
+
+计算引擎访问数据湖的数据的基本原理‍‍‍‍‍
+
+计算引擎访问数据湖的数据的基本要求就是计算引擎和数据湖的管理引擎需要是兼容的，这里兼容体现在以下几个方面：‍‍‍‍
+
+**1、统一元数据库（Metastore）**：
+数据湖通常依赖于一个统一的元数据库来存储关于数据的元数据，包括数据的位置、模式（schema）、分区信息、版本控制等。元数据库作为数据湖的目录，帮助计算引擎定位和管理数据。
+
+**2、数据湖管理引擎**：
+数据湖管理引擎是一组服务和工具，用于管理数据湖中的资源和操作。它通常提供API或查询接口，允许计算引擎与数据湖进行交互，执行数据的读取、写入、更新和删除等操作。
+
+**3、计算引擎与数据湖的集成**：
+计算引擎（如Apache Flink、Apache Spark等）需要与数据湖管理引擎集成，以便能够理解和操作数据湖中的数据。这种集成通常通过特定的连接器或适配器实现，它们充当计算引擎与数据湖之间的桥梁。
+
+**4、数据格式和存储**：
+数据湖中的数据通常以文件形式存储，支持多种文件格式，如Parquet、ORC、Avro等。计算引擎需要能够解析这些格式，以便进行高效的数据读取和写入。
+
+**5、API和查询语言**：
+计算引擎使用API调用来与数据湖管理引擎交互，或者使用特定的查询语言（如SQL）来执行数据操作。这些查询会被转换成对数据湖存储层的操作。
+
+**6、数据访问和处理：**计算引擎根据从元数据库获取的元数据信息，直接与数据湖的存储层交互，读取或写入数据。计算引擎可以在数据湖上执行复杂的数据处理任务，如数据转换、聚合、分析等。
+
+**7、事务和一致性：**为了确保数据的一致性和完整性，数据湖管理引擎通常提供事务管理功能。计算引擎在执行写操作时，需要遵循ACID原则，确保事务的原子性、一致性、隔离性和持久性。
+
+‍
+
+这里需要特别说明的是数据湖的统一元数据仓库一般是在数据湖外部。它作为一个独立的服务或系统来管理数据湖中的数据的元数据。元数据库存储了关于数据湖中数据的详细信息，包括数据的位置、模式、分区信息、版本控制等。这样设计的原因是为了将数据的存储和管理分离，提高系统的灵活性和可维护性。
+
+在数据湖架构中，计算引擎访问数据湖的数据通常遵循以下步骤：
+
+**1、连接到元数据库：**计算引擎首先需要连接到统一的元数据库，以获取数据的位置和其他元数据信息。
+
+**2、获取元数据：**计算引擎从元数据库中检索所需的元数据，这些信息告诉计算引擎数据的存储位置和如何访问。
+
+**3、数据访问：**计算引擎使用从元数据库中获取的信息来直接访问数据湖中的数据。这可能涉及到与数据湖存储系统（如HDFS、Amazon S3、阿里云OSS等）的交互。
+
+**4、数据处理：**一旦数据被检索出来，计算引擎就可以执行必要的数据处理操作，如数据过滤、转换、聚合等。
+
+**5、结果存储：**处理完的数据可以被写回数据湖或存储到其他系统中，同时更新元数据库以反映这些变化。
+
+例如，阿里云的数据湖构建（Data Lake Formation, DLF）服务提供了元数据管理功能，可以管理元数据库和元数据表，支持用户在入湖时对数据进行清洗处理、标准化，方便后续使用机器学习模型分析。DLF使用OSS作为数据湖的统一存储，并采用元数据管理功能管理元数据库和元数据表。
+
+在实际应用中，数据湖的元数据库可以是云服务提供商提供的一项服务，如阿里云的DLF，也可以是开源解决方案，如Apache Hive Metastore。这些服务或系统通常提供RESTful API或SQL接口，供计算引擎查询和交互。通过这种方式，计算引擎能够灵活地操作数据湖中的数据，实现数据的增删改查等操作。
+
+02
+
+—
+
+Flink引擎访问数据湖的数据的基本流程‍
+
+在Flink项目中操作数据湖中的数据，首先需要引入Apache Iceberg的相关依赖包，然后进行一系列的初始化操作。以下是详细的步骤和说明：
+
+**1、引入依赖：**需要引入的依赖包通常包括iceberg-flink-runtime和flink-sql-connector-hive。这些依赖包可以从Maven中央仓库下载，或者根据Flink和Iceberg的版本从Apache官方仓库获取。
+
+⚠️：两个依赖包的说明‍‍
+
+1. **iceberg-flink-runtime**：这个依赖包是Flink与Iceberg集成的关键，它提供了Flink与Iceberg之间的桥梁。通过这个包，Flink可以读写Iceberg表，利用Iceberg作为数据湖的表格式来存储和管理数据。Iceberg提供了对数据湖中数据的高性能读写能力，并且支持ACID事务、模式演化和snapshots等特性。
+2. **flink-sql-connector-hive**：这个依赖包允许Flink与Hive集成，使得Flink能够访问Hive的元数据和数据。Flink可以利用Hive的MetaStore作为持久化的Catalog，通过HiveCatalog将Flink的元数据存储到Hive Metastore中。此外，Flink还可以直接读写Hive中的表，这使得Flink能够操作存储在数据湖中的Hive表。
+
+   ‍
+
+**2、配置Flink环境**：将上述JAR包放入Flink的lib目录下，以便启动Flink SQL Client或在Flink作业中使用。
+
+**3、启动Flink SQL Client：**启动Flink SQL Client时，需要指定Iceberg的JAR包。如果是在Standalone模式下，可以通过sql-client.sh脚本启动，并使用-j参数指定JAR包路径。如果是在Yarn模式下，需要先启动Yarn Session，然后同样使用sql-client.sh指定JAR包路径启动SQL Client。
+
+**4、创建Catalog：**在Flink SQL Client中，需要创建一个Catalog来连接到数据湖。Catalog的创建依赖于type、catalog-type、warehouse等参数。例如，创建一个Hive Catalog的语句可能如下：
+
+**5、使用 Catalog：**指定后续操作使用的 Catalog
+
+**6、创建数据库：**在 Catalog 中创建一个新的数据库
+
+**7、创建 Iceberg 表：**创建一个 Iceberg 表，指定 Iceberg 相关的属性
+
+**8、插入数据：**向 Iceberg 表中插入数据
+
+**9、查询数据：**查询 Iceberg 表中的数据
+
+进行以上操作步骤请确保你已经正确配置了 Flink 环境，并且 iceberg-flink-runtime 依赖包与你的 Flink 和 Iceberg 版本兼容。此外，确保你有权限访问 Hive Metastore 和数据湖存储，并且 Iceberg 表的路径在你的文件系统（如 HDFS 或对象存储）上是可访问的。
+
+以上步骤提供了一个基本的框架，具体细节可能会根据你的实际环境和需求有所不同。
+
+**欢迎加入【数据行业交流群】社群，长按以下二维码加入专业微信群****，商务合作加微信备注商务合作，**AIGC应用开发交流入群备注AIGC应用****
+
+**往期数据平台历史热门文章：**
+
+[基于DataOps的数据开发治理：实现数据流程的自动化和规范化](https://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247484720&idx=1&sn=524e990f0e9e52f3fbbd79dc68aab48d&scene=21#wechat_redirect)
+
+[数据平台：湖仓一体、流批一体、存算分离的核心问题及原因解析](http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247484725&idx=1&sn=5a0189a88752dfb11ebee050c1f4dbdf&chksm=90313f93a746b685e787cd7d69a287ccbab432fb999fe24c6e1e50667bf3e15655ac5f1e0bc8&scene=21#wechat_redirect)
+
+[数据治理体系该怎么建设？](http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247484627&idx=1&sn=676a191fbf1093128426dd6d548fcbc1&chksm=90313e75a746b7632d91776dceb594163089c3863e82e1e03c9b62c297db36377ecaf3bd33a9&scene=21#wechat_redirect)
+
+[实时数仓&流批一体技术发展趋势](http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247484603&idx=1&sn=0738f7863b8660681de58901cd873c66&chksm=90313e1da746b70b5780c042f865c2c576e525862e625705f9de75aa8524f5464d9f7b05d616&scene=21#wechat_redirect)
+
+[数据仓库、数据中台、大数据平台的关系？](http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247484552&idx=1&sn=952e18c758a8e17080c6661bc4fe8a2c&chksm=90313e2ea746b738136acdad2c74ce7f4df4bcd8e0d9169b1c2410287a64fe896902e26f0762&scene=21#wechat_redirect)
+
+[数字化转型如何促进业务的发展](http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247484498&idx=1&sn=28df3618851b3a0976c25bf9f24bd5b8&chksm=90313ef4a746b7e2bb64062a295429357256d8c2a15c9cd01a80c127b38b27c036427188101b&scene=21#wechat_redirect)
+
+[数据中台中的核心概念解析](http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247484480&idx=1&sn=0cf8ad6572673ed809e1880e45af6031&chksm=90313ee6a746b7f02ef56ad274d14e2e02367f965b2c387f6502af2c30c6b5e076937017bf63&scene=21#wechat_redirect)
+
+[数据治理中的数据标准的作用？](http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247484399&idx=1&sn=00bb5488c69e60c5adb28dcd34966614&chksm=90313949a746b05f4a86d50c94775b07a142f9cbaa5c6c88d2f277881d0a4a0a8745b4b8393a&scene=21#wechat_redirect)
+
+[全面数字化转型：打造全新营销模式](http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247484449&idx=1&sn=fcd81245d328f205317702603eb35ba3&chksm=90313e87a746b791f7c216112cd852484cf7054c0e106ed936038572bc9b6364fafbff789934&scene=21#wechat_redirect)
+
+[一图展示数据中台的数据流图](http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247487790&idx=1&sn=3f23cdeb226d7868ab71715644ec92cd&chksm=90312b88a746a29ea3b5fc54ae15fc3204ebffad0a00f52618519d27c6dbff910811822e43bd&scene=21#wechat_redirect)
+
+[揭秘数据治理系统的数据流程图](http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247487559&idx=1&sn=0233f8a79f1724413334f62173f34e3f&chksm=90312ae1a746a3f724f00fc7905735d01223320250b1846fb1bda6301f5e7ed3d12288a58cf5&scene=21#wechat_redirect)
+
+**往期AIGC历史热门文章：**
+
+**[AIGC系列之一-一文理解什么是Embedding嵌入技术](http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247487576&idx=1&sn=5719791e1ad3e54467bb029712d52030&chksm=90312afea746a3e8fd8b32226e81e2dd66cb7bd54158b63f70489073eae9a28a2da55b53b384&scene=21#wechat_redirect)**
+
+**[十大AIGC文生视频产品介绍](http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247487479&idx=1&sn=d7d309eace6030973086f2ff465bd95c&chksm=90313551a746bc474140ae957d58c6cd92c405fcc53ef49badcfc22d25c2f38a3bb2209be839&scene=21#wechat_redirect)**
+
+[九大最热门的开源AI Agent框架](http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247487293&idx=1&sn=4d02694f321f66168939d1f113009f90&chksm=9031359ba746bc8d20d681cd7b79919aefa94be7270da4c082ce2f40fd847ed178efb12282bb&scene=21#wechat_redirect)
+
+[AutoGen零代码构建⾃⼰的智能助理](http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247487204&idx=1&sn=61f217fcd1868b3577d809118baccf0b&chksm=90313442a746bd54fd536520d93c0fe28b118f5e39b55e71d964c16d040cf2bd5c0ff685a1fe&scene=21#wechat_redirect)
+
+**往期数据资产入表历史热门文章：**
+
+**[资产入表](http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247489577&idx=1&sn=d6c1b2dd20338e118e1b47f243421272&chksm=9031228fa746ab996b54497aec052ed3bcf276b7775fa5ccc06e779f47aaaf5105fc851887af&scene=21#wechat_redirect)**
+
+**[数据资产入表流程](http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247489009&idx=1&sn=17db18c61097d13c1027e7628bab4701&chksm=90312f57a746a64120bcc42a8bdf455890264dd8afdde2a0119537b3e90460de1cb63fd7b2f0&scene=21#wechat_redirect)**
+
+[数据资产管理及入表的关键步骤](http://mp.weixin.qq.com/s?__biz=MzA4ODAyNzA4MQ==&mid=2247489970&idx=1&sn=7d2a3efa30b7f414c0645a807449359f&chksm=90312314a746aa0224afdcc339557aef7457b096426f41aec893466079bd388d116ae41a3e48&scene=21#wechat_redirect)

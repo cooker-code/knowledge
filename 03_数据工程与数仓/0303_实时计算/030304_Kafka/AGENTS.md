@@ -1,9 +1,9 @@
 # Kafka
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[知识地图](030304_核心知识点/知识地图.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](030304_知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `030304_核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `030304_核心知识点/` 下的主题文件。
 
 
 ## 技术定位
@@ -73,6 +73,11 @@ flowchart LR
 | 分区策略与 Flink 写入边界 | [Kafka分区策略与Flink写入Kafka分区边界](030304_核心知识点/Kafka分区策略与Flink写入Kafka分区边界.md) | Kafka + Producer Partitioner + key/sticky/round-robin/Flink sink parallelism + 分区分布与顺序性 + 吞吐/热点/版本边界 | 判断消息如何落到 Kafka 分区，以及 Flink 写 Kafka 时并行度和分区数如何影响分布 | 分区策略不是只为均匀，它同时约束 batch、顺序性、热点和消费并行上限 |
 | Exactly Once 语义 | [KafkaExactlyOnce语义与事务消息](030304_核心知识点/KafkaExactlyOnce语义与事务消息.md) | Kafka + 幂等生产者/事务协调器/LSO/txnindex + 流处理端到端一致性 + 性能边界 | 解释 Kafka EOS 的实现边界和限制 | Exactly Once 不是业务全局事务，只在特定 Kafka 流处理链路内成立 |
 | Consumer Rebalance | [KafkaConsumerRebalance机制](030304_核心知识点/KafkaConsumerRebalance机制.md) | Kafka + Consumer Group + Rebalance/Coordinator/Generation/Assignor + 分区所有权迁移 + 消费暂停与 Offset 异常 | 解释消费者组如何重新分配分区，以及为什么会造成暂停和 Offset 异常 | Rebalance 是协议和状态迁移，不只是扩缩容动作 |
+| 副本一致性与 ISR | [Kafka副本一致性与ISR边界](030304_核心知识点/Kafka副本一致性与ISR边界.md) | Kafka + ISR/HW/LEO/acks + 副本一致性 + 故障切换 | 判断 Kafka 多副本什么时候真的提升可靠性 | 多副本安全性取决于 ISR、acks、最小 ISR 和故障切换 |
+| 安全认证鉴权 | [Kafka安全认证鉴权边界](030304_核心知识点/Kafka安全认证鉴权边界.md) | Kafka + SASL/SSL/ACL + Topic/Group/TransactionalId + 审计 | 区分认证、鉴权、传输加密和权限治理 | SASL_PLAINTEXT 不等于完整安全方案 |
+| 性能压测与批量调优 | [Kafka性能压测与批量参数调优](030304_核心知识点/Kafka性能压测与批量参数调优.md) | Kafka + batch/linger/分区/压缩/磁盘网络 + 压测 | 建立调优变量和验证方法 | 调优是吞吐、延迟、可靠性和资源的权衡 |
+| 运维工具与云原生兼容 | [Kafka运维工具与云原生兼容边界](030304_核心知识点/Kafka运维工具与云原生兼容边界.md) | Kafka + UI/副本扩缩/K8s/AutoMQ + 运维边界 | 判断工具和兼容实现解决什么、不解决什么 | UI 和 Kafka 兼容不等于治理与存储语义完全一致 |
+| Kafka/Pulsar/Fluss/Flink 时间与存储语义对比 | [Kafka与Pulsar水位线和存储架构对比](030304_核心知识点/Kafka与Pulsar水位线和存储架构对比.md) | Kafka + Pulsar + Flink Watermark + Fluss + 存储/时间语义 | 避免把消息队列、流计算时间语义和实时分析存储混成一类 | Watermark、offset、cursor、点查和列裁剪属于不同层 |
 
 ## 后续追查
 

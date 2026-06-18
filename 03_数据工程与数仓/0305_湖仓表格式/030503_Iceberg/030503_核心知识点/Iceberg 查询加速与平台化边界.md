@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[秒级响应！B站基于 Iceberg 的湖仓一体平台构建实践](<../文章/秒级响应！B站基于 Iceberg 的湖仓一体平台构建实践.md>)
+- 本地文件：[秒级响应！B站基于 Iceberg 的湖仓一体平台构建实践](<../文章/done-秒级响应！B站基于 Iceberg 的湖仓一体平台构建实践.md>)
 - 原文链接：`http://mp.weixin.qq.com/s?__biz=MzU1NTMyOTI4Mw==&mid=2247650711&idx=1&sn=19dfcc7927251abad4b21636464e6272`
 - 关键段落：背景中 Hive 痛点；Iceberg 表结构；查询加速的多维排序、Boundary Index、Bloom/Bitmap/BloomRF/Token/Ngram 索引、Cube/AggIndex、Magnus 自动优化、落地规模。
 - 关键图：正文提到湖仓架构图、索引/Cube/Star-Tree 示例图，但 Markdown 无图片链接。

@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[实战干货：Apache DolphinScheduler 参数使用与优化总结](<../文章/实战干货：Apache DolphinScheduler 参数使用与优化总结.md>)
+- 本地文件：[实战干货：Apache DolphinScheduler 参数使用与优化总结](<../文章/done-实战干货：Apache DolphinScheduler 参数使用与优化总结.md>)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=MzkwNTg3MzY3Mg==&mid=2247524132&idx=1&sn=bbca9457b018859101b79c283d351ce9
 - 关键段落：内置参数、衍生函数、工作流全局参数、SQL/SHELL/PYTHON 跨任务传参、参数优先级。
 - 关键图：原文多处提到配置截图，但本地 Markdown 无图。

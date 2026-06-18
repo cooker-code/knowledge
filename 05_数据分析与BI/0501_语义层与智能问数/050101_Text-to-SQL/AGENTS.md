@@ -1,9 +1,9 @@
 # Text-to-SQL
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[知识地图](050101_核心知识点/知识地图.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](050101_知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `050101_核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `050101_核心知识点/` 下的主题文件。
 
 
 ## 技术定位
@@ -63,9 +63,10 @@ flowchart LR
 | 主题 | 文件 | 问题指纹 | 解决什么问题 | 认知增量 |
 |---|---|---|---|---|
 | Text-to-SQL 工程架构与 Schema Linking | [Text-to-SQL工程架构与SchemaLinking](050101_核心知识点/Text-to-SQL工程架构与SchemaLinking.md) | Text-to-SQL + Schema Linking/澄清/ReviseAgent/语义层 + SQL 准确性 + 可追责问数 | Text-to-SQL 为什么不能只靠 Prompt + DDL | 把智能问数从“模型生成 SQL”校准为“语义层、链接、校验和人机协作系统” |
+| Text-to-SQL 数据构造与评测边界 | [Text-to-SQL数据构造与评测边界](050101_核心知识点/Text-to-SQL数据构造与评测边界.md) | Text-to-SQL + 合成数据/数据清洗/歧义澄清/执行评测 + 线上验收 | 为什么榜单分数不能直接代表业务问数质量 | 把训练和评测校准为“数据质量、执行校验、歧义澄清和业务口径共同约束”的系统问题 |
 
 ## 后续追查
 
 - 关键词：Schema Linking、BIRD、Spider、ReviseAgent、QueryGPT、semantic layer、SQL sandbox。
-- 待读资料：智能问数架构、NL2MQL、AutoLink、OmniSQL、DB-GPT。
+- 待读资料：智能问数架构、NL2MQL、AutoLink、OmniSQL、DB-GPT、AmbiSQL。
 - 待补实验：拿一个真实指标问题，验证表/列/值 linking、SQL 执行和口径解释链路。

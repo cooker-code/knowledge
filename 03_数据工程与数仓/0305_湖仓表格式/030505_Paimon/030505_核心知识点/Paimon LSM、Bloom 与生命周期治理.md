@@ -2,11 +2,11 @@
 
 ## 原文锚点
 
-- 本地文件 1：[Paimon Bloom索引深度解析：从38s到1.5s的性能飞跃与生产最佳实践](<../文章/Paimon Bloom索引深度解析：从38s到1.5s的性能飞跃与生产最佳实践.md>)
-- 本地文件 2：[美团面试：Paimon LSM-Tree 分层机制是怎么样的？](<../文章/美团面试：Paimon LSM-Tree 分层机制是怎么样的？.md>)
-- 本地文件 3：[腾讯面试：Paimon自动分区清理与快照清理机制是怎么样的？哪个先清理？](../文章/腾讯面试：Paimon自动分区清理与快照清理机制是怎么样的？哪个先清理？.md)
-- 本地文件 4：[Apache Paimon 1.3 核心亮点总结](<../文章/Apache Paimon 1.3 核心亮点总结.md>)
-- 本地文件 5：[Apache Paimon核心配置参数详解（二）](<../文章/Apache Paimon核心配置参数详解（二）.md>)
+- 本地文件 1：[Paimon Bloom索引深度解析：从38s到1.5s的性能飞跃与生产最佳实践](<../文章/done-Paimon Bloom索引深度解析：从38s到1.5s的性能飞跃与生产最佳实践.md>)
+- 本地文件 2：[美团面试：Paimon LSM-Tree 分层机制是怎么样的？](<../文章/done-美团面试：Paimon LSM-Tree 分层机制是怎么样的？.md>)
+- 本地文件 3：[腾讯面试：Paimon自动分区清理与快照清理机制是怎么样的？哪个先清理？](../文章/done-腾讯面试：Paimon自动分区清理与快照清理机制是怎么样的？哪个先清理？.md)
+- 本地文件 4：[Apache Paimon 1.3 核心亮点总结](<../文章/done-Apache Paimon 1.3 核心亮点总结.md>)
+- 本地文件 5：[Apache Paimon核心配置参数详解（二）](<../文章/done-Apache Paimon核心配置参数详解（二）.md>)
 - 原文链接：见各本地文件 front matter。
 - 关键段落：Bloom 索引工作流和适用场景；LSM 分层、Level0、Compaction、Snapshot/Manifest；快照清理、分区清理依赖；Paimon 1.3 Row Tracking、Data Evolution、Incremental Clustering；Bucket/Changelog/保留参数。
 - 关键图：LSM 和清理文章提到“如图”，但本地 Markdown 无图片链接。

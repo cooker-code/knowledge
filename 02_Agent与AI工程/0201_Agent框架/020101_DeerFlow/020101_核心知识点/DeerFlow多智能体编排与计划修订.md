@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[DeerFlow 2.0 的架构到底有多复杂？字节这套多智能体系统全拆解](<../文章/DeerFlow 2.0 的架构到底有多复杂？字节这套多智能体系统全拆解.md>)；[最近爆火的DeerFlow与OpenClaw有什么区别？如何选择？](../文章/最近爆火的DeerFlow与OpenClaw有什么区别？如何选择？.md)
+- 本地文件：[DeerFlow 2.0 的架构到底有多复杂？字节这套多智能体系统全拆解](<../文章/done-DeerFlow 2.0 的架构到底有多复杂？字节这套多智能体系统全拆解.md>)；[最近爆火的DeerFlow与OpenClaw有什么区别？如何选择？](<../文章/done-最近爆火的DeerFlow与OpenClaw有什么区别？如何选择？.md>)
 - 原文链接：本地 Markdown 保留公众号链接，正式补证阶段再核对官方仓库和文档。
 - 关键段落：Coordinator/Planner 分离、计划修订循环、Human-in-the-Loop、多轮搜索精炼、成本与局限。
 - 关键图：原文提到 DeerFlow 多智能体协作架构图和 ReAct 链路图，但本地 Markdown 未保留图片。

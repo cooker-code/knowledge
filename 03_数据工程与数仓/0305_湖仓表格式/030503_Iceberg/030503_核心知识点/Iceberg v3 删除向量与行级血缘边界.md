@@ -2,8 +2,8 @@
 
 ## 原文锚点
 
-- 本地文件 1：[为什么 Iceberg v3 是数据湖仓的"iPhone 时刻"？](<../文章/为什么 Iceberg v3 是数据湖仓的_iPhone 时刻_？.md>)
-- 本地文件 2：[Mooncake: 基于 Apache Iceberg 构建的实时存储引擎](<../文章/Mooncake_ 基于 Apache Iceberg 构建的实时存储引擎.md>)
+- 本地文件 1：[为什么 Iceberg v3 是数据湖仓的"iPhone 时刻"？](<../文章/done-为什么 Iceberg v3 是数据湖仓的_iPhone 时刻_？.md>)
+- 本地文件 2：[Mooncake: 基于 Apache Iceberg 构建的实时存储引擎](<../文章/done-Mooncake_ 基于 Apache Iceberg 构建的实时存储引擎.md>)
 - 原文链接 1：`https://mp.weixin.qq.com/s?__biz=MzA5MTc0NTMwNQ==&mid=2650742287&idx=1&sn=b37cd515af8f34754ac1674a6601bda8`
 - 原文链接 2：`https://mp.weixin.qq.com/s?__biz=MzA5MTc0NTMwNQ==&mid=2650742043&idx=1&sn=089f37429370e6b498baa69424380e83`
 - 关键段落：删除向量、行级血缘、VARIANT、默认列值、纳秒时间戳；Moonlink 的 Arrow 缓冲区、位置删除日志、删除向量、索引和联合读取。

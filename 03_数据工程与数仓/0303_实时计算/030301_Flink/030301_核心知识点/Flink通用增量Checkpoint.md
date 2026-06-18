@@ -1,11 +1,11 @@
 # Flink 通用增量 Checkpoint
 
-## 原文锚点
+> 验证版本：Flink 1.16（Production Ready）
 
-- 本地文件：[Flink 1.15 新功能架构解析：高效稳定的通用增量 Checkpoint](<../文章/Flink 1.15 新功能架构解析：高效稳定的通用增量 Checkpoint.md>)
-- 原文链接：http://mp.weixin.qq.com/s?__biz=MzUyMDA4OTY3MQ==&mid=2247506833&idx=1&sn=8dfadffde8c630243e671d1bdc4c5530
-- 关键段落：概述、State Changelog、DSTL、RocksDB + DFS 架构、Benchmark、结论。
-- 关键图：原文提到图 1-4，本地 Markdown 无图。
+## 来源
+
+- [Flink 1.15 新功能架构解析：高效稳定的通用增量 Checkpoint](<../文章/done-Flink 1.15 新功能架构解析：高效稳定的通用增量 Checkpoint.md>)
+- [基于 Log 的通用增量 Checkpoint](<../文章/done-基于 Log 的通用增量 Checkpoint.md>)
 
 ## 图片处理
 
@@ -123,3 +123,122 @@ flowchart LR
 - 关键词：Changelog State Backend、DSTL、Materialization、Checkpoint duration、Unaligned Checkpoint、Buffer Debloating。
 - 相关技术：RocksDB State Backend、Flink 反压、Flink Exactly Once。
 - 需要补读的文章：当前 Flink 官方 Changelog State Backend 文档、大状态作业调优、Checkpoint 失败排查。
+
+---
+
+## 补充：Changelog 机制详解与实测数据（来自 Flink Forward Asia 2022）
+
+### Checkpoint 优化版本演进
+
+| 版本 | 功能 | 解决的 Metrics 阶段 |
+|---|---|---|
+| 0.9 | 异步快照算法（Barrier + 同步/异步分阶段） | 奠基 |
+| 1.0 | RocksDB StateBackend | 大状态稳定性 |
+| 1.3 | RocksDB Incremental Checkpoint | 异步阶段：减少上传量 |
+| 1.11/1.13 | Unaligned Checkpoint（1.13 Production Ready） | 同步阶段：消除 Barrier 对齐等待 |
+| 1.14 | Buffer Debloating | 同步阶段：动态缩小 Network Buffer，加快 Barrier 流动 |
+| 1.15/1.16 | Changelog State Backend（1.16 Production Ready） | 异步阶段：消除 Compaction 引起的长尾 |
+
+### RocksDB Incremental Checkpoint 的根本缺陷
+
+RocksDB 增量 Checkpoint 不能保证稳定的原因：
+
+1. Checkpoint 同步阶段会强制 Flush MemTable，可能触发多层 Level Compaction（L0 层默认每4个 Checkpoint 触发一次 Compaction）
+2. Compaction 产生大量新文件需要重新上传，导致异步耗时周期性突增
+3. 大规模作业中多 Task 同时触发 Compaction，进一步争用 CPU 和网络带宽
+4. 端到端耗时取决于最慢那条链路，任何一个 Task 的长尾都拖慢整体
+
+### Changelog 与 WAL 的类比
+
+Changelog 机制完整对应数据库的 Checkpoint + WAL 模式：
+
+| DB 概念 | Flink Changelog 对应 |
+|---|---|
+| DB 内存数据结构 | State Table（如 RocksDB） |
+| WAL（顺序追加日志） | State Changelog（Append-only Log） |
+| WAL 存储介质 | DSTL（DFS/S3/HDFS） |
+| 定期 Checkpoint（全量快照） | Materialization（定时持久化 State Table） |
+| Checkpoint 后 Truncate WAL | Materialization 后 Truncate Changelog |
+
+关键设计：Materialization 触发与 Flink Checkpoint 解耦。每个 Task 独立定时触发 Materialization，不参与 Flink Checkpoint 的同步控制，因此 Compaction 不再影响 Checkpoint 耗时。
+
+### Changelog Checkpoint 的三条操作链路
+
+```mermaid
+flowchart TD
+  subgraph 写链路
+    Record["新写入 Record"] --> DSTL["State Changelog → DSTL（持续上传）"]
+    Record --> StateTable["State Table（RocksDB/Heap）"]
+  end
+  subgraph Checkpoint链路
+    Barrier["Flink Checkpoint Barrier"] --> Flush["Flush 最新 Changelog 到远端"]
+    Timer["定时器"] --> Materialization["Materialization（独立 Task，异步全量持久化）"]
+    Materialization --> Truncate["Truncate 历史 Changelog"]
+    JM["JM 记录 Handle"] --> Meta["Meta = Materialization Handle + Changelog Handle"]
+  end
+  subgraph 恢复链路
+    Restore["下载 State Table（Materialization）"] --> Replay["回放 Changelog（Materialization 到最近 CP 之间）"]
+  end
+```
+（基于原文描述重建）
+
+### 实测 Benchmark 数据（Value State，Flink 1.16）
+
+**实验 A：Checkpoint 稳定性与性能**
+
+| 状态大小 | RocksDB CP p99 耗时 | Changelog CP p99 耗时 | 空间放大倍数 |
+|---|---|---|---|
+| 100 MB（全内存） | ~8 秒 | ~1 秒 | 约 2 倍（内存状态 Merge 少） |
+| 1.2 GB（落盘） | ~20 秒 | ~1 秒 | 约 1.2 倍 |
+
+关键结论：RocksDB 的 CP duration 与 Checkpoint 周期相关（L0 每4个 CP 触发一次 Compaction），而 Changelog 持续上传增量，耗时稳定。
+
+**实验 B：Failover 恢复性能**
+
+| 配置 | 额外恢复开销 |
+|---|---|
+| Changelog（不开 Local Recovery） | 比 RocksDB 多约 40% |
+| Changelog + Local Recovery | 与 RocksDB 接近，差异可忽略 |
+
+恢复额外开销来源：下载 Changelog + 回放 Changelog。开启 Local Recovery 后下载时间消失，只剩回放开销。
+
+**实验 C：极限 TPS（反压场景）**
+
+| 配置 | TPS 影响 |
+|---|---|
+| 开启 Changelog（双写） | 极限 TPS 下降约 10%~20% |
+| 开启 Changelog + Local Recovery（三写） | 额外再下降约 5% |
+
+注意：影响的是极限 TPS，日常运行的 TPS per core 实际可能更高（CP 更稳定，回追更少）。
+
+### 开启 Changelog 的 4 个核心配置参数
+
+```yaml
+# 1. 启用 Changelog
+state.backend.changelog.enabled: true
+
+# 2. Materialization 间隔（控制空间放大）
+state.backend.changelog.periodic-materialize.interval: 3min
+
+# 3. Changelog 存储介质（目前仅支持 Filesystem）
+state.backend.changelog.storage: filesystem
+
+# 4. Changelog DFS 存储路径（Filesystem 模式必填）
+dstl.dfs.base-path: hdfs://your-cluster/flink-changelog/
+```
+
+### Changelog 三个已知问题与规划
+
+1. **空间放大**：无 Merge 机制，Truncate 前持续增长；规划：Changelog Merge / Remote Apply
+2. **恢复重放开销**：规划通过 Remote Apply（远端预合并）减少回放量
+3. **双写性能开销**：FLINK-30345 已有优化，生产前检查所用版本是否包含该优化
+
+### 选型边界：何时开 Changelog
+
+| 场景 | 建议 |
+|---|---|
+| 大状态（GB 级）+ Checkpoint 频繁抖动 | 优先考虑开启 |
+| Transactional Sink（依赖 CP 完成时间） | 收益明显，推荐 |
+| 状态较小（内存可装）+ 写入模式有大量覆盖更新 | 空间放大可能 2 倍，权衡 |
+| 窗口类 Workload（大量历史状态被替换） | 写放大高，谨慎 |
+| 频繁触发 Failover 且未开 Local Recovery | 恢复代价 +40%，需评估 |

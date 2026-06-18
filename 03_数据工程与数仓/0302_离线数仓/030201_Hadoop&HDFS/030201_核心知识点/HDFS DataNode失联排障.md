@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[HDFS面试相关知识-DataNode 失联（Unhealthy Node），如何处理？](<../文章/HDFS面试相关知识-DataNode 失联（Unhealthy Node），如何处理？.md>)
+- 本地文件：[HDFS面试相关知识-DataNode 失联（Unhealthy Node），如何处理？](<../文章/done-HDFS面试相关知识-DataNode 失联（Unhealthy Node），如何处理？.md>)
 - 原文链接：见本地 Markdown 头部 `url` 字段。
 - 关键段落：心跳机制、网络连通性、进程状态、磁盘状态、日志分析、副本恢复。
 - 关键图：无。

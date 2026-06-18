@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[别让你的RAG生产环境数据滞后_实时更新与时效性架构设计_看完这篇再动手_](../文章/别让你的RAG生产环境数据滞后_实时更新与时效性架构设计_看完这篇再动手_.md)
+- 本地文件：[别让你的RAG生产环境数据滞后_实时更新与时效性架构设计_看完这篇再动手_](../文章/done-别让你的RAG生产环境数据滞后_实时更新与时效性架构设计_看完这篇再动手_.md)
 - 本地补充：知识生命周期管理（本地锚点缺失：`../../../../../wiki/concepts/knowledge-lifecycle-management.md`）
 - 原文链接：`https://mp.weixin.qq.com/s?__biz=MzIxMjY3NzMwNw==&mid=2247488252&idx=1&sn=d749ae1a413f69729ebee32c860ab5ca`
 - 关键段落：离线全量重建的时效性问题；CDC/Change Stream -> 消息队列 -> 索引服务 -> 向量数据库 Upsert/Delete；chunk ID、分块一致性、缓存失效、监控、回填。

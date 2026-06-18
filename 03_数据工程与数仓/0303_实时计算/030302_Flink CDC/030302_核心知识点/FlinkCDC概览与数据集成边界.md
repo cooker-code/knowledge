@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Flink CDC的概览和使用](<../文章/Flink CDC的概览和使用.md>)
+- 本地文件：[Flink CDC的概览和使用](<../文章/done-Flink CDC的概览和使用.md>)
 - 原文链接：http://mp.weixin.qq.com/s?__biz=MzkwODYwNjExMA==&mid=2247483976&idx=1&sn=e0b27fcb81526918faa5a84a6136c5e0&chksm=c0c62db9f7b1a4af30aea32b77eaa8bedbfa628124a5befe131567e25cc7b1a6beb14548d8ed&mpshare=1&scene=24&srcid=1222Fpc39ui5ofN34R6Bhocx&sharer_shareinfo=9fc41d9ec280d422e3b2ce0c01bace20&sharer_shareinfo_first=9fc41d9ec280d422e3b2ce0c01bace20#rd
 - 关键段落：CDC 定义、Flink CDC 定位、1.x/2.x/3.x 演进、MySQL 示例、Debezium 事件格式。
 - 关键图：无技术图。
@@ -126,3 +126,8 @@ flowchart LR
 - 相关技术：Debezium、SeaTunnel、DataX、Paimon、Doris、StarRocks、Kafka。
 - 需要补读的文章：Flink CDC 全增量切换、Flink CDC 3.x Pipeline、MySQL -> Paimon/Doris/StarRocks 生产实践。
 
+## 重新蒸馏补充（2026-06-18）
+
+| 来源 | 认知增量 | 处理 |
+|---|---|---|
+| [[03_数据工程与数仓/0303_实时计算/030302_Flink CDC/文章/done-Flinkcdc和Canal哪个性能更好，你测试对比了吗？你会选择用哪个？]] | 补充该主题的生产案例、机制边界或排重样例。 | 重新判断后补入目标知识产物 |

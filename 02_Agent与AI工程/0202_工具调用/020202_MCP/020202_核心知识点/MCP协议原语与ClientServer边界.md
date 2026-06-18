@@ -2,9 +2,9 @@
 
 ## 原文锚点
 
-- 主文：[Solon AI MCP：超越单一工具，全面支持三大原语的创新实践](<../文章/Solon AI MCP：超越单一工具，全面支持三大原语的创新实践.md>)
-- 辅助锚点：[深入 FastMCP 源码：认识 tool()、resource() 和 prompt() 装饰器](<../文章/深入 FastMCP 源码：认识 tool()、resource() 和 prompt() 装饰器.md>)
-- 辅助锚点：[AI工程 _ MCP是怎么跟大模型交互的？](<../文章/AI工程 _ MCP是怎么跟大模型交互的？.md>)
+- 主文：[Solon AI MCP：超越单一工具，全面支持三大原语的创新实践](<../文章/done-Solon AI MCP：超越单一工具，全面支持三大原语的创新实践.md>)
+- 辅助锚点：[深入 FastMCP 源码：认识 tool()、resource() 和 prompt() 装饰器](<../文章/done-深入 FastMCP 源码：认识 tool()、resource() 和 prompt() 装饰器.md>)
+- 辅助锚点：[AI工程 _ MCP是怎么跟大模型交互的？](<../文章/done-AI工程 _ MCP是怎么跟大模型交互的？.md>)
 - 原文链接：见各本地文件 frontmatter；本轮不联网核验。
 - 关键段落：Tool/Prompt/Resource 三原语、FastMCP 的 ToolManager/ResourceManager/PromptManager、资源模板、工具定义进入模型 `tools` 字段、messages fallback。
 - 关键图：Solon 文章的统一协议图仅为文本块；FastMCP 文章的 Inspector 截图未保留。

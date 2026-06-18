@@ -2,9 +2,9 @@
 
 ## 原文锚点
 
-- 本地文件 1：[代替Kafka? Paimon追加表真的可以](<../文章/代替Kafka_ Paimon追加表真的可以.md>)
-- 本地文件 2：[揭秘Fluss、Kafka、Paimon 的联系和区别](<../文章/揭秘Fluss、Kafka、Paimon 的联系和区别.md>)
-- 本地文件 3：[Flink+Paimon实时数据湖仓实践分享](../文章/Flink+Paimon实时数据湖仓实践分享.md)
+- 本地文件 1：[代替Kafka? Paimon追加表真的可以](<../文章/done-代替Kafka_ Paimon追加表真的可以.md>)
+- 本地文件 2：[揭秘Fluss、Kafka、Paimon 的联系和区别](<../文章/done-揭秘Fluss、Kafka、Paimon 的联系和区别.md>)
+- 本地文件 3：[Flink+Paimon实时数据湖仓实践分享](../文章/done-Flink+Paimon实时数据湖仓实践分享.md)
 - 原文链接 1：`http://mp.weixin.qq.com/s?__biz=Mzg5Mzg3MzkwNA==&mid=2247490431&idx=1&sn=d54ddce6542da78253911ba352e84516`
 - 原文链接 2：`http://mp.weixin.qq.com/s?__biz=Mzg2NjY0MDM5Nw==&mid=2247484710&idx=1&sn=85183bd7e9583fe4184c4e4b17fc92a6`
 - 原文链接 3：`http://mp.weixin.qq.com/s?__biz=MzAxNDEwNjk5OQ==&mid=2650537293&idx=1&sn=ede5c6caa63bf7e12aae1b83e706442a`

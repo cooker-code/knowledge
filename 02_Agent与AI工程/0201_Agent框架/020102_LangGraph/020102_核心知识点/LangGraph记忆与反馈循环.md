@@ -2,8 +2,8 @@
 
 ## 原文锚点
 
-- 本地文件 1：[LangGraph 记忆系统实战：反馈循环 + 动态 Prompt 让 AI 持续学习](<../../../0211_Memory Management/文章/LangGraph 记忆系统实战：反馈循环 + 动态 Prompt 让 AI 持续学习.md>)
-- 本地文件 2：[Python+LangChain/LangGraph框架开发Ai智能体系列(九) | 实现完整跨会话记忆持久化的Agent](<../../../0211_Memory Management/文章/Python+LangChain_LangGraph框架开发Ai智能体系列(九) _ 实现完整跨会话记忆持久化的Agent.md>)
+- 本地文件 1：[LangGraph 记忆系统实战：反馈循环 + 动态 Prompt 让 AI 持续学习](<../../../0211_Memory Management/文章/done-LangGraph 记忆系统实战：反馈循环 + 动态 Prompt 让 AI 持续学习.md>)
+- 本地文件 2：[Python+LangChain/LangGraph框架开发Ai智能体系列(九) | 实现完整跨会话记忆持久化的Agent](<../../../0211_Memory Management/文章/done-Python+LangChain_LangGraph框架开发Ai智能体系列(九) _ 实现完整跨会话记忆持久化的Agent.md>)
 - 原文链接 1：`https://mp.weixin.qq.com/s?__biz=Mzk0OTI1OTQ2MQ==&mid=2247595240&idx=2&sn=4734d59422751cd627f95e7ea1646f81`
 - 原文链接 2：`https://mp.weixin.qq.com/s?__biz=Mzk0MzQyNDA0Mg==&mid=2247484251&idx=1&sn=9b099569cea5dd1591efe3147f72c684`
 - 关键段落：线程级记忆、跨线程记忆、Store、checkpointer、`update_memory`、人机反馈、记忆管理器提示词、下次运行动态注入。

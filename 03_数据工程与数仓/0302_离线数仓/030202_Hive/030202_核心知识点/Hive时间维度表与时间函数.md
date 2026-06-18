@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Hive中如何生成时间维度表？ _ Hive时间函数全掌握.md](<../文章/Hive中如何生成时间维度表？ _ Hive时间函数全掌握.md>)
+- 本地文件：[Hive中如何生成时间维度表？ _ Hive时间函数全掌握.md](<../文章/done-Hive中如何生成时间维度表？ _ Hive时间函数全掌握.md>)
 - 原文链接：http://mp.weixin.qq.com/s?__biz=MzIzNTY4NTE5OQ==&mid=2247485068&idx=1&sn=f75a146fe54e8e4e936b33032692f8ee&chksm=e99be2f03743f7178bc6f65cfa21a2bcdbc20d974f63570696bbffff375d85040b8f4340eab9&mpshare=1&scene=24&srcid=09194tWxlldsIHDcBFhEdKv7&sharer_shareinfo=087a0bb28055d5ef7797b5c1401d87c3&sharer_shareinfo_first=087a0bb28055d5ef7797b5c1401d87c3#rd
 - 关键段落：文章给出日期维度表字段、低版本和高版本 Hive 的 SQL 生成方式，并回顾 `trunc`、`last_day`、`add_months`、`next_day`、`pmod` 等函数。
 

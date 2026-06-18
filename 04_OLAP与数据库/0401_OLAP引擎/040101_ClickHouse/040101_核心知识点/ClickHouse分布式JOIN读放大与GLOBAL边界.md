@@ -1,8 +1,11 @@
 # ClickHouse 分布式 JOIN 读放大与 GLOBAL 边界
 
+## 来源
+- [ClickHouse分布式JOIN](<../文章/done-ClickHouse分布式JOIN.md>)
+
 ## 原文锚点
 
-- 本地文件：[ClickHouse分布式JOIN](../文章/ClickHouse分布式JOIN.md)
+- 本地文件：[ClickHouse分布式JOIN](../文章/done-ClickHouse分布式JOIN.md)
 - 原文链接：`http://mp.weixin.qq.com/s?__biz=MzU5MTc1NDUyOA==&mid=2247488045&idx=1&sn=e0831a6679b290bc64efa935b2a049d2`
 - 关键段落：单机 Hash Join、普通分布式 JOIN 的右表读放大、`GLOBAL JOIN`、按 Join Key 预分布实现 Colocate JOIN。
 - 关键图：正文出现图示占位符，但本地 Markdown 没有图片链接。

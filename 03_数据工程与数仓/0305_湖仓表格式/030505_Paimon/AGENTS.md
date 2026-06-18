@@ -1,9 +1,9 @@
 # Paimon
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[知识地图](030505_核心知识点/知识地图.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](030505_知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `030505_核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `030505_核心知识点/` 下的主题文件。
 
 
 ## 技术定位
@@ -73,6 +73,9 @@ flowchart LR
 | 主键表合并引擎与 Changelog Producer | [Paimon主键表合并引擎与ChangelogProducer](030505_核心知识点/Paimon主键表合并引擎与ChangelogProducer.md) | Paimon + 主键表 + Merge Engine/Changelog Producer + 状态表/宽表/指标表/增量同步 + 建模语义边界 | 同主键多条数据如何形成最终表状态，以及下游如何消费变更 | 把 Merge Engine 校准为建模语义，把 Changelog Producer 校准为下游增量语义 |
 | Append 表与外部状态边界 | [Paimon追加表与外部状态边界](030505_核心知识点/Paimon追加表与外部状态边界.md) | Paimon + Append/Lookup/External State + 流式读写/分桶/水印 + Kafka/Fluss/Flink State 边界 | Paimon 能承担哪些准实时队列式读取和外部状态场景 | 把“替代 Kafka/替代 Flink State”校准为特定分析链路边界 |
 | LSM、Bloom 与生命周期治理 | [Paimon LSM、Bloom 与生命周期治理](<030505_核心知识点/Paimon LSM、Bloom 与生命周期治理.md>) | Paimon + LSM/Bloom/Snapshot/Partition/Changelog + Compaction/清理/查询裁剪 + 生产运维边界 | 如何控制 Paimon 读写放大、文件裁剪和物理生命周期 | 把 Paimon 生产边界从“能写入”推进到索引、Compaction 和清理联动 |
+| 版本演进与特性边界 | [Paimon版本演进与特性边界](030505_核心知识点/Paimon版本演进与特性边界.md) | Paimon + 1.0/1.2/1.3 + Data+AI + 版本能力 | 判断版本文章哪些能进入工程结论 | 新特性必须回官方文档和引擎兼容矩阵补证 |
+| 时间旅行快照与系统表 | [Paimon时间旅行快照与系统表](030505_核心知识点/Paimon时间旅行快照与系统表.md) | Paimon + Snapshot/System Table + 时间旅行 + 清理策略 | 用快照和系统表支撑审计、排障和治理 | 历史可见性受快照保留、分区清理和下游消费约束 |
+| 生产实践与小文件治理 | [Paimon生产实践与小文件治理](030505_核心知识点/Paimon生产实践与小文件治理.md) | Paimon + Compaction/Clustering/小文件/清理 + 生产治理 | 判断 Paimon 长期运行成本和治理动作 | Paimon 生产化难点从“能写入”推进到布局、清理和查询裁剪 |
 
 ## 后续追查
 

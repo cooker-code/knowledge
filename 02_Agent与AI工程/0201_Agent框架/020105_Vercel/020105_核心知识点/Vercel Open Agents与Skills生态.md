@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Vercel 把云端 Agent 底盘开源了：为什么 Open Agents 值得所有做 AI 开发工具的人看一眼](<../文章/Vercel 把云端 Agent 底盘开源了：为什么 Open Agents 值得所有做 AI 开发工具的人看一眼.md>)；[AI 界的 npm 来了！Vercel 开源 add-skill，一行命令搞定所有 Agent 技能管理！](<../文章/AI 界的 npm 来了！Vercel 开源 add-skill，一行命令搞定所有 Agent 技能管理！.md>)；[Agent Skill 太多？Vercel 用排行榜帮你选](<../文章/Agent Skill 太多？Vercel 用排行榜帮你选.md>)；[推荐两个来自Vercel官方无敌好用的开发工具：agent-skills和agent-browser](<../文章/推荐两个来自Vercel官方无敌好用的开发工具：agent-skills和agent-browser.md>)
+- 本地文件：[Vercel 把云端 Agent 底盘开源了：为什么 Open Agents 值得所有做 AI 开发工具的人看一眼](<../文章/done-Vercel 把云端 Agent 底盘开源了：为什么 Open Agents 值得所有做 AI 开发工具的人看一眼.md>)；[AI 界的 npm 来了！Vercel 开源 add-skill，一行命令搞定所有 Agent 技能管理！](<../文章/done-AI 界的 npm 来了！Vercel 开源 add-skill，一行命令搞定所有 Agent 技能管理！.md>)；[Agent Skill 太多？Vercel 用排行榜帮你选](<../文章/done-Agent Skill 太多？Vercel 用排行榜帮你选.md>)；[推荐两个来自Vercel官方无敌好用的开发工具：agent-skills和agent-browser](<../文章/done-推荐两个来自Vercel官方无敌好用的开发工具：agent-skills和agent-browser.md>)
 - 原文链接：本地文章包含 `vercel-labs/open-agents`、`vercel-labs/add-skill`、`vercel-labs/agent-skills`、`vercel-labs/agent-browser`、`skills.sh`，正式补证阶段再核对。
 - 关键段落：Open Agents 的 Web/workflow/sandbox/GitHub 分层、agent is not the sandbox、add-skill 跨工具安装、skills.sh 排行、agent-browser。
 - 关键图：Open Agents 文章提到截图和结构图，但本地 Markdown 未保留可用图片。

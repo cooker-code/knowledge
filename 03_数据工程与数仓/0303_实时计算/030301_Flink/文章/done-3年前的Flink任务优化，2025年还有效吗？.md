@@ -1,0 +1,133 @@
+> 已吸收至：[[03_数据工程与数仓/0303_实时计算/030301_Flink/030301_核心知识点/Flink SQL优化准则|Flink SQL优化准则]]
+---
+title: 3年前的Flink任务优化，2025年还有效吗？
+author: 大数据技术与架构
+date:
+url: https://mp.weixin.qq.com/s?__biz=MzU3MzgwNTU2Mg==&mid=2247524452&idx=1&sn=389486a4ecdacede46f0b5cbd2e1a116&chksm=fcd062c79a491a8de400b150cc5ebfcc6899a668f3720726563c75125b06c506c932cdfe37fa&mpshare=1&scene=24&srcid=0716bKEjYTy9QBb6bQhJvTb9&sharer_shareinfo=4457520b875ae9b1de560f7c2dc3efbb&sharer_shareinfo_first=4457520b875ae9b1de560f7c2dc3efbb#rd
+---
+
+Flink发展至今，经过多个大版本的迭代，Flink任务的优化方式也在持续发展。本文从2022年至今多个社区分享的文档中，找出了历史上的一些最常用的优化手段。
+
+三年后的今天，我们站在生产实践的角度，总结一下哪些优化手段是比较推荐的，按照星级给出建议指数，供大家参考。
+
+### 算子级别的TTL设置，推荐指数(🌟🌟🌟)
+
+从Flink1.18开始，Table API & SQL 支持配置细粒度的状态TTL来优化状态使用。
+
+官方的文档可以参考：
+
+https://nightlies.apache.org/flink/flink-docs-release-1.20/zh/docs/dev/table/concepts/overview/
+
+各大云平台的Flink产品支持通过Hint的方式设置左右流的数据，非常方便。在实际生产环境中使用场景没有很多，但是对于一些特定的场景可以大幅度降低状态大小。
+
+举个例子，我们的一个Flink任务中包含一个排序算子，一个聚合算子。我们可以给任务级别状态设置为4h，单独给排序算子设置24h的状态保证数据不乱序。
+
+### Mini-Batch、二阶段聚合，推荐指数(🌟🌟🌟🌟🌟)
+
+在对延时要求不高（比如分钟级别的更新）的场景下，开启 mini-batch 攒批优化会减少 state的访问和更新频率。
+
+开启 MiniBatch 适用的场景为：
+
+```
+作业对延迟没有严格要求（因为mini-batch会带来额外延迟）；
+Aggregate算子访问State存在瓶颈;
+下游算子的处理能力不足（开启MiniBatch会减少往下游输出的数据量）
+```
+
+核心的配置如下：
+
+```
+table.exec.mini-batch.enabled: true
+table.exec.mini-batch.allow-latency: 5s // 用户按需配置
+table.exec.mini-batch.size：2000 // 用户按需配置
+```
+
+需要注意的是，MiniBatch主要优化是针对状态密集型算子(如聚合、关联），对无状态算子(如映射、过滤)无效，还会带来内存消耗上的升高。
+
+开启mini-batch也会与Flink的一些特性产生冲突，如缓存的数据可能在Checkpoint时未完全处理，导致恢复时重复计算。
+
+此外最大的问题是，Mini-batch的开和关会带来Flink任务的DAG发生改变，导致状态不兼容，需要特别注意⚠️！
+
+Flink SQL的两阶段聚合（Two-Phase Aggregation）是Flink自带的解决数据倾斜的重要方法。
+
+开启方式也很简单：
+
+```
+'table.optimizer.agg-phase-strategy':'TWO_PHASE'
+'table.optimizer.distinct-agg.split.enabled' = 'true';
+'table.optimizer.distinct-agg.split.bucket-num' = '2048';-- 按需增加桶数量
+```
+
+两阶段聚合只对满足要求的部分算子生效，是否开启了特性可以通过任务的执行计划看到关键字：
+
+```
+== Optimized Execution Plan ==
+GlobalAggregate(select=[user_id, COUNT(order_id) AS order_cnt])
+  LocalAggregate(select=[user_id, COUNT(order_id) AS order_cnt])
+    TableSourceScan(table=[[default_catalog, default_database, orders]])
+```
+
+如果执行计划中包含 LocalAggregate 和 GlobalAggregate，那么就表示两阶段聚合已生效。
+
+### 多维DISTINCT使用Filter，推荐指数(🌟🌟)
+
+在很多场景下，我们可能需要从不同维度来统计count distinct的结果，大多数情况下，大家都会用到CASE WHEN语法。
+
+```
+SELECT
+  a,
+  COUNT(DISTINCT b ) AS total_ b,
+  COUNT(DISTINCT CASE WHEN c IN (' A ', B ') THEN b ELSE NULL END) AS AB aa,
+  COUNT(DISTINCT CASE WHEN c IN (' C ', D ') THEN b ELSE NULL END) AS bb
+FROM T
+GROUP BY a
+```
+
+这个时候，FILTER就可以上场了，将上边的CASE WHEN 替换成 FILTER 后 ，如下所示：
+
+```
+SELECT
+  a,
+  COUNT(DISTINCT b ) AS b,
+  COUNT(DISTINCT b ) FILTER (WHERE c IN (' A ', B ')) AS aa,
+  COUNT(DISTINCT b ) FILTER (WHERE c IN (' C ', D ')) AS bb
+FROM T
+GROUP BY a
+```
+
+经过优化器识别后，Flink可以只使用一个共享状态实例，而不是三个状态实例，可减少状态的大小和对状态的访问。
+
+但是FILTER使用不当可能会带来额外的问题，例如没有提前进行数据过滤以及Flink按多维组合进行分区可能会产生数据热点等，所以可以根据实际情况谨慎使用。
+
+### Lookup Join优化，推荐指数(🌟🌟🌟🌟🌟)
+
+Flink对Lookup Join提供了多种优化方式，例如同步和异步查询机制、Cache机制等。 这里我们只讨论Cache，用本地Memory Lookup提高查询效率，Flink 提供了三种 Cache 机制：
+
+* Full Caching，将所有数据全部 Cache 到内存中。该方式适合小数据集，因为数据量过大会带来额外的内存消耗；
+* Partial Caching，适合大数据集使用，框架底层使用 LRU Cache保存最近被使用的数据；
+* No Caching，即关闭 Cache。
+
+Full Caching和Partial Caching是非常推荐的，生产环境可以合理选择。
+
+例如可以通过合理设置缓存的TTL和大小，极大的减轻对维度表所在存储的压力。
+
+### TopN优化，推荐指数(🌟🌟🌟🌟🌟)
+
+Flink通过Over语句实现TopN，本身提供了三种TopN实现方式，他们的性能一次递减。
+
+这三种TopN优化分别为AppendRank、UpdateFastRank、RetractRank，我们这里不去讨论他们的适用场景，因为我们开发过程中也不需要去特别关注。
+
+我们这里提几个需要关注的问题：
+
+1. 不要输出row\_number字段本身，这样可以大大减少下游处理的数据量；
+2. row\_number支持上文中提到mini-batch，可以搭配使用；
+3. row\_number可以在最上游的ods层处理掉，最大可能避免乱序，减轻下游的处理工作。
+
+### 其他
+
+其他的优化例如，双流关联的主键优化，调整多流join顺序缓解state放大，dag子图复用等等大家可以酌情使用，对线上任务影响程度不是十分明显。
+
+最后，欢迎加入我们的知识星球小圈子：
+[《300万字！全网最全大数据学习面试社区等你来》](https://mp.weixin.qq.com/s?__biz=MzU3MzgwNTU2Mg==&mid=2247518343&idx=1&sn=eaf44bee8c4d90aedd508201475b57a9&chksm=fd3ece12ca494704cdf02300bbfe39c1d4245ac30f41aba3065efe66eb9aa453a23e0b6dae6e&scene=21&token=1745806505&lang=zh_CN#wechat_redirect)。
+
+如果这个文章对你有帮助，不要忘记 **「在看」** **「点赞」** **「收藏」** 三连啊喂！

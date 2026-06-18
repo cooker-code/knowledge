@@ -2,9 +2,9 @@
 
 ## 原文锚点
 
-- 本地文件：[SeaTunnel 进阶指南：解锁 MySQL-CDC 实时增量采集神技](<../文章/SeaTunnel 进阶指南：解锁 MySQL-CDC 实时增量采集神技.md>)
-- 本地文件：[一个神奇的开源大数据必备工具——SeaTunnel：快速开始](../文章/一个神奇的开源大数据必备工具——SeaTunnel：快速开始.md)
-- 本地文件：[数仓实践：超大表同步，别再凭直觉选 SeaTunnel + Hive 了](<../文章/数仓实践：超大表同步，别再凭直觉选 SeaTunnel + Hive 了.md>)
+- 本地文件：[SeaTunnel 进阶指南：解锁 MySQL-CDC 实时增量采集神技](<../文章/done-SeaTunnel 进阶指南：解锁 MySQL-CDC 实时增量采集神技.md>)
+- 本地文件：[一个神奇的开源大数据必备工具——SeaTunnel：快速开始](../文章/done-一个神奇的开源大数据必备工具——SeaTunnel：快速开始.md)
+- 本地文件：[数仓实践：超大表同步，别再凭直觉选 SeaTunnel + Hive 了](<../文章/done-数仓实践：超大表同步，别再凭直觉选 SeaTunnel + Hive 了.md>)
 - 原文链接：三篇原文 front matter 中的微信公众号链接。
 - 关键段落：CDC 任务常驻、`job.mode` 区分 BATCH/STREAMING、CDC 不支持 source `query` 任意过滤、多表 `table-names` 和 Sink 表名变量、SeaTunnel + Hive 在超大分库分表场景的边界。
 - 关键图：快速开始文中日志截图缺失；CDC 模式对比图是 ASCII 表达；超大表文章无技术图。
@@ -147,3 +147,8 @@ flowchart LR
 - 相关技术：DataX、Flink CDC、Paimon、Hive、Doris、StarRocks。
 - 需要补读的文章：SeaTunnel 当前官方 MySQL-CDC 文档、SeaTunnel Engine Checkpoint、一致性和 JDBC Sink 失败恢复。
 
+## 重新蒸馏补充（2026-06-18）
+
+| 来源 | 认知增量 | 处理 |
+|---|---|---|
+| [[03_数据工程与数仓/0307_数据集成/030702_SeaTunnel/文章/done-比DataX快20%！SeaTunnel同步计算引擎性能测试全新发布]] | 补充该主题的生产案例、机制边界或排重样例。 | 重新判断后补入目标知识产物 |

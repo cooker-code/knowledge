@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[RAG 文档解析工具选型指南](<../文章/RAG 文档解析工具选型指南.md>)
+- 本地文件：[RAG 文档解析工具选型指南](<../文章/done-RAG 文档解析工具选型指南.md>)
 - 原文链接：`https://mp.weixin.qq.com/s?__biz=MzkzMTI3MTg5MQ==&mid=2247487653&idx=1&sn=eabdd180ab8a28880af698315b5055cc`
 - 原文外部链接：`https://aiexpjourney.substack.com/p/when-rag-meets-document-parsing-a`
 - 关键段落：文章按结构化、半结构化、非结构化、多模态四类知识讨论解析工具。

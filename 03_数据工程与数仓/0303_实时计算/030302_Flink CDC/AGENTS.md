@@ -1,10 +1,10 @@
 # Flink CDC
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[知识地图](030302_核心知识点/知识地图.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](030302_知识地图.md)。
 - 本次从数据集成迁移到实时计算的范围已吸收到当前目录规则和流程总览。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `030302_核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `030302_核心知识点/` 下的主题文件。
 
 
 ## 技术定位
@@ -72,6 +72,7 @@ flowchart LR
 |---|---|---|---|---|
 | Flink CDC 概览与实时 CDC 边界 | [FlinkCDC概览与数据集成边界](030302_核心知识点/FlinkCDC概览与数据集成边界.md) | Flink CDC + CDC Source/Pipeline + 全量快照/增量日志/版本演进 + 实时接入入口 + 不等同于 Flink 通用计算引擎 | 判断 Flink CDC 在实时链路中到底承担采集同步还是计算加工 | Flink CDC 的本体已经从 Source Connector 扩展到 Data Integration Engine；本知识库按用户要求归入实时计算下的 CDC 子模块 |
 | Flink CDC 3.0 数据集成架构 | [FlinkCDC3数据集成架构](030302_核心知识点/FlinkCDC3数据集成架构.md) | Flink CDC + Pipeline Framework + API/Connect/Composer/Runtime + YAML/Schema Evolution/Route + 数据集成框架边界 | 判断 Flink CDC 3.x 为什么是 Pipeline 框架化，而不只是连接器升级 | API/Connect/Composer/Runtime 四层说明了 Flink CDC 3.x 的数据集成本体 |
+| Flink CDC 版本演进与 Pipeline 连接器边界 | [FlinkCDC版本演进与Pipeline连接器边界](030302_核心知识点/FlinkCDC版本演进与Pipeline连接器边界.md) | Flink CDC + 3.x 版本线 + Pipeline Connector + JDK/Flink 兼容 + 版本发布边界 | 判断 3.4/3.5/3.6 文章哪些能变成当前工程结论 | 发布公告只进入版本和连接器边界，不把新特性列表直接当生产能力 |
 | Flink CDC Server ID 冲突排障 | [FlinkCDCServerID冲突排障](030302_核心知识点/FlinkCDCServerID冲突排障.md) | Flink CDC + MySQL Source + server_id/server_uuid + binlog 逻辑从库身份冲突 + 延迟增长和断流排障 | 排查 MySQL CDC 任务因复制身份冲突导致延迟增长或断流 | CDC 任务要当 MySQL 复制拓扑的一员管理，`server_id` 是生产台账 |
 | Flink CDC PostgreSQL 复制槽 WAL 膨胀排障 | [FlinkCDCPostgreSQL复制槽WAL膨胀排障](030302_核心知识点/FlinkCDCPostgreSQL复制槽WAL膨胀排障.md) | Flink CDC + PostgreSQL Source + logical replication slot/restart_lsn/max_slot_wal_keep_size + WAL 膨胀 + 下线治理 | 判断 CDC 下线后源端复制槽为什么会撑爆 WAL | CDC 任务生命周期必须覆盖源端日志位点和复制槽资源 |
 | Flink CDC 整库同步 Doris 链路边界 | [FlinkCDC整库同步Doris链路边界](030302_核心知识点/FlinkCDC整库同步Doris链路边界.md) | Flink CDC + MySQL-to-Doris Pipeline + YAML Source/Sink/server-id/auto create table + 整库同步链路边界 | 判断 MySQL -> Doris 应归数据集成还是 OLAP 查询 | 下游是 Doris 不代表文章主问题就是 OLAP，Doris Sink 语义仍需验证 |

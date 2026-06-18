@@ -1,9 +1,10 @@
 # RAGFlow
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[知识地图](020304_核心知识点/知识地图.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](020304_知识地图.md)。
+- 知识地图放在三级节点根部；`020304_核心知识点/` 只放长期主题页。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `020304_核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `020304_核心知识点/` 下的主题文件。
 
 
 ## 技术定位
@@ -12,7 +13,7 @@
 |---|---|
 | 技术名 | RAGFlow |
 | 一级类目 | Agent 与 AI 工程 |
-| 二级类目 | RAG/知识库 |
+| 二级类目 | RAG 与知识库 |
 | 技术本体 | 面向文档解析、知识库构建、检索增强生成和智能问答的开源 RAG 平台 |
 | 全局架构位置 | 位于原始文档和 LLM 应用之间，承担解析、切分、索引、召回、重排、问答和可视化管理 |
 | 主要使用者 | AI 应用工程师、知识库维护者、企业知识平台负责人 |
@@ -78,3 +79,13 @@ flowchart LR
 - 关键词：MarkdownParser、MarkdownElementExtractor、VisionFigureParser、DocxParser、PdfParser、DeepDOC、Table Transformer、chunk、table parsing、image caption、hybrid search、rerank、similarity_threshold。
 - 待读资料：RAGFlow 当前源码版本、RAGFlow 评估、RAGFlow MCP、MinerU/Docling 接入。
 - 待补实验：用 knowledge 中一篇 Markdown 对比按标题切分、固定 token 切分、RAGFlow General 模式切分的召回效果；用 PDF/DOCX/PPT 样本验证结构保真；用固定问题集比较 sparse/vector/hybrid/rerank 的 Recall@K 和引用正确率。
+
+<!-- AUTO-DISTILL-02-START -->
+
+## 本轮文章处理收口
+
+- 已归档来源：`16` 篇，全部位于 `文章/` 且使用 `done-` 前缀。
+- 核心知识点总览：[RAGFlow工程化边界与知识库治理.md](020304_核心知识点/RAGFlow工程化边界与知识库治理.md)，承接来源锚点和粗分流记录。
+- 新文章进入时先对照根部知识地图和已沉淀主题页；只有新增机制、边界、反例、版本差异或实践证据时才新建主题页。
+
+<!-- AUTO-DISTILL-02-END -->

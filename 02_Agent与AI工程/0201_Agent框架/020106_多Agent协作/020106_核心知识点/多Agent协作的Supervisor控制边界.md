@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[字节面试官问："你说做了 Multi-Agent，Supervisor 怎么分配任务？子 Agent 挂了怎么处理？三个 Agent 同时写报告，结果怎么合并？](<../文章/字节面试官问：_你说做了 Multi-Agent，Supervisor 怎么分配任务？子 Agent 挂了怎么处理？三个 Agent 同时写报告，结果怎么合并？.md>)
+- 本地文件：[字节面试官问："你说做了 Multi-Agent，Supervisor 怎么分配任务？子 Agent 挂了怎么处理？三个 Agent 同时写报告，结果怎么合并？](<../文章/done-字节面试官问：_你说做了 Multi-Agent，Supervisor 怎么分配任务？子 Agent 挂了怎么处理？三个 Agent 同时写报告，结果怎么合并？.md>)
 - 原文链接：`https://mp.weixin.qq.com/s?__biz=MzkzMDIwMzg1Mw==&mid=2247490011&idx=1&sn=b0833c131ac585a0fb06b7dd6fba5a28`
 - 关键段落：Supervisor 模式、TypedDict 状态、`return_exceptions=True`、重试与降级、WriterAgent 合并矛盾、并行上限。
 - 关键图：正文提到 Supervisor 架构和错误处理图，但本地 Markdown 无图。

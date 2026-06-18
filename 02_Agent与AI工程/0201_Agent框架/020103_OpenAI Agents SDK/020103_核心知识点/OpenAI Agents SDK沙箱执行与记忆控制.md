@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[OpenAI Agents SDK 沙箱执行与记忆控制](<../../../0211_Memory Management/文章/OpenAI Agents SDK 沙箱执行与记忆控制.md>)
+- 本地文件：[OpenAI Agents SDK 沙箱执行与记忆控制](<../../../0211_Memory Management/文章/done-OpenAI Agents SDK 沙箱执行与记忆控制.md>)
 - 原文链接：`https://mp.weixin.qq.com/s?__biz=Mzg4Njc4Mjg2OQ==&mid=2247484075&idx=1&sn=d1f1453f795d98766a75de8828a42841`
 - 关键段落：Harness/Compute 分离、沙箱执行、Manifest、Session 记忆与 Sandbox 记忆、快照恢复、长时程任务可靠性。
 - 关键图：无可用技术图，正文主要用文字和代码片段说明。
@@ -54,7 +54,7 @@
 | 分级 | 内容 | 为什么值得吸收 | 后续动作 |
 |---|---|---|---|
 | 理解 | Harness/Compute 分离 | 安全隔离的架构边界 | 后续和 Claude/Codex/Hermes 运行时对标 |
-| 记住 | 凭证不应进入模型生成代码可触达的执行环境 | 高权限工具的底线规则 | 写入 Agent 安全与权限追查 |
+| 记住 | 凭证不应进入模型生成代码可触达的执行环境 | 高权限工具的底线规则 | 写入 Agent Sandbox 追查 |
 | 理解 | Manifest 声明工作空间和存储挂载 | 解决本地到生产环境不一致 | 后续补官方字段和最小配置 |
 | 理解 | Session 记忆和 Sandbox 记忆分工 | 降低上下文膨胀，保留项目经验 | 和 LangGraph Store 记忆对比 |
 | 记住 | 快照恢复解决容器生命周期，不等于知识长期沉淀 | 避免混淆运行状态和长期知识 | 后续验证恢复点粒度 |
@@ -124,5 +124,5 @@
 ## 后续追查
 
 - 关键词：OpenAI Agents SDK sandbox、Harness Compute separation、Manifest、Sandbox memory、snapshot recovery。
-- 相关技术：LangGraph、DeepAgents、长任务 Agent 运行时、Agent 安全与权限。
+- 相关技术：LangGraph、DeepAgents、长任务 Agent 运行时、Agent Sandbox。
 - 需要补读的文章：官方文档、GitHub README、沙箱提供商能力矩阵；本轮不联网，后续补证。

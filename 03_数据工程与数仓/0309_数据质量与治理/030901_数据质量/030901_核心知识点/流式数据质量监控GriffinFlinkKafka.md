@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Apache Griffin+Flink+Kafka实现流式数据质量监控实战](<../文章/Apache Griffin+Flink+Kafka实现流式数据质量监控实战.md>)
+- 本地文件：[Apache Griffin+Flink+Kafka实现流式数据质量监控实战](<../文章/done-Apache Griffin+Flink+Kafka实现流式数据质量监控实战.md>)
 - 原文链接：http://mp.weixin.qq.com/s?__biz=MzU3MzgwNTU2Mg==&mid=2247512073&idx=1&sn=b537dbcea355b59a2d302dbcbc94c3aa
 - 官方锚点：[Apache Griffin](https://griffin.apache.org/)；项目已退役，[GitHub](https://github.com/apache/griffin) 已归档，只作为历史机制参考。
 - 关键段落：Kafka source/target、Flink 处理模拟异常、Griffin `dq.json`、`accuracy` 规则、baseline/source-target 对比、metric 和 record 输出。

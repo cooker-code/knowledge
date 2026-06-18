@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Flink CDC 线上事故，悄悄吃掉了 12 TB 磁盘](<../文章/Flink CDC 线上事故，悄悄吃掉了 12 TB 磁盘.md>)
+- 本地文件：[Flink CDC 线上事故，悄悄吃掉了 12 TB 磁盘](<../文章/done-Flink CDC 线上事故，悄悄吃掉了 12 TB 磁盘.md>)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=MzYyMzMzNzk0MQ==&mid=2247483988&idx=1&sn=a76b2a1ab282a86166c94e4ab217de73
 - 官方锚点：[PostgreSQL Replication Slots](https://www.postgresql.org/docs/current/warm-standby.html#STREAMING-REPLICATION-SLOTS)、[pg_replication_slots](https://www.postgresql.org/docs/current/view-pg-replication-slots.html)
 - 关键段落：PostgreSQL WAL 暴涨、`pg_replication_slots`、`restart_lsn`、`active=false`、`pg_drop_replication_slot`、`max_slot_wal_keep_size`。

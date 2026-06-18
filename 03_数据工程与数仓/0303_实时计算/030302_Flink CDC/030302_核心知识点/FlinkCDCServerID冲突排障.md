@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[大数据运维：Flink CDC任务 “server_id 冲突”的故障处理（生产环境）](<../文章/大数据运维：Flink CDC任务 “server_id 冲突”的故障处理（生产环境）.md>)
+- 本地文件：[大数据运维：Flink CDC任务 “server_id 冲突”的故障处理（生产环境）](<../文章/done-大数据运维：Flink CDC任务 “server_id 冲突”的故障处理（生产环境）.md>)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=MzAxMTYxMDY3Mw==&mid=2247488226&idx=1&sn=70274eda7a99386b2765e8d7110938cc
 - 官方锚点：[Flink CDC MySQL Pipeline Connector](https://nightlies.apache.org/flink/flink-cdc-docs-stable/docs/connectors/pipeline-connectors/mysql/)
 - 关键段落：Flink CDC 本质是 MySQL 逻辑从库、`server_id`/`server_uuid` 唯一性、`SHOW PROCESSLIST`、清理旧 Checkpoint 状态、下游验证。

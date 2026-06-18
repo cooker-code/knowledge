@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[原理剖析_ Kafka Exactly Once 语义实现原理：幂等性与事务消息](<../文章/原理剖析_ Kafka Exactly Once 语义实现原理：幂等性与事务消息.md>)
+- 本地文件：[原理剖析_ Kafka Exactly Once 语义实现原理：幂等性与事务消息](<../文章/done-原理剖析_ Kafka Exactly Once 语义实现原理：幂等性与事务消息.md>)
 - 原文链接：http://mp.weixin.qq.com/s?__biz=MzIzNzgyMjYxOQ==&mid=2247491090&idx=1&sn=198d14f85a12260e98e8556cec21a5d1
 - 关键段落：生产者幂等性、事务初始化、消息发送、事务提交与回滚、消费可见性、事务限制。
 - 关键图：原文提到事务流程图和事务消息图，但 Markdown 无图。

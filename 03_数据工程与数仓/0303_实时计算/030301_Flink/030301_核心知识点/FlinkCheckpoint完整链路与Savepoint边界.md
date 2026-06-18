@@ -1,13 +1,9 @@
 # Flink Checkpoint 完整链路与 Savepoint 边界
 
-## 原文锚点
+## 来源
 
-- 本地文件：[Flink Checkpoint 完整过程技术解析（附源码）](<../文章/Flink Checkpoint 完整过程技术解析（附源码）.md>)
-- 本地文件：[白话Apache Flink FLIP-47 拍照还是截图：统一 Flink 的两种_留影_方式](<../文章/白话Apache Flink FLIP-47 拍照还是截图：统一 Flink 的两种_留影_方式.md>)
-- 原文链接：`https://mp.weixin.qq.com/s?__biz=Mzg5Mzg3MzkwNA==&mid=2247491827&idx=1&sn=e19f1b9dba31224ef6efa5372a2e95ee`
-- 原文链接：`https://mp.weixin.qq.com/s?__biz=Mzg2NTU4NzU4Mw==&mid=2247484804&idx=1&sn=371814e60988926a2f82e7160649802b`
-- 关键段落：CheckpointCoordinator 触发、Barrier 注入和对齐、StateBackend 快照、CheckpointStorage 持久化、ACK 和 CompletedCheckpoint；Savepoint 与 Checkpoint 在生命周期、格式、升级和迁移能力上的差异。
-- 关键图：原文多为文字流程和表格，没有可用技术图片。
+- [Flink Checkpoint 完整过程技术解析（附源码）](<../文章/done-Flink Checkpoint 完整过程技术解析（附源码）.md>)
+- [白话Apache Flink FLIP-47 拍照还是截图：统一 Flink 的两种_留影_方式](<../文章/done-白话Apache Flink FLIP-47 拍照还是截图：统一 Flink 的两种_留影_方式.md>)
 
 ## 图片处理
 

@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Vercel AI SDK：我目前见过最优雅的 AI 应用开发框架](<../文章/Vercel AI SDK：我目前见过最优雅的 AI 应用开发框架.md>)；[Vercel AI SDK：构建现代 Web AI 应用指南](<../文章/Vercel AI SDK：构建现代 Web AI 应用指南.md>)
+- 本地文件：[Vercel AI SDK：我目前见过最优雅的 AI 应用开发框架](<../文章/done-Vercel AI SDK：我目前见过最优雅的 AI 应用开发框架.md>)；[Vercel AI SDK：构建现代 Web AI 应用指南](<../文章/done-Vercel AI SDK：构建现代 Web AI 应用指南.md>)
 - 原文链接：本地文章包含 `https://ai-sdk.dev` 和 `https://github.com/vercel/ai`，正式补证阶段再核对。
 - 关键段落：provider 三种接入方式、`generateText`、`streamText`、`generateObject`、`streamObject`、工具调用、流式响应、结构化输出、React UI 层。
 - 关键图：原文无可用技术图，主要是代码和 API 说明。

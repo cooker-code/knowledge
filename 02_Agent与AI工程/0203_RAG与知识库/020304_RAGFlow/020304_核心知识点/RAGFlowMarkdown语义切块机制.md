@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[【解密源码】 RAGFlow 切分最佳实践 - General 模式语义切块（markdown 篇）](<../文章/【解密源码】 RAGFlow 切分最佳实践 - General 模式语义切块（markdown 篇）.md>)
+- 本地文件：[【解密源码】 RAGFlow 切分最佳实践 - General 模式语义切块（markdown 篇）](<../文章/done-【解密源码】 RAGFlow 切分最佳实践 - General 模式语义切块（markdown 篇）.md>)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=Mzk4ODg5NTU4Mg==&mid=2247483714&idx=1&sn=b5fb49f32204550dbeeab7ef4c84f879
 - 关键段落：MarkdownParser、MarkdownElementExtractor、表格解析、图片提取、VisionFigureParser、naive_merge_with_images。
 - 关键图：无架构图；原文主要是代码片段。

@@ -1,8 +1,11 @@
 # StarRocks Primary Key 事务与 DelVector 读写边界
 
+## 来源
+- [StarRocks 技术内幕：实时更新与极速查询如何兼得](<../文章/done-StarRocks 技术内幕：实时更新与极速查询如何兼得.md>)
+
 ## 原文锚点
 
-- 本地文件：[StarRocks 技术内幕：实时更新与极速查询如何兼得](<../文章/StarRocks 技术内幕：实时更新与极速查询如何兼得.md>)
+- 本地文件：[StarRocks 技术内幕：实时更新与极速查询如何兼得](<../文章/done-StarRocks 技术内幕：实时更新与极速查询如何兼得.md>)
 - 原文链接：`http://mp.weixin.qq.com/s?__biz=MzI1MTYxOTkxNQ==&mid=2247485927&idx=1&sn=56051046f9eb51a563c6c24eb22c9364`
 - 关键段落：Copy-on-Write、Merge-on-Read、Delta Store、Delete-and-Insert、导入事务 Write/Commit、Tablet 内部结构、Primary Index、DelVector、并发冲突、Compaction、读取流程。
 - 关键图：正文引用多张结构和流程图，本地 Markdown 没有图片链接。

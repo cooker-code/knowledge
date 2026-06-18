@@ -1,8 +1,11 @@
 # Doris BE 内存问题 Heap Profile 排查
 
+## 来源
+- [Apache Doris BE 内存问题深度排查：从监控异常到 Heap Profile 精准定位](<../文章/done-Apache Doris BE 内存问题深度排查：从监控异常到 Heap Profile 精准定位.md>)
+
 ## 原文锚点
 
-- 本地文件：[Apache Doris BE 内存问题深度排查：从监控异常到 Heap Profile 精准定位](<../文章/Apache Doris BE 内存问题深度排查：从监控异常到 Heap Profile 精准定位.md>)
+- 本地文件：[Apache Doris BE 内存问题深度排查：从监控异常到 Heap Profile 精准定位](<../文章/done-Apache Doris BE 内存问题深度排查：从监控异常到 Heap Profile 精准定位.md>)
 - 原文链接：`https://mp.weixin.qq.com/s?__biz=MzkzMTAwMTcwOA==&mid=2247484316&idx=1&sn=6025954400eec2d26694a1aa024e336a`
 - 关键段落：判断泄漏 vs 正常增长、Jemalloc 参数、Realtime Dump vs Regular Dump、`jeprof --base` diff、关闭 Profile。
 - 关键图：正文提到“如下图所示”，但 Markdown 没有图片。

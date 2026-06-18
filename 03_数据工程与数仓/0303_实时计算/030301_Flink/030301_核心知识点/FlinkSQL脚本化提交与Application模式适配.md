@@ -1,20 +1,16 @@
 # Flink SQL 脚本化提交与 Application 模式适配
 
-## 原文锚点
+## 来源
 
-- 本地文件：[Flink 实时数仓开发实战：像 Hive 那样用 Flink SQL](../../../../../web-articles/Flink_实时数仓开发实战：像_Hive_那样用_Flink_SQL/Flink_实时数仓开发实战：像_Hive_那样用_Flink_SQL.md)
-- 原文链接：https://zhuanlan.zhihu.com/p/2048135975742747150
-- 官方参考：[Flink SQL Gateway - Deploying a Script](https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/sql-gateway/overview/)
-- 关键段落：SQL Client `-f` 的部署模式限制、FLIP-316/480、`SqlDriver -> ScriptRunner -> ScriptExecutor` 链路、DDL/DML 分派、`compilePlan -> translatePlan -> executeInternal`。
-- 关键图：Flink 2.x SQL 脚本 Application Mode 执行链路、官方方案与本文方案对比、Multi-Statement SQL 三阶段处理。
+- [[03_数据工程与数仓/0303_实时计算/030301_Flink/文章/done-Flink 实时数仓开发实战：像 Hive 那样用 Flink SQL|Flink 实时数仓开发实战：像 Hive 那样用 Flink SQL]]
 
 ## 图片处理
 
 | 图片 | 类型 | 是否保留 | 理由 | 处理方式 |
 |---|---|---|---|---|
-| `images/img_001.jpg` | 执行链路图 | 保留 | 说明 Flink 2.x 脚本部署从 SQL Gateway 到 JobManager 端执行的完整链路 | 保留原图锚点 |
-| `images/img_002.jpg` | 对比图 | 保留 | 对比官方 Flink 2.x 方案与 1.20 兼容方案的差异 | 保留原图锚点 |
-| `images/img_003.jpg` | 流程图 | 保留 | 说明 Multi-Statement SQL 的切分、分派、统一提交三阶段 | 保留原图锚点，并用 Mermaid 重建核心逻辑 |
+| `../文章/Flink_实时数仓开发实战_像_Hive_那样用_Flink_SQL_assets/img_001.jpg` | 执行链路图 | 保留 | 说明 Flink 2.x 脚本部署从 SQL Gateway 到 JobManager 端执行的完整链路 | 保留原图锚点 |
+| `../文章/Flink_实时数仓开发实战_像_Hive_那样用_Flink_SQL_assets/img_002.jpg` | 对比图 | 保留 | 对比官方 Flink 2.x 方案与 1.20 兼容方案的差异 | 保留原图锚点 |
+| `../文章/Flink_实时数仓开发实战_像_Hive_那样用_Flink_SQL_assets/img_003.jpg` | 流程图 | 保留 | 说明 Multi-Statement SQL 的切分、分派、统一提交三阶段 | 保留原图锚点，并用 Mermaid 重建核心逻辑 |
 
 ## 一句话结论
 
@@ -146,3 +142,9 @@ flowchart LR
 - 关键词：FLIP-480、FLIP-316、Flink SQL Gateway、SqlDriver、ScriptRunner、ScriptExecutor、SessionContext、OperationExecutor、Application Mode、Multi-Statement SQL、StatementSet、`compilePlan`、`translatePlan`。
 - 需要补读的文章：Flink 2.x SQL Gateway 官方脚本部署文档、Flink 1.20 SQL Client 文档、`flink-sql-bootstrap` README 和源码。
 - 待补实验：用 datagen/print 构造最小 SQL，分别验证 Local、YARN/Kubernetes、Session/Application 模式；加入 UDF、Catalog、Connector 依赖和 `STATEMENT SET`；记录提交失败、依赖冲突、SQL 校验失败和作业生成结果。
+
+## 重新蒸馏补充（2026-06-18）
+
+| 来源 | 认知增量 | 处理 |
+|---|---|---|
+| [[03_数据工程与数仓/0303_实时计算/030301_Flink/文章/done-Flink-脚本启动任务调度流程图？-你知道吗？]] | 补充该主题的生产案例、机制边界或排重样例。 | 重新判断后补入目标知识产物 |

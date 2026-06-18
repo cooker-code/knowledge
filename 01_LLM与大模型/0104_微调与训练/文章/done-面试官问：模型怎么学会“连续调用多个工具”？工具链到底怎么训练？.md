@@ -1,0 +1,366 @@
+---
+title: 面试官问：模型怎么学会“连续调用多个工具”？工具链到底怎么训练？
+author: 吴师兄学大模型
+date:
+url: https://mp.weixin.qq.com/s?__biz=MzkzMDIwMzg1Mw==&mid=2247489362&idx=1&sn=19234c8d5a62db2e992eca445a3dbb5d&chksm=c358ffa5c9b1e3129ba41af6f0a5f844ee12e3fbb9dcd0cfa0ff9f5320f798355f391dc52d2c&mpshare=1&scene=24&srcid=1209yWDsNtM5BPEhltDJRNRp&sharer_shareinfo=31ec6721694cdfb5d9d955e9611f8455&sharer_shareinfo_first=31ec6721694cdfb5d9d955e9611f8455#rd
+---
+> 已吸收至：[[01_LLM与大模型/0104_微调与训练/0104_核心知识点/训练基础与模型压缩来源校准|训练基础与模型压缩来源校准]]
+
+大家好，我是吴师兄。
+
+如果说 Function Call 难在“多轮对话”，那在多轮里最难的部分，一定是**工具链（Chained Tool Calls）**。
+
+也就是说：
+
+> 用户一句话 → 需要调用 2～4 个工具 → 串联 → 最终生成回答。
+
+你会发现，绝大多数同学在 Function Call 上遇到的崩溃点，都来自这一环：
+
+* 模型只会调用第一个工具
+* 第二个工具永远不会触发
+* 工具返回后模型不知道要继续
+* 工具链顺序乱掉
+* 工具执行完不收尾，不总结
+* 参数遗忘、变量丢失
+* 遇到 API 错误不会恢复
+
+这些问题在实际项目中是常态。
+
+但更关键的问题是,在大厂面试里，只要面试官发现你会“工具链”，基本能判断你**真的做过项目**，不是道听途说。
+
+今天这一篇，我会把工具链的本质、训练方法，以及真实工程落地方式讲透。
+
+## unsetunset一、面试官为什么喜欢问“工具链”？unsetunset
+
+因为工具链最能反映候选人是否真正理解过 Agent 系统。
+
+你有没有能力把任务拆成步骤？
+
+你有没有意识到：
+
+* 工具返回的结果需要继续处理
+* 参数需要保存
+* 每一步都要做决策
+* 工具和工具之间的衔接不是简单拼接
+
+工具链包含了一个 Agent 最核心的逻辑：
+
+> **思考 → 调用 → 观察 → 再思考 → 再调用 → 最终回答**
+
+> 也就是 ReAct 的核心循环。
+
+掌握工具链，你才算真正掌握了 Agent 的工程化。
+
+## unsetunset二、什么是工具链？一张图说清楚unsetunset
+
+以训练营里“智能旅行助手”为例：
+
+用户一句话：
+
+```
+帮我订从上海到北京的机票，并找一家机场附近的酒店。
+```
+
+这是一个典型的工具链任务，它至少包含三个步骤：
+
+1. **search\_flights**
+2. **book\_flight**
+3. **search\_hotels**4)（可选）**book\_hotel**
+
+流程如下：
+
+```
+用户 → LLM → search_flights → LLM → book_flight → LLM → search_hotels → LLM → 最终回复
+```
+
+你会发现，工具链是“思考-行动-观察”的循环，而不是连续两次工具调用。
+
+本质是状态控制。
+
+## unsetunset三、为什么模型天生不会工具链？unsetunset
+
+这里必须讲清楚一个误区：
+
+很多人以为：
+
+> “模型训练了 Function Call，就会连续调用。”
+
+完全不会。
+
+为什么？
+
+因为：
+
+1. function calling 的语义，默认是“一步任务调用一个工具”
+2. 多工具连续执行需要明确的“Plan → Execute → Observation”语义
+3. 工具返回的内容可能很长，模型需要解析
+4. 模型必须自行判断是否需要继续调用
+5. 必须显式学习“链式调用模板”
+
+换句话说：
+
+> 工具链是一个**显式教学任务**，模型必须在训练数据里看到足够多“完整流程”，才会学会。
+
+## unsetunset四、训练工具链的底层方法：阶梯式教学（Curriculum Learning）unsetunset
+
+在训练营的项目中，我们的工具链训练不是一次性上来就喂复杂数据，而是分三层：
+
+## unsetunset**① 第 1 层：单工具 → 正常调用**unsetunset
+
+例如：
+
+```
+user：查一下明天北京的天气  
+→ get_weather(city="北京", date="明天")
+```
+
+目的：让模型建立 function call 的“基本语法”。
+
+## unsetunset**② 第 2 层：两步链式调用**unsetunset
+
+例如酒店场景：
+
+```
+recommend_hotels → get_hotel_reviews → final_answer
+```
+
+伪代码：
+
+```
+[
+  {"role": "assistant", "tool_calls": [...]},  
+  {"role": "tool", "content": "..."},
+  {"role": "assistant", "tool_calls": [...]},
+  {"role": "tool", "content": "..."},
+  {"role": "assistant", "content": "最后总结"}
+]
+```
+
+模型在这一层学到：
+
+* 工具返回后需要继续调用
+* 工具与工具之间要衔接
+* 最后要有自然语言总结
+
+## unsetunset**③ 第 3 层：多轮 + 多工具链（完整流程）**unsetunset
+
+例如航班 + 酒店：
+
+```
+search_flights → book_flight → search_hotels → book_hotel → final_answer
+```
+
+加上多轮追问：
+
+```
+用户信息不全 → 追问 → 调工具链 → 工具失败 → ReAct修正 → 再调用 → 最终总结
+```
+
+这类“全链路数据”是最贵、最关键、模型能力提升最大的部分。
+
+## unsetunset五、工具链训练的关键点：如何“衔接”工具？unsetunset
+
+这是绝大多数人做不好的地方。
+
+工具链的关键逻辑：
+
+1. 工具返回结果必须在下一轮传递
+2. 传递的关键参数必须被模型“读取”
+3. 工具参数必须能自动从上轮填入
+
+举个真实例子（训练营项目中的真实结构改写）：
+
+### **Step 1：用户提问**
+
+```
+吴师兄大模型，帮我订一张明天从上海到北京的机票
+```
+
+### **Step 2：模型生成工具调用**
+
+```
+{
+  "role": "assistant",
+  "tool_calls": [
+    {
+      "id": "call_1",
+      "type": "function",
+      "function": {
+        "name": "search_flights",
+        "arguments": "{\"origin\": \"上海\", \"destination\": \"北京\", \"date\": \"明天\"}"
+      }
+    }
+  ]
+}
+```
+
+### **Step 3：TOOL 返回查到的航班**
+
+```
+{
+  "role": "tool",
+  "tool_call_id": "call_1",
+  "content": "[{\"flight_id\": \"CA123\", \"price\": 500}]"
+}
+```
+
+### **Step 4：模型自动“读懂”结果并进行下一步调用**
+
+模型必须学会：
+
+* 读取 flight\_id
+* 选择一个航班（通常默认第一个）
+* 调用下一步工具 book\_flight
+
+训练数据必须这样写：
+
+```
+{
+  "role": "assistant",
+  "tool_calls": [
+    {
+      "id": "call_2",
+      "type": "function",
+      "function": {
+        "name": "book_flight",
+        "arguments": "{\"flight_id\": \"CA123\", \"passenger_name\": \"张三\"}"
+      }
+    }
+  ]
+}
+```
+
+### **Step 5：工具链继续**
+
+航班订完 → 查询机场酒店：
+
+```
+{
+  "role": "assistant",
+  "tool_calls": [
+    {
+      "id": "call_3",
+      "type": "function",
+      "function": {
+        "name": "search_hotels",
+        "arguments": "{\"location\": \"北京机场\", \"check_in_date\": \"明天\", \"check_out_date\": \"后天\"}"
+      }
+    }
+  ]
+}
+```
+
+### **Step 6：最终自然语言总结**
+
+```
+您的行程已为您预订成功：航班 CA123… 酒店已为您预留…
+```
+
+## unsetunset六、工具链训练中必须加入的“错误场景”（极其关键）unsetunset
+
+真实项目中工具链必定会出现各种异常，如果不加入训练数据，模型就不会这些场景。
+
+训练营里我们加入了大量真实错误：
+
+### **① 工具参数缺失 → 模型必须追问**
+
+```
+user：帮我订明天的机票  
+assistant：请问出发城市是哪里？
+```
+
+### **② 工具返回为空 → 模型必须 fallback**
+
+例如：
+
+```
+search_flights → 返回 []
+assistant：抱歉，明天没有从上海到北京的航班…
+```
+
+### **③ 工具失败（如 401/429）→ 模型必须重试或提示**
+
+工具返回：
+
+```
+{"error": "RATE_LIMIT"}
+```
+
+模型必须：
+
+* 等待（模拟）
+* 或更换策略
+* 或提醒用户
+
+### **④ 工具返回脏数据 → 模型必须过滤**
+
+例如 price = “500 RMB”，Schema 要求 number，需要自动解析。
+
+## unsetunset七、工程中如何构建大量工具链数据？unsetunset
+
+我们训练营采用“半自动沙盒生成”：
+
+### **① 生成任务模板（如订机票 + 酒店）**
+
+```
+task = {
+    "workflow": "plane_and_hotel",
+    "need_city": True,
+    "need_date": True,
+    "need_hotel": True,
+}
+```
+
+### **② 根据变量决定是否要追问**
+
+```
+if missing_params:
+    messages.append({...反问...})
+```
+
+### **③ 自动模拟工具链**
+
+```
+tool_calls = build_tool_chain(workflow)
+for call in tool_calls:
+    messages.append(call.assistant)
+    messages.append(call.tool)
+```
+
+### **④ 用基础模型重写自然语言，提高可读性**
+
+## unsetunset八、面试中怎么回答“工具链怎么训练”？unsetunset
+
+你可以直接背下面这段：
+
+> 工具链的训练本质是教模型学会“规划—执行—观察—再执行”的流程，所以我们采用阶梯式方式构建数据：先训练单工具调用，再训练两步链式调用，最后再训练包含多轮追问、错误恢复、参数继承的完整工具链。
+
+> 在数据构建中，对每个工具链步骤都生成标准的消息格式：assistant 触发 tool\_call，tool 返回结果，然后 assistant 根据返回内容进行下一步调用。
+
+> 同时，我们加入大量异常场景，包括参数缺失追问、工具返回为空、API 错误重试、Schema 不一致等，让模型学会真实工程中的链式决策流程。
+
+> 训练后模型可以根据工具返回内容继续向下调用工具，并最终用自然语言进行总结，实现真正的“连续工具调用”。
+
+## unsetunset最后说一句unsetunset
+
+真正能拉开差距的，从来不是知识点，而是**体系与思考方式**。
+
+在过去的几个月中，我们已经有超过 **80 个** 同学（战绩真实可查）反馈拿到了**心仪的 offer ，包含腾讯、阿里、字节、华为、快手、智谱、月之暗面、minimax、小红书等各家大厂**以及**传统开发 / 0 基础转行的同学**在短时间内拿到了各类大中小厂的 offer。
+
+如果你近期准备转向[大模型](https://mp.weixin.qq.com/s?__biz=MzkzMDIwMzg1Mw==&mid=2247489051&idx=1&sn=504dfdab92351854b4f097d79e01c847&scene=21#wechat_redirect)、想拿下一个能讲清楚、能上简历的实战项目，[大模型训练营](https://mp.weixin.qq.com/s?__biz=MzkzMDIwMzg1Mw==&mid=2247489051&idx=1&sn=504dfdab92351854b4f097d79e01c847&scene=21#wechat_redirect)这可能是你最值得的选择。
+
+点击了解：[6 周打造工业级 AI Agent：从零到上线的全链路实战](https://mp.weixin.qq.com/s?__biz=MzkzMDIwMzg1Mw==&mid=2247489269&idx=1&sn=3f33c848c24c1416e7d26b0c52cba0b1&scene=21#wechat_redirect)
+
+我希望，学完、跟着做完这个项目， 让每个学员都有一条能写进简历、能过面试、能转岗/跳槽的硬项目。
+
+这套体系你在网上绝对找不到，因为：
+
+❌ 没人会把「数据采集 + RAG + Backend + ReAct + MCP + Text2SQL + Code Interpreter」全部串起来教
+
+❌ 没人会带你做成一个可部署、可监控、可扩展的完整生产系统
+
+❌ 也没几个人真的把 Agent 做到能独立跑一个行业分析任务
+
+但这次，训练营会手把手带你。
+
+[6 周打造工业级 AI Agent：从零到上线的全链路实战](https://mp.weixin.qq.com/s?__biz=MzkzMDIwMzg1Mw==&mid=2247489269&idx=1&sn=3f33c848c24c1416e7d26b0c52cba0b1&scene=21#wechat_redirect)正在直播上课！

@@ -1,8 +1,11 @@
 # Doris 数据导入事务与攒批边界
 
+## 来源
+- [Apache Doris 数据导入原理与性能优化 _ Deep Dive](<../文章/done-Apache Doris 数据导入原理与性能优化 _ Deep Dive.md>)
+
 ## 原文锚点
 
-- 本地文件：[Apache Doris 数据导入原理与性能优化 | Deep Dive](<../文章/Apache Doris 数据导入原理与性能优化 _ Deep Dive.md>)
+- 本地文件：[Apache Doris 数据导入原理与性能优化 | Deep Dive](<../文章/done-Apache Doris 数据导入原理与性能优化 _ Deep Dive.md>)
 - 原文链接：`https://mp.weixin.qq.com/s?__biz=Mzg3Njc2NDAwOA==&mid=2247537979&idx=1&sn=045fc0d552afe9e628e4b7bd03b542be`
 - 关键段落：导入通用流程、Label 幂等、Coordinator BE、MemTable/Segment/Rowset、事务 Commit/Publish、导入方式、攒批、分桶、Group Commit、延迟与吞吐取舍。
 - 关键图：正文提到测试结果图，但本地 Markdown 未保留图片。

@@ -1,41 +1,27 @@
 # 缓存与 KV
 
-## 知识点入口
+> 分类规则、一二级类目定位、跨域归类边界以根 [目录划分.md](../../目录划分.md) 为准。
+> 文章理解的四步法、整理流程以根 [AGENTS.md](../../AGENTS.md) 为准。
+> 本文件只维护本领域的认知重点、排重指纹、已覆盖三级节点和待补缺口。
 
-- 本模块先看宏观流程，再看文章：[知识地图](040500_核心知识点/知识地图.md)。
-- 新文章必须先判断主问题是缓存/KV 技术本体，还是后端应用层缓存策略。
-- `文章/` 只作为临时入口；正式归档必须落到 `Redis/`、`Kvrocks/`、`040503_Redisson/` 或后续新增的具体技术目录。
+## 三级节点入口
 
-## 类目定位
+| 节点 | 用途 |
+|---|---|
+| [040501_Kvrocks](040501_Kvrocks/AGENTS.md) | Redis 兼容、基于 RocksDB 的持久化 KV |
+| [040502_Redis](040502_Redis/AGENTS.md) | 内存 KV、缓存、数据结构、持久化和高可用 |
+| [040503_Redisson](040503_Redisson/AGENTS.md) | Java Redis 客户端与分布式对象/锁抽象 |
+
+## 用户认知重点
 
 | 项 | 内容 |
 |---|---|
-| 一级类目 | OLAP 与数据库 |
-| 二级类目 | 缓存与 KV |
-| 核心问题 | 数据如何以键值、内存缓存、持久化 KV 或分布式对象形式提供低延迟访问能力 |
-| 不解决什么 | 普通后端缓存分层、HTTP 缓存、Guava/Caffeine 应用代码封装，除非文章主问题是 Redis/KV 本体 |
-| 用户当前认知假设 | 用户知道 Redis 常用作缓存，需要补数据结构、持久化、Pipeline、Lua、双活、可观测性、Redis-compatible KV 和分布式锁边界 |
+| 已知基础 | 用户知道 Redis 常用作缓存与简单数据结构 |
+| 待补边界 | 数据结构、持久化、Pipeline、Lua、双活、可观测性、Redis 兼容 KV 与分布式锁边界 |
+| 易偏差点 | 把后端三层缓存、HTTP 缓存、Caffeine/Guava 等业务代码当 Redis 本体 |
+| 优先抽取 | RESP、事件循环、RDB/AOF、Pipeline、Lua、Cluster、复制、Sentinel |
 
-## 划分准则
-
-| 保留条件 | 归入位置 | 示例判断 |
-|---|---|---|
-| 讲 Redis 服务端机制、协议、数据结构、持久化、Pipeline、Lua、双活、延迟排查 | `Redis/` | Redis Pipeline、RDB/AOF、Lua、双活、慢请求 |
-| 讲 Redis 兼容持久化 KV 或 Redis 协议替代实现 | `Kvrocks/` | Kvrocks 版本、新特性、持久化 KV 边界 |
-| 讲 Redisson 分布式对象、分布式锁、看门狗、公平锁等 Redis 客户端抽象 | `040503_Redisson/` | Redisson 分布式锁源码和 Lua 脚本 |
-| 讲后端三层缓存、HTTP 缓存、Caffeine/Guava 与业务代码组合 | 移到 `07_工程与架构/0701_后端架构/` | 主问题是后端架构和应用缓存策略 |
-
-## 技术子目录
-
-| 技术 | 目录 | 文章数 | 定位 |
-|---|---|---:|---|
-| Redis | [Redis/](040502_Redis) | 9 | 内存 KV、缓存、数据结构、持久化和高可用 |
-| Kvrocks | [Kvrocks/](040501_Kvrocks) | 1 | Redis 兼容、基于 RocksDB 的持久化 KV |
-| Redisson | [040503_Redisson/](040503_Redisson) | 1 | Java Redis 客户端与分布式对象/锁抽象 |
-
-## 排重准则
-
-问题指纹：
+## 排重指纹
 
 ```text
 缓存或 KV 技术本体 + 数据结构/协议/持久化/高可用/客户端抽象模块 + 核心机制 + 解决问题 + 适用边界 + 对用户的认知增量
@@ -44,12 +30,22 @@
 | 判断项 | 排重规则 |
 |---|---|
 | 都讲 Redis 快 | 按网络往返、事件循环、数据结构、内存模型、持久化、Pipeline、Lua、缓存命中拆分 |
-| 都讲缓存策略 | 如果主问题是后端缓存层次，移到后端架构；如果主问题是 Redis 机制，留在 Redis |
+| 都讲缓存策略 | 主问题是后端缓存层次时移到后端架构；Redis 机制留本类 |
 | 都讲分布式锁 | Redis 命令级实现归 Redis；Redisson 看门狗、公平锁、客户端封装归 Redisson |
-| Redis 与 RocksDB 对比 | 如果目的是理解 Redis 边界，放 Redis；如果主问题是 LSM/Compaction，放存储引擎 |
+| Redis 与 RocksDB 对比 | 理解 Redis 边界放 Redis；主问题是 LSM/Compaction 放存储引擎 |
 
-## 后续追查
+## 已覆盖问题（按三级节点）
 
-- Redis：RESP、事件循环、RDB/AOF、Pipeline、Lua 原子性、Stream、Bitmap、HLL、Geo、Cluster、复制、Sentinel。
-- Kvrocks：RocksDB 底层、冷热数据、复制、Redis 协议兼容限制。
-- Redisson：RLock、Watchdog、Pub/Sub 唤醒、公平锁队列、Lua 脚本一致性边界。
+| 节点 | 已覆盖 | 还缺 |
+|---|---|---|
+| Redis | 内存 KV/缓存/数据结构/持久化/高可用初始承接 | RESP、事件循环、RDB/AOF、Pipeline、Lua、Stream、Bitmap、HLL、Geo、Cluster、复制、Sentinel 完整沉淀 |
+| Kvrocks | Redis 兼容持久化 KV 候选承接 | RocksDB 底层、冷热数据、复制、Redis 协议兼容限制 |
+| Redisson | 分布式对象/锁抽象候选承接 | RLock、Watchdog、Pub/Sub 唤醒、公平锁队列、Lua 脚本一致性边界 |
+
+## 待补缺口
+
+| 优先级 | 项 | 为什么补 |
+|---|---|---|
+| 高 | Redis 持久化与高可用 | RDB/AOF/复制/Sentinel/Cluster 是生产部署的核心 |
+| 高 | Redisson 分布式锁机制 | 看门狗、公平锁、Lua 一致性边界，业务高频踩坑点 |
+| 中 | Kvrocks 与 Redis 协议兼容边界 | 决定能否替换 Redis 做持久化 KV |

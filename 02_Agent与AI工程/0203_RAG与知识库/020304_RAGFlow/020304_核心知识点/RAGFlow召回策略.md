@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[【解密源码】 RAGFlow 召回策略全解](<../文章/【解密源码】 RAGFlow 召回策略全解.md>)
+- 本地文件：[【解密源码】 RAGFlow 召回策略全解](<../文章/done-【解密源码】 RAGFlow 召回策略全解.md>)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=Mzk4ODg5NTU4Mg==&mid=2247483749&idx=1&sn=d79f0fd9189e440b9621aa3fc83c0a01&chksm=c47aaebf0d7029ac9290d0de4d320c1326fb9ff5179e35a466548acb40e5ff66e3176623e153&mpshare=1&scene=24&srcid=1125NlDsJpVPMwR1uasprhq1&sharer_shareinfo=e1aa6e7279cd904b0286c58098788170&sharer_shareinfo_first=e1aa6e7279cd904b0286c58098788170#rd
 - 关键段落：参数解析、模型一致性校验、查询增强、混合召回、重排序、阈值过滤与分页。
 - 关键图：无技术图，原文主要是源码片段和流程描述。

@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[还在说 MCP 要被淘汰？Anthropic：这才是 Agent 接入生产环境的正确姿势](<../文章/还在说 MCP 要被淘汰？Anthropic：这才是 Agent 接入生产环境的正确姿势.md>)
+- 本地文件：[还在说 MCP 要被淘汰？Anthropic：这才是 Agent 接入生产环境的正确姿势](<../文章/done-还在说 MCP 要被淘汰？Anthropic：这才是 Agent 接入生产环境的正确姿势.md>)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=MzY5NDExMTI3Mg==&mid=2247483922&idx=1&sn=8e67eab7bf7d7160f8a30f5755e2cbd4&chksm=f5c51134d0d9b38994ba06d49fa6bfe214c810be916876336565573a6bc8b300ea30c3b63e66&mpshare=1&scene=24&srcid=0423fGKBcC2jcTlevXj8F04e&sharer_shareinfo=32aefce7d409201f09d9e452f12f439b&sharer_shareinfo_first=32aefce7d409201f09d9e452f12f439b#rd
 - 官方锚点：[Anthropic Blog - Building agents that reach production systems with MCP](https://claude.com/blog/building-agents-that-reach-production-systems-with-mcp)
 - 关键段落：API/CLI/MCP 分层、Remote Server、按意图分组工具、代码编排、Apps/Elicitation、Auth、Tool Search、Programmatic Tool Calling、MCP + Skills。

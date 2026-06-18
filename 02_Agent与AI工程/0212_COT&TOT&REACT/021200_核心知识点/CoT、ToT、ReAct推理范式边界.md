@@ -3,11 +3,11 @@
 ## 原文锚点
 
 - 本地文件：
-  - [Prompt Engineering 技术体系全解析：从 Zero-shot 到 ToT 的完整指南](<../../0207_Prompt Engineering/文章/Prompt Engineering 技术体系全解析：从 Zero-shot 到 ToT 的完整指南.md>)
-  - [你的提示词技巧可能过时了！最新版Claude 提示词工程最佳实践发布！](<../../0207_Prompt Engineering/文章/你的提示词技巧可能过时了！最新版Claude 提示词工程最佳实践发布！.md>)
-  - [AI Agent 主流的设计模式（ReAct,Reflection,LATS）其实没有很复杂](<../文章/AI Agent 主流的设计模式（ReAct,Reflection,LATS）其实没有很复杂。.md>)
-  - [Agent Loop的收敛：为什么OpenClaw、DeerFlow2.0和LangChain都放弃了显式ReAct](<../../0201_Agent框架/020101_DeerFlow/文章/Agent Loop的收敛：为什么OpenClaw、DeerFlow2.0和LangChain都放弃了显式ReAct.md>)
-  - [国内首个 LangGraph Agent 模板！Multi-Agent框架最优解](<../../0201_Agent框架/020102_LangGraph/文章/国内首个 LangGraph Agent 模板！Multi-Agent框架最优解.md>)
+  - [Prompt Engineering 技术体系全解析：从 Zero-shot 到 ToT 的完整指南](<../../0207_Prompt Engineering/文章/done-Prompt Engineering 技术体系全解析：从 Zero-shot 到 ToT 的完整指南.md>)
+  - [你的提示词技巧可能过时了！最新版Claude 提示词工程最佳实践发布！](<../../0207_Prompt Engineering/文章/done-你的提示词技巧可能过时了！最新版Claude 提示词工程最佳实践发布！.md>)
+  - [AI Agent 主流的设计模式（ReAct,Reflection,LATS）其实没有很复杂](<../文章/done-AI Agent 主流的设计模式（ReAct,Reflection,LATS）其实没有很复杂。.md>)
+  - [Agent Loop的收敛：为什么OpenClaw、DeerFlow2.0和LangChain都放弃了显式ReAct](<../文章/done-Agent Loop的收敛：为什么OpenClaw、DeerFlow2.0和LangChain都放弃了显式ReAct.md>)
+  - [国内首个 LangGraph Agent 模板！Multi-Agent框架最优解](<../../0201_Agent框架/020102_LangGraph/文章/done-国内首个 LangGraph Agent 模板！Multi-Agent框架最优解.md>)
 - 原文链接：本轮使用本地 Markdown frontmatter 中保留的公众号链接，不联网补证。
 - 关键段落：CoT 示例、ToT 对比、ReAct 的 Thought-Action-Observation 循环、显式 ReAct 强耦合 Prompt 的问题。
 - 关键图：原文主要是文字和代码块；本文件用 Mermaid 重建范式关系图。

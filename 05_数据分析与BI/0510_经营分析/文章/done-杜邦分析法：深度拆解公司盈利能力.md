@@ -1,0 +1,11 @@
+> 已吸收至：[[05_数据分析与BI/0510_经营分析/0510_核心知识点/财务经营分析与ROI判断|财务经营分析与ROI判断]]
+---
+title: 杜邦分析法：深度拆解公司盈利能力
+author: 数据熊
+date:
+url: https://mp.weixin.qq.com/s?__biz=Mzg2MTg5OTgzNA==&mid=2247491029&idx=1&sn=a0fd6f44144e11a14a3ccf3ed9379a6e&chksm=cf3df0f17cefaebfd73f77aa0ec7c9446abc9969462a3938ffd807202124fdbc6b685b1ad58a&mpshare=1&scene=24&srcid=1102yNL02VE19HGK49x8KNSO&sharer_shareinfo=e1b0fd0ac11d6666d20de2be5c7edcb6&sharer_shareinfo_first=e1b0fd0ac11d6666d20de2be5c7edcb6#rd
+---
+
+模板即思路，点击阅读原文获取完整版《经营分析ppt模板》。加入[数据熊的财务精进营](https://mp.weixin.qq.com/s?__biz=Mzg2MTg5OTgzNA==&mid=2247488439&idx=2&sn=0db115b27ed423a15e5755c7350f5b56&scene=21#wechat_redirect)，与2500+财务精英共同成长。后台点击「经典文章」阅读数据熊10W+爆文，模板定制添加数据熊微信：Daniel-songyq
+
+点赞和转发就是最大的支持，关注数据熊，工作更轻松。

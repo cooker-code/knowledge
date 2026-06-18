@@ -1,9 +1,9 @@
 # MCP
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[知识地图](020202_核心知识点/知识地图.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](020202_知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `020202_核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `020202_核心知识点/` 下的主题文件。
 
 
 ## 技术定位
@@ -76,3 +76,13 @@ flowchart LR
 - 关键词：MCP Server、MCP Client、Remote MCP Server、Intent Tools、Tool Search、Programmatic Tool Calling、Chrome DevTools MCP、AX Snapshot、tools、resources、prompts、channels、参数设计、权限边界、JSON Schema、additionalProperties、read-only、audit log。
 - 待读资料：MCP 权限设计、MCP Auth、MCP Apps/Elicitation、Resources/Prompts 官方边界、Channels/事件通道、Chrome DevTools MCP Design Principles、Playwright MCP、PostgreSQL MCP Server、工具返回结构设计。
 - 待补实验：给本地知识库做只读 MCP Server，按“找主题、读技术卡、跑健康检查、追加文章锚点”设计 3-5 个意图工具；用本地只读 PostgreSQL 示例库验证 schema 白名单、行数限制、超时和审计；用本地网页验证 Chrome DevTools MCP 的 console、network、screenshot、performance 输出粒度和 token 成本；用最小 Server 验证 1 个 Tool、1 个 Resource、1 个 Prompt 的注册和调用边界；模拟 CI/测试事件推送，验证主动消息过滤与审计。
+
+<!-- AUTO-DISTILL-02-START -->
+
+## 本轮文章处理收口
+
+- 已归档来源：`54` 篇，全部位于 `文章/` 且使用 `done-` 前缀。
+- 长期入口：[MCP生产接入与治理边界.md](020202_核心知识点/MCP生产接入与治理边界.md)。
+- 新文章进入时先对照知识地图、AGENTS 排重准则和已有主题页；只有新增机制、边界、反例、版本差异或实践证据时才新建主题页。
+
+<!-- AUTO-DISTILL-02-END -->

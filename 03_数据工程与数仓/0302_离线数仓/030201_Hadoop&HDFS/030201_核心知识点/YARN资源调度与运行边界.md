@@ -3,11 +3,11 @@
 ## 原文锚点
 
 - 本地文件：
-  - [Yarn Application 日志总结](<../文章/Yarn Application 日志总结.md>)
-  - [Yarn调度器深度对比：从Hadoop到K8S的调度演进之路](../文章/Yarn调度器深度对比：从Hadoop到K8S的调度演进之路.md)
-  - [《YARN vs Kubernetes：大数据资源调度谁称王？深度对比告诉你答案！》](<../文章/《YARN vs Kubernetes：大数据资源调度谁称王？深度对比告诉你答案！》.md>)
-  - [Flink On Yarn HA 重启次数](<../文章/Flink On Yarn HA 重启次数.md>)
-  - [Flink + YARN + Gitlab 自动提交代码全流程详解](<../文章/Flink + YARN + Gitlab 自动提交代码全流程详解.md>)
+  - [Yarn Application 日志总结](<../文章/done-Yarn Application 日志总结.md>)
+  - [Yarn调度器深度对比：从Hadoop到K8S的调度演进之路](../文章/done-Yarn调度器深度对比：从Hadoop到K8S的调度演进之路.md)
+  - [《YARN vs Kubernetes：大数据资源调度谁称王？深度对比告诉你答案！》](<../文章/done-《YARN vs Kubernetes：大数据资源调度谁称王？深度对比告诉你答案！》.md>)
+  - [Flink On Yarn HA 重启次数](<../文章/done-Flink On Yarn HA 重启次数.md>)
+  - [Flink + YARN + Gitlab 自动提交代码全流程详解](<../文章/done-Flink + YARN + Gitlab 自动提交代码全流程详解.md>)
 - 原文链接：见各本地 Markdown 头部 `url` 字段。
 - 关键段落：YARN 调度器、Application 日志、日志聚合、Application Attempt、Flink on YARN、YARN 与 Kubernetes 对比。
 - 关键图：部分文章提到架构图或对比图，但 Markdown 未保留。
@@ -50,7 +50,7 @@ YARN 应作为 Hadoop 生态资源调度层沉淀：它管理队列、Applicatio
 | 校准点 | 文章观点/信息 | 与用户认知或价值观的关系 | 处理建议 |
 |---|---|---|---|
 | YARN 属于 Hadoop 生态 | YARN 管理大数据任务资源，不是独立问题域 | 纠偏目录边界 | 放入 `Hadoop&HDFS` |
-| 不按关键词抢 Flink/Spark | Flink on YARN 的 YARN 日志、Attempt、队列问题归 YARN；Flink 状态和算子问题归 Flink | 防止误归类 | 路由表显式记录 |
+| 不按关键词抢 Flink/Spark | Flink on YARN 的 YARN 日志、Attempt、队列问题归 YARN；Flink 状态和算子问题归 Flink | 防止误归类 | 来源索引显式记录 |
 | YARN vs Kubernetes 要拆维度 | YARN 更偏大数据任务队列，Kubernetes 更偏云原生运行平台 | 补横向对标 | 不写“谁称王”式结论 |
 | 日志链路有实践价值 | 本地日志、聚合日志、历史日志和失败保留是排障入口 | 符合工程落地偏好 | 后续补命令和版本验证 |
 

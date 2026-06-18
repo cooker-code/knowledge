@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Chrome DevTools MCP 原理分析](<../文章/🪢 [MCP] Chrome DevTools MCP 原理分析.md>)
+- 本地文件：[Chrome DevTools MCP 原理分析](<../文章/done-🪢 [MCP] Chrome DevTools MCP 原理分析.md>)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=MzI4OTU0NTU1NA==&mid=2247485375&idx=1&sn=b6918dd4328adf9fb605a299dca7063f
 - 官方锚点：[ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp)、[Tool Reference](https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/main/docs/tool-reference.md)
 - 关键段落：Tools 分类、Puppeteer、Accessibility Snapshot、Performance Summary、Network、Console、能力边界。
@@ -38,7 +38,7 @@
 | 官方 MCP 也有能力上限 | 基础自动化封装较浅，调试能力主要是 console/network/performance/screenshot | 降权“碾压 Playwright”类标题 | 写入 MCP index |
 | DOM snapshot 有上下文成本 | AX Tree 编号后给模型选择 uid，可能占用大量 token | 补工具上下文治理 | 与 Tool Search/渐进披露关联 |
 | 性能分析是摘要化视角 | 不把 10-100MB trace 全交给模型，而是提取 insights | 纠偏：不是全能性能专家 | 后续需要人工 Profile |
-| 浏览器 MCP 是高权限工具 | 可检查、修改浏览器实例数据 | 补安全边界 | 与安全与权限关联 |
+| 浏览器 MCP 是高权限工具 | 可检查、修改浏览器实例数据 | 补安全边界 | 与 Sandbox 和浏览器执行边界关联 |
 
 ## 冲突点
 

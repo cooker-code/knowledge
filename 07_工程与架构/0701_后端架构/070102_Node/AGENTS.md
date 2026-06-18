@@ -1,16 +1,16 @@
 # Node
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[知识地图](070102_核心知识点/知识地图.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](070102_知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `070102_核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `070102_核心知识点/` 下的主题文件。
 
 
 ## 这个目录记录什么
 
 这个文件是 Node 应用的流程入口。
 
-当前来源还不能支撑完整 Node 服务端架构。这里先建立 Node 应有的流程节点，并把已有 JavaScript/TypeScript/Next.js/Nuxt/序列化/前端状态文章放到对应节点做边界对比。
+当前来源还不能支撑完整 Node 服务端架构。这里先建立 Node 应有的流程节点，并把已有 Bun 运行时、JavaScript 序列化和 AI 友好调试输出文章放到对应节点做边界对比。
 
 原则：
 
@@ -40,7 +40,7 @@ flowchart TD
 
 | 节点 | 这个节点要解决什么 | 对应核心知识点 | 当前沉淀 |
 |---|---|---|---|
-| N00 运行时与项目边界 | Node 是业务 API 后端、BFF、SSR 服务，还是前端构建/渲染运行时 | [Node架构实现路线.md](070102_核心知识点/Node架构实现路线.md) | 当前来源只能说明 Next/Nuxt 渲染边界 |
+| N00 运行时与项目边界 | Node/Bun 是业务 API 后端、BFF、SSR 服务，还是前端构建/渲染运行时 | [Node架构实现路线.md](070102_核心知识点/Node架构实现路线.md) | 当前来源只能说明 Bun 运行时能力变化，不能替代 Node 服务端架构 |
 | N01 Web 框架与入口适配 | Express、Koa、Fastify、NestJS 怎么选，入口怎么组织 | [Node架构实现路线.md](070102_核心知识点/Node架构实现路线.md) | 当前缺来源 |
 | N02 路由/控制器与中间件 | 路由、Controller、Middleware、异常处理怎么分工 | [Node架构实现路线.md](070102_核心知识点/Node架构实现路线.md) | 当前缺来源 |
 | N03 运行时输入校验 | TypeScript 编译期类型之外，Zod/class-validator/TypeBox 怎么校验外部输入 | [Node架构实现路线.md](070102_核心知识点/Node架构实现路线.md) | 当前只有“TypeScript 不能替代运行时校验”的校准 |
@@ -50,16 +50,15 @@ flowchart TD
 | N07 前后端同构与渲染边界 | Next/Nuxt 的 SSG、SSR、CSR、BFF 与业务后端如何区分 | [Node架构实现路线.md](070102_核心知识点/Node架构实现路线.md) | Next/Nuxt 文章只能说明渲染和全栈边界 |
 | N08 后台任务与队列 | BullMQ、Agenda、Temporal、任务重试和状态怎么处理 | 暂无稳定核心知识点 | 当前缺来源 |
 | N09 实时通信 | WebSocket、Socket.IO、SSE、房间、重连、广播怎么做 | 暂无稳定核心知识点 | 当前缺来源 |
-| N10 日志、安全、观测、部署 | pino/winston、OpenTelemetry、鉴权、限流、PM2、容器化怎么治理 | 暂无稳定核心知识点 | 当前缺来源 |
+| N10 日志、安全、观测、部署 | pino/winston、OpenTelemetry、鉴权、限流、PM2、容器化和 AI 可读诊断怎么治理 | 暂无稳定核心知识点 | 当前只有 Bun AI 调试输出线索 |
 
 ## 流程节点上的现有对比结论
 
 | 流程节点 | 原有沉淀 | 文章带来的对比 | 处理结果 | 来源锚点 |
 |---|---|---|---|---|
-| N00 运行时与项目边界 | Node 边界不清，容易把前端框架当业务后端 | Next.js 学习文章说明 SSG、SSR、CSR、构建和渲染形态；它只说明 Node 运行时可承载页面服务，不等于完整业务后端 | 写入边界校准 | [Next.js day 20](<文章/编程菜鸟挑战60天掌握Javascript_Typescript_Next.js day 20.md>) |
-| N07 前后端同构与渲染边界 | Nuxt/Next 可能被误当服务端架构 | Nuxt 项目文章主要是前端/全栈项目结构、TypeScript、Vite、Monorepo、微前端；不能据此推断 Node API 分层 | 降权为渲染/全栈边界 | [Spring AI + Vue 3 + Nuxt 4 实战](<文章/Spring AI + Vue 3 + Nuxt 4 实战：从零打造企业级智能问卷系统.md>) |
-| N06 配置、序列化与状态持久化 | 后端可能需要保存配置、规则或前端状态 | 对象序列化文章补充 `JSON.stringify` 会丢函数，replacer/reviver 可定制，但 `eval` 风险高；和后端安全要求冲突 | 写入序列化风险，推荐 DSL 或白名单表达式 | [如何 Stringify 和 Parse 带函数的 JavaScript 对象](<文章/如何 Stringify 和 Parse 带函数的 JavaScript 对象.md>) |
-| N06 配置、序列化与状态持久化 | 前端布局状态可能需要后端保存 | Gridstack 文章说明前端布局、动态添加移除和事件监听；它不是后端架构，只能提示后端可能需要保存用户布局状态 | 降权为状态保存需求 | [Gridstack.js](<文章/Gridstack.js，一款神奇的 JavaScript 开源网格布局库？构建交互式的仪表板就是这么简单！.md>) |
+| N00 运行时与项目边界 | Node/Bun 边界不清，容易把运行时发布资讯当后端架构 | Bun 文章说明 Image API、HTTP/3、虚拟存储、进程和文件监听变化；这些是运行时能力线索，不是业务后端分层方案 | 写入边界校准 | [Bun v1.3.14](<文章/done-Bun v1.3.14 深度解析：Image API、HTTP_3、全局虚拟存储与五十项变革.md>) |
+| N06 配置、序列化与状态持久化 | 后端可能需要保存配置、规则或前端状态 | 对象序列化文章补充 `JSON.stringify` 会丢函数，replacer/reviver 可定制，但 `eval` 风险高；和后端安全要求冲突 | 写入序列化风险，推荐 DSL 或白名单表达式 | [如何 Stringify 和 Parse 带函数的 JavaScript 对象](<文章/done-如何 Stringify 和 Parse 带函数的 JavaScript 对象.md>) |
+| N10 日志、安全、观测、部署 | 运行时诊断要能被机器读取 | Bun AI 调试文章提示“面向 AI 的结构化输出”会改变调试流程，但当前只有资讯线索，不能替代日志和 Trace 规范 | 降权为后续追查 | [Bun AI 调试输出](<文章/done-尤雨溪直呼很好！Bun 新功能引爆 AI 调试革命，Node.js 大佬连夜复刻！.md>) |
 
 ## 新文章进入时的处理流程
 

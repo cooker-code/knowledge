@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Kafka Consumer Rebalance详解](<../文章/Kafka Consumer Rebalance详解.md>)
+- 本地文件：[Kafka Consumer Rebalance详解](<../文章/done-Kafka Consumer Rebalance详解.md>)
 - 原文链接：http://mp.weixin.qq.com/s?__biz=MzU3MzgwNTU2Mg==&mid=2247516413&idx=1&sn=200716ff2c139ee90ca6ebca478395eb
 - 关键段落：rebalance 触发条件、分配策略、generation、rebalance 协议、流程、监听器。
 - 关键图：无技术图。
@@ -110,3 +110,9 @@
 - 关键词：JoinGroup、SyncGroup、Heartbeat、Consumer Group Coordinator、generation、StickyAssignor、CooperativeStickyAssignor。
 - 相关技术：Kafka Lag、Kafka Offset、Flink KafkaSource、Kafka Streams。
 - 需要补读的文章：Kafka cooperative rebalance、Kafka 新版本 Consumer 协议、Rebalance 监控指标。
+
+## 重新蒸馏补充（2026-06-18）
+
+| 来源 | 认知增量 | 处理 |
+|---|---|---|
+| [[03_数据工程与数仓/0303_实时计算/030304_Kafka/文章/done-原理剖析_ 一文搞懂 Kafka consumer 与 broker 交互机制与原理]] | 补充该主题的生产案例、机制边界或排重样例。 | 重新判断后补入目标知识产物 |

@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[【观察】AI Agent评估体系：让Agent优化不再迷路](<../文章/【观察】AI Agent评估体系：让Agent优化不再迷路.md>)
+- 本地文件：[【观察】AI Agent评估体系：让Agent优化不再迷路](<../文章/done-【观察】AI Agent评估体系：让Agent优化不再迷路.md>)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=MzkwNTMxNzY4NQ==&mid=2247485924&idx=1&sn=0a562ecdd7ecc33a20b6d05913e293af&chksm=c1682eafe3d2c4675aeb9b49929b91007debca82abe4bc88b522d664cb08abb34b201930d22a&mpshare=1&scene=24&srcid=0423dutRPcSGr4mmo4uQo1ff&sharer_shareinfo=a5869e412c04e342b990bd3fa1b48903&sharer_shareinfo_first=a5869e412c04e342b990bd3fa1b48903#rd
 - 关键段落：Agent 类型拆分、QA 指标、执行型 Agent 指标、Trace/Span/Generation/Event/Score、Dataset 和 CI/CD 门禁。
 - 关键图：无技术图。

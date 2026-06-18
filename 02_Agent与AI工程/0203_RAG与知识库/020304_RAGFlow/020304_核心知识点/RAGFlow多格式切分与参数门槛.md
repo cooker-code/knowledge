@@ -2,12 +2,12 @@
 
 ## 原文锚点
 
-- 本地文件：[【解密源码】 RAGFlow 切分最佳实践-General 模式语义切块（docx 篇）](<../文章/【解密源码】 RAGFlow 切分最佳实践-General 模式语义切块（docx 篇）.md>)
-- 本地文件：[【解密源码】 RAGFlow 切分最佳实践-General 模式语义切块（pdf 篇）](<../文章/【解密源码】 RAGFlow 切分最佳实践-General 模式语义切块（pdf 篇）.md>)
-- 本地文件：[【解密源码】 RAGFlow 切分最佳实践- book 篇](<../文章/【解密源码】 RAGFlow 切分最佳实践- book 篇.md>)
-- 本地文件：[【解密源码】 RAGFlow 切分最佳实践- paper 篇](<../文章/【解密源码】 RAGFlow 切分最佳实践- paper 篇.md>)
-- 本地文件：[【解密源码】 RAGFlow 切分最佳实践- ppt 篇](<../文章/【解密源码】 RAGFlow 切分最佳实践- ppt 篇.md>)
-- 本地文件：[保姆级教程：RAGFlow知识库参数全解析，让工程人AI助理更靠谱](../文章/保姆级教程：RAGFlow知识库参数全解析，让工程人AI助理更靠谱.md)
+- 本地文件：[【解密源码】 RAGFlow 切分最佳实践-General 模式语义切块（docx 篇）](<../文章/done-【解密源码】 RAGFlow 切分最佳实践-General 模式语义切块（docx 篇）.md>)
+- 本地文件：[【解密源码】 RAGFlow 切分最佳实践-General 模式语义切块（pdf 篇）](<../文章/done-【解密源码】 RAGFlow 切分最佳实践-General 模式语义切块（pdf 篇）.md>)
+- 本地文件：[【解密源码】 RAGFlow 切分最佳实践- book 篇](<../文章/done-【解密源码】 RAGFlow 切分最佳实践- book 篇.md>)
+- 本地文件：[【解密源码】 RAGFlow 切分最佳实践- paper 篇](<../文章/done-【解密源码】 RAGFlow 切分最佳实践- paper 篇.md>)
+- 本地文件：[【解密源码】 RAGFlow 切分最佳实践- ppt 篇](<../文章/done-【解密源码】 RAGFlow 切分最佳实践- ppt 篇.md>)
+- 本地文件：[保姆级教程：RAGFlow知识库参数全解析，让工程人AI助理更靠谱](../文章/done-保姆级教程：RAGFlow知识库参数全解析，让工程人AI助理更靠谱.md)
 - 原文链接：以上文章的微信公众号 URL 均保留在各本地文件 frontmatter 中。
 - 关键段落：Docx 标题链和表格处理、PDF DeepDOC/Plain Text/Vision 三路解析、book 非正文过滤、paper 标题/作者/摘要/章节切分、ppt 页面缩略图、参数模板和 RAPTOR/知识图谱开关。
 - 关键图：参数文章有图片下载失败；源码系列主要是代码片段和流程描述。

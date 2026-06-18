@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[从 DeerFlow 源码学到的 5 个 Agent 工程化决策](<../文章/从 DeerFlow 源码学到的 5 个 Agent 工程化决策.md>)；[DeerFlow 代码结构与业务流转指南](<../文章/DeerFlow 代码结构与业务流转指南.md>)；[DeerFlow2.0源码分析](../文章/DeerFlow2.0源码分析.md)
+- 本地文件：[从 DeerFlow 源码学到的 5 个 Agent 工程化决策](<../文章/done-从 DeerFlow 源码学到的 5 个 Agent 工程化决策.md>)；[DeerFlow 代码结构与业务流转指南](<../文章/done-DeerFlow 代码结构与业务流转指南.md>)；[DeerFlow2.0源码分析](<../文章/done-DeerFlow2.0源码分析.md>)
 - 原文链接：本地 Markdown 中含项目路径和仓库线索，正式补证阶段再核对官方代码。
 - 关键段落：Frontend -> Gateway API -> LangGraph Server、deerflow-harness、middlewares、tool_search、harness 不能导入 app、边界测试。
 - 关键图：本地 Markdown 主要是目录树和代码结构，无可用技术图。

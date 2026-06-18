@@ -2,8 +2,8 @@
 
 ## 原文锚点
 
-- 本地文件：[RAG 分块策略：从原理到实战优化，喂饭级教程不允许你踩坑](<../文章/RAG 分块策略：从原理到实战优化，喂饭级教程不允许你踩坑.md>)
-- 本地文件：[RAG核心技术全解析：Embedding选型、面试高频问题与Rerank重排序原理](../文章/RAG核心技术全解析：Embedding选型、面试高频问题与Rerank重排序原理.md)
+- 本地文件：[RAG 分块策略：从原理到实战优化，喂饭级教程不允许你踩坑](<../文章/done-RAG 分块策略：从原理到实战优化，喂饭级教程不允许你踩坑.md>)
+- 本地文件：[RAG核心技术全解析：Embedding选型、面试高频问题与Rerank重排序原理](../文章/done-RAG核心技术全解析：Embedding选型、面试高频问题与Rerank重排序原理.md)
 - 原文链接：`https://mp.weixin.qq.com/s?__biz=MzU1OTgxMTg2Nw==&mid=2247513881&idx=1&sn=06875ba9c27ff35e269d1aa27f7f3112`
 - 原文链接：`https://mp.weixin.qq.com/s?__biz=Mzk0ODU3NTE3Ng==&mid=2247483909&idx=1&sn=f1a4deeb83b7984de89ab6383564da03`
 - 关键段落：固定大小、语义、递归、文档结构、智能体、句子、段落等切分策略；Bi-encoder 与 Cross-encoder；向量召回后为什么需要 Rerank。

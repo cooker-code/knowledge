@@ -12,11 +12,17 @@
 | 主要使用者 | Java 后端工程师 |
 | 主要产出 | RLock、分布式对象、Lua 脚本执行、Pub/Sub 通知、Watchdog 自动续期 |
 
+## 已沉淀核心知识点
+
+| 主题 | 文件 | 问题指纹 | 解决什么问题 | 认知增量 |
+|---|---|---|---|---|
+| 分布式锁语义与 Watchdog 边界 | [Redisson分布式锁语义与Watchdog边界](040503_核心知识点/Redisson分布式锁语义与Watchdog边界.md) | Redisson + 分布式锁语义与 Watchdog 边界 + 机制/边界/验证 | Redisson 的价值是把 Redis 分布式锁、可重入、自动续期、等待唤醒等能力封装成 Java API | 形成可复用判断，不保留文章池 |
+
 ## 当前文章
 
 | 文章 | 阅读投入建议 | 处理建议 |
 |---|---|---|
-| [分布式锁工具Redisson，太香了！！](文章/分布式锁工具Redisson，太香了！！.md) | 精读候选 | 标题降权，只沉淀 RLock、可重入、Watchdog、公平锁和 Lua 脚本边界 |
+| [分布式锁工具Redisson，太香了！！](文章/done-分布式锁工具Redisson，太香了！！.md) | 精读候选 | 标题降权，只沉淀 RLock、可重入、Watchdog、公平锁和 Lua 脚本边界 |
 
 ## 排重准则
 

@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Doris + Flink + DolphinScheduler + Dinky 构建开源数据平台](<../文章/Doris + Flink + DolphinScheduler + Dinky 构建开源数据平台.md>)
+- 本地文件：[Doris + Flink + DolphinScheduler + Dinky 构建开源数据平台](<../文章/done-Doris + Flink + DolphinScheduler + Dinky 构建开源数据平台.md>)
 - 原文链接：http://mp.weixin.qq.com/s?__biz=Mzg3ODYxOTQxMA==&mid=2247486025&idx=1&sn=b3d5e1f5edb1ad8b9114964367561dca
 - 关键段落：开源数据平台思路、构建 DolphinScheduler 工作流任务、任务监控、离线数据分析平台、实时数据分析平台。
 - 关键图：原文多处提到“如图”“下图”，本地 Markdown 未保留图片。
@@ -138,3 +138,9 @@ flowchart LR
 - 关键词：DolphinScheduler Dinky task plugin、Dinky DolphinScheduler、FlinkSQL 任务调度、实时任务 DAG 状态。
 - 相关技术：Dinky、Flink、Flink CDC、Doris、Airflow、DataX。
 - 需要补读的文章：DolphinScheduler 任务类型扩展、实时任务调度语义、DolphinScheduler 补数与失败策略。
+
+## 重新蒸馏补充（2026-06-18）
+
+| 来源 | 认知增量 | 处理 |
+|---|---|---|
+| [[03_数据工程与数仓/0306_调度编排/030601_DolphinScheduler/文章/done-数据开发高频面试题之调度工具dolphinscheduler的使用]] | 补充该主题的生产案例、机制边界或排重样例。 | 重新判断后补入目标知识产物 |

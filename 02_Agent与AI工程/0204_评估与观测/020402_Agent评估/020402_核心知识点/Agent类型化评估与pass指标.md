@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Anthropic官方首发：Agent评估体系构建详解](../文章/Anthropic官方首发：Agent评估体系构建详解.md)
+- 本地文件：[Anthropic官方首发：Agent评估体系构建详解](../文章/done-Anthropic官方首发：Agent评估体系构建详解.md)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=MzE5ODM0MTIyNQ==&mid=2247483839&idx=1&sn=8f81b38fae12808e900256d5c45f5b8c
 - 官方锚点：[Anthropic - Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)
 - 关键段落：coding/research/conversational/computer use agents、code/model/human graders、capability vs regression evals、pass@k、pass^k。

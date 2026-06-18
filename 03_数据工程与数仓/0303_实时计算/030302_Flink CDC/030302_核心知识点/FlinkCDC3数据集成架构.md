@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Flink CDC 3.0 新一代实时数据集成框架](<../文章/Flink CDC 3.0 新一代实时数据集成框架.md>)
+- 本地文件：[Flink CDC 3.0 新一代实时数据集成框架](<../文章/done-Flink CDC 3.0 新一代实时数据集成框架.md>)
 - 原文链接：http://mp.weixin.qq.com/s?__biz=Mzg5NDY3NzIwMA==&mid=2247512113&idx=1&sn=6998255d45d478e38ef1353d76854e2a
 - 官方锚点：[Flink CDC Introduction](https://nightlies.apache.org/flink/flink-cdc-docs-stable/docs/get-started/introduction/)
 - 关键段落：API、Connect、Composer、Runtime 四层架构，YAML Pipeline，Schema Evolution，整库同步，Route。
@@ -139,3 +139,9 @@ flowchart LR
 - 关键词：Flink CDC Pipeline、Schema Evolution、Route、Transform、Composer、Data Source、Data Sink。
 - 相关技术：Debezium、SeaTunnel、DataX、Paimon、Doris、StarRocks。
 - 需要补读的文章：Flink CDC 3.6 官方 Pipeline 文档、MySQL to Doris/StarRocks quickstart、Schema Evolution 限制。
+
+## 重新蒸馏补充（2026-06-18）
+
+| 来源 | 认知增量 | 处理 |
+|---|---|---|
+| [[03_数据工程与数仓/0303_实时计算/030302_Flink CDC/文章/done-玳数科技集成 Flink CDC 3.0 的实践]] | 补充该主题的生产案例、机制边界或排重样例。 | 重新判断后补入目标知识产物 |

@@ -2,9 +2,9 @@
 
 ## 原文锚点
 
-- 主文：[从 MCP 到 CLI：Agent 工具调用的范式转移](<../文章/从 MCP 到 CLI：Agent 工具调用的范式转移.md>)
-- 辅助锚点：[Agent Harness 架构真相：Prompt Cache 如何决定 Skill、MCP 与 SubAgent 设计](<../../../0209_Harness Engineering/文章/Agent Harness 架构真相：Prompt Cache 如何决定 Skill、MCP 与 SubAgent 设计.md>)
-- 辅助锚点：[OpenAI 和 Anthropic 同时押注：Tool Search 正在重定义 Agent 工具调用](<../文章/OpenAI 和 Anthropic 同时押注：Tool Search 正在重定义 Agent 工具调用.md>)
+- 主文：[从 MCP 到 CLI：Agent 工具调用的范式转移](<../文章/done-从 MCP 到 CLI：Agent 工具调用的范式转移.md>)
+- 辅助锚点：[Agent Harness 架构真相：Prompt Cache 如何决定 Skill、MCP 与 SubAgent 设计](<../../../0209_Harness Engineering/文章/done-Agent Harness 架构真相：Prompt Cache 如何决定 Skill、MCP 与 SubAgent 设计.md>)
+- 辅助锚点：[OpenAI 和 Anthropic 同时押注：Tool Search 正在重定义 Agent 工具调用](<../文章/done-OpenAI 和 Anthropic 同时押注：Tool Search 正在重定义 Agent 工具调用.md>)
 - 原文链接：见各本地文件 frontmatter；本轮不联网核验。
 - 关键段落：CLI 是执行层、Skill 是知识层、MCP 是连接层；MCP 上下文重；Skill/CLI 按需读取；Agent Harness 中 system/tools/messages 的放置位置。
 - 关键图：无技术图。
@@ -145,5 +145,5 @@ flowchart LR
 ## 后续追查
 
 - 关键词：CLI for agents、Skill + CLI、Programmatic Tool Calling、shell sandbox、stdout JSON、tool context、Prompt Cache。
-- 相关技术：Tool Calling、Tool Search、MCP、Skill、Computer Use、安全与权限。
+- 相关技术：Tool Calling、Tool Search、MCP、Skill、Computer Use、Agent Sandbox。
 - 需要补读的文章：后续补证 OpenCLI、CLI-Anything、Agent CLI 安全规范、代码执行沙箱实践。

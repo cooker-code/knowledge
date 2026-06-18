@@ -2,9 +2,9 @@
 
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[知识地图](020504_核心知识点/知识地图.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](020504_知识地图.md)。
 - 新文章必须先归入 Hermes 的流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `020504_核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识沉淀到 `020504_核心知识点/` 下的主题文件。
 
 ## 技术定位
 
@@ -25,7 +25,7 @@
 | Harness Engineering | 只讲通用运行时、质量门禁、环境、评估，不依赖 Hermes 产品特性时，归 Harness Engineering |
 | Memory Management | 只讲 Agent 记忆抽象、压缩、检索、生命周期，不以 Hermes 为主角时，归 Memory Management |
 | Prompt Engineering | 只讲系统提示词、角色、指令模板，不以 Hermes Profile/SOUL 为主角时，归 Prompt Engineering |
-| 工作流编排 | 只讲 n8n、Dify、Coze 等低代码工作流，不归 Hermes |
+| AI 编码方式 / Workflow | 只讲 n8n、Dify、Coze、Routines 等低代码或确定性流程，不归 Hermes，转 `../../0206_AI编码方式/020601_Workflow` |
 | 电脑工具 | 只讲普通 CLI 安装和桌面软件使用，不涉及 Agent 工程能力时才归电脑工具 |
 
 ## 排重准则
@@ -60,3 +60,13 @@ Hermes 功能层 + 配置对象 + 运行机制 + 解决问题 + 稳定性/权限
 - 关键词：Hermes Agent、Hermes Kanban、Hermes Profile、SOUL.md、Hermes Skill、Hermes Workspace、Hermes Web UI、Hermes Desktop。
 - 待读资料：官方文档、版本发布记录、配置 schema、权限模型。
 - 待补实验：最小 Profile、多 Agent Kanban、Skill 自动沉淀、Checkpoint 恢复、Webhook 自动化。
+
+<!-- AUTO-DISTILL-02-START -->
+
+## 本轮文章处理收口
+
+- 已归档来源：`54` 篇，全部位于 `文章/` 且使用 `done-` 前缀。
+- 长期入口：[Hermes协作与记忆治理边界.md](020504_核心知识点/Hermes协作与记忆治理边界.md)。
+- 新文章进入时先对照知识地图、AGENTS 排重准则和已有主题页；只有新增机制、边界、反例、版本差异或实践证据时才新建主题页。
+
+<!-- AUTO-DISTILL-02-END -->

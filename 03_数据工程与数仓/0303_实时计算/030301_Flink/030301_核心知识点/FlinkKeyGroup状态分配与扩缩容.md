@@ -1,11 +1,9 @@
 # Flink KeyGroup 状态分配与扩缩容
 
-## 原文锚点
+## 来源
 
-- 本地文件：[阿里面试：讲讲Flink KeyGroup 机制，Flink的状态分配与扩缩容的原理是怎么样的？](<../文章/阿里面试：讲讲Flink KeyGroup 机制，Flink的状态分配与扩缩容的原理是怎么样的？.md>)
-- 原文链接：https://mp.weixin.qq.com/s?__biz=Mzg5Mzg3MzkwNA==&mid=2247492266&idx=1&sn=81dcf3cc7fa8e0b82a41bd61f98ff40f&chksm=c14f220381e9a85e768eaa5fd88afa2882bd44495c4b06b5fd0416c411b4e7daedfe7f834128&mpshare=1&scene=24&srcid=1225ELonsJu2rCWHfTtv63me&sharer_shareinfo=84420e0c1ce6d0414ec32b11e7f92bd3&sharer_shareinfo_first=84420e0c1ce6d0414ec32b11e7f92bd3#rd
-- 关键段落：KeyGroup 核心概念、MaxParallelism、Key 到 KeyGroup 映射、Task 分配、扩缩容、Checkpoint/Savepoint。
-- 关键图：原文多次引用示意图，但本地 Markdown 无图片链接。
+- [阿里面试：讲讲Flink KeyGroup 机制，Flink的状态分配与扩缩容的原理是怎么样的？](<../文章/done-阿里面试：讲讲Flink KeyGroup 机制，Flink的状态分配与扩缩容的原理是怎么样的？.md>)
+- [面试|深入理解Flink State](../文章/done-面试_深入理解Flink%20State.md)（覆盖 KeyGroup 机制和 Operator State 扩缩容的 ListState/UnionListState/BroadcastState 分配策略，与本知识点高度重叠）
 
 ## 图片处理
 

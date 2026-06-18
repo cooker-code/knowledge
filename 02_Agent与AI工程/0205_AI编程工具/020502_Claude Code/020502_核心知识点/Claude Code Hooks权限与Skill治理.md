@@ -3,9 +3,9 @@
 ## 原文锚点
 
 - 本地文件：
-  - [Claude Code 2.0.41-47完全拆解：Hook系统、权限自动化与Skills加载的生产级改进.md](<../文章/Claude Code 2.0.41-47完全拆解：Hook系统、权限自动化与Skills加载的生产级改进.md>)
-  - [Claude Code Hooks 完全指南：从配置到生效的实战经验.md](<../文章/Claude Code Hooks 完全指南：从配置到生效的实战经验.md>)
-  - [量化基本面研究团队的CLAUDE.md、Skills和Hooks实战配置指南.md](../文章/量化基本面研究团队的CLAUDE.md、Skills和Hooks实战配置指南.md)
+  - [Claude Code 2.0.41-47完全拆解：Hook系统、权限自动化与Skills加载的生产级改进.md](<../文章/done-Claude Code 2.0.41-47完全拆解：Hook系统、权限自动化与Skills加载的生产级改进.md>)
+  - [Claude Code Hooks 完全指南：从配置到生效的实战经验.md](<../文章/done-Claude Code Hooks 完全指南：从配置到生效的实战经验.md>)
+  - [量化基本面研究团队的CLAUDE.md、Skills和Hooks实战配置指南.md](../文章/done-量化基本面研究团队的CLAUDE.md、Skills和Hooks实战配置指南.md)
 - 原文链接：见各本地文件 frontmatter；本轮不联网校验。
 - 关键段落：
   - `2.0.41-47 完全拆解`：permissionMode、Skills 自动加载、SubagentStart/Stop、tool_use_id、PermissionRequest、生产级多代理 Pipeline。

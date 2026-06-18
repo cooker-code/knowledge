@@ -3,10 +3,10 @@
 ## 原文锚点
 
 - 本地文件：
-  - [Spark App 血缘解析方案](<../文章/Spark App 血缘解析方案.md>)
-  - [Spark 方案 | Spark App 血缘解析方案](<../文章/Spark 方案 _ Spark App 血缘解析方案.md>)
-  - [白话 Apache Flink FLIP-294 让数据血缘有迹可循：支持自定义Catalog修改监听器](<../文章/白话 Apache Flink FLIP-294 让数据血缘有迹可循：支持自定义Catalog修改监听器.md>)
-  - [Flink 血缘 | Flink SQL 字段血缘解决方案及源码](<../文章/Flink 血缘 _ Flink SQL 字段血缘解决方案及源码.md>)
+  - [Spark App 血缘解析方案](<../文章/done-Spark App 血缘解析方案.md>)
+  - [Spark 方案 | Spark App 血缘解析方案](<../文章/done-Spark 方案 _ Spark App 血缘解析方案.md>)
+  - [白话 Apache Flink FLIP-294 让数据血缘有迹可循：支持自定义Catalog修改监听器](<../文章/done-白话 Apache Flink FLIP-294 让数据血缘有迹可循：支持自定义Catalog修改监听器.md>)
+  - [Flink 血缘 | Flink SQL 字段血缘解决方案及源码](<../文章/done-Flink 血缘 _ Flink SQL 字段血缘解决方案及源码.md>)
 - 原文链接：见本地原文 front matter；本轮不联网校验。
 - 关键段落：Spark App 三类解析思路、event log 对 Spark 2/3 的差异、Spline agent 注册 QueryExecutionListener、LineageDispatcher、Flink CatalogModificationListener、FLIP-294 与 FLIP-314 的边界。
 - 关键图：Spark/Spline 架构图、Flink 事件体系图在 Markdown 中缺失。
@@ -145,3 +145,10 @@ Spark App 血缘更适合从运行时 QueryExecution 采集；Flink FLIP-294 采
 - 关键词：Spark QueryExecutionListener、Spline LineageHarvester、Spark event log lineage、Flink CatalogModificationListener、FLIP-294、FLIP-314。
 - 相关技术：Spline、Apache Atlas、OpenLineage、DataHub ingestion、Spark SQL、Flink SQL。
 - 需要补读的文章：Spark/Flink 官方 listener 文档、OpenLineage Spark/Flink 集成、Spline 版本兼容说明。
+
+## 重新蒸馏补充（2026-06-18）
+
+| 来源 | 认知增量 | 处理 |
+|---|---|---|
+| [[03_数据工程与数仓/0308_元数据血缘与治理/030803_数据血缘/文章/done-面试被问Spark中的血缘关系，您是否清楚从哪些方面阐述呢？]] | 补充该主题的生产案例、机制边界或排重样例。 | 重新判断后补入目标知识产物 |
+| [[03_数据工程与数仓/0303_实时计算/030301_Flink/文章/done-白话 Apache Flink FLIP-294 让数据血缘有迹可循：支持自定义Catalog修改监听器]] | 补充 Flink Catalog 修改监听与运行时血缘的边界，避免把元数据变更事件当作完整作业血缘。 | 按文章反链补齐正向来源 |

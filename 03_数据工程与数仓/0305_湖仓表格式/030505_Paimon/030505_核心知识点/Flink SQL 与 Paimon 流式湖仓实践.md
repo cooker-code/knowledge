@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Paimon 实践 _ 基于 Flink SQL 和 Paimon 构建流式湖仓新方案.md](<../文章/Paimon 实践 _ 基于 Flink SQL 和 Paimon 构建流式湖仓新方案.md>)
+- 本地文件：[Paimon 实践 _ 基于 Flink SQL 和 Paimon 构建流式湖仓新方案.md](<../文章/done-Paimon 实践 _ 基于 Flink SQL 和 Paimon 构建流式湖仓新方案.md>)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=MzkyNDYzMTY2NA==&mid=2247488993&idx=1&sn=5f4412d6175940d7303eee3b5b0ea22c&chksm=c1d3423428758dcfe5e57637f9e28827a6f527c084011309d8af694602b0be6a95da08f9e7d0&mpshare=1&scene=24&srcid=0829pnKAuaRKMLy3Kg7dL9PR&sharer_shareinfo=4f07c62221b064deba7d185803c6d8d1&sharer_shareinfo_first=4f07c62221b064deba7d185803c6d8d1#rd
 - 关键段落：文章从数据分析架构演进、Apache Paimon、Flink + Paimon 流式湖仓、Demo 演示四部分展开。
 
@@ -100,3 +100,10 @@ flowchart LR
 - Flink SQL 写 Paimon 主键表的最小实验。
 - Paimon Changelog Producer 的模式和代价。
 - Paimon Compaction 对延迟和查询的影响。
+
+## 重新蒸馏补充（2026-06-18）
+
+| 来源 | 认知增量 | 处理 |
+|---|---|---|
+| [[03_数据工程与数仓/0305_湖仓表格式/030505_Paimon/文章/done-Flink 1.19 + Paimon 1.2 构建实时数据湖深度实践指南]] | 补充该主题的生产案例、机制边界或排重样例。 | 重新判断后补入目标知识产物 |
+| [[03_数据工程与数仓/0305_湖仓表格式/030505_Paimon/文章/done-你的 Flink 作业，还卡在 CDC、Paimon 和建不完的 DDL 上？]] | 补充该主题的生产案例、机制边界或排重样例。 | 重新判断后补入目标知识产物 |

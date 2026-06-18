@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[多点DMALL × Apache Kyuubi：构建统一SQL Proxy探索实践](<../文章/多点DMALL × Apache Kyuubi：构建统一SQL Proxy探索实践.md>)
+- 本地文件：[多点DMALL × Apache Kyuubi：构建统一SQL Proxy探索实践](<../文章/done-多点DMALL × Apache Kyuubi：构建统一SQL Proxy探索实践.md>)
 - 原文链接：`http://mp.weixin.qq.com/s?__biz=MzI0NTIxNzE1Ng==&mid=2651226418&idx=1&sn=a74238d46fe1abd4a4d29769c62fc89d`
 - 关键段落：存算一体下 Kyuubi 作为 Spark SQL 代理，存算分离后替代 UniSQL 成为统一 SQL Proxy；补充审计、监控、限流、动态参数、Ranger 权限、小文件合并等能力。
 - 关键图：正文提到架构图，但 Markdown 缺失。

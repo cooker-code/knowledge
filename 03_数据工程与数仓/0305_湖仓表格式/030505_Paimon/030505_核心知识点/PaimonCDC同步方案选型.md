@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Flink CDC 写入 Paimon：三种同步方案怎么选？（含 SQL / Action / Pipeline 实战）](<../文章/Flink CDC 写入 Paimon：三种同步方案怎么选？（含 SQL _ Action _ Pipeline 实战）.md>)
+- 本地文件：[Flink CDC 写入 Paimon：三种同步方案怎么选？（含 SQL / Action / Pipeline 实战）](<../文章/done-Flink CDC 写入 Paimon：三种同步方案怎么选？（含 SQL _ Action _ Pipeline 实战）.md>)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=MzUyNjc2MjYzNA==&mid=2247487625&idx=1&sn=c1e2afaec1aa3aadfb0708a4caf8e26b
 - 官方锚点：[Apache Paimon Docs](https://paimon.apache.org/docs/master/)、[Apache Flink CDC Documentation](https://nightlies.apache.org/flink/flink-cdc-docs-stable/docs/get-started/introduction/)
 - 关键段落：Flink SQL、Paimon Action CDC Ingestion、Flink CDC Pipeline 三种方式；Schema Evolution；整库同步；小文件、Checkpoint、OOM。
@@ -137,3 +137,8 @@ flowchart LR
 - 相关技术：Flink CDC、Debezium、Kafka、Doris、StarRocks、Iceberg。
 - 需要补读的文章：Paimon 官方 CDC Ingestion 文档、Flink CDC Pipeline Sink 文档、Paimon Schema Evolution 限制。
 
+## 重新蒸馏补充（2026-06-18）
+
+| 来源 | 认知增量 | 处理 |
+|---|---|---|
+| [[03_数据工程与数仓/0305_湖仓表格式/030505_Paimon/文章/done-Flink + Paimon 数据 CDC 入湖最佳实践]] | 补充该主题的生产案例、机制边界或排重样例。 | 重新判断后补入目标知识产物 |

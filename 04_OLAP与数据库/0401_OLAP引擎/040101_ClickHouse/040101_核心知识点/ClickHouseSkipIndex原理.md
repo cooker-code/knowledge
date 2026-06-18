@@ -1,8 +1,11 @@
 # ClickHouse Skip Index 原理
 
+## 来源
+- [ClickHouse 原理 _ ClickHouse 的索引原理](<../文章/done-ClickHouse 原理 _ ClickHouse 的索引原理.md>)
+
 ## 原文锚点
 
-- 本地文件：[ClickHouse 原理 | ClickHouse 的索引原理](<../文章/ClickHouse 原理 _ ClickHouse 的索引原理.md>)
+- 本地文件：[ClickHouse 原理 | ClickHouse 的索引原理](<../文章/done-ClickHouse 原理 _ ClickHouse 的索引原理.md>)
 - 原文链接：`http://mp.weixin.qq.com/s?__biz=MzU5OTQ1MDEzMA==&mid=2247490917&idx=2&sn=8c3f9268234c601929bd46537c825f2f`
 - 关键段落：ClickHouse 索引与 RDBMS B-tree 的本质差异、skip index、granule、minmax/set/bloomfilter、GRANULARITY、读路径。
 - 关键图：原文图未保留。

@@ -3,8 +3,8 @@
 ## 原文锚点
 
 - 本地文件：
-  - [Spark向量化计算在美团生产环境的实践](../文章/Spark向量化计算在美团生产环境的实践.md)
-  - [Spark 剖析 | Apache Spark Native Engine](<../文章/Spark 剖析 _ Apache Spark Native Engine.md>)
+  - [Spark向量化计算在美团生产环境的实践](../文章/done-Spark向量化计算在美团生产环境的实践.md)
+  - [Spark 剖析 | Apache Spark Native Engine](<../文章/done-Spark 剖析 _ Apache Spark Native Engine.md>)
 - 原文链接：见各本地 Markdown 头部 `url` 字段。
 - 关键段落：SIMD、Block By Block、Gluten+Velox、ColumnarOverrideRules、Substrait、JNI、ColumnarToRow/RowToColumn、ORC Reader、Native HDFS、Shuffle 重构、HBO、一致性问题。
 - 关键图：原文有多张架构图、流程图和性能图，但 Markdown 未保留图片。

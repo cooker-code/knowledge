@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Claude Code 2.1.80_ --channels 来了，MCP 服务器可以主动向你的会话推送消息](<../文章/Claude Code 2.1.80_ --channels 来了，MCP 服务器可以主动向你的会话推送消息.md>)
+- 本地文件：[Claude Code 2.1.80_ --channels 来了，MCP 服务器可以主动向你的会话推送消息](<../文章/done-Claude Code 2.1.80_ --channels 来了，MCP 服务器可以主动向你的会话推送消息.md>)
 - 原文链接：见本地文件 frontmatter；本轮不联网核验。
 - 关键段落：`--channels` 研究预览、MCP Server 主动推送、CI/部署/测试/团队消息场景、`--resume` 并行工具结果修复、sandbox/permissions 导航修复。
 - 关键图：无技术图。

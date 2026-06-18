@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[AI 应用的监控与评估：LangFuse + RAGAS](<../文章/AI 应用的监控与评估：LangFuse + RAGAS.md>)
+- 本地文件：[AI 应用的监控与评估：LangFuse + RAGAS](<../文章/done-AI 应用的监控与评估：LangFuse + RAGAS.md>)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=MzE5ODA1NTAwNQ==&mid=2247485506&idx=1&sn=5608468c170be73e681a130be55716db&chksm=97c33673279e8fbbc0dca8552b5bd74921d5cf4f372defad918d2ec2db77538ad48edcab4ff7&mpshare=1&scene=24&srcid=0514Qe8M2U7LyMteHIMvpYXr&sharer_shareinfo=73a16691eaea1b5c8ade56542e9ff3bc&sharer_shareinfo_first=73a16691eaea1b5c8ade56542e9ff3bc#rd
 - 官方锚点：[Langfuse Docs](https://langfuse.com/docs)、[RAGAS GitHub](https://github.com/vibrantlabsai/ragas)
 - 关键段落：普通日志不足、Trace/Span/Generation、RAGAS 指标、Faithfulness、评估流水线、踩坑与最佳实践。

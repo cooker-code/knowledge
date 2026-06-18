@@ -1,32 +1,30 @@
 # AI 编程工具
-## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[知识地图](020500_核心知识点/知识地图.md)。
-- 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `020500_核心知识点/`。
+> 分类规则、一二级类目定位、跨域归类边界以根 [目录划分.md](../../目录划分.md) 为准。
+> 文章理解的四步法、整理流程以根 [AGENTS.md](../../AGENTS.md) 为准。
+> 本文件只维护本领域的认知重点、排重指纹、已覆盖三级节点和待补缺口。
 
+## 三级节点入口
 
-## 类目定位
-
-| 项 | 内容 |
+| 节点 | 用途 |
 |---|---|
-| 一级类目 | Agent 与 AI 工程 |
-| 二级类目 | AI 编程工具 |
-| 核心问题 | 如何把模型能力接入真实软件工程流程，完成代码理解、修改、验证、协作和交付 |
-| 不解决什么 | 不直接讨论模型训练、模型能力榜单、通用提示词技巧 |
-| 用户当前认知假设 | L2：已知道 Claude Code、Cursor、OpenCode 等工具，当前重点是校准工具如何进入需求澄清、上下文建模、执行编排、验证闭环和权限治理 |
+| [020502_Claude Code](<020502_Claude Code/AGENTS.md>) | 动态搜索、上下文压缩、Hooks、权限、Skill 治理 |
+| [020503_Cursor](020503_Cursor/AGENTS.md) | 动态上下文发现、Rules、Plan 工作流 |
+| [020504_Hermes](020504_Hermes/AGENTS.md) | CLI/Web/Desktop、Profile、Kanban、多 Agent 协作 |
+| 020505_OpenCode（候选，未建目录） | 终端 Agent、oh-my-opencode 编排、Skill、LSP |
+| [020506_workBuddy](020506_workBuddy/AGENTS.md) | 自动化工作流、浏览器/微信控制、长记忆 |
+| [020507_Codex](020507_Codex/AGENTS.md) | OpenAI Codex CLI 与沙箱机制 |
 
 ## 用户认知重点
 
-| 认知项 | 当前假设 | 后续整理策略 |
-|---|---|---|
-| 已知基础 | 用户知道 AI 编程工具能读写代码、执行命令、生成项目规则 | 不重复整理“如何安装、如何输入命令” |
-| 待补边界 | Skill、MCP、Hook、Subagent、上下文压缩、动态搜索的边界 | 优先抽取工具在工程链路中的位置和取舍 |
-| 易偏差点 | 工具文章容易把效率体验当成技术结论 | 优先标注证据不足、权限风险、上下文污染和可回滚性 |
+| 项 | 内容 |
+|---|---|
+| 已知基础 | 用户知道 AI 编程工具能读写代码、执行命令、生成项目规则 |
+| 待补边界 | Skill、MCP、Hook、Subagent、上下文压缩、动态搜索的边界 |
+| 易偏差点 | 工具文章易把效率体验、编码方式和产品资讯混在一起 |
+| 优先抽取 | 工具本体能力、权限风险、上下文机制、可回滚性；跨工具 Workflow/VibeCode/SpecCode 转入 `0206_AI编码方式` |
 
-## 排重准则
-
-问题指纹：
+## 排重指纹
 
 ```text
 工具本体 + 工程环节 + 上下文机制/工具机制 + 解决问题 + 权限或验证边界 + 对用户的认知增量
@@ -34,102 +32,30 @@
 
 | 判断项 | 排重规则 |
 |---|---|
-| 都是 Claude Code 技巧 | 如果只是命令清单，不新建，只保留到路由表 |
-| 都是上下文管理 | 比较是动态搜索、压缩、规则文件、会话记忆还是 RAG，不同机制可分开 |
-| 都是 Skill/MCP | 比较解决的是能力封装、外部工具接入、工作流约束还是评估治理 |
+| 都是 Claude Code 技巧 | 只是命令清单，不新建，只保留到路由表 |
+| 都是上下文管理 | 区分动态搜索、压缩、规则文件、会话记忆、RAG，不同机制可分开 |
+| 都是 Skill/MCP | 区分能力封装、外部工具接入、工作流约束、评估治理 |
 | 只有使用体验 | 没有机制和边界时降为略读或跳过 |
 | 有权限、安全、可回滚讨论 | 优先沉淀为认知校准点 |
+| 主问题是编码方式 | Workflow、VibeCode、SpecCode、需求到交付闭环转入 `../0206_AI编码方式/AGENTS.md` |
 
-## 已覆盖技术
+## 已覆盖问题（按三级节点）
 
-| 技术 | index | 已覆盖问题 | 还缺什么 |
-|---|---|---|---|
-| AI Coding 工作流 | [AI Coding 工作流](<020501_AI Coding 工作流/AGENTS.md>) | 需求到交付闭环、流畅度模型、验证和复盘 | 与 Harness Engineering 的边界需要持续校准 |
-| Claude Code | [Claude Code](<020502_Claude Code/AGENTS.md>) | 动态代码搜索、上下文压缩、Hooks、权限、Skill 治理 | 官方机制和版本状态需后续补证 |
-| Cursor | [Cursor](020503_Cursor/AGENTS.md) | 动态上下文发现、Rules、Plan 工作流、IDE Agent 定位 | 与 Claude Code、OpenCode、OpenSpec 的实测边界 |
-| OpenCode | [OpenCode](020505_OpenCode/AGENTS.md) | 终端 Agent、oh-my-opencode 编排、Skill、LSP/AST 工具 | 官方文档、权限模型和版本兼容性需后续补证 |
-| Hermes | [Hermes](020504_Hermes/AGENTS.md) | CLI/Web UI/Desktop、Profile/SOUL、Kanban、多 Agent 协作、Skill、记忆、Webhook、Workspace | 官方版本、权限模型和本地最小实验证据 |
-| workBuddy | [workBuddy](020506_workBuddy/AGENTS.md) | 基础设置、自动化工作流、浏览器/微信控制、长记忆、数据分析场景和编程协作 | 官方配置、权限模型、失败恢复和同任务对照证据 |
-
-## 待补技术和问题
-
-| 技术/问题 | 为什么要补 | 优先级 |
+| 节点 | 已覆盖 | 还缺 |
 |---|---|---|
-| AI 编程评估 | 防止只看主观效率 | 高 |
-| Context Engineering 边界 | AI 编程工具文章经常把上下文能力和具体工具混写 | 高 |
-| 工具权限与 Hook 治理 | 防止把自动化能力误当成无风险提效 | 高 |
-| Hermes 官方补证 | 当前 Hermes 文章多为实践和经验，需要后续校验版本、命令和配置 | 高 |
-| workBuddy 官方补证 | 当前 workBuddy 文章多为场景体验，需要后续校验配置、权限、记忆和工具调用边界 | 高 |
-| 官方补证与本地实验 | 本轮不联网，官网/GitHub、版本状态和实践结论需要后续补证 | 高 |
+| Claude Code | 动态代码搜索、上下文压缩、Hooks、权限、Skill 治理 | 官方机制和版本状态需后续补证 |
+| Cursor | 动态上下文发现、Rules、Plan 工作流、IDE Agent 定位 | 与 Claude Code、OpenCode、OpenSpec 的实测边界 |
+| OpenCode | 终端 Agent、oh-my-opencode 编排、Skill、LSP/AST 工具 | 官方文档、权限模型、版本兼容性 |
+| Hermes | CLI/Web UI/Desktop、Profile/SOUL、Kanban、多 Agent、Skill、记忆、Webhook、Workspace | 官方版本、权限模型、本地最小实验 |
+| workBuddy | 基础设置、自动化工作流、浏览器/微信控制、长记忆、编程协作 | 官方配置、权限、失败恢复、同任务对照证据 |
 
-## 本轮精读沉淀
+## 待补缺口
 
-| 主题 | 新增/更新位置 | 吸收原文数 | 处理结论 |
-|---|---|---:|---|
-| AI Coding 工程闭环与流畅度模型 | [AI Coding 工作流](<020501_AI Coding 工作流/AGENTS.md>) | 5 | 正式沉淀为工作流层，不写入具体模型能力 |
-| OpenCode 与 oh-my-opencode 编排边界 | [OpenCode](020505_OpenCode/AGENTS.md) | 5 | 正式沉淀为终端 Agent 本体与编排增强层 |
-| Claude Code 上下文压缩与会话治理 | [Claude Code](<020502_Claude Code/AGENTS.md>) | 2 | 与“为什么不用 RAG”排重，补工具输出、compact、clear/rewind、subagent 边界 |
-| Claude Code Hooks 权限与 Skill 治理 | [Claude Code](<020502_Claude Code/AGENTS.md>) | 3 | 补生命周期控制面、权限模式、团队规则和 Skill 自动加载风险 |
-| Cursor Rules 与 Plan 工作流边界 | [Cursor](020503_Cursor/AGENTS.md) | 5 | 补 IDE 内 Plan/Rules/Skill/Subagent 与 OpenSpec 对标 |
-| 本轮路由报告 | [2026-06-13_并行精读路由报告](2026-06-13_并行精读路由报告.md) | 20 | 记录处理文章数、合并/跳过原因和主要冲突点 |
-
-<!-- AUTO:SECONDARY_INIT_START -->
-## 全量文章来源初始化
-
-> 自动生成。初始化阶段只使用本地 `本地文章目录`、已有 `knowledge` 和本地 `wiki`，不联网补官网或外部证据。
-
-- 全量文章来源：各三级节点的 `文章/`
-- 全局明细：`scripts/output/knowledge-secondary-pools.json`
-
-| 指标 | 数量 |
-|---|---:|
-| 文章数 | 337 |
-| 正式沉淀原文数 | 21 |
-| 已引用锚点 | 297 |
-| 核心知识点数 | 7 |
-| 精读候选 | 147 |
-| 略读 | 163 |
-| 跳过 | 6 |
-| 低置信 | 0 |
-| 原图缺失 | 94 |
-
-### 主题簇
-
-| 技术/主题 | 文章数 | 正式沉淀 | 精读候选 | 原图缺失 | 处理决策 | 认知校准点 |
-|---|---:|---:|---:|---:|---|---|
-| Claude Code | 229 | 5 | 112 | 54 | 以已有核心知识点为排重基线，只补边界、失败场景或实践证据 | 原目录存在误导，按技术本体重路由；有技术图缺失，精修时需回原文或重建 |
-| AI 编程工具 | 56 | 10 | 17 | 21 | 以已有核心知识点为排重基线，只补边界、失败场景或实践证据 | 原目录存在误导，按技术本体重路由；有技术图缺失，精修时需回原文或重建 |
-| Cursor | 52 | 6 | 18 | 19 | 以已有核心知识点为排重基线，只补边界、失败场景或实践证据 | 原目录存在误导，按技术本体重路由；有技术图缺失，精修时需回原文或重建 |
-
-### 精读候选
-
-| 技术对象 | 原文 | 冲突点 | 处理建议 |
-|---|---|---|---|
-| AI 编程工具 | [9.4 万 Star 的 GitHub 项目，教你not  Vibe Coding](<020501_AI Coding 工作流/文章/9.4 万 Star 的 GitHub 项目，教你not Vibe Coding.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| AI 编程工具 | [AI Coding 系列教程上线了！](<020501_AI Coding 工作流/文章/AI Coding 系列教程上线了！.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| AI 编程工具 | [AI Coding后端开发实战：解锁AI辅助编程新范式](<020501_AI Coding 工作流/文章/AI Coding后端开发实战：解锁AI辅助编程新范式.md>) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| AI 编程工具 | [Anthropic最新harness工程技术：Managed Agents](<../0209_Harness Engineering/文章/Anthropic最新harness工程技术：Managed Agents.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| AI 编程工具 | [Async Vibe Coding ，AI 辅助编程新交互范式](<020501_AI Coding 工作流/文章/Async Vibe Coding ，AI 辅助编程新交互范式.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| AI 编程工具 | [OpenCode：2026 开年爆火的终端 Coding Agent](<020505_OpenCode/文章/OpenCode：2026 开年爆火的终端 Coding Agent.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| AI 编程工具 | [OpenCodeReview: 阿里开源硬核代码审查工具, 确定性规则 + LLM Agent 精准到行的代码质检！](<020505_OpenCode/文章/OpenCodeReview_ 阿里开源硬核代码审查工具, 确定性规则 + LLM Agent 精准到行的代码质检！.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| AI 编程工具 | [Vibe Coding 中以启发式提示词构建 Agent 上下文，提高人机效率](<../0208_Context Engineering/文章/Vibe Coding 中以启发式提示词构建 Agent 上下文，提高人机效率.md>) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| AI 编程工具 | [Vibe Coding 提示词指南 - 代码重构提示词技巧](<../0207_Prompt Engineering/文章/Vibe Coding 提示词指南 - 代码重构提示词技巧.md>) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| AI 编程工具 | [Vibe Coding 新利器：Exa vs Context7，谁是编程效率王？](<../0208_Context Engineering/文章/Vibe Coding 新利器：Exa vs Context7，谁是编程效率王？.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| AI 编程工具 | [告别混乱，用 AGENTS.md 统一你的 AI 开发工具规则](<020501_AI Coding 工作流/文章/告别混乱，用 AGENTS.md 统一你的 AI 开发工具规则.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| AI 编程工具 | 我愿称为最强终端工具 Warp | - | 低置信原文已删除；后续如重新进入，必须先判问题指纹，能补边界/失败/实践再正式沉淀 |
-
-### 冲突与缺口
-
-- 冲突分布：原目录与最终归类不一致(278)、正文提到技术图但 Markdown 无图(94)、标题/观点需要降权(11)
-- 存在原图缺失，精修时只补架构图、流程图、说明图和对比图。
-- 精读候选不直接写笔记，先和已有问题指纹对比。
-- 初始化阶段不补外部官网/GitHub；需要官方证据时在后续精修阶段补证。
-
-### 下一步
-
-| 优先级 | 动作 |
-|---|---|
-| P0 | 先处理精读候选，按主题簇合并，不逐篇扩写 |
-| P1 | 对已有核心知识点补充排重依据和认知校准点 |
-| P2 | 精修阶段再补官网、GitHub、版本状态和官方架构图 |
-<!-- AUTO:SECONDARY_INIT_END -->
+| 优先级 | 项 | 为什么补 |
+|---|---|---|
+| 高 | AI 编程评估 | 防止只看主观效率 |
+| 高 | Context Engineering 边界 | 文章常把上下文能力和具体工具混写 |
+| 高 | 工具权限与 Hook 治理 | 防止把自动化能力误当成无风险提效 |
+| 高 | AI 编码方式分流 | Workflow、VibeCode、SpecCode 不再放在工具目录，避免把方法论和工具本体混写 |
+| 高 | Hermes / workBuddy 官方补证 | 当前文章多为体验，需校验配置、权限、记忆边界 |
+| 高 | 官方补证与本地实验 | 官网/GitHub、版本状态、实践结论需补证 |

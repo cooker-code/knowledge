@@ -1,8 +1,11 @@
 # StarRocks Query Cache 中间聚合缓存
 
+## 来源
+- [当高并发来袭：StarRocks Query Cache 一招搞定！](<../文章/done-当高并发来袭：StarRocks Query Cache 一招搞定！.md>)
+
 ## 原文锚点
 
-- 本地文件：[当高并发来袭：StarRocks Query Cache 一招搞定！](<../文章/当高并发来袭：StarRocks Query Cache 一招搞定！.md>)
+- 本地文件：[当高并发来袭：StarRocks Query Cache 一招搞定！](<../文章/done-当高并发来袭：StarRocks Query Cache 一招搞定！.md>)
 - 原文链接：http://mp.weixin.qq.com/s?__biz=MzI1MTYxOTkxNQ==&mid=2247490921&idx=1&sn=9fc54c02d5395e112d0021686fb1bf6c
 - 关键段落：Query Cache 定位、语义等价查询、分区重合查询、多版本缓存、最佳实践、Profile 指标。
 - 关键图：原文提到机制图和查询示意图，但本地 Markdown 无图。

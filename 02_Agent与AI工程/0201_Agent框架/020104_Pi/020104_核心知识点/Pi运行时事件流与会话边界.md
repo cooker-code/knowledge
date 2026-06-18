@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Pi 系列 01｜用最小例子看 agent runtime 的事件流](<../文章/Pi 系列 01｜用最小例子看 agent runtime 的事件流.md>)；[Agent Loop的收敛：为什么OpenClaw、DeerFlow2.0和LangChain都放弃了显式ReAct](<../../020101_DeerFlow/文章/Agent Loop的收敛：为什么OpenClaw、DeerFlow2.0和LangChain都放弃了显式ReAct.md>)
+- 本地文件：[Pi 系列 01｜用最小例子看 agent runtime 的事件流](<../文章/done-Pi 系列 01｜用最小例子看 agent runtime 的事件流.md>)；[Agent Loop的收敛：为什么OpenClaw、DeerFlow2.0和LangChain都放弃了显式ReAct](<../../../0212_COT&TOT&REACT/文章/done-Agent Loop的收敛：为什么OpenClaw、DeerFlow2.0和LangChain都放弃了显式ReAct.md>)
 - 原文链接：本地 Markdown 保留公众号链接；Pi 源码路径、OpenClaw 文档和 LangChain 源码需后续补证。
 - 关键段落：最小 SDK 示例、`session.subscribe`、`message_update`、`text_delta`、工具参数 delta、`turn_end`、`agent_end`、隐式状态 tool calling loop。
 - 关键图：原文提到事件流骨架图，但本地 Markdown 未保留图片。

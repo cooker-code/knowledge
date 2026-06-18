@@ -2,8 +2,8 @@
 
 ## 原文锚点
 
-- 本地文件：[OpenAI 和 Anthropic 同时押注：Tool Search 正在重定义 Agent 工具调用](<../文章/OpenAI 和 Anthropic 同时押注：Tool Search 正在重定义 Agent 工具调用.md>)
-- 辅助锚点：[Agent Harness 架构真相：Prompt Cache 如何决定 Skill、MCP 与 SubAgent 设计](<../../../0209_Harness Engineering/文章/Agent Harness 架构真相：Prompt Cache 如何决定 Skill、MCP 与 SubAgent 设计.md>)
+- 本地文件：[OpenAI 和 Anthropic 同时押注：Tool Search 正在重定义 Agent 工具调用](<../文章/done-OpenAI 和 Anthropic 同时押注：Tool Search 正在重定义 Agent 工具调用.md>)
+- 辅助锚点：[Agent Harness 架构真相：Prompt Cache 如何决定 Skill、MCP 与 SubAgent 设计](<../../../0209_Harness Engineering/文章/done-Agent Harness 架构真相：Prompt Cache 如何决定 Skill、MCP 与 SubAgent 设计.md>)
 - 原文链接：见本地文件 frontmatter；本轮不联网核验。
 - 关键段落：HTTP 请求体不等于模型上下文、`defer_loading`、工具注册表、工具注入末尾、Prompt Cache 前缀稳定、工具数量膨胀。
 - 关键图：原文使用大量 ASCII 架构图，无本地图片。

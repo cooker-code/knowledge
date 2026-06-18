@@ -1,11 +1,9 @@
 # Flink 双流 Join 状态膨胀与构建端选择
 
-## 原文锚点
+## 来源
 
-- 本地文件：[性能翻倍！Flink双流JOIN核心优化技巧揭秘，告别状态膨胀](../文章/性能翻倍！Flink双流JOIN核心优化技巧揭秘，告别状态膨胀.md)
-- 原文链接：`https://mp.weixin.qq.com/s?__biz=MzU2MTg5ODU2NA==&mid=2247484010&idx=1&sn=ea59ab8523f9f69c13a71215e94c9372`
-- 关键段落：文章用 Build Side / Probe Side 解释双流 Join 的状态膨胀，并提到 `BROADCAST`、`SHUFFLE_HASH` Hint。
-- 关键图：无技术图。
+- [性能翻倍！Flink双流JOIN核心优化技巧揭秘，告别状态膨胀](../文章/done-性能翻倍！Flink双流JOIN核心优化技巧揭秘，告别状态膨胀.md)
+- [白话Apache Flink FLIP-516 优化多表Join：让状态存储更轻盈](../文章/done-白话Apache Flink FLIP-516 优化多表Join：让状态存储更轻盈.md)
 
 ## 图片处理
 
@@ -137,8 +135,57 @@ flowchart LR
 | Lookup Join | 查询外部维表 | 状态少，接入存储系统 | 外部存储延迟和吞吐成为瓶颈 | Redis/MySQL/HBase 维表关联 |
 | Spark SQL Join | 批处理 Join 策略 | 批量优化成熟 | 不解决无界流状态问题 | 离线计算、批 SQL |
 
+## FLIP-516：多表 Join 状态优化（Flink 2.1 新特性）
+
+### 问题背景
+
+传统多表 Join 采用链式二元 Join：`(A JOIN B) JOIN C`，每个中间结果（A JOIN B 的结果）必须存入状态，等待下一个 Join。表越多，中间状态越大，带来：
+- 检查点生成时间变长
+- 状态访问频繁导致处理变慢
+- 大状态作业反压和故障风险增加
+
+### FLIP-516 解法：StreamingMultiJoinOperator
+
+在单个算子内同时处理多个输入流的 Join，**完全消除中间 Join 结果的存储**。
+
+```
+传统方案：A → [Join1] → [Join2] → 结果
+           B ↗            C ↗
+           需要存储 Join1 的中间结果
+
+新方案：   A
+           B → [Multi-Join] → 结果（直接输出，无中间状态）
+           C
+```
+
+**好处**：
+1. 零中间状态：不存储中间 Join 结果
+2. 更少状态写入：只在最终匹配时写入
+3. 延迟物化：只对最终匹配的数据做计算
+4. 更快的处理速度
+
+### 使用配置
+
+```sql
+-- 启用多表 Join 优化
+SET 'table.optimizer.multi-join.enabled' = 'true';
+-- 限制单算子最大处理表数（避免单算子过载）
+SET 'table.optimizer.multi-join.max-tables' = '5';
+```
+
+### 当前限制（截止 Flink 2.1 版本）
+
+| 限制项 | 说明 |
+|---|---|
+| 分区键约束 | 所有参与 Join 的表必须能按同一个键分区 |
+| Join 类型 | 支持 INNER JOIN 和 LEFT OUTER JOIN；RIGHT OUTER JOIN 可改写为 LEFT；FULL OUTER JOIN 暂不支持 |
+| 状态访问 | 仅支持同步状态访问，异步支持待后续版本 |
+
+**版本信息**：该特性已被社区接受，在 Flink 2.1 版本发布（PR #26313）。
+
 ## 后续追查
 
-- 关键词：Flink Regular Join、Interval Join、Temporal Join、Lookup Join、State TTL、Watermark、Join Hint。
+- 关键词：Flink Regular Join、Interval Join、Temporal Join、Lookup Join、State TTL、Watermark、Join Hint、FLIP-516、StreamingMultiJoinOperator。
 - 相关技术：RocksDB State Backend、Checkpoint、反压、Doris/Paimon 下游一致性。
 - 需要补读的文章：Flink SQL Join 官方文档、Flink 背压排查、Checkpoint 调优。
+- FLIP-516 实际上线后需验证：multi-join 是否改善了三表以上 Join 的 Checkpoint 耗时指标。

@@ -3,12 +3,12 @@
 ## 原文锚点
 
 - 本地文件：
-  - [Apache Kyuubi 1.8 特性解读](<../文章/Apache Kyuubi 1.8 特性解读.md>)
-  - [坦白局！网易数帆解读 Apache Kyuubi 1.8 特性](<../文章/坦白局！网易数帆解读 Apache Kyuubi 1.8 特性.md>)
-  - [基于 Kyuubi 实现分布式 Flink SQL 网关](<../文章/基于 Kyuubi 实现分布式 Flink SQL 网关.md>)
-  - [大数据统一SQL网关：最新版Kyuubi整合Flink、Spark方案的实践案例总结](../文章/大数据统一SQL网关：最新版Kyuubi整合Flink、Spark方案的实践案例总结.md)
-  - [Kyuubi 实践 | 如何优化 Spark 小文件，Kyuubi 一步搞定！](<../文章/Kyuubi 实践 _ 如何优化 Spark 小文件，Kyuubi 一步搞定！.md>)
-  - [Kyuubi 实践 | 有了它！爱奇艺加速 Hive SQL 迁移 Spark](<../文章/Kyuubi 实践 _ 有了它！爱奇艺加速 Hive SQL 迁移 Spark.md>)
+  - [Apache Kyuubi 1.8 特性解读](<../文章/done-Apache Kyuubi 1.8 特性解读.md>)
+  - [坦白局！网易数帆解读 Apache Kyuubi 1.8 特性](<../文章/done-坦白局！网易数帆解读 Apache Kyuubi 1.8 特性.md>)
+  - [基于 Kyuubi 实现分布式 Flink SQL 网关](<../文章/done-基于 Kyuubi 实现分布式 Flink SQL 网关.md>)
+  - [大数据统一SQL网关：最新版Kyuubi整合Flink、Spark方案的实践案例总结](../文章/done-大数据统一SQL网关：最新版Kyuubi整合Flink、Spark方案的实践案例总结.md)
+  - [Kyuubi 实践 | 如何优化 Spark 小文件，Kyuubi 一步搞定！](<../文章/done-Kyuubi 实践 _ 如何优化 Spark 小文件，Kyuubi 一步搞定！.md>)
+  - [Kyuubi 实践 | 有了它！爱奇艺加速 Hive SQL 迁移 Spark](<../文章/done-Kyuubi 实践 _ 有了它！爱奇艺加速 Hive SQL 迁移 Spark.md>)
 - 原文链接：见各本地 Markdown 头部 `url` 字段。
 - 关键段落：Batch V2 数据库队列、Submitter/Backend 线程池拆分、Flink YARN Application Mode、Kerberos/LDAP、Hadoop 代理用户、Delegation Token、Authz、Engine share level、Web UI、Session/Operation/Engine。
 - 关键图：1.8 特性、Flink SQL Gateway 和实践文章均引用架构图或截图，但 Markdown 未保留图片。

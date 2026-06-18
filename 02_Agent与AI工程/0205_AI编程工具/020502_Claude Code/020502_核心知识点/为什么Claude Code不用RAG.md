@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[为什么Claude Code不用RAG？.md](<../文章/为什么Claude Code不用RAG？.md>)
+- 本地文件：[为什么Claude Code不用RAG？.md](<../文章/done-为什么Claude Code不用RAG？.md>)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=Mzg2ODI0MTg1Mw==&mid=2247490398&idx=1&sn=2bbe85856ab2b00c1326c8b78c6843d8&chksm=cfb6812ececf0ac9f773d8e8056f295d793837b7ac84ac902bafed7d763c710a9c4c2dcd091f&mpshare=1&scene=24&srcid=10287Ym2XgMjVTgWtx18mpfL&sharer_shareinfo=930dc41b7987e02b0b59b473bb155928&sharer_shareinfo_first=930dc41b7987e02b0b59b473bb155928#rd
 - 关键段落：文章把 Claude Code 的代码库检索路线概括为 Agentic Search，并与 Aider、Cursor、Windsurf 等路线对比。
 

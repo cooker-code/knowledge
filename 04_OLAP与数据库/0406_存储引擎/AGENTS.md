@@ -1,42 +1,28 @@
 # 存储引擎
 
-## 知识点入口
+> 分类规则、一二级类目定位、跨域归类边界以根 [目录划分.md](../../目录划分.md) 为准。
+> 文章理解的四步法、整理流程以根 [AGENTS.md](../../AGENTS.md) 为准。
+> 本文件只维护本领域的认知重点、排重指纹、已覆盖三级节点和待补缺口。
 
-- 本模块先看宏观流程，再看文章：[知识地图](040600_核心知识点/知识地图.md)。
-- 新文章必须先判断它讲的是“存储引擎机制”，还是上层数据库、缓存或业务系统的普通使用。
-- `文章/` 只作为临时入口；正式归档必须落到 `LSM-Tree/`、`RocksDB/`、`LevelDB/`、`FlowDB/` 或后续新增技术目录。
+## 三级节点入口
 
-## 类目定位
+| 节点 | 用途 |
+|---|---|
+| [040601_FlowDB](040601_FlowDB/AGENTS.md) | 面向时序场景的专用存储引擎案例 |
+| [040602_LSM-Tree](040602_LSM-Tree/AGENTS.md) | 写优化存储结构与 Compaction 抽象 |
+| [040603_LevelDB](040603_LevelDB/AGENTS.md) | 最小 LSM 样本，文件与版本组织 |
+| [040604_RocksDB](040604_RocksDB/AGENTS.md) | 嵌入式高性能 LSM 存储引擎 |
+
+## 用户认知重点
 
 | 项 | 内容 |
 |---|---|
-| 一级类目 | OLAP 与数据库 |
-| 二级类目 | 存储引擎 |
-| 核心问题 | 数据库或 KV 系统底层如何组织写入、内存表、WAL、SSTable、索引、Compaction、缓存和恢复 |
-| 不解决什么 | MySQL/PostgreSQL 普通 SQL 调优、Redis 应用缓存策略、OLAP 引擎完整架构，除非文章主问题是底层存储机制 |
-| 用户当前认知假设 | 用户需要把 LSM、RocksDB、LevelDB 和具体数据库的存储层关系理清，重点补写放大、读放大、空间放大和 Compaction 代价 |
+| 已知基础 | 用户知道很多数据库底层用 LSM 或 B+Tree，但具体存储层关系模糊 |
+| 待补边界 | LSM、RocksDB、LevelDB 与上层数据库（Doris/StarRocks/Kvrocks/HBase 等）的承载关系 |
+| 易偏差点 | 只关注性能结论，忽略写放大、读放大、空间放大与 Compaction 代价 |
+| 优先抽取 | WAL、MemTable、SSTable、Bloom、Manifest、Compaction、Block Cache |
 
-## 划分准则
-
-| 保留条件 | 归入位置 | 示例判断 |
-|---|---|---|
-| 讲 LSM-Tree 抽象结构、WAL、MemTable、SSTable、Compaction 策略 | `LSM-Tree/` | LSM 数据结构、论文学习、数据库筑基课 |
-| 讲 RocksDB 的具体模块、Compaction、参数、放大问题 | `RocksDB/` | RocksDB Compaction |
-| 讲 LevelDB 作为最小 LSM 样本的文件、Manifest、Flush、Compaction | `LevelDB/` | LevelDB 如何组织数据 |
-| 讲专用存储引擎完整设计，并以读写路径、索引和 Compaction 为主问题 | 对应技术目录，如 `FlowDB/` | FlowDB 时序存储引擎 |
-
-## 技术子目录
-
-| 技术/主题 | 目录 | 文章数 | 定位 |
-|---|---|---:|---|
-| LSM-Tree | [LSM-Tree/](040602_LSM-Tree) | 3 | 写优化存储结构与 Compaction 抽象 |
-| RocksDB | [RocksDB/](040604_RocksDB) | 1 | 嵌入式高性能 LSM 存储引擎 |
-| LevelDB | [LevelDB/](040603_LevelDB) | 1 | 最小 LSM 样本，适合理解文件与版本组织 |
-| FlowDB | [FlowDB/](040601_FlowDB) | 1 | 面向时序场景的专用存储引擎案例 |
-
-## 排重准则
-
-问题指纹：
+## 排重指纹
 
 ```text
 存储引擎本体 + WAL/MemTable/SSTable/索引/Compaction/缓存模块 + 核心机制 + 解决问题 + 放大代价/适用边界 + 对用户的认知增量
@@ -46,12 +32,23 @@
 |---|---|
 | 都讲 LSM | 按写路径、读路径、Compaction、版本管理、恢复、放大问题拆分 |
 | 都讲 Compaction | 比较是 size-tiered、leveled、universal，还是具体 RocksDB 参数和故障 |
-| 只讲某数据库用了 LSM | 如果不展开存储机制，只作为该数据库技术目录的背景，不进本目录 |
+| 只讲某数据库用了 LSM | 不展开存储机制只作为该数据库技术目录的背景，不进本目录 |
 | 只给性能结论 | 没有数据规模、基线、写入模式、压缩/缓存参数时降权 |
 
-## 后续追查
+## 已覆盖问题（按三级节点）
 
-- LSM：WAL、MemTable、SSTable、Bloom Filter、Manifest、Compaction、读写空间放大。
-- RocksDB：Column Family、Block Cache、Compaction Filter、Write Stall、参数调优。
-- LevelDB：文件组织、版本编辑、恢复路径。
-- FlowDB：时序场景约束、索引结构、性能证据和适用边界。
+| 节点 | 已覆盖 | 还缺 |
+|---|---|---|
+| LSM-Tree | 抽象结构、WAL/MemTable/SSTable、Compaction 策略候选承接 | Bloom Filter、Manifest、读写空间放大系统化沉淀 |
+| RocksDB | 嵌入式高性能 LSM 引擎候选承接 | Column Family、Block Cache、Compaction Filter、Write Stall、参数调优 |
+| LevelDB | 最小 LSM 样本候选承接 | 文件组织、版本编辑、Manifest、Flush、恢复路径完整沉淀 |
+| FlowDB | 时序专用存储引擎案例承接 | 时序场景约束、索引结构、性能证据和适用边界 |
+
+## 待补缺口
+
+| 优先级 | 项 | 为什么补 |
+|---|---|---|
+| 高 | LSM 写/读/空间放大系统对比 | 选型与参数调优的根本依据 |
+| 高 | RocksDB Compaction 与 Write Stall | 生产高频卡点 |
+| 中 | LevelDB Manifest 与版本编辑 | 理解 LSM 恢复路径的最小样本 |
+| 中 | FlowDB 时序场景适用边界 | 区分通用 LSM 与时序专用引擎 |

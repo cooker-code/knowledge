@@ -1,0 +1,139 @@
+> 已吸收至：[[03_数据工程与数仓/0302_离线数仓/030204_SQL书写/030204_核心知识点/SQL窗口滚动与序列问题|SQL窗口滚动与序列问题]]
+---
+title: 数仓面试——补充缺失日期和数据
+author: 数据仓库践行者
+date:
+url: http://mp.weixin.qq.com/s?__biz=MzU5NTc1NzE2OA==&mid=2247485711&idx=1&sn=498b980c3908f278f3491bd4b3185b5a&chksm=fe6c5810c91bd106acfdc16cca1cbc1ae682f1daa1f5c7568d85ada56bdfbc822c2f2456f166&mpshare=1&scene=24&srcid=0307yfs0RtzYF8ZoDyeqxgI0&sharer_sharetime=1678172857161&sharer_shareid=ac11efa86a18b42da87220879062c874#rd
+---
+
+Hi, 我是小萝卜算子
+
+前两天社群里小伙伴提了一个sql问题，让给提供思路，也是一道经典面试题，就是把数据后缺失的日期补充上，其他数据按上一个有值的数据补充
+
+**一、表结构**
+
+```
+CREATE TABLE `product`(  `name` string comment "名称",  `dt` string comment "日期",  `amount` int comment "销售金额")ROW FORMAT DELIMITED  FIELDS TERMINATED BY '\t'
+```
+
+**二、表数据**
+
+```
+name      dt        amountiphone   2023-02-03  100iphone   2023-02-05  300iphone   2023-02-08  150mac      2023-02-01  200mac      2023-02-02  400mac      2023-02-06  700airpods  2023-02-02  300airpods  2023-02-04  200airpods  2023-02-07  100airpods  2023-02-11  400
+```
+
+**三、期待结果**
+
+#
+
+# **四、问题分析**
+
+本题主要考察**两个知识点**
+
+|  |
+| --- |
+| 1：补充日期行  2：补充日期行对应的amount值 |
+
+**补充日期思路：**
+
+|  |
+| --- |
+| 1：如果数据库维护的有日期维表，根据日期区间段直接关联出来  2：根据日期区间构建数组，利用posexplode展开，然后使用date\_add函数利用展开的索引值获取连续的日期数据 |
+
+**补充amount思路：**
+
+|  |
+| --- |
+| 1：日期补充后，使之与补充目标行数据分成一组，然后再去join一下原表，把amount补充上  2：直接根据区间段posexplode把数据行展开，对应的amount自然补充 |
+
+**五、解决问题**
+
+**方式一：**
+
+```
+select     tmp.name,    tmp.curr_date,    pt.amount from    (select         tmp.name,        tmp.curr_date,        max(pt.dt) over(partition by tmp.name order by tmp.curr_date ) dt      from        (select             name,             date_add (minDt, col_idx) curr_date         from            (select                 name,                 min(dt) minDt,                max(dt) maxDt             from                 product             group by name) tmp         lateral VIEW posexplode (            split (space( datediff(maxDt, minDt) + 1), " (?!$)")) tbl_idx AS col_idx,col_val) tmp    left join         product pt    on tmp.name=pt.name and tmp.curr_date = pt.dt ) tmpinner join product pt on tmp.name= pt.name and tmp.dt = pt.dt ;
+```
+
+思路详解：
+
+|  |
+| --- |
+| 1：先获取每种产品的最大日期和最小日期  2：根据最大日期和最小日期区间段，利用space/split/等函数构建posexplode数据，展开成每个产品的连续日期  3：根据名称和日期 left  join 原始表, 没关联到数据的行利用窗口函数，补充成有数据的日期  4：再根据名称和日期关联原始表， 即可得到对应的结果 |
+
+**方式二：**
+
+```
+select     tmp.name,    tmp.curr_date,    first_value(amount) over(partition by name,dt order by curr_date) amountfrom    (    select         tmp.name,        tmp.curr_date,        max(pt.dt) over(partition by tmp.name order by tmp.curr_date ) dt, pt.amount      from        (select             name,             date_add (minDt, col_idx) curr_date         from            (select                 name,                 min(dt) minDt,                max(dt) maxDt             from product group by name) tmp lateral VIEW posexplode (             split (space( datediff(maxDt, minDt) + 1), " (?!$)")) tbl_idx AS col_idx,col_val) tmp    left join product pt    on tmp.name=pt.name and tmp.curr_date = pt.dt    ) tmp ;
+```
+
+思路详解：
+
+|  |
+| --- |
+| 1：前三个阶段同方式一  2：利用窗口函数  first\_value， 获取同一组中的第一个有数据的值，即可获得相应的结果 |
+
+**方式三：**
+
+```
+select    name,    date_add(dt,col_idx) dt,    amountfrom(    select        name,         dt,         amount,         lead(dt,1,dt) over(partition by name order by dt) next_dt    from    product ) tmp    lateral view posexplode (        split (space( datediff(next_dt, dt)), " (?!$)")) tbl_idx AS col_idx,col_val;
+```
+
+思路详解：
+
+|  |
+| --- |
+| 1：利用窗口函数lead,补充同一组的下一个日期  2：根据当前的日期和和补充的下一个日期，利用space/split等函数构建posexplde数据展开  3：利用date\_add函数和posexplode函数展开的索引获取相应日期，且把本行的amount数据补充上 |
+
+**六、总结**
+
+三种方式，从不同的角度出发，让小伙伴们对窗口函数的掌握更加熟悉，当然每种方式的效率不一样，但都有值得借鉴的思路
+
+方式一：主要考察数据日期展开，以及展开后针对缺失数据，怎么把它们归到有数据的目标组
+
+方式二：主要考察first\_value的运作方式
+
+方式三：是3种方式中效率最高的，利用小范围区间段展开，直接把对应的缺失数据补充上
+
+小伙伴们如果有好的思路，欢迎交流啊
+
+推荐阅读：
+
+[数仓面试——日期交叉问题](http://mp.weixin.qq.com/s?__biz=MzU5NTc1NzE2OA==&mid=2247484893&idx=1&sn=3147e75728bf905ec27ca2523f9b6239&chksm=fe6c54c2c91bddd4afb7f41e6aaaf374d243584c8ff0e0e1477514862eba6b95f9b4a1afb25c&scene=21#wechat_redirect)
+
+[数仓面试——连续登录问题进阶版](http://mp.weixin.qq.com/s?__biz=MzU5NTc1NzE2OA==&mid=2247484850&idx=1&sn=1123c0988aff02a2ab94e9eedb493810&chksm=fe6c54adc91bddbbfa485cd5f5f87d74093974c8f3ad42d4b2ed3775a8d97a9c0dedcdd73d9c&scene=21#wechat_redirect)
+
+[数仓面试——连续登录问题](http://mp.weixin.qq.com/s?__biz=MzU5NTc1NzE2OA==&mid=2247484833&idx=1&sn=2a965091ec5ec09fe10185fecbf92779&chksm=fe6c54bec91bdda83229a33ceefb0358f408ed24ac5048eb48dbe6911b795b1536971a98ab57&scene=21#wechat_redirect)
+
+---
+
+**精读源码，是一种有效的培养专长的方式~~**
+
+**如果你想培养自己的优势**
+
+**通过优势来提高自己在职场的影响力**
+
+**但不知道如何开始**
+
+**或者对自己没有信心**
+
+**欢迎加入我创办的硬核源码学习社群(收费，二期已结束，三期3月4号开始)**
+
+**精读内容：[SparkSql源码成神之路](http://mp.weixin.qq.com/s?__biz=MzU5NTc1NzE2OA==&mid=2247485325&idx=1&sn=dc2ea61206c63ca7d3089859d67ec227&chksm=fe6c5692c91bdf8475720aa329df306a04113aa9cd8b5c4016c1adff5de540d5a5045f9e7540&scene=21#wechat_redirect)**
+
+**每周六直播，历史录屏，随到随学，长期陪跑，如果你有兴趣，欢迎加微信了解（一个小而美的学习社群）**：
+
+Hey!
+
+我是小萝卜算子
+
+欢迎关注公众号
+
+每天学习一点点
+
+知识增加一点点
+
+思考深入一点点
+
+在成为最厉害最厉害最厉害的道路上
+
+很高兴认识你

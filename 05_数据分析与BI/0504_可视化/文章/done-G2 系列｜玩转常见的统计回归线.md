@@ -1,0 +1,68 @@
+---
+title: G2 系列｜玩转常见的统计回归线
+author: 数据可视化 AntV
+date:
+url: http://mp.weixin.qq.com/s?__biz=Mzg3NTU4OTc3OA==&mid=2247488127&idx=1&sn=9f344c8fd70d45fdd8356ef5f060e2f8&chksm=cf3e6b82f849e294999825face7c1978b06d23dda52345d432b621c7f36d98d1aee03b611a25&mpshare=1&scene=24&srcid=0609bVLGKXSdU703L21g90L3&sharer_sharetime=1686273474100&sharer_shareid=ac11efa86a18b42da87220879062c874#rd
+---
+
+
+> 已吸收至：[[05_数据分析与BI/0504_可视化/0504_核心知识点/图表选择与视觉编码准则|图表选择与视觉编码准则]]
+
+**回归分析是研究变量间统计关系的方法**
+
+当我们想研究变量间的统计关系时，我们可以借助  G2 5.0 + 第三方统计库（如：d3-regression）来可视化相关数据，看下因变量和自变量之间的关系与哪种回归线更加拟合。
+
+d3-regression（https://github.com/harrystevens/d3-regression）是一个 D3.js 的模块，用于**从二维数据计算统计回归**。它是无依赖关系的，其 API 公开可配置函数，这些函数以其他 D3 模块的方式转换输入数据。
+
+### **线性回归线**
+
+线回归线的形式为：
+
+### **二项式回归线**
+
+二项式回归线的形式为：
+
+### **指数回归线**
+
+指数回归线的形式为：
+
+### **对数回归线**
+
+对数回归线的形式为 
+
+### **多项式回归线**
+
+多项式回归线的形式为，其中 n 是多项式的阶数
+
+### 附：本文案例来源如下，特此表示感谢
+
+1. https://observablehq.com/@harrystevens/introducing-d3-regression
+2. https://echarts.apache.org/examples/zh/editor.html?c=scatter-linear-regression
+3. https://echarts.apache.org/examples/zh/editor.html?c=scatter-exponential-regression
+
+* G2 官网: https://g2.antv.antgroup.com/
+* G2 Github: https://github.com/antvis/g2
+
+AntV 征文有奖征文活动 
+
+🔥🔥🔥 进行中
+
+加 AntV 小助理微信 （think-gis）加入征文活动群
+
+[AntV 首届有奖征文：揭示数据之美，赢取丰厚奖品！](http://mp.weixin.qq.com/s?__biz=Mzg3NTU4OTc3OA==&mid=2247487314&idx=1&sn=802e6fa62fcf4174eefe640ad29d6696&chksm=cf3e76aff849ffb9708ca2e19c08a6debf2eb097ff73993d9218f15c8738c9efc608b275216a&scene=21#wechat_redirect)
+
+**回顾**
+
+* 《[AntV 图发布会圆满收官，G6 5.0 招募社区大牛，共同拥抱开源！](http://mp.weixin.qq.com/s?__biz=Mzg3NTU4OTc3OA==&mid=2247488115&idx=1&sn=0b19131ba873e025a5cdb752dfee5fb2&chksm=cf3e6b8ef849e298cccce732398389f0c8cbd9faa10374f09c6677dd8231c135df4c085b8c55&scene=21#wechat_redirect)》
+* 《[AIEarth入局遥感大模型，发布目标提取产品， 这会是遥感图像分割领域的GPT吗？](http://mp.weixin.qq.com/s?__biz=Mzg3NTU4OTc3OA==&mid=2247487406&idx=1&sn=41bd351ee384ce5284bfe40cb2d3bdb8&chksm=cf3e7653f849ff45a3ff9343fb8b80247b2ef7d894491120c670f0263f8749b15515e14aacfb&scene=21#wechat_redirect)》
+* 《[前端实现遥感图像交互性分割及数据矢量化，代码已开源](http://mp.weixin.qq.com/s?__biz=Mzg3NTU4OTc3OA==&mid=2247487404&idx=1&sn=c356f9268cfbb2f31e4bc53379332a30&chksm=cf3e7651f849ff47e0c9e064999a865c8c194811dca85c5546a6e7803ee76d09e7cf348692d5&scene=21#wechat_redirect)》
+
+AntV 数据可视化官网
+
+https://antv.antgroup.com/
+
+AntV 数据可视化 GitHub
+
+https://github.com/antvis
+
+✨ 关注我们，了解更多~

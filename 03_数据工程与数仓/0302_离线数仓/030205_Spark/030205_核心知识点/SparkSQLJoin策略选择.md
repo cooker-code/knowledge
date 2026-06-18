@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Spark SQL如何选择join策略](<../文章/Spark SQL如何选择join策略.md>)
+- 本地文件：[Spark SQL如何选择join策略](<../文章/done-Spark SQL如何选择join策略.md>)
 - 原文链接：`https://mp.weixin.qq.com/s?__biz=MzI0Mjc0MDU2NQ==&mid=2247484354&idx=1&sn=389aab2b4f4339df08d6997b7d33f479`
 - 关键段落：Catalyst `JoinSelection`、build side 判断、Broadcast Hash Join、Shuffle Hash Join、Sort Merge Join、Broadcast Nested Loop Join、Cartesian Product。
 - 关键图：无技术图。

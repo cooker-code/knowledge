@@ -12,13 +12,19 @@
 | 主要使用者 | 数据库内核工程师、存储系统工程师、平台工程师 |
 | 主要产出 | WAL、MemTable、SSTable、分层文件、Compaction 结果 |
 
+## 已沉淀核心知识点
+
+| 主题 | 文件 | 问题指纹 | 解决什么问题 | 认知增量 |
+|---|---|---|---|---|
+| WAL、MemTable、SSTable 与 Compaction 边界 | [LSMTreeWALMemTableSSTable与Compaction边界](040602_核心知识点/LSMTreeWALMemTableSSTable与Compaction边界.md) | LSM-Tree + WAL、MemTable、SSTable 与 Compaction 边界 + 机制/边界/验证 | LSM-Tree 用写入先进入 WAL/MemTable、顺序落盘 SSTable、后台 Compaction 的方式换取高写吞吐 | 形成可复用判断，不保留文章池 |
+
 ## 当前文章
 
 | 文章 | 阅读投入建议 | 处理建议 |
 |---|---|---|
-| [LSM数据结构在大数据领域的应用](文章/LSM数据结构在大数据领域的应用.md) | 精读候选 | 用于建立 LSM 在 HBase/Cassandra/RocksDB 中的横向位置 |
-| [数据库筑基课-高能长文说说LSM-Tree](文章/数据库筑基课-高能长文说说LSM-Tree.md) | 精读候选 | 只保留架构、Compaction、适用边界，降权泛泛扩展 |
-| [跟着论文学习数据库4：LSM-tree 数据结构](<文章/跟着论文学习数据库4：LSM-tree 数据结构.md>) | 精读候选 | 需要补原图或重建流程图 |
+| [LSM数据结构在大数据领域的应用](文章/done-LSM数据结构在大数据领域的应用.md) | 精读候选 | 用于建立 LSM 在 HBase/Cassandra/RocksDB 中的横向位置 |
+| [数据库筑基课-高能长文说说LSM-Tree](文章/done-数据库筑基课-高能长文说说LSM-Tree.md) | 精读候选 | 只保留架构、Compaction、适用边界，降权泛泛扩展 |
+| [跟着论文学习数据库4：LSM-tree 数据结构](<文章/done-跟着论文学习数据库4：LSM-tree 数据结构.md>) | 精读候选 | 需要补原图或重建流程图 |
 
 ## 核心判断
 

@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[flink-cdc 3.4.0笔记 MySqlSourceEnumerator是如何发现需要处理的数据库表的](<../文章/flink-cdc 3.4.0笔记 MySqlSourceEnumerator是如何发现需要处理的数据库表的.md>)
+- 本地文件：[flink-cdc 3.4.0笔记 MySqlSourceEnumerator是如何发现需要处理的数据库表的](<../文章/done-flink-cdc 3.4.0笔记 MySqlSourceEnumerator是如何发现需要处理的数据库表的.md>)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=Mzk0NjYzNzI5Mw==&mid=2247484943&idx=1&sn=7cf2e1647a7ce9070a2d659da6f10b7d
 - 关键段落：JobMaster 创建 SourceCoordinator、`MySqlSourceEnumerator#start`、`discoveryCaptureTables`、`TableDiscoveryUtils#listTables`、动态表扫描条件、removed/newlyAddedTables、`MySqlSnapshotSplitAssigner#startAsynchronouslySplit`。
 - 关键图：正文提到条件表达式和状态流转图，本地 Markdown 无图片。

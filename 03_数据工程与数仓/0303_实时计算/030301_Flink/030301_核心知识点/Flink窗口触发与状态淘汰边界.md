@@ -1,15 +1,11 @@
 # Flink 窗口触发与状态淘汰边界
 
-## 原文锚点
+## 来源
 
-- 本地文件：[Flink 中的 EventTimeTrigger 和 ProcessingTimeTrigger 详解](<../文章/Flink 中的 EventTimeTrigger 和 ProcessingTimeTrigger 详解.md>)
-- 本地文件：[白话Apache Flink FLIP-4 窗口清道夫升级：让数据淘汰更灵活](<../文章/白话Apache Flink FLIP-4 窗口清道夫升级：让数据淘汰更灵活.md>)
-- 本地文件：[Flink高频问题-Watermark（水位线）是什么？如何处理乱序数据？](../文章/Flink高频问题-Watermark（水位线）是什么？如何处理乱序数据？.md)
-- 原文链接：`http://mp.weixin.qq.com/s?__biz=MzIxMTE0ODU5NQ==&mid=2650248742&idx=1&sn=6c09219c8a18e4989812d568a91200b7`
-- 原文链接：`http://mp.weixin.qq.com/s?__biz=Mzg2NTU4NzU4Mw==&mid=2247484458&idx=1&sn=8327d7a0b6cb5eb48bf63abbc1280cb6`
-- 原文链接：`https://mp.weixin.qq.com/s?__biz=MzI3ODE4MjczNA==&mid=2651507919&idx=1&sn=657f6e9ea50ce28d8b5a00116be670e7`
-- 关键段落：EventTimeTrigger 依赖 Watermark 推进；事件时间和处理时间 Timer 都进入优先队列；FLIP-4 引入 `evictBefore` 和 `evictAfter`；Watermark 在多输入算子处取最小值，并可配合迟到数据侧输出。
-- 关键图：Watermark 示意图和窗口处理流程图在本地 Markdown 中没有图片链接；FLIP-4 文章只有文本流程块。
+- [Flink 中的 EventTimeTrigger 和 ProcessingTimeTrigger 详解](<../文章/done-Flink 中的 EventTimeTrigger 和 ProcessingTimeTrigger 详解.md>)
+- [白话Apache Flink FLIP-4 窗口清道夫升级：让数据淘汰更灵活](<../文章/done-白话Apache Flink FLIP-4 窗口清道夫升级：让数据淘汰更灵活.md>)
+- [Flink高频问题-Watermark（水位线）是什么？如何处理乱序数据？](../文章/done-Flink高频问题-Watermark（水位线）是什么？如何处理乱序数据？.md)
+- [流式计算的 watermark 耍起来，要注意哪些？](../文章/done-流式计算的 watermark 耍起来，要注意哪些？.md)
 
 ## 图片处理
 
@@ -150,8 +146,40 @@ Flink 窗口不是只看窗口大小：事件时间窗口依赖 Watermark 和 Ti
 | 窗口函数内过滤 | 计算时跳过部分数据 | 逻辑简单 | 数据仍占状态，不能降低窗口状态 | 轻量业务过滤 |
 | State TTL | 状态描述符级生命周期 | 适合 Keyed State 长期治理 | 不等同窗口边界 | 非窗口状态、Join、去重 |
 
+## Watermark 进阶陷阱（来自实测经验）
+
+以下补充自「流式计算的 watermark 耍起来，要注意哪些？」，基于实测场景：
+
+### 极端乱序数据破坏大量窗口
+
+**场景**：系统正在处理 9:00 时间段的数据，上游业务系统录入错误，混入一条业务时间为 20:00 的事件。
+
+**后果**：若 Watermark 延迟设置较小，该条数据会使 Watermark 直接跳到接近 20:00，导致 9:00–20:00 之间所有未关闭窗口立即触发并关闭。后续正常到达的 9:00–20:00 数据全部因找不到对应窗口而被丢弃（或路由到侧输出）。
+
+**判断规则**：
+- 极端脏数据（时间戳异常超前）的危害比乱序数据大得多——一条数据可以关闭数小时的窗口
+- 生产环境必须在 Source 侧或 Watermark 生成时做时间戳合法性校验（如拒绝超出当前系统时间 N 分钟的事件时间）
+- `WatermarkStrategy.forBoundedOutOfOrderness` 本身不过滤异常时间戳，校验需业务代码自己实现
+
+### 窗口触发等待时间不确定
+
+**场景**：滚动窗口 10 秒，允许延迟 0 秒。`[10, 20)` 窗口若 `>= 20` 的事件一直不来，该窗口永远不会触发。
+
+**判断规则**：窗口触发依赖的是 Watermark 推进，而不是"真实时间过了多久"。数据源停止或慢速时，Watermark 停止推进，所有事件时间窗口都挂起。
+- 排障优先看 Watermark 是否在推进（Flink Web UI → 算子 Watermark 指标）
+- 若数据源有空闲（无事件）期，需配置 `WatermarkStrategy.withIdleness(Duration)` 防止多源场景中空闲源拖住全局 Watermark
+
+### Watermark 运行原理（判断数据归属）
+
+当一条数据到达时，框架的判断逻辑：
+1. **事件时间 > 当前 Watermark**：更新 Watermark，数据未过期，分配到对应窗口
+2. **事件时间 ≤ 当前 Watermark，但仍有对应未关闭窗口**：数据迟到但未超期，落入窗口（受 `allowedLateness` 控制）
+3. **事件时间 ≤ 当前 Watermark，且对应窗口已关闭**：数据过期，丢弃（或路由到侧输出）
+
+Watermark 本身是周期性（默认 200 ms）从事件流中提取**最大业务时间戳**生成的，单调递增，不会回退。
+
 ## 后续追查
 
-- 关键词：EventTimeTrigger、ProcessingTimeTrigger、InternalTimerService、WatermarkStrategy、allowed lateness、sideOutputLateData、Window Evictor、evictBefore、evictAfter。
+- 关键词：EventTimeTrigger、ProcessingTimeTrigger、InternalTimerService、WatermarkStrategy、allowed lateness、sideOutputLateData、Window Evictor、evictBefore、evictAfter、withIdleness。
 - 相关技术：Flink State TTL、Flink SQL 窗口、Interval Join、反压、Checkpoint。
-- 需要补读的文章：当前 Flink 官方窗口文档、Watermark idleness、多输入 Watermark、Evictor 当前版本行为。
+- 需要补读的文章：当前 Flink 官方窗口文档、Watermark idleness、多输入 Watermark、Evictor 当前版本行为、时间戳合法性校验最佳实践。

@@ -65,20 +65,19 @@ flowchart LR
 
 | 主题 | 文件 | 问题指纹 | 解决什么问题 | 认知增量 |
 |---|---|---|---|---|
-| （待填入，精读候选处理后更新） | - | - | - | - |
-
+| InnoDB MVCC 与三日志边界 | [MySQLInnoDBMVCC与三日志边界](040201_核心知识点/MySQLInnoDBMVCC与三日志边界.md) | MySQL + InnoDB MVCC 与三日志边界 + 机制/边界/验证 | MySQL 的一致性不是一个 MVCC 概念就能解释完整：Undo Log 支撑历史版本和回滚，Redo Log 支撑崩溃恢复，Binlog 支撑复制和 CDC | 形成可复用判断，不保留文章池 |
+| 查询优化与分页边界 | [MySQL查询优化与分页边界](040201_核心知识点/MySQL查询优化与分页边界.md) | MySQL + 查询优化与分页边界 + 机制/边界/验证 | MySQL 查询优化的可复用部分是减少回表、避免深分页扫描、利用覆盖索引和把分析函数放在合适的数据量上 | 形成可复用判断，不保留文章池 |
+| 连接池与 Event Scheduler 边界 | [MySQL连接池与EventScheduler边界](040201_核心知识点/MySQL连接池与EventScheduler边界.md) | MySQL + 连接池与 Event Scheduler 边界 + 机制/边界/验证 | MySQL 接入层要区分应用连接池和数据库内置调度 | 形成可复用判断，不保留文章池 |
 ## 本地文章索引
 
 | 文章 | 技术对象 | 阅读投入建议 | 状态 |
 |---|---|---|---|
-| [FastAPI 不用 SQLModel，如何用 DBUtils 直连 MySQL 数据库](<文章/FastAPI 不用 SQLModel，如何用 DBUtils 直连 MySQL 数据库.md>) | 连接池 / FastAPI 集成 | 精读 | 精读候选 |
-| [MySQL定时任务，解放双手，轻松实现自动化](文章/MySQL定时任务，解放双手，轻松实现自动化.md) | Event Scheduler | 精读 | 精读候选 |
-| [MySQL常用函数](文章/MySQL常用函数.md) | 内置函数 | 略读 | 待处理 |
-| [MySQL数据分析：计算一个值在其分组中的百分等级](文章/MySQL数据分析：计算一个值在其分组中的百分等级.md) | 窗口函数 / 分析函数 | 精读 | 待处理 |
-| [MySQL的MVCC是什么？为什么需要MVCC？](文章/MySQL的MVCC是什么？为什么需要MVCC？.md) | InnoDB MVCC | 精读 | 精读候选 |
-| [企业级 MySQL 数据分析助手落地方案：基于 DeepAgents 的全流程实践](<文章/企业级 MySQL 数据分析助手落地方案：基于 DeepAgents 的全流程实践.md>) | MySQL + AI 分析 | 略读 | 待处理 |
-| [性能比拼: MySQL vs PostgreSQL](<../040202_PostgreSQL/文章/性能比拼_ MySQL vs PostgreSQL.md>) | 对标 PostgreSQL | 精读 | 精读候选（与 PG 共享）|
-| [一次 SQL 查询优化原理分析：900W+ 数据，从 17s 到 300ms](<文章/一次 SQL 查询优化原理分析：900W+ 数据，从 17s 到 300ms.md>) | InnoDB 分页优化 / 延迟关联 | 精读 | 从通用查询优化目录纠偏迁入 |
+| [FastAPI 不用 SQLModel，如何用 DBUtils 直连 MySQL 数据库](<文章/done-FastAPI 不用 SQLModel，如何用 DBUtils 直连 MySQL 数据库.md>) | 连接池 / FastAPI 集成 | 精读 | 精读候选 |
+| [MySQL定时任务，解放双手，轻松实现自动化](文章/done-MySQL定时任务，解放双手，轻松实现自动化.md) | Event Scheduler | 精读 | 精读候选 |
+| [MySQL数据分析：计算一个值在其分组中的百分等级](文章/done-MySQL数据分析：计算一个值在其分组中的百分等级.md) | 窗口函数 / 分析函数 | 精读 | 待处理 |
+| [MySQL的MVCC是什么？为什么需要MVCC？](文章/done-MySQL的MVCC是什么？为什么需要MVCC？.md) | InnoDB MVCC | 精读 | 精读候选 |
+| [性能比拼: MySQL vs PostgreSQL](<../040202_PostgreSQL/文章/done-性能比拼_ MySQL vs PostgreSQL.md>) | 对标 PostgreSQL | 精读 | 精读候选（与 PG 共享）|
+| [一次 SQL 查询优化原理分析：900W+ 数据，从 17s 到 300ms](<文章/done-一次 SQL 查询优化原理分析：900W+ 数据，从 17s 到 300ms.md>) | InnoDB 分页优化 / 延迟关联 | 精读 | 从通用查询优化目录纠偏迁入 |
 
 ## 后续追查
 

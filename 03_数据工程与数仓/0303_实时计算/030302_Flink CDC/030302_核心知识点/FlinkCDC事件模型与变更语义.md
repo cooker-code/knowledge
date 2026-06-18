@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[FlinkCdc中Event最详解，你不知道了吧？](../文章/FlinkCdc中Event最详解，你不知道了吧？.md)
+- 本地文件：[FlinkCdc中Event最详解，你不知道了吧？](../文章/done-FlinkCdc中Event最详解，你不知道了吧？.md)
 - 原文链接：`http://mp.weixin.qq.com/s?__biz=MzA3OTExMjA0MA==&mid=2247485253&idx=1&sn=9745e1473d66641c745584622fb25b4e&chksm=9e2b93335fb0a0cd7c8f6f15700f940ae372b70665300af7853adb5d9f8fbd9ee42bc9b814f0`
 - 关键段落：DataChangeEvent、SchemaChangeEvent、before/after/op/source 元数据解释。
 - 关键图：无。

@@ -1,9 +1,9 @@
 # ClickHouse
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[知识地图](040101_核心知识点/知识地图.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](040101_知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `040101_核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `040101_核心知识点/` 下的主题文件。
 
 
 ## 技术定位
@@ -59,11 +59,14 @@ flowchart LR
 
 | 主题 | 文件 | 问题指纹 | 解决什么问题 | 认知增量 |
 |---|---|---|---|---|
-| Skip Index 原理 | [ClickHouseSkipIndex原理](040101_核心知识点/ClickHouseSkipIndex原理.md) | ClickHouse + 索引 + skip index/minmax/set/bloomfilter/granularity + 数据排除 + 不等同 B-tree | ClickHouse 索引为什么不是传统 RDBMS 索引 | 把“索引加速查询”校准为“按 granule 排除不需要读的数据” |
-| MergeTree 批处理预排序与 LSM 边界 | [ClickHouseMergeTree批处理预排序与LSM边界](040101_核心知识点/ClickHouseMergeTree批处理预排序与LSM边界.md) | ClickHouse + MergeTree 存储 + Block/排序键/Part Merge/压缩 + 范围查询加速 + 小批写入和更新删除边界 | ClickHouse 为什么靠排序键、批处理、压缩和后台 merge 支撑范围分析查询 | 把“LSM/列存很快”校准为“读多写少 OLAP 的有序 part 取舍” |
-| AggregateFunction 与物化视图预聚合 | [ClickHouseAggregateFunction与物化视图预聚合边界](040101_核心知识点/ClickHouseAggregateFunction与物化视图预聚合边界.md) | ClickHouse + AggregatingMergeTree/Materialized View + State/Merge 聚合状态 + 写入时预聚合 + 删除和分区边界 | ClickHouse 物化视图如何保存聚合中间状态 | 把 ClickHouse MV 和 StarRocks 透明改写 MV 区分开 |
-| 分布式 JOIN 读放大与 GLOBAL 边界 | [ClickHouse分布式JOIN读放大与GLOBAL边界](040101_核心知识点/ClickHouse分布式JOIN读放大与GLOBAL边界.md) | ClickHouse + 分布式 JOIN + 普通 JOIN/GLOBAL JOIN/Colocate + 右表读放大与广播成本 + Join Key 预分布边界 | ClickHouse 分布式 JOIN 为什么容易出现读放大和广播成本 | 把“能 JOIN”校准为“右表复制方式决定成本” |
-
+| Skip Index 原理 | [ClickHouseSkipIndex原理](040101_核心知识点/ClickHouseSkipIndex原理.md) | ClickHouse + Skip Index 原理 + 机制/边界/验证 | 把“索引加速查询”校准为按 granule 排除不需要读取的数据。 | 形成可复用判断，不保留文章池 |
+| MergeTree 批处理预排序与 LSM 边界 | [ClickHouseMergeTree批处理预排序与LSM边界](040101_核心知识点/ClickHouseMergeTree批处理预排序与LSM边界.md) | ClickHouse + MergeTree 批处理预排序与 LSM 边界 + 机制/边界/验证 | ClickHouse 的写入和合并更接近读多写少 OLAP 的有序 part 取舍。 | 形成可复用判断，不保留文章池 |
+| AggregateFunction 与物化视图预聚合边界 | [ClickHouseAggregateFunction与物化视图预聚合边界](040101_核心知识点/ClickHouseAggregateFunction与物化视图预聚合边界.md) | ClickHouse + AggregateFunction 与物化视图预聚合边界 + 机制/边界/验证 | 物化视图保存聚合中间状态，适合预聚合，不等同于透明查询改写。 | 形成可复用判断，不保留文章池 |
+| 分布式 JOIN 读放大与 GLOBAL 边界 | [ClickHouse分布式JOIN读放大与GLOBAL边界](040101_核心知识点/ClickHouse分布式JOIN读放大与GLOBAL边界.md) | ClickHouse + 分布式 JOIN 读放大与 GLOBAL 边界 + 机制/边界/验证 | 分布式 JOIN 成本由右表复制、广播和分片对齐方式决定。 | 形成可复用判断，不保留文章池 |
+| 向量化执行与 Block Pipeline | [ClickHouse向量化执行与BlockPipeline](040101_核心知识点/ClickHouse向量化执行与BlockPipeline.md) | ClickHouse + 向量化执行与 Block Pipeline + 机制/边界/验证 | ClickHouse 的执行性能来自列式内存布局、Block 批处理、函数批量执行和 Pipeline 并行，而不是单点 SIMD 魔法 | 形成可复用判断，不保留文章池 |
+| ReplacingMergeTree 与 Upsert 边界 | [ClickHouseReplacingMergeTree与Upsert边界](040101_核心知识点/ClickHouseReplacingMergeTree与Upsert边界.md) | ClickHouse + ReplacingMergeTree 与 Upsert 边界 + 机制/边界/验证 | ClickHouse 原生 MergeTree 更适合追加写和批量分析，ReplacingMergeTree/UniqueMergeTree 这类更新方案是在列式分析系统里补实时更新能力 | 形成可复用判断，不保留文章池 |
+| 业务分析模型与日志留存边界 | [ClickHouse业务分析模型与日志留存边界](040101_核心知识点/ClickHouse业务分析模型与日志留存边界.md) | ClickHouse + 业务分析模型与日志留存边界 + 机制/边界/验证 | ClickHouse 适合把结构化事件、日志和标签数据组织成可扫描、可聚合的分析表 | 形成可复用判断，不保留文章池 |
+| 导入与外部引擎接入边界 | [ClickHouse导入与外部引擎接入边界](040101_核心知识点/ClickHouse导入与外部引擎接入边界.md) | ClickHouse + 导入与外部引擎接入边界 + 机制/边界/验证 | ClickHouse 的外部数据接入能力适合减少一次性迁移、全量导入或点查维表接入成本，但不应替代稳定的数据集成链路 | 形成可复用判断，不保留文章池 |
 ## 后续追查
 
 - 关键词：MergeTree、primary key、skip index、granule、mark、materialized view、GLOBAL JOIN、ReplacingMergeTree。

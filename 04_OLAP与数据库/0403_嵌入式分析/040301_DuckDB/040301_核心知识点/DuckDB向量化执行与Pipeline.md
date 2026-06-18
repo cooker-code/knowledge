@@ -1,8 +1,12 @@
 # DuckDB 向量化执行与 Pipeline
 
+## 来源
+- [DuckDB：一条 SQL 是怎么被_一批一批_执行的？](<../文章/done-DuckDB：一条 SQL 是怎么被_一批一批_执行的？.md>)
+- [深入分析DuckDB的向量化执行](<../文章/done-深入分析DuckDB的向量化执行.md>)
+
 ## 原文锚点
 
-- 本地文件：[DuckDB：一条 SQL 是怎么被"一批一批"执行的？](<../文章/DuckDB：一条 SQL 是怎么被_一批一批_执行的？.md>)
+- 本地文件：[DuckDB：一条 SQL 是怎么被"一批一批"执行的？](<../文章/done-DuckDB：一条 SQL 是怎么被_一批一批_执行的？.md>)
 - 原文链接：`https://mp.weixin.qq.com/s?__biz=MzUwOTU4OTU2NQ==&mid=2247483679&idx=1&sn=8f6d7a6e8250950bc4342b1e857f299b`
 - 关键段落：火山模型、向量化执行、DataChunk、Push-Based Pipeline、Pipeline Breaker、MonetDB/X100 对比。
 - 关键图：文章用文本图说明火山模型、DataChunk、Pipeline。

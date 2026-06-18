@@ -1,8 +1,11 @@
 # ClickHouse MergeTree 批处理预排序与 LSM 边界
 
+## 来源
+- [「ClickHouse系列」ClickHouse的优化之Block+LSM](<../文章/done-「ClickHouse系列」ClickHouse的优化之Block+LSM.md>)
+
 ## 原文锚点
 
-- 本地文件：[「ClickHouse系列」ClickHouse的优化之Block+LSM](../文章/「ClickHouse系列」ClickHouse的优化之Block+LSM.md)
+- 本地文件：[「ClickHouse系列」ClickHouse的优化之Block+LSM](../文章/done-「ClickHouse系列」ClickHouse的优化之Block+LSM.md)
 - 原文链接：`http://mp.weixin.qq.com/s?__biz=MzU3MzgwNTU2Mg==&mid=2247513879&idx=1&sn=f6d921cada4fb08b4b3e3abbd24e94a2`
 - 关键段落：Block 批处理、预排序、有序范围查询、写入后形成多个有序文件、后台合并、写入延迟和更新删除代价。
 - 关键图：正文提到查询读放大示意、缓存命中率关系图、未合并结果图，但本地 Markdown 没有图片。

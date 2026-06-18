@@ -1,10 +1,15 @@
 # Hadoop & HDFS
 
-## 知识点入口
+## 快速入口
 
-- 本模块先看宏观流程，再看文章：[知识地图](030201_核心知识点/知识地图.md)。
-- 新文章必须先判断主问题是 HDFS 存储本体、Hadoop MapReduce 计算模型、YARN 资源调度，还是其他技术借用 HDFS。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `030201_核心知识点/`。
+| 文件 | 用途 |
+|---|---|
+| [知识地图](030201_知识地图.md) | 全景知识域 + 已沉淀知识点索引 + 待补缺口 |
+| [版本记录](030201_版本记录.md) | Hadoop/HDFS/YARN 与 Cloudera Runtime 关键版本边界 |
+| [030201_核心知识点/](030201_核心知识点/) | 所有已蒸馏知识点文件 |
+| [文章/](文章/) | 原始文章存档，已蒸馏文章统一使用 `done-` 前缀 |
+
+新文章必须先判断主问题是 HDFS 存储本体、Hadoop MapReduce 计算模型、YARN 资源调度，还是其他技术借用 Hadoop 生态。
 
 ## 技术定位
 
@@ -20,12 +25,10 @@
 
 ## 官方锚点
 
-初始化阶段只使用本地资料，不联网补证；以下官方锚点后续精修时补证。
-
-- 官网：后续补证
-- GitHub：后续补证
-- 官方文档：后续补证
-- 架构文档：后续补证
+- 官网：[hadoop.apache.org](https://hadoop.apache.org/)
+- GitHub：[apache/hadoop](https://github.com/apache/hadoop)
+- 官方文档：[Apache Hadoop 文档](https://hadoop.apache.org/docs/current/)
+- 架构文档：[HDFS Architecture](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsDesign.html)、[YARN](https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html)
 
 ## 架构图
 
@@ -81,11 +84,13 @@ flowchart LR
 | HDFS 3.x 纠删码与元数据扩展边界 | [HDFS 3.x纠删码与元数据扩展边界](<030201_核心知识点/HDFS 3.x纠删码与元数据扩展边界.md>) | HDFS 3.x + EC/Federation/RBF/HA + 存储成本与元数据扩展 + 冷温数据边界 | 判断 HDFS 3.x 新特性适合解决哪些瓶颈 | 把“节省一半存储”校准为有 CPU、网络、操作限制和数据温度前提 |
 | HDFS DataNode 失联排障 | [HDFS DataNode失联排障](<030201_核心知识点/HDFS DataNode失联排障.md>) | HDFS + DataNode 心跳/副本恢复 + 失联排障 + 数据可靠性边界 | DataNode 失联时如何按网络、进程、磁盘、日志、副本修复定位 | 把面试题转成生产排障流程和验证动作 |
 | YARN 资源调度与运行边界 | [YARN资源调度与运行边界](030201_核心知识点/YARN资源调度与运行边界.md) | Hadoop + YARN + 队列/Container/Application/日志/HA + Spark/Flink 运行承载 + Kubernetes 对标 | YARN 文章如何归到 Hadoop 生态，而不是单独资源目录 | 把 YARN 校准为 Hadoop 生态资源层，和 Flink/Spark 运行时机制、Kubernetes 通用平台能力分开 |
+| MapReduce Shuffle 与 Spark Shuffle 边界 | [MapReduce Shuffle与Spark Shuffle边界](<030201_核心知识点/MapReduce Shuffle与Spark Shuffle边界.md>) | Hadoop + MapReduce Shuffle + Spark Shuffle 对标 + 批计算模型边界 + 引擎归类校准 | MapReduce 计算模型文章如何只吸收 Hadoop 生态边界，不抢 Spark 运行时主题 | 把 Shuffle 对比降维为计算模型对标，Spark 内部治理仍回 Spark |
 
-## 文章路由
+## 文章处理规则
 
 - YARN 相关文章统一放在本目录，不再维护独立资源与运维目录。
 - `Hadoop必须用JDK 8，Flink 2.2_1.20却要JDK 11？一文解决环境冲突` 保留在实时计算目录，因为主问题是 Flink 环境冲突。
+- `0929-Cloudera 7.3.1正式GA` 作为发行版版本资讯写入版本记录，不单独新建普通知识点。
 
 ## 后续追查
 

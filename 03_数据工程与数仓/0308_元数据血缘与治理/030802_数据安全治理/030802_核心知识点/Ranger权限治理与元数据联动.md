@@ -3,8 +3,8 @@
 ## 原文锚点
 
 - 本地文件：
-  - [网易基于Apache Ranger 的数据安全中心实践](<../文章/网易基于Apache Ranger 的数据安全中心实践.md>)
-  - [网易基于Apache Ranger 的数据安全中心实践](<../文章/网易基于Apache Ranger 的数据安全中心实践.md>)
+  - [网易基于Apache Ranger 的数据安全中心实践](<../文章/done-网易基于Apache Ranger 的数据安全中心实践.md>)
+  - [网易基于Apache Ranger 的数据安全中心实践](<../文章/done-网易基于Apache Ranger 的数据安全中心实践.md>)
 - 原文链接：见本地原文 front matter；本轮不联网校验。
 - 关键段落：Ranger 优势与不足、安全中心整体方案、低耦合/低侵入/流量分摊/一致性、权限检索模型、鉴权优化、冻结目录、动态脱敏、审计治理、owner 语义、Spark 权限/脱敏。
 - 关键图：Ranger 能力图、安全中心架构图、权限检索模型图、鉴权优化图、脱敏和 owner 图均缺失。

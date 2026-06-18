@@ -1,8 +1,12 @@
 # Doris FE 运维 SOP
 
+## 来源
+- [Doris FE 运维进阶：从“救火队员”到“系统专家”的SOP](<../文章/done-Doris FE 运维进阶：从“救火队员”到“系统专家”的SOP.md>)
+- [Apache Doris 故障自助排查指南（P0 篇）](<../文章/done-Apache Doris 故障自助排查指南（P0 篇）.md>)
+
 ## 原文锚点
 
-- 本地文件：[Doris FE 运维进阶：从“救火队员”到“系统专家”的SOP](<../文章/Doris FE 运维进阶：从“救火队员”到“系统专家”的SOP.md>)
+- 本地文件：[Doris FE 运维进阶：从“救火队员”到“系统专家”的SOP](<../文章/done-Doris FE 运维进阶：从“救火队员”到“系统专家”的SOP.md>)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=Mzk1NzU0MjMzOQ==&mid=2247485348&idx=1&sn=3abbe543c9c73eeb988582b0c69ed405
 - 关键段落：Follower/Observer/Master、多数派、部署架构、日志、版本、`SHOW FRONTENDS`、系统快照、`jstack`/`jmap`。
 - 关键图：无技术图。

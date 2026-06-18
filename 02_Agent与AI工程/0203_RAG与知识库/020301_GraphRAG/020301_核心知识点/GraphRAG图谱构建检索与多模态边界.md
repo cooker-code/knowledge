@@ -2,9 +2,9 @@
 
 ## 原文锚点
 
-- 本地文件：[03.从图数据库到RAG：用LangChain构建知识图谱应用](../文章/03.从图数据库到RAG：用LangChain构建知识图谱应用.md)
-- 本地文件：[04.构建图RAG管道：用LangChain+Neo4j构建与评估图RAG管道的全流程](../文章/04.构建图RAG管道：用LangChain+Neo4j构建与评估图RAG管道的全流程.md)
-- 本地文件：[MegaRAG：打破 GraphRAG 的文本次元壁，基于多模态知识图谱的 RAG 新范式](<../文章/MegaRAG：打破 GraphRAG 的文本次元壁，基于多模态知识图谱的 RAG 新范式.md>)
+- 本地文件：[03.从图数据库到RAG：用LangChain构建知识图谱应用](../文章/done-03.从图数据库到RAG：用LangChain构建知识图谱应用.md)
+- 本地文件：[04.构建图RAG管道：用LangChain+Neo4j构建与评估图RAG管道的全流程](../文章/done-04.构建图RAG管道：用LangChain+Neo4j构建与评估图RAG管道的全流程.md)
+- 本地文件：[MegaRAG：打破 GraphRAG 的文本次元壁，基于多模态知识图谱的 RAG 新范式](<../文章/done-MegaRAG：打破 GraphRAG 的文本次元壁，基于多模态知识图谱的 RAG 新范式.md>)
 - 原文链接：三个链接均保留在本地文件 frontmatter。
 - 关键段落：向量提供相似性、图提供关系；LLMGraphTransformer 抽取实体关系；GraphCypherQAChain 需要 Schema 和 few-shot；QAEvalChain 评估答案；MegaRAG 把视觉实体加入知识图谱并做双路检索。
 - 关键图：MegaRAG 文章描述整体架构图和 refinement 前后对比，但本地 Markdown 没有图片文件。

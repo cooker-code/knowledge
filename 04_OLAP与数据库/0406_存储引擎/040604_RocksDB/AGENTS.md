@@ -12,11 +12,17 @@
 | 主要使用者 | 存储系统工程师、数据库内核工程师、平台工程师 |
 | 主要产出 | SST 文件、WAL、MemTable、Compaction、Block Cache |
 
+## 已沉淀核心知识点
+
+| 主题 | 文件 | 问题指纹 | 解决什么问题 | 认知增量 |
+|---|---|---|---|---|
+| Compaction 读写空间放大边界 | [RocksDBCompaction读写空间放大边界](040604_核心知识点/RocksDBCompaction读写空间放大边界.md) | RocksDB + Compaction 读写空间放大边界 + 机制/边界/验证 | RocksDB Compaction 负责清理旧版本、合并 SST、控制层级和降低读放大 | 形成可复用判断，不保留文章池 |
+
 ## 当前文章
 
 | 文章 | 阅读投入建议 | 处理建议 |
 |---|---|---|
-| [RocksDB：Compaction 是如何工作的](<文章/RocksDB：Compaction 是如何工作的.md>) | 精读候选 | 可沉淀 Compaction、写放大、读放大、空间放大和写入抖动 |
+| [RocksDB：Compaction 是如何工作的](<文章/done-RocksDB：Compaction 是如何工作的.md>) | 精读候选 | 可沉淀 Compaction、写放大、读放大、空间放大和写入抖动 |
 
 ## 排重准则
 

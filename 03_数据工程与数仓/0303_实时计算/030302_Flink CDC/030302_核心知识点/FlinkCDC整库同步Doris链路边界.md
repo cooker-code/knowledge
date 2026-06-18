@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Flink CDC 3.0 构建 MySQL 整库同步 Doris](<../文章/Flink CDC 3.0 构建 MySQL 整库同步 Doris.md>)
+- 本地文件：[Flink CDC 3.0 构建 MySQL 整库同步 Doris](<../文章/done-Flink CDC 3.0 构建 MySQL 整库同步 Doris.md>)
 - 原文链接：http://mp.weixin.qq.com/s?__biz=MzA5MDQyNjMxMg==&mid=2649593820&idx=1&sn=edd429f5914a812ae1f2bde029c01d77
 - 官方锚点：[Apache Flink CDC Documentation](https://nightlies.apache.org/flink/flink-cdc-docs-stable/docs/get-started/introduction/)、[Apache Doris](https://doris.apache.org/)
 - 关键段落：Flink Standalone、Flink CDC Pipeline connector、`mysql-to-doris.yaml`、`server-id`、Doris FE 节点和自动建表属性。
@@ -135,3 +135,8 @@ flowchart LR
 - 相关技术：Doris Stream Load、Routine Load、Unique Key/Primary Key、Flink Checkpoint。
 - 需要补读的文章：Flink CDC Doris Sink 官方文档、Doris 导入事务语义、MySQL -> Doris DDL 演进处理。
 
+## 重新蒸馏补充（2026-06-18）
+
+| 来源 | 认知增量 | 处理 |
+|---|---|---|
+| [[03_数据工程与数仓/0303_实时计算/030302_Flink CDC/文章/done-一键实现万表 MySQL 整库同步至 Apache Doris]] | 补充该主题的生产案例、机制边界或排重样例。 | 重新判断后补入目标知识产物 |

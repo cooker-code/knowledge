@@ -1,9 +1,9 @@
 # Tool Calling
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[知识地图](020204_核心知识点/知识地图.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](020204_知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `020204_核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `020204_核心知识点/` 下的主题文件。
 
 
 ## 技术定位
@@ -77,3 +77,13 @@ flowchart LR
 - 关键词：Tool Calling、Function Calling、Tool Search、defer loading、tool reference、Namespace、Programmatic Tool Calling、Tool Use Examples、Prompt Cache。
 - 待读资料：后续补证 Tool Calling / Tool Search 官方文档、工具选择评测、工具返回结构设计。
 - 待补实验：在本地构造 30 个模拟工具，对比全量工具注入、分组注入、Tool Search/按需加载三种方式的输入 token、误选率和缓存稳定性。
+
+<!-- AUTO-DISTILL-02-START -->
+
+## 本轮文章处理收口
+
+- 已归档来源：`15` 篇，全部位于 `文章/` 且使用 `done-` 前缀。
+- 长期入口：[工具调用治理与协议边界.md](020204_核心知识点/工具调用治理与协议边界.md)。
+- 新文章进入时先对照知识地图、AGENTS 排重准则和已有主题页；只有新增机制、边界、反例、版本差异或实践证据时才新建主题页。
+
+<!-- AUTO-DISTILL-02-END -->

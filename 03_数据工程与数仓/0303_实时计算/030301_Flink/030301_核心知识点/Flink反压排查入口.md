@@ -1,11 +1,9 @@
 # Flink 反压排查入口
 
-## 原文锚点
+## 来源
 
-- 本地文件：[Flink反压介绍与排查](../文章/Flink反压介绍与排查.md)
-- 原文链接：https://mp.weixin.qq.com/s?__biz=MzE5OTA1NDYwNw==&mid=2247483660&idx=1&sn=25995f079fd5db83ce6dc9bb294b7acb
-- 关键段落：反压定义、产生原因、传播机制、Web UI 和 Metrics 排查、影响、优化手段。
-- 关键图：原文“反压链路示意图”为空代码块，无可用图。
+- [Flink反压介绍与排查](../文章/done-Flink反压介绍与排查.md)
+- [Flink 遭「背压」，Redis 助脱困](../文章/done-Flink 遭「背压」，Redis 助脱困..md)
 
 ## 图片处理
 
@@ -118,8 +116,81 @@ flowchart LR
 | 数据倾斜治理 | key 打散、rebalance、分区调整 | 解决热点 Task | 可能改变语义或顺序 | 热 key 明显 |
 | Buffer 调整 | 调整网络内存 | 缓解短期阻塞 | 不能解决根因 | 突发流量和轻微抖动 |
 
+## 生产案例：Redis 替换慢 DB 彻底消除背压
+
+**场景**：Flink 作业每条 Kafka 数据需查一次 ClickHouse 做碰撞（模糊匹配），数据库缓存无法命中，导致下游处理逐渐变慢，背压积累。资源（CPU/内存/IO）指标均正常，但作业越跑越慢。
+
+**根因判断准则**：
+- 资源未打满但背压持续 → 优先怀疑**外部调用延迟**（DB 查询慢、网络 RT 高）
+- 每条记录独立查询 + 条件不固定 → 无法利用 DB 缓存 → 必然成为瓶颈
+
+**解决路径**：
+1. 将被碰撞数据（30w 条）从 ClickHouse 迁移到单节点 Redis
+2. Flink Sink RichFunction 的 open() 中初始化 Jedis 连接，invoke() 中改为 `jedis.exists(key)` + `jedis.get(key)`
+3. **无需连接池**：每个 Subtask 在 open() 时创建一个长连接即可，8 并行度增加 8 个 Redis 连接（毛毛雨）
+
+**实测效果**：
+- 查询频率 500次/秒，Redis 负载几乎无变化
+- 优化后运行 80+ 小时，Checkpoint 告警消失，作业负载稳定
+- 与优化前（同资源同并行度）对比，吞吐对比明显
+
+**适用边界**：
+- 被碰撞数据量 ≤ 数亿条（单节点 Redis 可 hold）
+- 数据更新频率低（缓存一致性问题可接受）
+- 若数据量极大或更新频繁，考虑 Lookup Join + Partial Cache 或异步 IO
+
 ## 后续追查
 
 - 关键词：Flink backpressure、busy time、backpressured time、watermark lag、checkpoint duration、buffer debloating。
 - 相关技术：Unaligned Checkpoint、Flink State、Sink 幂等写入、Kafka Lag。
 - 需要补读的文章：Flink 反压深度排查、Buffer Debloating、慢 Sink 排障、数据倾斜治理。
+
+---
+
+## 追加：Credit-Based 流量控制机制（来源：美团面试文 + IT那活儿文）
+
+### 来源补充
+- [美团面试：Flink 反压机制（Backpressure）是如何实现的？出现反压如何解决?](../文章/done-美团面试：Flink 反压机制（Backpressure）是如何实现的？出现反压如何解决_.md)
+- [Flink反压原理及分析](../文章/done-Flink反压原理及分析.md)
+- [《Flink 性能调优保姆级教程：并行度怎么设？反压怎么查？这篇讲透了！》](../文章/done-《Flink 性能调优保姆级教程：并行度怎么设？反压怎么查？这篇讲透了！》.md)
+
+### Credit-Based 流控机制（Flink 1.5+）
+
+> 验证版本：Flink 1.5+
+
+Flink 1.5 以后采用基于 Credit 的流量控制，核心组件：
+- **ResultPartition**：上游任务生产的数据分区
+- **InputGate**：下游任务消费数据的入口
+- **LocalBufferPool**：管理网络缓冲区的本地缓冲池
+- **NetworkBufferPool**：全局网络缓冲区资源池
+
+**流控逻辑**：
+1. 下游算子根据可用缓冲区数量向上游发送 Credit 值
+2. 上游只能在收到足够 Credit 时才发送数据
+3. 下游处理慢 → Credit 减少 → 上游自动降速
+4. 无需手动配置，自动适应负载变化
+
+**反压传播路径（精确版）**：
+```
+输出缓冲区: resultPartition -> local bufferpool -> network bufferpool
+输入缓冲区: inputGate -> local bufferpool -> network bufferpool
+下游消费慢 -> 输入 local bufferpool 满 -> Credit 不足 -> 上游发送受阻 -> 上游 outPoolUsage 升高
+```
+
+### 反压影响链（新增）
+- Checkpoint Barrier 在拥塞的 buffer 中流动缓慢 → Alignment Duration 增加 → Checkpoint 超时
+- state 数据持续写入但快照失败 → state 变大
+- Source 降速 → Kafka 数据积压
+- 极端情况：无法 Checkpoint → 重启后从上一个成功 Checkpoint 恢复 → OOM 风险
+
+### outPoolUsage 精确定位反压根因（新增）
+- 某算子 `outPoolUsage` 接近 1.0，下游 `inPoolUsage` 正常 → **瓶颈在该算子自身**（处理速度跟不上）
+- 某算子 `outPoolUsage` 接近 1.0，且下游 `inPoolUsage` 也高 → **瓶颈在更下游**（该算子被堵）
+- Web UI Backpressure 显示 HIGH 的算子通常是**受害者**，需继续向下追查
+
+### 反压状态判定阈值（新增）
+| 状态 | 含义 | 处理建议 |
+|---|---|---|
+| OK (0%) | 无反压 | 正常 |
+| LOW (< 10%) | 轻微反压 | 观察 |
+| HIGH (> 50%) | 严重反压 | 立即排查 |

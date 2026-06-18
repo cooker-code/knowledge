@@ -3,11 +3,11 @@
 ## 原文锚点
 
 - 本地文件：
-  - [Hive 性能调优与优化技巧](<../文章/Hive 性能调优与优化技巧.md>)
-  - [Hive参数与性能企业级调优（建议收藏）](../文章/Hive参数与性能企业级调优（建议收藏）.md)
-  - [Hive常用性能优化方法实践全面总结](../文章/Hive常用性能优化方法实践全面总结.md)
-  - [Hive性能调优（二）](../文章/Hive性能调优（二）.md)
-  - [Hive 大表全局排序如何优雅加速？PawSQL 让 ORDER BY + LIMIT 性能提升256倍](<../文章/Hive 大表全局排序如何优雅加速？PawSQL 让 ORDER BY + LIMIT 性能提升256倍.md>)
+  - [Hive 性能调优与优化技巧](<../文章/done-Hive 性能调优与优化技巧.md>)
+  - [Hive参数与性能企业级调优（建议收藏）](../文章/done-Hive参数与性能企业级调优（建议收藏）.md)
+  - [Hive常用性能优化方法实践全面总结](../文章/done-Hive常用性能优化方法实践全面总结.md)
+  - [Hive性能调优（二）](../文章/done-Hive性能调优（二）.md)
+  - [Hive 大表全局排序如何优雅加速？PawSQL 让 ORDER BY + LIMIT 性能提升256倍](<../文章/done-Hive 大表全局排序如何优雅加速？PawSQL 让 ORDER BY + LIMIT 性能提升256倍.md>)
 - 原文链接：见各本地 Markdown 头部 `url` 字段。
 - 关键段落：执行计划、数据倾斜、MapJoin/Bucket MapJoin/SMB Join、分区裁剪、谓词下推、小文件治理、CBO、向量化、`ORDER BY + LIMIT` 全局排序。
 - 关键图：多数文章未保留技术图；`Hive常用性能优化方法实践全面总结` 提到 PredicatePushDown 图但 Markdown 无图片。

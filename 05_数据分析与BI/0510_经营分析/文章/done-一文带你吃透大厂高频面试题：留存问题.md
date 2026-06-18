@@ -1,0 +1,253 @@
+> 已吸收至：[[05_数据分析与BI/0510_经营分析/0510_核心知识点/用户分层留存与LTV模型|用户分层留存与LTV模型]]
+---
+title: 一文带你吃透大厂高频面试题：留存问题
+author: 涤生大数据
+date:
+url: https://mp.weixin.qq.com/s?__biz=Mzg4MTU5OTU0OQ==&mid=2247492093&idx=1&sn=04011e0a5a95d4e049c6e17d15a54004&chksm=ce394f074e4fc3cc17190a1160af04ab2275e97be36829870093a70eb94502cd0d02e0a9b2bd&mpshare=1&scene=24&srcid=0629jhZpnc6UhyMMLEFBofQU&sharer_shareinfo=70a0f104e80796a00eacba7808813a5f&sharer_shareinfo_first=70a0f104e80796a00eacba7808813a5f#rd
+---
+
+点击上方蓝字关注我们
+
+# 1.什么是留存问题，它的应用场景有哪些？
+
+**什么是留存问题**
+
+* 留存问题，简而言之，就是关于如何保持用户或客户在使用产品或服务一段时间后的持续留存和活跃度的问题。
+* 留存率的高低直接反映了产品或服务的吸引力、用户满意度以及企业的运营能力。
+* 一般而言，题目中出现"留存率"，"次日留存率"等字眼时，可以将题目定位为留存问题。
+
+**留存问题的应用场景**
+
+* 留存问题是企业中非常常见的SQL问题，要求所有人必须掌握！
+* 新用户留存：主要考察一批新用户(首次登录/活跃)后续的留存情况，通过分析新用户的行为数据，企业可以找出影响新用户留存的关键因素，如产品易用性、用户体验、价值感知等，并据此优化产品或服务，提高新用户留存率。
+* 产品功能留存：对产品或服务中各个功能的留存情况进行跟踪和分析。通过对比不同功能的留存率，企业可以了解哪些功能更受用户欢迎，哪些功能需要改进或优化。
+* 用户生命周期：用户生命周期是指用户从首次接触产品或服务到最终流失或成为忠实用户的整个过程。通过跟踪和分析用户在生命周期中的不同阶段的留存情况，可以制定更有针对性的用户运营策略，如新手引导、成长激励、挽留措施等，从而延长用户生命周期，提高用户价值和忠诚度。
+* 来源入口留存：类似于产品功能留存，主要考察通过不同渠道/入口进入产品的用户后续的留存情况。诚然，用户是否留存很大程度上取决于产品本身是否有足够的吸引力，但从哪里来的用户质量更高，也是我们需要关注的。
+
+**知识点补充(重要)：7日留存率vs 7日内留存率**
+
+**7日留存率**
+
+* 定义：指在某一天注册或首次活跃的用户中，在七天之后仍然活跃的用户所占的比例。
+* 计算公式：七日留存率 = （七日后再次活跃用户数 / 首日活跃用户数）× 100%。
+* 示例：假设某应用在1月1日有100位新注册用户，为了计算这100位用户的七日留存率，我们需要关注这些用户在1月7日（即注册后的第七天）是否再次使用该产品。
+* 衡量标准：它主要衡量的是用户在一个完整的使用和体验周期（一周）后的留存情况，有助于预估忠诚度用户的比例。
+
+**7日内留存率**
+
+* 定义：指用户在新增或使用产品后，在往后一周内任意一天回到产品的比例。
+* 计算方式：通常是将用户在新增或使用产品后一周内（第1天至第7天）每天回到产品的用户数相加并去重，然后除以首日新增用户数。
+* 示例：如果第一天新增了100个用户，在接下来的七天内，分别有4、2、15、10、8、5、17个用户回到产品(这些用户不重复)，那么7日内留存率为（4+2+15+10+8+5+17）/ 100 = 61/100 = 61%。
+* 衡量标准：它关注的是用户在一周时间窗口内的活跃情况，可以反映用户在这一段时间内的整体留存水平。
+
+# 2.留存问题的常规解法
+
+1. 首先，需要确定基准用户群体，也就是确定要考察的用户群体是某日首次登录的，还是某日有过活跃的等等
+2. 其次，就是为留存记录打标，一般来说，需要将第一步确定好的基准用户群体作为主表，去left join后续全量的活跃记录，然后使用datediff()函数计算是否符合留存条件，并打标(使用if()函数或者case when)(1就是符合，0就是不符合)
+3. 最后，计算留存率，也就是直接按照目标粒度(通常是日期)进行分组，计算留存率
+
+* 可以直接使用 留存用户数 / 基准用户群体用户数 来计算，即count(distinct if(标签 = 1, user\_id, null)) / count(distinct user\_id)，但是效率相对低一些(因为在大数据场景下，count(distinct)本身计算就慢)
+* 也可以先按照 日期+用户 进行分组(保证在每天的记录中，每个用户的记录只有一条)，标记一下每天有留存的用户有哪些，然后直接用 group by 日期 + sum(留存标记) / count(1) 来计算留存率
+
+# 3.案例演示
+
+题目要求：编写代码，输出所有 有用户首次活跃 的日期的 首日登录用户的次日留存率
+
+数据示例：
+
+1. 第一步，确定基准用户群体，在本题中为：首次活跃用户
+
+```
+with new_data as (
+    -- 1.清洗数据
+    select user_id, date_format(log_time, 'yyyy-MM-dd') as login_date
+    from ods_game_dev.user_login_log_temp
+    group by user_id, date_format(log_time, 'yyyy-MM-dd')
+)
+, user_first_login_date as (
+    -- 2.计算每个用户首次登陆的日期(PS：这里也可以写成group by + min()的形式)
+    select user_id, login_date
+    from
+    (
+        select user_id, login_date, row_number() over (partition by user_id order by login_date) as rk
+        from new_data
+    ) as a
+    where rk = 1
+)
+```
+
+1. 第二步，为留存记录打标
+
+```
+select   a.user_id
+        ,a.login_date as a_login_date
+        ,b.login_date as b_login_date
+        ,if(datediff(b.login_date, a.login_date) = 1, 1, 0) as is_login_1d
+from user_first_login_date as a
+left join new_data as b
+on a.user_id = b.user_id
+```
+
+1. 第三步，计算留存率
+
+```
+-- 3.最后，用首次登陆日期作为主表，去关联全量数据，关联条件为：用户id一致
+select a_login_date, nvl(round(count(distinct if(is_login_2d = 1, user_id, null)) / count(distinct user_id), 2), 0.00) as liucun_rate_1d
+_1from
+(
+    select   a.user_id
+            ,a.login_date as a_login_date
+            ,b.login_date as b_login_date
+            ,if(datediff(b.login_date, a.login_date) = 1, 1, 0) as is_login_2d
+    from user_first_login_date as a
+    left join new_data as b
+    on a.user_id = b.user_id
+) as a
+group by a_login_date
+```
+
+1. 完整版Code示例
+
+```
+with new_data as (
+    -- 1.清洗数据
+    select user_id, date_format(log_time, 'yyyy-MM-dd') as login_date
+    from ods_game_dev.user_login_log_temp
+    group by user_id, date_format(log_time, 'yyyy-MM-dd')
+)
+, user_first_login_date as (
+    -- 2.计算每个用户首次登陆的日期(PS：这里也可以写成group by + min()的形式)
+    select user_id, login_date
+    from
+    (
+        select user_id, login_date, row_number() over (partition by user_id order by login_date) as rk
+        from new_data
+    ) as a
+    where rk = 1
+)
+
+-- 3(方法一).最后，用首次登陆日期作为主表，去关联全量数据，关联条件为：用户id一致
+select a_login_date, nvl(round(count(distinct if(is_login_2d = 1, user_id, null)) / count(distinct user_id), 2), 0.00) as liucun_rate
+from
+(
+    select   a.user_id
+            ,a.login_date as a_login_date
+            ,b.login_date as b_login_date
+            ,if(datediff(b.login_date, a.login_date) = 1, 1, 0) as is_login_2d
+    from user_first_login_date as a
+    left join new_data as b
+    on a.user_id = b.user_id
+) as a
+group by a_login_date
+
+-- 3(方法二).相比于方法一，方法二没有使用count(distinct)的方法，效率更高一些
+select a_login_date
+      ,nvl(round(sum(is_login_2d) / count(1), 2), 0.00) as liucun_rate
+from
+(
+    select   a.user_id
+            ,a.login_date as a_login_date
+            ,max(if(datediff(b.login_date, a.login_date) = 1, 1, 0)) as is_login_2d
+    from user_first_login_date as a
+    left join new_data as b
+    on a.user_id = b.user_id
+    group by a.user_id, a.login_date
+) as a
+group by a_login_date
+```
+
+1. 图形演示
+
+# 4.总结
+
+* 大多数应用场景和面试中，都是侧重于对某日留存率的考察，对于某日内留存率的考察相对较少，不过也强烈建议掌握其计算方式(两者的区别在前面有提到过)
+* 留存率问题的解法相对固定，主要就是三步走：
+
+1. 确定基准用户群体
+2. 为留存打标
+3. 计算留存率
+
+* 需要注意的是，我们在计算留存之前，往往需要对数据进行简单处理(group by 日期 + 用户 即可)，确保每天每个用户的记录只有一条，否则后面关联后会膨胀
+
+# 5.题目练习
+
+用户登陆表：ods\_game\_dev.user\_login
+
+题目要求：计算每天的登录人数、次日、3日、7日、30日留存率，留存率保留两位小数
+
+结果示例:
+
+答案解析：
+
+```
+WITH user_log AS (
+      -- 去重每天登录数据
+      SELECT user_id
+            ,time as log_day   
+        FROM ods_game_dev.user_login
+    GROUP BY user_id,time
+),
+ daily_retention AS (
+    SELECT  T1.user_id,
+            T1.log_day,
+            max( CASE WHEN datediff(t2.log_day, t1.log_day) = 1 THEN 1 else 0 END) as day1_retention,
+            max( CASE WHEN datediff(t2.log_day, t1.log_day) = 2 THEN 1 else 0 END) as day3_retention,
+            max( CASE WHEN datediff(t2.log_day, t1.log_day) = 6 THEN 1 else 0 END) as day7_retention,
+            max( CASE WHEN datediff(t2.log_day, t1.log_day) = 29 THEN  1 else 0 END) as day30_retention
+         FROM user_log  t1
+    LEFT JOIN user_log t2 ON t1.user_id = t2.user_id
+    group by T1.user_id,T1.log_day
+)
+SELECT
+    log_day,
+    COUNT(user_id) as num_users,
+    round(sum(day1_retention) /COUNT(user_id),2) as day1_retention_rate,
+    round(sum(day3_retention) / COUNT(user_id),2) as day3_retention_rate,
+    round(sum(day7_retention) / COUNT(user_id) ,2)as day7_retention_rate,
+    round(sum(day30_retention) / COUNT(user_id),2) as day30_retention_rate
+FROM daily_retention
+GROUP BY log_day;
+```
+
+节选自涤生内部SQL3.5级群十大SQL专题内容，十大专题一网打尽中大厂SQL面试，让SQL面试轻松通过！！！！
+
+往期推荐
+
+[面试加分秘籍：校招数据倾斜场景下的SQL优化方案](https://mp.weixin.qq.com/s?__biz=Mzg4MTU5OTU0OQ==&mid=2247491889&idx=1&sn=74f94f4a5305bfbca70b4e90b3293900&scene=21#wechat_redirect)
+
+[一文带你吃透大厂高频面试题：行转列＆列转行问题](https://mp.weixin.qq.com/s?__biz=Mzg4MTU5OTU0OQ==&mid=2247491887&idx=1&sn=2d5566e149cf12bc39049bbf181e6a6c&scene=21#wechat_redirect)
+
+[轻松拿下SQL校招&社招面试，这些知识点你一定要会！](https://mp.weixin.qq.com/s?__biz=Mzg4MTU5OTU0OQ==&mid=2247491823&idx=1&sn=92dda16961aa2941ec3c2b57e354a701&scene=21#wechat_redirect)
+
+[26届秋招收割offer指南](https://mp.weixin.qq.com/s?__biz=Mzg4MTU5OTU0OQ==&mid=2247491782&idx=1&sn=55e1564f7c63b95b50fd22cf2f28d4d2&scene=21#wechat_redirect)
+
+[一文吃透！Doris 冷热分层技术全解析](https://mp.weixin.qq.com/s?__biz=Mzg4MTU5OTU0OQ==&mid=2247491732&idx=1&sn=83e420e2f61d9111c1e7d60c469c42e7&scene=21#wechat_redirect)
+
+[一文弄懂离线数仓中小文件问题](https://mp.weixin.qq.com/s?__biz=Mzg4MTU5OTU0OQ==&mid=2247491663&idx=1&sn=517d86a13bab43b31ca2d5ad987ba01f&scene=21#wechat_redirect)
+
+[3月这些同学拿到大数据offer，他们都是啥条件？](https://mp.weixin.qq.com/s?__biz=Mzg4MTU5OTU0OQ==&mid=2247491701&idx=1&sn=2bd83c6c27161f3737bfaf73ab4a8bb4&scene=21#wechat_redirect)
+
+[4月份30+同学拿到大数据offer，他们都是啥条件？](https://mp.weixin.qq.com/s?__biz=Mzg4MTU5OTU0OQ==&mid=2247491855&idx=1&sn=746bfe7d5999edf72ee206f169e83809&scene=21#wechat_redirect)
+
+[看完这篇SQL解析过程，随便面试官拷打都不怕](https://mp.weixin.qq.com/s?__biz=Mzg4MTU5OTU0OQ==&mid=2247491558&idx=1&sn=43ae017318ccc2e33425d994f6b022c7&scene=21#wechat_redirect)
+
+[校招面试全攻略：揭秘校招面试四步走](https://mp.weixin.qq.com/s?__biz=Mzg4MTU5OTU0OQ==&mid=2247491556&idx=1&sn=f87e59fe5f5a7869db40361213998ee6&scene=21#wechat_redirect)
+
+[SparkSQL面试到这些内容，你能一次说清楚吗？（上）](https://mp.weixin.qq.com/s?__biz=Mzg4MTU5OTU0OQ==&mid=2247491388&idx=1&sn=9e40c8a79e928ad857de001adb7f6abf&scene=21#wechat_redirect)
+
+[1-2月大数据学员Offer榜单：这些求职密码正在被验证！](https://mp.weixin.qq.com/s?__biz=Mzg4MTU5OTU0OQ==&mid=2247491387&idx=1&sn=c966514af5281ab7af4f54f42bb661c2&scene=21#wechat_redirect)
+
+更多上岸信息请参考：
+
+[涤生学员就业情况](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg4MTU5OTU0OQ==&action=getalbum&album_id=3884092704090701828&scene=21#wechat_redirect)
+
+为什么选择涤生大数据？
+
+* **1.跟随行业专家学习**：我们的导师不是传统的讲师，而是实际的行业专家。他们都是来自国内一线大厂的资深开发，大数据技术专家等。
+
+  **2.跟企业在职开发一起学习**：涤生的社招学员目前60%+是企业在职进阶学员，基本各大厂的进阶学员都有，他们的薪资从10k,15k,20k，25k,30k，35k,40k。所以你会跟很多企业在职人员一起交流学习
+* **3.定制化课程设计：**结合每位学员的进行定制化教学，学习规划，让你的学习更有重点；结合每个学员的时间规划学习进度，督促考核，让学习变得更加灵活。
+* **4.专业教学和平台：**术业有专攻，企业怎么用，面试怎么面，我们就怎么学，涤生让大数据学习不迷惘。目前涤生采购10台服务器，自研提供一站式大数据平台供学习使用，拒绝虚拟机。
+* 5.**专业的简历面试辅导**：涤生内部所有同学简历面试辅导都包含在内，从学习到入职试用期全流程提供保障服务。2024年截止当前涤生到简历面试7级群的学员就业率98%+，2024年上岸200+同学，60+入职一线中大厂。当然也有不少培训找不到工作的同学，以及裁员的同学，空窗期太久，最终跟着我们搞顺利上岸
+* **6.不错的口碑：**在涤生这，只要你不摆烂，我们不抛弃不放弃。目前涤生的学员大概有25%是老学员推荐和转化。
+* 7.专门的校招大数据：校招跟社招不一样。全网独家的校招大数据课程，专门的校招团队辅导，今年是第五届校招大数据，内部校招面试资料覆盖一线中大厂90%的面试。从校招规划+系统的大数据课程+实习面试辅导+简历面试辅导+实习期辅导+试用期辅导，一次收费一条龙全流程贯穿。2024春招+2025年春招累计50+同学拿到一线中大厂offer

@@ -1,0 +1,125 @@
+> 已吸收至：[[03_数据工程与数仓/0302_离线数仓/030204_SQL书写/030204_核心知识点/SQL窗口滚动与序列问题|SQL窗口滚动与序列问题]]
+---
+title: 数仓面试——日期交叉问题
+author: 数据仓库践行者
+date:
+url: http://mp.weixin.qq.com/s?__biz=MzU5NTc1NzE2OA==&mid=2247484893&idx=1&sn=3147e75728bf905ec27ca2523f9b6239&chksm=fe6c54c2c91bddd4afb7f41e6aaaf374d243584c8ff0e0e1477514862eba6b95f9b4a1afb25c&mpshare=1&scene=24&srcid=0311MjKfgH2dR0fUyN4XtOa4&sharer_sharetime=1646973680482&sharer_shareid=4145ee29355a80b1b2b01921ded70e3a#rd
+---
+
+Hi, 我是小萝卜算子
+
+**一、简介**
+
+日期交叉去重问题，是一个经典sql，本文以一个电脑品牌促销的例子从不同的角度来看待解析这个问题，有更好方法的同学，欢迎私下交流...
+
+**二、表结构**
+
+|  |
+| --- |
+| **CREATE TABLE `computer\_promotion`(**  **`brand` string **COMMENT '用户主键'**,**  **`start\_date` string ****COMMENT '开始日期'****,**  **`end\_date` string ****COMMENT '结束日期'****)** |
+
+**三、表数据**
+
+|  |
+| --- |
+| **brand start\_date end\_date**  **lenovo 2022-02-03 2022-02-07**  **lenovo 2022-02-10 2022-02-23**  **asus 2022-02-08 2022-02-24**  **asus 2022-02-13 2022-02-17**  **asus 2022-02-15 2022-02-28**  **dell 2022-02-04 2022-02-17**  **dell 2022-02-07 2022-02-21**  **hp 2022-02-06 2022-02-26**  **hp 2022-02-08 2022-02-19**  **hp 2022-02-15 2022-02-23** |
+
+**四、需求： 根据表数据求出每种电脑品牌促销的天数**
+
+****方********法一：根据开始和结束时间拆解促销日期（开始时间为正，结束时间为负）****
+
+```
+ select     brand,    sum(days) total_daysfrom        (SELECT        brand,        base_line,        max(dt) max_dt,        datediff(max(dt), base_line) + 1 days    FROM        (            SELECT                brand,                dt,                max(base_flag) over (PARTITION BY brand ORDER BY dt) base_line            FROM                (                    SELECT                        brand,                        dt,                        CASE                    WHEN sum(flag) over (                        PARTITION BY brand                        ORDER BY                            concat(dt, flag) DESC                    ) = 0 THEN                        dt                    ELSE                        "0"                    END base_flag                    FROM                        (                            SELECT                                brand,                                start_date dt,                                1 AS flag                            FROM                                computer_promotion                            UNION ALL                                SELECT                                    brand,                                    end_date dt,                                    - 1 AS flag                                FROM                                    computer_promotion                        ) tmp                ) tmp        ) tmp    GROUP BY        brand,        base_line) tmpgroup by brand ;
+```
+
+详解：
+
+|  |
+| --- |
+| **1：根据开始可结束时间拆分，开始时间为正，结束时间为负，标记字段为flag**  **2：利用sum窗口函数，累加flag，sum（flag）=0 则打折日期结束或者与下一段打折日期断开，记为当前日期**  **3：根据步骤二的结果，利用窗口函数max，找出连续打折日期的分隔基准线**  **4：根据品牌和基准线分组，计算出每段的打折天数**  **5：根据品牌分组，计算出每个品牌总的打折天数** |
+
+****方********法二：根据促销开始时间排序，手工修改下次促销的开始时间****
+
+```
+ SELECT    brand,    sum(        datediff(end_date, start_date) + 1     ) total_daysFROM    (        SELECT            brand,            CASE        WHEN start_date <= max_edd THEN            date_add (max_edd, 1)        ELSE            start_date        END start_date,        end_date    FROM        (            SELECT                brand,                start_date,                end_date,                max(end_date) over (                    partition by brand                     order by                     start_date                     rows between                     UNBOUNDED PRECEDING                     and 1 PRECEDING) max_edd            FROM                computer_promotion                        ) tmp    ) tmpWHERE    end_date > start_dateGROUP BY    brand;
+```
+
+详解：
+
+|  |
+| --- |
+| **1：采用max窗口函数，根据开始日期正序，获得此次促销记录之前最大的促销结束日期**  **2：比较此次促销开始日期与步骤一获得的结束日期，如果开始日期比结束日期小或者相等，那么以步骤一获得的日期加一天作为此次促销的开始日期，反之，记当前记录的开始日期为本次促销的开始日期**  **3：过滤掉开始日期大于结束日期的数据，并且根据品牌分组，对每条记录的结束和开始日期求日期差+1，然后求sum， 获得最终结果** |
+
+****方********法三：展开促销活动的每一天，然后去重****
+
+```
+SELECT    brand,    count(1) cntFROM    (        SELECT            brand,            curr_date        FROM            (                SELECT                    brand,                    start_date,                    end_date,                    col_idx,                    date_add (start_date, col_idx) curr_date                FROM                    computer_promotion lateral VIEW posexplode (                        split (                            space(                                datediff(end_date, start_date) + 1                            ),                            " (?!$)"                        )                    ) tbl_idx AS col_idx,                    col_val            ) tmp        GROUP BY            brand,            curr_date    ) tmpGROUP BY    brand
+```
+
+详解：
+
+|  |
+| --- |
+| **1：利用posexplode的序列，展开促销的开始和结束日期**  **2：根据品牌和日期去重**  **3：根据品牌分组，count获得最终的促销天数** |
+
+**五、拓展**
+
+|  |
+| --- |
+| **1：本文从3个方向去解析交叉日期去重，以后碰到交叉问题，都可以迎刃而解**    **2：方法一是直接拆分开始结束日期，然后打上一个flag标记，获得连续的日期，想法比较新颖**    **3：方法二中， hive低版本不支持使用max窗口函数，求之前记录的最大值，同学们可以变换一下思维，即可实现**    **4：方法二比较巧妙的利用了窗口函数max，规避了日期交叉**    **5：对类似问题，如果数据量小的话，个人更倾向于方法三，简单明了，易于理解** |
+
+**六、想一想**
+
+方法一中第一次排序，为什么要concat(dt,flag)，而后面的排序仅仅使用dt就行了呢
+
+方法二中，hive低版本可以先获得前一条记录的促销结束时间，然后用max窗口函数获得此字段结束时间的最大值，然后跟当前开始日期比较
+
+方法三split的正则表达式为什么要写成" (?!$)"
+
+---
+
+**已经有VIP群啦**
+
+加群（现已有40+小伙伴加入）可限时免费加入知识星球
+
+除了解答数仓开发面试、转行数仓开发 、日常工作中遇到的一些问题之外
+
+还会送出和大家[共读sparksql源码](http://mp.weixin.qq.com/s?__biz=MzU5NTc1NzE2OA==&mid=2247484881&idx=1&sn=31db5de23ac51ffed12ed705d5c3eb0e&chksm=fe6c54cec91bddd89e35a03e6104e13ce283a7eaed94343e26daac85aa872335acdc327b6180&scene=21#wechat_redirect)的福利（预计下周开始共读，想上车的快跟~）
+
+在知识星球上每天分享深度思考：有关情绪、沟通、时间管理、写作心得、持续行动等  
+
+详情请戳 [加入我的VIP群](http://mp.weixin.qq.com/s?__biz=MzU5NTc1NzE2OA==&mid=2247484872&idx=1&sn=4839803d6c303655d52ea8b1503fe0f6&chksm=fe6c54d7c91bddc10ee68afae6d220d435385a915b9cc7c5a1e6bd57eae2d3836631a9369bed&scene=21#wechat_redirect)
+
+Hey!
+
+我是小萝卜算子
+
+欢迎关注公众号
+
+每天学习一点点
+
+知识增加一点点
+
+思考深入一点点
+
+在成为最厉害最厉害最厉害的道路上
+
+很高兴认识你
+
+**推荐阅读：**
+
+[数仓面试——连续登录问题进阶版](http://mp.weixin.qq.com/s?__biz=MzU5NTc1NzE2OA==&mid=2247484850&idx=1&sn=1123c0988aff02a2ab94e9eedb493810&chksm=fe6c54adc91bddbbfa485cd5f5f87d74093974c8f3ad42d4b2ed3775a8d97a9c0dedcdd73d9c&scene=21#wechat_redirect)
+
+[数仓面试——连续登录问题](http://mp.weixin.qq.com/s?__biz=MzU5NTc1NzE2OA==&mid=2247484833&idx=1&sn=2a965091ec5ec09fe10185fecbf92779&chksm=fe6c54bec91bdda83229a33ceefb0358f408ed24ac5048eb48dbe6911b795b1536971a98ab57&scene=21#wechat_redirect)
+
+[linux工具——vim文本编辑器整理](http://mp.weixin.qq.com/s?__biz=MzU5NTc1NzE2OA==&mid=2247484794&idx=1&sn=d38fa253381aa1717c74fc171aa3a703&chksm=fe6c5465c91bdd73a454016a75e29363c6d8b387c9b6e807fe3e473de4e7c87c7f1866b18513&scene=21#wechat_redirect)
+
+[linux工具——grep文本处理器](http://mp.weixin.qq.com/s?__biz=MzU5NTc1NzE2OA==&mid=2247484811&idx=1&sn=43f36fc73237f49a6ae012232cad7eb4&chksm=fe6c5494c91bdd827d71970da6f143bdc8c4ca1195b018cb33d486d8b21df02783c623023aa8&scene=21#wechat_redirect)
+
+[spark sql是如何比较复杂数据类型的？该如何利用呢？](http://mp.weixin.qq.com/s?__biz=MzU5NTc1NzE2OA==&mid=2247484727&idx=1&sn=e28b315d155644242f02a1e33f9dcaab&chksm=fe6c5428c91bdd3e84157fd5949551f37c552bf9d672dc509c37bda6631b35598b1e0aa2f0ad&scene=21#wechat_redirect)
+
+[转型【数仓开发】该怎么学](http://mp.weixin.qq.com/s?__biz=MzU5NTc1NzE2OA==&mid=2247484695&idx=1&sn=d0b793b6c2a09e048ff9a21f4b4ee1d0&chksm=fe6c5408c91bdd1ebddde0e9e1777d2afd755c250d15877c79b94eae1e2009d31080df18b16f&scene=21#wechat_redirect)
+
+[大数据开发轻量级入门方案](http://mp.weixin.qq.com/s?__biz=MzU5NTc1NzE2OA==&mid=2247484678&idx=1&sn=a13955f253d989e728685e8c79513cb8&chksm=fe6c5419c91bdd0f4af36413a08a29faf054b20a2c2011c2720b0df37d0ae768b7af8030713c&scene=21#wechat_redirect)
+
+[OLAP | 基础知识梳理](http://mp.weixin.qq.com/s?__biz=MzU5NTc1NzE2OA==&mid=2247484657&idx=1&sn=151480a2dc70e93eaac28404a4c7bd61&chksm=fe6c55eec91bdcf8916040a64cefd4be3b089e1093c07c23d3efe6b783f9c23ce523e798b8f2&scene=21#wechat_redirect)

@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Hudi 核心知识点详解（万字长文）](<../文章/Hudi 核心知识点详解（万字长文）.md>)
+- 本地文件：[Hudi 核心知识点详解（万字长文）](<../文章/done-Hudi 核心知识点详解（万字长文）.md>)
 - 原文链接：`http://mp.weixin.qq.com/s?__biz=Mzk0NDI0NDg1OA==&mid=2247502895&idx=1&sn=2ab645758e8e92da49fe773e022b4073&chksm=c3251d3af452942c4306d2bd8abc75ae0dd006346be39ec32462799e8fb715f9f2d59050b307`
 - 关键段落：Hudi 功能、`.hoodie` 文件、Timeline、Index、Snapshot/Incremental/Read Optimized Query、COW/MOR、Upsert/Insert 写流程。
 - 关键图：正文提到“事实表的典型更新模式”和 MOR 读写图，但本地 Markdown 没有图片链接。

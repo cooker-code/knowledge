@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[面试官问：RAG 的评估体系怎么做？](<../文章/面试官问：RAG 的评估体系怎么做？.md>)
+- 本地文件：[面试官问：RAG 的评估体系怎么做？](<../文章/done-面试官问：RAG 的评估体系怎么做？.md>)
 - 原文链接：https://mp.weixin.qq.com/s?__biz=MzUyNjQxNjYyMg==&mid=2247519066&idx=1&sn=d82131d7ea0f50e79aa785fca4e42fea&chksm=fb962b099f34be8fd4800437a2ec1d6e4f9e5dd19928ff1ae5ca07503c698c3c70de6aade6d5&mpshare=1&scene=24&srcid=1121AURmW2A3dtC4pVfuXx78&sharer_shareinfo=64b7d435f6a73492e312b9b397c329d1&sharer_shareinfo_first=64b7d435f6a73492e312b9b397c329d1#rd
 - 关键段落：检索层评估、生成层评估、系统层评估、离线评测/A/B/线上监控、高风险领域。
 - 关键图：无技术图。

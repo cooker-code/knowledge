@@ -29,6 +29,15 @@
 HBase + 写入/列族/Region/MemStore/HFile/WAL/入仓模块 + 核心机制 + 解决问题 + 随机读写/增量抽取/业务库压力边界 + 对用户的认知增量
 ```
 
+## 已沉淀核心知识点
+
+| 主题 | 文件 | 问题指纹 | 解决什么问题 | 认知增量 |
+|---|---|---|---|---|
+| 写入链路、MemStore Flush 与 HFile 边界 | [HBase写入链路MemStoreFlush与HFile边界](040801_核心知识点/HBase写入链路MemStoreFlush与HFile边界.md) | HBase + 写入链路、MemStore Flush 与 HFile 边界 + 机制/边界/验证 | HBase 写入链路从 Region 定位、WAL、MemStore 到 Flush 生成 HFile，再由 Compaction 合并 | 形成可复用判断，不保留文章池 |
+| Compaction 与低延时调优边界 | [HBaseCompaction与低延时调优边界](040801_核心知识点/HBaseCompaction与低延时调优边界.md) | HBase + Compaction 与低延时调优边界 + 机制/边界/验证 | HBase 低延时问题常来自 Region 分布、HFile 数量、BlockCache、Compaction、数据异常和 Flush 抖动 | 形成可复用判断，不保留文章池 |
+| Meta 与 Replication 运维排障边界 | [HBaseMeta与Replication运维排障边界](040801_核心知识点/HBaseMeta与Replication运维排障边界.md) | HBase + Meta 与 Replication 运维排障边界 + 机制/边界/验证 | HBase 运维高风险点集中在 meta 表、Region 分配、协处理器异常和 Replication 线程阻塞 | 形成可复用判断，不保留文章池 |
+| HBase 入仓边界 | [HBase入仓边界](040801_核心知识点/HBase入仓边界.md) | HBase + HBase 入仓边界 + 机制/边界/验证 | HBase 入仓的主问题不是“能不能扫 HBase”，而是如何减少业务库压力、处理字段变更、增量时间戳、回溯和权限治理 | 形成可复用判断，不保留文章池 |
+
 ## 后续追查
 
 - 写入链路：客户端、Region 定位、WAL、MemStore、Flush、HFile、Compaction。

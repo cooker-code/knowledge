@@ -1,11 +1,8 @@
 # Flink SQL 大状态作业调优
 
-## 原文锚点
+## 来源
 
-- 本地文件：[Flink⼤状态作业调优实践指南：Flink SQL 作业篇](<../文章/Flink⼤状态作业调优实践指南：Flink SQL 作业篇.md>)
-- 原文链接：http://mp.weixin.qq.com/s?__biz=MzI4ODMyNTcwMw==&mid=2247486645&idx=1&sn=9eb0a00eb8387a0e9a7cf1246a0476d7&chksm=ebc1659ddcb6ec8b572003dc6c51a0184d1fe12da02dadf6883910888273adb8a399fe40096c&mpshare=1&scene=24&srcid=0613owBoh50f2j1TLhUbpupv&sharer_shareinfo=0973fcb8547f6b0dd1b57736fc524702&sharer_shareinfo_first=0973fcb8547f6b0dd1b57736fc524702#rd
-- 关键段落：状态算子产生、ChangelogNormalize、SinkUpsertMaterializer、LookupJoin、SQL 状态清理机制、mini-batch、TTL、执行计划和 Join 顺序。
-- 关键图：原文提到状态更新图、拓扑图和 SQL 执行计划建议图，本地 Markdown 无图片链接。
+- [Flink⼤状态作业调优实践指南：Flink SQL 作业篇](<../文章/done-Flink⼤状态作业调优实践指南：Flink SQL 作业篇.md>)
 
 ## 图片处理
 
@@ -130,3 +127,8 @@ flowchart LR
 - 相关技术：Flink State TTL、Flink CDC、Flink Regular Join、State Backend、反压排查。
 - 需要补读的文章：DataStream 大状态篇、Flink SQL 执行计划、当前社区版本 mini-batch/TTL 支持情况。
 
+## 重新蒸馏补充（2026-06-18）
+
+| 来源 | 认知增量 | 处理 |
+|---|---|---|
+| [[03_数据工程与数仓/0303_实时计算/030301_Flink/文章/done-Flink SQL资源优化：并行度与状态后端配置技巧]] | 补充该主题的生产案例、机制边界或排重样例。 | 重新判断后补入目标知识产物 |

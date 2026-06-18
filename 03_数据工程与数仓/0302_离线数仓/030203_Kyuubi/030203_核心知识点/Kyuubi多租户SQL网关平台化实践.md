@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Apache Kyuubi 在爱奇艺的实践](<../文章/Apache Kyuubi 在爱奇艺的实践.md>)
+- 本地文件：[Apache Kyuubi 在爱奇艺的实践](<../文章/done-Apache Kyuubi 在爱奇艺的实践.md>)
 - 原文链接：http://mp.weixin.qq.com/s?__biz=MzkxMjM2MDIyNQ==&mid=2247558880&idx=1&sn=605d715e011158e48c20861d9b4e99bd
 - 关键段落：Spark Thrift Server 演进、Kyuubi Server/Engine 解耦、共享策略、SessionConfAdvisor、Event Handler、血缘、监控、小文件优化、Z-order。
 - 关键图：原文多处图缺失，本地 Markdown 无图片链接。

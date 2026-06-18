@@ -1,8 +1,13 @@
 # Doris Compaction 版本治理与删除边界
 
+## 来源
+- [Doris Compaction 原理 _ 实践全析](<../文章/done-Doris Compaction 原理 _ 实践全析.md>)
+- [深入理解 Doris Compaction：提升查询性能的幕后功臣](<../文章/done-深入理解 Doris Compaction：提升查询性能的幕后功臣.md>)
+- [Apache Doris Compaction优化百科全书](<../文章/done-Apache Doris Compaction优化百科全书.md>)
+
 ## 原文锚点
 
-- 本地文件：[Doris Compaction 原理 | 实践全析](<../文章/Doris Compaction 原理 _ 实践全析.md>)
+- 本地文件：[Doris Compaction 原理 | 实践全析](<../文章/done-Doris Compaction 原理 _ 实践全析.md>)
 - 原文链接：`http://mp.weixin.qq.com/s?__biz=Mzg5Mzg3MzkwNA==&mid=2247490075&idx=4&sn=665d850f5fe3d1968004b2c9214899df`
 - 关键段落：Rowset 版本、Cumulative Compaction、Base Compaction、Cumulative Point、Delete 版本、Vertical/Segment/Ordered Data Compaction、Compaction Score、手动触发和生产规范。
 - 关键图：正文多处“下图”缺失，本地 Markdown 没有图片。

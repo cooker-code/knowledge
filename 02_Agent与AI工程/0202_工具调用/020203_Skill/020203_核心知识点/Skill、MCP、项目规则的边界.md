@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[Claude 发布 Skills！新 Skills 大白话对比 MCP、plugins，Claude.md 核心差异](<../文章/Claude 发布 Skills！新 Skills 大白话对比 MCP、plugins，Claude.md 核心差异.md>)
+- 本地文件：[Claude 发布 Skills！新 Skills 大白话对比 MCP、plugins，Claude.md 核心差异](<../文章/done-Claude 发布 Skills！新 Skills 大白话对比 MCP、plugins，Claude.md 核心差异.md>)
 - 原文链接：`https://mp.weixin.qq.com/s?__biz=MzYyMzU2MDk4MA==&mid=2247484061&idx=1&sn=6e0f240c8ab2a1b5611cd707871c89ef`
 - 关键段落：文章把 Skills 定义为动态加载的 instructions、scripts、resources 文件夹，并对比 CLAUDE.md、MCP、Plugins。
 - 关键图：无技术图。

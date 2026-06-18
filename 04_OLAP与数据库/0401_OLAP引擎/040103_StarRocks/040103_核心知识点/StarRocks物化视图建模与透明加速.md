@@ -1,8 +1,11 @@
 # StarRocks 物化视图建模与透明加速
 
+## 来源
+- [重新定义物化视图，你必须拥有的极速湖仓神器！](<../文章/done-重新定义物化视图，你必须拥有的极速湖仓神器！.md>)
+
 ## 原文锚点
 
-- 本地文件：[重新定义物化视图，你必须拥有的极速湖仓神器！](../文章/重新定义物化视图，你必须拥有的极速湖仓神器！.md)
+- 本地文件：[重新定义物化视图，你必须拥有的极速湖仓神器！](../文章/done-重新定义物化视图，你必须拥有的极速湖仓神器！.md)
 - 原文链接：http://mp.weixin.qq.com/s?__biz=MzI1MTYxOTkxNQ==&mid=2247490902&idx=1&sn=0bd03778216286548f5d02a2df33466a&chksm=e9f16272de86eb645470a514afb35d6618d805d5358b7afa7b57f897c81ce2902e01d446064d&mpshare=1&scene=24&srcid=1226rPwxG9V0yRiZ56mVOdG5&sharer_shareinfo=2dd478230c0877654fd665313511af16&sharer_shareinfo_first=2dd478230c0877654fd665313511af16#rd
 - 官方锚点：[StarRocks Asynchronous materialized views](https://docs.starrocks.io/docs/using_starrocks/async_mv/Materialized_view/)
 - 关键段落：物化视图基础能力、建模、透明加速、湖仓一体、迭代演进。

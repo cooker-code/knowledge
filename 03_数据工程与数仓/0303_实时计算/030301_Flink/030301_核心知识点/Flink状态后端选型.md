@@ -1,11 +1,9 @@
 # Flink 状态后端选型
 
-## 原文锚点
+## 来源
 
-- 本地文件：[Flink高频问题-flink 状态后端如何选择？性能影响？](<../文章/Flink高频问题-flink 状态后端如何选择？性能影响？.md>)
-- 原文链接：https://mp.weixin.qq.com/s?__biz=MzI3ODE4MjczNA==&mid=2651507914&idx=1&sn=930729faa71c99b2b73d047fd08b3dcf&chksm=f139df14ebac79caf24edff13b0f6c0a30534d212afb4d9d13e929a0f43b713bf1adb7049c3d&mpshare=1&scene=24&srcid=0415aCWrhw3czzvlQ9FIuhAM&sharer_shareinfo=e80159e5b7b77ae6eb140f61a319ab1c&sharer_shareinfo_first=e80159e5b7b77ae6eb140f61a319ab1c#rd
-- 关键段落：三类状态后端、选型依据、性能影响、避坑指南。
-- 关键图：无技术图，主要是表格和配置片段。
+- [Flink高频问题-flink 状态后端如何选择？性能影响？](<../文章/done-Flink高频问题-flink 状态后端如何选择？性能影响？.md>)
+- [量子级一致性！Flink+Redis全局状态管理](../文章/done-量子级一致性！Flink+Redis全局状态管理.md)（Redis 自定义 StateBackend 实验方案，性能数据为营销宣传性质，不可直接引用）
 
 ## 图片处理
 

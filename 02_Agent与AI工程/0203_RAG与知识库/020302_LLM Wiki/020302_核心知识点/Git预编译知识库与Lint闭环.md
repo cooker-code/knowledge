@@ -2,8 +2,8 @@
 
 ## 原文锚点
 
-- 本地文件：[别用飞书文档当知识库了，试试 Git + LLM 自动编译](<../文章/别用飞书文档当知识库了，试试 Git + LLM 自动编译.md>)
-- 本地文件：[来自Karpathy的知识库管理方法](../文章/来自Karpathy的知识库管理方法.md)
+- 本地文件：[别用飞书文档当知识库了，试试 Git + LLM 自动编译](<../文章/done-别用飞书文档当知识库了，试试 Git + LLM 自动编译.md>)
+- 本地文件：[来自Karpathy的知识库管理方法](../文章/done-来自Karpathy的知识库管理方法.md)
 - 本地补充：LLM Wiki 知识库模式（本地锚点缺失：`../../../../../wiki/concepts/llm-wiki.md`）、Wiki Ingest/Query/Lint 操作流程（本地锚点缺失：`../../../../../wiki/concepts/wiki-ingest-flow.md`）、知识生命周期管理（本地锚点缺失：`../../../../../wiki/concepts/knowledge-lifecycle-management.md`）、RAG vs LLM Wiki（本地锚点缺失：`../../../../../wiki/comparisons/rag-vs-llm-wiki.md`）
 - 原文链接：两个微信公众号链接保留在本地文件 frontmatter。
 - 关键段落：Raw/Wiki/Schema 三层；Git 大仓 + LLM 自动编译；CI/CD 触发知识编译；知识注入 AI 工具上下文再反哺知识库；Lint/健康检查；三级成熟度和引用追踪。

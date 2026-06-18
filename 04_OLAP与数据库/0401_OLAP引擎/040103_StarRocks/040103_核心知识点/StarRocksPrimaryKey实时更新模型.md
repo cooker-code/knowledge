@@ -1,8 +1,11 @@
 # StarRocks Primary Key 实时更新模型
 
+## 来源
+- [StarRocks Primary Key：实时更新不可缺少的利器](<../文章/done-StarRocks Primary Key：实时更新不可缺少的利器.md>)
+
 ## 原文锚点
 
-- 本地文件：[StarRocks Primary Key：实时更新不可缺少的利器](<../文章/StarRocks Primary Key：实时更新不可缺少的利器.md>)
+- 本地文件：[StarRocks Primary Key：实时更新不可缺少的利器](<../文章/done-StarRocks Primary Key：实时更新不可缺少的利器.md>)
 - 原文链接：http://mp.weixin.qq.com/s?__biz=MzI1MTYxOTkxNQ==&mid=2247492465&idx=1&sn=cb19f3e4e408290815962d0a8f54d53a
 - 关键段落：分析型数据库实时数据变更挑战、Primary Key 更新原理、Delete + Insert、部分列更新。
 - 关键图：原文提到部分列更新图，但 Markdown 无图。

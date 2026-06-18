@@ -2,8 +2,8 @@
 
 ## 原文锚点
 
-- 本地文件：[Flink Cdc MySQL 整库同步到 StarRocks](<../文章/Flink Cdc MySQL 整库同步到 StarRocks.md>)
-- 本地文件：[Flink CDC2Kafka 总结](<../文章/Flink CDC2Kafka 总结.md>)
+- 本地文件：[Flink Cdc MySQL 整库同步到 StarRocks](<../文章/done-Flink Cdc MySQL 整库同步到 StarRocks.md>)
+- 本地文件：[Flink CDC2Kafka 总结](<../文章/done-Flink CDC2Kafka 总结.md>)
 - 原文链接：两篇原文 front matter 中的微信公众号链接。
 - 关键段落：MySQL Source `StartupOptions.latest/initial`、Debezium 事件 `before/after/op`、StarRocks `__op` upsert/delete、目标表 Schema 缓存、无主键表异常、Kafka `key.fields`、`debezium.binary.handling.mode=base64`、`operation_ts` 元数据。
 - 关键图：StarRocks 文章写“架构如下”但本地 Markdown 无图；Kafka 文章包含图片字段 base64 样例，不是技术图。

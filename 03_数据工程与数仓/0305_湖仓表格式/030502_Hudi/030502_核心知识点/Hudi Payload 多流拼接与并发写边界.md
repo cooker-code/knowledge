@@ -2,7 +2,7 @@
 
 ## 原文锚点
 
-- 本地文件：[万字长文：基于Apache Hudi + Flink多流拼接(大宽表)最佳实践](<../文章/万字长文：基于Apache Hudi + Flink多流拼接(大宽表)最佳实践.md>)
+- 本地文件：[万字长文：基于Apache Hudi + Flink多流拼接(大宽表)最佳实践](<../文章/done-万字长文：基于Apache Hudi + Flink多流拼接(大宽表)最佳实践.md>)
 - 原文链接：`http://mp.weixin.qq.com/s?__biz=MzIyMzQ0NjA0MQ==&mid=2247490026&idx=1&sn=15b15480af127977422873492554198e`
 - 关键段落：背景中的维表 Join/多流 Join 状态挑战；并发控制；marker；早期冲突检测；Payload；多流拼接过程；效果收益。
 - 关键图：正文多次提到图 1、图 3、实现原理图，但本地 Markdown 无图片链接。
