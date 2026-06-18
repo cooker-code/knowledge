@@ -1,17 +1,17 @@
 # 关系数据库
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[流程化知识点总览](knowledge/04_OLAP与数据库/0402_关系数据库/核心知识点/流程化知识点总览.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](040200_核心知识点/知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到各技术子目录的 `核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到各技术子目录的 `040200_核心知识点/`。
 
 ## 技术子目录
 
 | 技术 | 目录 | 文章数 | 状态 |
 |---|---|---|---|
-| PostgreSQL | [PostgreSQL/](PostgreSQL/) | 19 | 已建目录，精读候选待处理 |
-| MySQL | [MySQL/](MySQL/) | 6 | 已建目录，精读候选待处理 |
-| TiDB | [TiDB/](TiDB/) | 6 | 已建目录，原图缺失较多，精读候选待处理 |
+| PostgreSQL | [PostgreSQL/](040202_PostgreSQL) | 19 | 已建目录，精读候选待处理 |
+| MySQL | [MySQL/](040201_MySQL) | 6 | 已建目录，精读候选待处理 |
+| TiDB | [TiDB/](040203_TiDB) | 6 | 已建目录，原图缺失较多，精读候选待处理 |
 
 
 ## 类目定位
@@ -39,12 +39,18 @@
 | 只多了案例 | 案例不改变准则时，只追加原文锚点 |
 | 多了观点冲突 | 必须记录为认知校准点 |
 
+## 相邻类目
+
+| 相邻类目 | 边界 |
+|---|---|
+| [嵌入式分析](../0403_嵌入式分析/AGENTS.md) | SQLite 如果主问题是单文件、本地、进程内、低运维或单应用服务器存储，归嵌入式分析；只有讨论传统 client/server 关系数据库治理、权限、HA、集中服务化时才留在关系数据库 |
+
 <!-- AUTO:SECONDARY_INIT_START -->
 ## 全量文章来源初始化
 
 > 自动生成。初始化阶段只使用本地 `本地文章目录`、已有 `knowledge` 和本地 `wiki`，不联网补官网或外部证据。
 
-- 全量文章来源：[文章](文章/)
+- 全量文章来源：各三级节点的 `文章/`
 - 全局明细：`scripts/output/knowledge-secondary-pools.json`
 
 | 指标 | 数量 |
@@ -71,20 +77,20 @@
 
 | 技术对象 | 原文 | 冲突点 | 处理建议 |
 |---|---|---|---|
-| MySQL | [FastAPI 不用 SQLModel，如何用 DBUtils 直连 MySQL 数据库](文章/FastAPI 不用 SQLModel，如何用 DBUtils 直连 MySQL 数据库.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| MySQL | [MySQL定时任务，解放双手，轻松实现自动化](文章/MySQL定时任务，解放双手，轻松实现自动化.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| MySQL | [MySQL的MVCC是什么？为什么需要MVCC？](文章/MySQL的MVCC是什么？为什么需要MVCC？.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| MySQL | [企业级 MySQL 数据分析助手落地方案：基于 DeepAgents 的全流程实践](文章/企业级 MySQL 数据分析助手落地方案：基于 DeepAgents 的全流程实践.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| PostgreSQL | [5分钟看懂 PostgreSQL 工作原理](文章/5分钟看懂 PostgreSQL 工作原理.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| PostgreSQL | [PG数据库｜PostgreSQL WAL 文件全解析：从命名规则到归档管理，一文吃透“生命线”逻辑！](文章/PG数据库｜PostgreSQL WAL 文件全解析：从命名规则到归档管理，一文吃透“生命线”逻辑！.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| PostgreSQL | [PG数据库｜PostgreSQL权限管理深度解析：从授权到合规的全链路实践](文章/PG数据库｜PostgreSQL权限管理深度解析：从授权到合规的全链路实践.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| PostgreSQL | [PostgreSQL 架构与内部机制介绍](文章/PostgreSQL 架构与内部机制介绍.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| PostgreSQL | [SQL 写到崩溃？30 分钟开发 PostgreSQL Skill，让 AI 接盘](文章/SQL 写到崩溃？30 分钟开发 PostgreSQL Skill，让 AI 接盘.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| PostgreSQL | [性能比拼: MySQL vs PostgreSQL](文章/性能比拼_ MySQL vs PostgreSQL.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| PostgreSQL | [更轻更自由，还要什么自行车：别急上Supabase，先试试它的内核PostgREST](文章/更轻更自由，还要什么自行车：别急上Supabase，先试试它的内核PostgREST.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| PostgreSQL | [简单解析下PostgreSQL的Toast](文章/简单解析下PostgreSQL的Toast.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| TiDB | [TiDB 工具分享｜TiDB DM 简化数据迁移流程复杂度](文章/TiDB 工具分享｜TiDB DM 简化数据迁移流程复杂度.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| TiDB | [一些关于 TiDB X 的记录：新引擎](文章/一些关于 TiDB X 的记录：新引擎.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MySQL | [FastAPI 不用 SQLModel，如何用 DBUtils 直连 MySQL 数据库](<040201_MySQL/文章/FastAPI 不用 SQLModel，如何用 DBUtils 直连 MySQL 数据库.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MySQL | [MySQL定时任务，解放双手，轻松实现自动化](040201_MySQL/文章/MySQL定时任务，解放双手，轻松实现自动化.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MySQL | [MySQL的MVCC是什么？为什么需要MVCC？](040201_MySQL/文章/MySQL的MVCC是什么？为什么需要MVCC？.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MySQL | [企业级 MySQL 数据分析助手落地方案：基于 DeepAgents 的全流程实践](<040201_MySQL/文章/企业级 MySQL 数据分析助手落地方案：基于 DeepAgents 的全流程实践.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| PostgreSQL | [5分钟看懂 PostgreSQL 工作原理](<040202_PostgreSQL/文章/5分钟看懂 PostgreSQL 工作原理.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| PostgreSQL | [PG数据库｜PostgreSQL WAL 文件全解析：从命名规则到归档管理，一文吃透“生命线”逻辑！](<040202_PostgreSQL/文章/PG数据库｜PostgreSQL WAL 文件全解析：从命名规则到归档管理，一文吃透“生命线”逻辑！.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| PostgreSQL | [PG数据库｜PostgreSQL权限管理深度解析：从授权到合规的全链路实践](040202_PostgreSQL/文章/PG数据库｜PostgreSQL权限管理深度解析：从授权到合规的全链路实践.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| PostgreSQL | [PostgreSQL 架构与内部机制介绍](<040202_PostgreSQL/文章/PostgreSQL 架构与内部机制介绍.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| PostgreSQL | [SQL 写到崩溃？30 分钟开发 PostgreSQL Skill，让 AI 接盘](<040202_PostgreSQL/文章/SQL 写到崩溃？30 分钟开发 PostgreSQL Skill，让 AI 接盘.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| PostgreSQL | [性能比拼: MySQL vs PostgreSQL](<040202_PostgreSQL/文章/性能比拼_ MySQL vs PostgreSQL.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| PostgreSQL | [更轻更自由，还要什么自行车：别急上Supabase，先试试它的内核PostgREST](040202_PostgreSQL/文章/更轻更自由，还要什么自行车：别急上Supabase，先试试它的内核PostgREST.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| PostgreSQL | [简单解析下PostgreSQL的Toast](040202_PostgreSQL/文章/简单解析下PostgreSQL的Toast.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| TiDB | [TiDB 工具分享｜TiDB DM 简化数据迁移流程复杂度](<040203_TiDB/文章/TiDB 工具分享｜TiDB DM 简化数据迁移流程复杂度.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| TiDB | [一些关于 TiDB X 的记录：新引擎](<040203_TiDB/文章/一些关于 TiDB X 的记录：新引擎.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
 
 ### 冲突与缺口
 
@@ -101,4 +107,3 @@
 | P1 | 对已有核心知识点补充排重依据和认知校准点 |
 | P2 | 精修阶段再补官网、GitHub、版本状态和官方架构图 |
 <!-- AUTO:SECONDARY_INIT_END -->
-

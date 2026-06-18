@@ -2,7 +2,7 @@
 
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[流程化知识点总览](knowledge/04_OLAP与数据库/0406_存储引擎/核心知识点/流程化知识点总览.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](040600_核心知识点/知识地图.md)。
 - 新文章必须先判断它讲的是“存储引擎机制”，还是上层数据库、缓存或业务系统的普通使用。
 - `文章/` 只作为临时入口；正式归档必须落到 `LSM-Tree/`、`RocksDB/`、`LevelDB/`、`FlowDB/` 或后续新增技术目录。
 
@@ -29,10 +29,10 @@
 
 | 技术/主题 | 目录 | 文章数 | 定位 |
 |---|---|---:|---|
-| LSM-Tree | [LSM-Tree/](LSM-Tree/) | 3 | 写优化存储结构与 Compaction 抽象 |
-| RocksDB | [RocksDB/](RocksDB/) | 1 | 嵌入式高性能 LSM 存储引擎 |
-| LevelDB | [LevelDB/](LevelDB/) | 1 | 最小 LSM 样本，适合理解文件与版本组织 |
-| FlowDB | [FlowDB/](FlowDB/) | 1 | 面向时序场景的专用存储引擎案例 |
+| LSM-Tree | [LSM-Tree/](040602_LSM-Tree) | 3 | 写优化存储结构与 Compaction 抽象 |
+| RocksDB | [RocksDB/](040604_RocksDB) | 1 | 嵌入式高性能 LSM 存储引擎 |
+| LevelDB | [LevelDB/](040603_LevelDB) | 1 | 最小 LSM 样本，适合理解文件与版本组织 |
+| FlowDB | [FlowDB/](040601_FlowDB) | 1 | 面向时序场景的专用存储引擎案例 |
 
 ## 排重准则
 

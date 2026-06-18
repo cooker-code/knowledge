@@ -1,9 +1,9 @@
 # 评估与观测
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[流程化知识点总览](knowledge/02_Agent与AI工程/0204_评估与观测/核心知识点/流程化知识点总览.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](020400_核心知识点/知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `020400_核心知识点/`。
 
 
 ## 类目定位
@@ -44,8 +44,8 @@ Agent 类型 + 评估对象 + 指标/Trace/数据集/门禁机制 + 解决问题
 
 | 技术 | index | 已覆盖问题 | 还缺什么 |
 |---|---|---|---|
-| Agent 评估 | [Agent评估](Agent评估/AGENTS.md) | 指标、Trace、Dataset、CI 质量门禁的基础闭环、Agent 类型化评估、pass@k/pass^k | 长任务评估、工具调用错误分类、人工反馈标注规范 |
-| AI 应用评估 | [AI应用评估](AI应用评估/AGENTS.md) | Langfuse 与 RAGAS 的监控、评估、数据集和 CI 闭环 | LLM-as-judge 偏差、生产坏例标注、跨 RAG/Agent 指标拆分 |
+| Agent 评估 | [Agent评估](020402_Agent评估/AGENTS.md) | 指标、Trace、Dataset、CI 质量门禁的基础闭环、Agent 类型化评估、pass@k/pass^k | 长任务评估、工具调用错误分类、人工反馈标注规范 |
+| AI 应用评估 | [AI应用评估](020401_AI应用评估/AGENTS.md) | Langfuse 与 RAGAS 的监控、评估、数据集和 CI 闭环 | LLM-as-judge 偏差、生产坏例标注、跨 RAG/Agent 指标拆分 |
 
 ## 待补技术和问题
 
@@ -62,7 +62,7 @@ Agent 类型 + 评估对象 + 指标/Trace/数据集/门禁机制 + 解决问题
 
 > 自动生成。初始化阶段只使用本地 `本地文章目录`、已有 `knowledge` 和本地 `wiki`，不联网补官网或外部证据。
 
-- 全量文章来源：[文章](文章/)
+- 全量文章来源：各三级节点的 `文章/`
 - 全局明细：`scripts/output/knowledge-secondary-pools.json`
 
 | 指标 | 数量 |
@@ -87,18 +87,18 @@ Agent 类型 + 评估对象 + 指标/Trace/数据集/门禁机制 + 解决问题
 
 | 技术对象 | 原文 | 冲突点 | 处理建议 |
 |---|---|---|---|
-| Agent 评估 | [【Harness 系列 08】System Prompt：贯穿所有组件的「神经系统」](文章/【Harness 系列 08】System Prompt：贯穿所有组件的「神经系统」.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Agent 评估 | [Anthropic说：网传的Harness思路过时了，做这3件事就够！](文章/Anthropic说：网传的Harness思路过时了，做这3件事就够！.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Agent 评估 | [Browser Use：为 Agent 构建 Runtime Harness](文章/Browser Use：为 Agent 构建 Runtime Harness.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Agent 评估 | [Harness Engineering：Agent 上生产，先过环境关](文章/Harness Engineering：Agent 上生产，先过环境关.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Agent 评估 | [Harness Engineering：让AI Agent长程运行的秘密武器](文章/Harness Engineering：让AI Agent长程运行的秘密武器.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Agent 评估 | [Harness Monitor：当多个 Agent 同时写代码时，如何看住质量](文章/Harness Monitor：当多个 Agent 同时写代码时，如何看住质量.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Agent 评估 | [Harness 工程 Skill：使用 Entrix 技能开始你的代码熵治理](文章/Harness 工程 Skill：使用 Entrix 技能开始你的代码熵治理.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Agent 评估 | [LangChain：如何通过 Harness Engineering 提升 Agent 表现](文章/LangChain：如何通过 Harness Engineering 提升 Agent 表现.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Agent 评估 | [从玩具到生产力：用真实项目讲透 AI Agent 的 Harness Engineering](文章/从玩具到生产力：用真实项目讲透 AI Agent 的 Harness Engineering.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Agent 评估 | [未来十年的数据工程：从 Modern Data Stack 到 Data Engineering Harness](文章/未来十年的数据工程：从 Modern Data Stack 到 Data Engineering Harness.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Agent 评估 | [逆天的架构： 用 Harness+Langgraph+A2A  写一个 Agent Team，实现一支硅基团队。程序员 开启 当 10个Agent的boss 之路](文章/逆天的架构： 用 Harness+Langgraph+A2A 写一个 Agent Team，实现一支硅基团队。程序员 开.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Agent 评估 | [项目越大，Agent 越乱——我用这套harness agent 把它管住了](文章/项目越大，Agent 越乱——我用这套harness agent 把它管住了.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Agent 评估 | [【Harness 系列 08】System Prompt：贯穿所有组件的「神经系统」](<../0209_Harness Engineering/文章/【Harness 系列 08】System Prompt：贯穿所有组件的「神经系统」.md>) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Agent 评估 | [Anthropic说：网传的Harness思路过时了，做这3件事就够！](<../0209_Harness Engineering/文章/Anthropic说：网传的Harness思路过时了，做这3件事就够！.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Agent 评估 | [Browser Use：为 Agent 构建 Runtime Harness](<../0209_Harness Engineering/文章/Browser Use：为 Agent 构建 Runtime Harness.md>) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Agent 评估 | [Harness Engineering：Agent 上生产，先过环境关](<../0209_Harness Engineering/文章/Harness Engineering：Agent 上生产，先过环境关.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Agent 评估 | [Harness Engineering：让AI Agent长程运行的秘密武器](<../0209_Harness Engineering/文章/Harness Engineering：让AI Agent长程运行的秘密武器.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Agent 评估 | [Harness Monitor：当多个 Agent 同时写代码时，如何看住质量](<../0209_Harness Engineering/文章/Harness Monitor：当多个 Agent 同时写代码时，如何看住质量.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Agent 评估 | [Harness 工程 Skill：使用 Entrix 技能开始你的代码熵治理](<../0209_Harness Engineering/文章/Harness 工程 Skill：使用 Entrix 技能开始你的代码熵治理.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Agent 评估 | [LangChain：如何通过 Harness Engineering 提升 Agent 表现](<../0209_Harness Engineering/文章/LangChain：如何通过 Harness Engineering 提升 Agent 表现.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Agent 评估 | [从玩具到生产力：用真实项目讲透 AI Agent 的 Harness Engineering](<../0209_Harness Engineering/文章/从玩具到生产力：用真实项目讲透 AI Agent 的 Harness Engineering.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Agent 评估 | [未来十年的数据工程：从 Modern Data Stack 到 Data Engineering Harness](<../0209_Harness Engineering/文章/未来十年的数据工程：从 Modern Data Stack 到 Data Engineering Harness.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Agent 评估 | [逆天的架构： 用 Harness+Langgraph+A2A  写一个 Agent Team，实现一支硅基团队。程序员 开启 当 10个Agent的boss 之路](<../0209_Harness Engineering/文章/逆天的架构： 用 Harness+Langgraph+A2A 写一个 Agent Team，实现一支硅基团队。程序员 开.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Agent 评估 | [项目越大，Agent 越乱——我用这套harness agent 把它管住了](<../0209_Harness Engineering/文章/项目越大，Agent 越乱——我用这套harness agent 把它管住了.md>) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
 
 ### 冲突与缺口
 

@@ -1,9 +1,9 @@
 # 湖仓表格式
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[流程化知识点总览](knowledge/03_数据工程与数仓/0305_湖仓表格式/核心知识点/流程化知识点总览.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](030500_核心知识点/知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `030500_核心知识点/`。
 
 
 ## 类目定位
@@ -44,10 +44,10 @@
 
 | 技术 | index | 已覆盖问题 | 还缺什么 |
 |---|---|---|---|
-| Paimon | [Paimon](Paimon/AGENTS.md) | 实时湖仓表格式定位、CDC 接入、Merge Engine、Changelog、Append 表边界、外部状态、LSM、Bloom、生命周期治理 | 官方版本限制、查询引擎兼容矩阵、最小实验 |
-| Iceberg | [Iceberg](Iceberg/AGENTS.md) | Snapshot、Branch/Tag、v3 删除向量、行级血缘、查询加速平台边界 | 官方 v3 支持矩阵、Flink CDC/增量读写、Catalog 选型 |
-| Hudi | [Hudi](Hudi/AGENTS.md) | Timeline、Index、COW/MOR、Payload 多流拼接、并发写边界 | 当前版本补证、Flink 写入、Compaction/Clean 实验 |
-| Delta Lake | [Delta Lake](Delta%20Lake/AGENTS.md) | 本轮仅创建待补入口，未做正式文章沉淀 | 需要本地原文、官网/GitHub、与 Iceberg/Hudi/Paimon 对比 |
+| Paimon | [Paimon](030505_Paimon/AGENTS.md) | 实时湖仓表格式定位、CDC 接入、Merge Engine、Changelog、Append 表边界、外部状态、LSM、Bloom、生命周期治理 | 官方版本限制、查询引擎兼容矩阵、最小实验 |
+| Iceberg | [Iceberg](030503_Iceberg/AGENTS.md) | Snapshot、Branch/Tag、v3 删除向量、行级血缘、查询加速平台边界 | 官方 v3 支持矩阵、030302_Flink CDC/增量读写、Catalog 选型 |
+| Hudi | [Hudi](030502_Hudi/AGENTS.md) | Timeline、Index、COW/MOR、Payload 多流拼接、并发写边界 | 当前版本补证、Flink 写入、Compaction/Clean 实验 |
+| Delta Lake | [Delta Lake](<030501_Delta Lake/AGENTS.md>) | 本轮仅创建待补入口，未做正式文章沉淀 | 需要本地原文、官网/GitHub、与 Iceberg/Hudi/Paimon 对比 |
 
 ## 待补技术和问题
 
@@ -76,22 +76,22 @@
 
 | 技术对象 | 原文 | 处理 | 进入文件 | 原因 |
 |---|---|---|---|---|
-| Hudi | Hudi 核心知识点详解（万字长文） | 正式沉淀 | [Hudi Timeline、索引与 COW/MOR 表类型](Hudi/核心知识点/Hudi%20Timeline、索引与%20COW-MOR%20表类型.md) | 补 Hudi 本体、Timeline、索引、COW/MOR、查询类型 |
-| Hudi | 万字长文：基于Apache Hudi + Flink多流拼接(大宽表)最佳实践 | 正式沉淀 | [Hudi Payload 多流拼接与并发写边界](Hudi/核心知识点/Hudi%20Payload%20多流拼接与并发写边界.md) | 补 Payload、多流拼接、OCC、Marker、失败场景 |
-| Iceberg | Hive 实践 \| Apache Hive 4.x与Iceberg分支和标签 | 正式沉淀 | [Iceberg 快照分支标签与 Hive 接入边界](Iceberg/核心知识点/Iceberg%20快照分支标签与%20Hive%20接入边界.md) | 补 Branch/Tag 快照生命周期，按 Iceberg 重路由 |
-| Iceberg | 为什么 Iceberg v3 是数据湖仓的"iPhone 时刻"？ | 合并沉淀 | [Iceberg v3 删除向量与行级血缘边界](Iceberg/核心知识点/Iceberg%20v3%20删除向量与行级血缘边界.md) | 补 v3 删除向量、行级血缘、VARIANT，同时降权宣传话术 |
-| Iceberg | Mooncake: 基于 Apache Iceberg 构建的实时存储引擎 | 合并沉淀 | [Iceberg v3 删除向量与行级血缘边界](Iceberg/核心知识点/Iceberg%20v3%20删除向量与行级血缘边界.md) | 作为 Iceberg 生态实时扩展边界，不单独建 Mooncake 目录 |
-| Iceberg | 秒级响应！B站基于 Iceberg 的湖仓一体平台构建实践 | 正式沉淀 | [Iceberg 查询加速与平台化边界](Iceberg/核心知识点/Iceberg%20查询加速与平台化边界.md) | 补 Iceberg 与 Trino、缓存、索引、Cube、OLAP 出口边界 |
-| Paimon | 代替Kafka? Paimon追加表真的可以 | 合并沉淀 | [Paimon追加表与外部状态边界](Paimon/核心知识点/Paimon追加表与外部状态边界.md) | 标题需降权，保留 Append 表队列式流读边界 |
-| Paimon | 揭秘Fluss、Kafka、Paimon 的联系和区别 | 合并沉淀 | [Paimon追加表与外部状态边界](Paimon/核心知识点/Paimon追加表与外部状态边界.md) | 补 Kafka/Fluss/Paimon 横向边界，Fluss 待补证 |
-| Paimon | Flink+Paimon实时数据湖仓实践分享 | 合并沉淀 | [Paimon追加表与外部状态边界](Paimon/核心知识点/Paimon追加表与外部状态边界.md) | 补 Paimon 外部状态、LookupJoin、bucket key 失败场景 |
-| Paimon | Paimon Bloom索引深度解析：从38s到1.5s的性能飞跃与生产最佳实践 | 合并沉淀 | [Paimon LSM、Bloom 与生命周期治理](Paimon/核心知识点/Paimon%20LSM、Bloom%20与生命周期治理.md) | 保留 Bloom 文件裁剪和误判边界，降权性能数字 |
-| Paimon | 美团面试：Paimon LSM-Tree 分层机制是怎么样的？ | 合并沉淀 | [Paimon LSM、Bloom 与生命周期治理](Paimon/核心知识点/Paimon%20LSM、Bloom%20与生命周期治理.md) | 补 LSM 分层和 Compaction 读写放大 |
-| Paimon | 腾讯面试：Paimon自动分区清理与快照清理机制是怎么样的？哪个先清理？ | 合并沉淀 | [Paimon LSM、Bloom 与生命周期治理](Paimon/核心知识点/Paimon%20LSM、Bloom%20与生命周期治理.md) | 补快照清理、分区逻辑/物理删除依赖 |
-| Paimon | Apache Paimon 1.3 核心亮点总结 | 合并沉淀 | [Paimon LSM、Bloom 与生命周期治理](Paimon/核心知识点/Paimon%20LSM、Bloom%20与生命周期治理.md) | 只保留 Row Tracking、Data Evolution、Incremental Clustering 的待补证方向 |
-| Paimon | Apache Paimon核心配置参数详解（二） | 合并沉淀 | [Paimon LSM、Bloom 与生命周期治理](Paimon/核心知识点/Paimon%20LSM、Bloom%20与生命周期治理.md) | 合并 Bucket、Changelog、保留策略参数，不单独写参数清单 |
+| Hudi | Hudi 核心知识点详解（万字长文） | 正式沉淀 | [Hudi Timeline、索引与 COW/MOR 表类型](<030502_Hudi/030502_核心知识点/Hudi Timeline、索引与 COW-MOR 表类型.md>) | 补 Hudi 本体、Timeline、索引、COW/MOR、查询类型 |
+| Hudi | 万字长文：基于Apache Hudi + Flink多流拼接(大宽表)最佳实践 | 正式沉淀 | [Hudi Payload 多流拼接与并发写边界](<030502_Hudi/030502_核心知识点/Hudi Payload 多流拼接与并发写边界.md>) | 补 Payload、多流拼接、OCC、Marker、失败场景 |
+| Iceberg | Hive 实践 \| Apache Hive 4.x与Iceberg分支和标签 | 正式沉淀 | [Iceberg 快照分支标签与 Hive 接入边界](<030503_Iceberg/030503_核心知识点/Iceberg 快照分支标签与 Hive 接入边界.md>) | 补 Branch/Tag 快照生命周期，按 Iceberg 重路由 |
+| Iceberg | 为什么 Iceberg v3 是数据湖仓的"iPhone 时刻"？ | 合并沉淀 | [Iceberg v3 删除向量与行级血缘边界](<030503_Iceberg/030503_核心知识点/Iceberg v3 删除向量与行级血缘边界.md>) | 补 v3 删除向量、行级血缘、VARIANT，同时降权宣传话术 |
+| Iceberg | Mooncake: 基于 Apache Iceberg 构建的实时存储引擎 | 合并沉淀 | [Iceberg v3 删除向量与行级血缘边界](<030503_Iceberg/030503_核心知识点/Iceberg v3 删除向量与行级血缘边界.md>) | 作为 Iceberg 生态实时扩展边界，不单独建 Mooncake 目录 |
+| Iceberg | 秒级响应！B站基于 Iceberg 的湖仓一体平台构建实践 | 正式沉淀 | [Iceberg 查询加速与平台化边界](<030503_Iceberg/030503_核心知识点/Iceberg 查询加速与平台化边界.md>) | 补 Iceberg 与 Trino、缓存、索引、Cube、OLAP 出口边界 |
+| Paimon | 代替Kafka? Paimon追加表真的可以 | 合并沉淀 | [Paimon追加表与外部状态边界](030505_Paimon/030505_核心知识点/Paimon追加表与外部状态边界.md) | 标题需降权，保留 Append 表队列式流读边界 |
+| Paimon | 揭秘Fluss、Kafka、Paimon 的联系和区别 | 合并沉淀 | [Paimon追加表与外部状态边界](030505_Paimon/030505_核心知识点/Paimon追加表与外部状态边界.md) | 补 Kafka/Fluss/Paimon 横向边界，Fluss 待补证 |
+| Paimon | Flink+Paimon实时数据湖仓实践分享 | 合并沉淀 | [Paimon追加表与外部状态边界](030505_Paimon/030505_核心知识点/Paimon追加表与外部状态边界.md) | 补 Paimon 外部状态、LookupJoin、bucket key 失败场景 |
+| Paimon | Paimon Bloom索引深度解析：从38s到1.5s的性能飞跃与生产最佳实践 | 合并沉淀 | [Paimon LSM、Bloom 与生命周期治理](<030505_Paimon/030505_核心知识点/Paimon LSM、Bloom 与生命周期治理.md>) | 保留 Bloom 文件裁剪和误判边界，降权性能数字 |
+| Paimon | 美团面试：Paimon LSM-Tree 分层机制是怎么样的？ | 合并沉淀 | [Paimon LSM、Bloom 与生命周期治理](<030505_Paimon/030505_核心知识点/Paimon LSM、Bloom 与生命周期治理.md>) | 补 LSM 分层和 Compaction 读写放大 |
+| Paimon | 腾讯面试：Paimon自动分区清理与快照清理机制是怎么样的？哪个先清理？ | 合并沉淀 | [Paimon LSM、Bloom 与生命周期治理](<030505_Paimon/030505_核心知识点/Paimon LSM、Bloom 与生命周期治理.md>) | 补快照清理、分区逻辑/物理删除依赖 |
+| Paimon | Apache Paimon 1.3 核心亮点总结 | 合并沉淀 | [Paimon LSM、Bloom 与生命周期治理](<030505_Paimon/030505_核心知识点/Paimon LSM、Bloom 与生命周期治理.md>) | 只保留 Row Tracking、Data Evolution、Incremental Clustering 的待补证方向 |
+| Paimon | Apache Paimon核心配置参数详解（二） | 合并沉淀 | [Paimon LSM、Bloom 与生命周期治理](<030505_Paimon/030505_核心知识点/Paimon LSM、Bloom 与生命周期治理.md>) | 合并 Bucket、Changelog、保留策略参数，不单独写参数清单 |
 | Paimon | 从数据湖到数据湖仓：开放表格格式驱动的架构革新 | 合并/跳过 | 本 index | 综述价值高但机制浅，只补开放表格式横向视角 |
-| Paimon | 数据仓库的黄昏？Paimon与Hive的正面对决与终极融合 | 合并/跳过 | [Paimon](Paimon/AGENTS.md) | 标题宣传强，保留 Hive/Paimon 边界，不新建笔记 |
+| Paimon | 数据仓库的黄昏？Paimon与Hive的正面对决与终极融合 | 合并/跳过 | [Paimon](030505_Paimon/AGENTS.md) | 标题宣传强，保留 Hive/Paimon 边界，不新建笔记 |
 
 ### 主要冲突点
 
@@ -109,7 +109,7 @@
 
 > 自动生成。初始化阶段只使用本地 `本地文章目录`、已有 `knowledge` 和本地 `wiki`，不联网补官网或外部证据。
 
-- 全量文章来源：[文章](文章/)
+- 全量文章来源：各三级节点的 `文章/`
 - 全局明细：`scripts/output/knowledge-secondary-pools.json`
 
 | 指标 | 数量 |
@@ -136,12 +136,12 @@
 
 | 技术对象 | 原文 | 冲突点 | 处理建议 |
 |---|---|---|---|
-| Iceberg | [Hive 实践 \| Apache Hive 4.x与Iceberg分支和标签](文章/Hive 实践 _ Apache Hive 4.x与Iceberg分支和标签.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Iceberg | [Mooncake: 基于 Apache Iceberg 构建的实时存储引擎](文章/Mooncake_ 基于 Apache Iceberg 构建的实时存储引擎.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Iceberg | [为什么 Iceberg v3 是数据湖仓的"iPhone 时刻"？](文章/为什么 Iceberg v3 是数据湖仓的_iPhone 时刻_？.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Paimon | [从数据湖到数据湖仓：开放表格格式驱动的架构革新](文章/从数据湖到数据湖仓：开放表格格式驱动的架构革新.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Paimon | [代替Kafka? Paimon追加表真的可以](文章/代替Kafka_ Paimon追加表真的可以.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Paimon | [数据仓库的黄昏？Paimon与Hive的正面对决与终极融合](文章/数据仓库的黄昏？Paimon与Hive的正面对决与终极融合.md) | 标题/观点需要降权；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Iceberg | [Hive 实践 \| Apache Hive 4.x与Iceberg分支和标签](<030503_Iceberg/文章/Hive 实践 _ Apache Hive 4.x与Iceberg分支和标签.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Iceberg | [Mooncake: 基于 Apache Iceberg 构建的实时存储引擎](<030503_Iceberg/文章/Mooncake_ 基于 Apache Iceberg 构建的实时存储引擎.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Iceberg | [为什么 Iceberg v3 是数据湖仓的"iPhone 时刻"？](<030503_Iceberg/文章/为什么 Iceberg v3 是数据湖仓的_iPhone 时刻_？.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Paimon | [从数据湖到数据湖仓：开放表格格式驱动的架构革新](../0308_元数据血缘与治理/030801_元数据平台/文章/文章/从数据湖到数据湖仓：开放表格格式驱动的架构革新.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Paimon | [代替Kafka? Paimon追加表真的可以](<030505_Paimon/文章/代替Kafka_ Paimon追加表真的可以.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Paimon | [数据仓库的黄昏？Paimon与Hive的正面对决与终极融合](../0308_元数据血缘与治理/030801_元数据平台/文章/文章/数据仓库的黄昏？Paimon与Hive的正面对决与终极融合.md) | 标题/观点需要降权；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
 
 ### 冲突与缺口
 

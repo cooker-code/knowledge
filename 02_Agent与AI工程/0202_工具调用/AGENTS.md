@@ -1,9 +1,9 @@
 # 工具调用
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[流程化知识点总览](knowledge/02_Agent与AI工程/0202_工具调用/核心知识点/流程化知识点总览.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](020200_核心知识点/知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `核心知识点/`。
+- 各三级节点的 `文章/` 只保留原文锚点，长期知识必须沉淀到 `020200_核心知识点/`。
 
 
 ## 类目定位
@@ -44,10 +44,10 @@
 
 | 技术 | index | 已覆盖问题 | 还缺什么 |
 |---|---|---|---|
-| Skill | [Skill](Skill/AGENTS.md) | Skill、MCP、项目规则边界 | 官方机制、权限模型、团队复用方式 |
-| MCP | [MCP](MCP/AGENTS.md) | 与 Skill 的边界、Server 工具参数设计、PostgreSQL MCP Server 结构化数据访问边界、生产系统接入设计模式、Chrome DevTools MCP 能力边界、协议三原语、异步通道、CLI/代码执行边界 | 鉴权、安全与观测、远程部署、Apps/Elicitation、Resources/Prompts 权限、浏览器工具评估 |
-| Tool Calling | [ToolCalling](ToolCalling/AGENTS.md) | Tool Search 与工具上下文治理 | Function Calling 基础抽象、工具返回结构、工具调用评估 |
-| Computer Use | [ComputerUse](ComputerUse/AGENTS.md) | 高权限 GUI/设备操作链路、沙箱与审批边界 | 官方能力边界、secure computer use、隔离环境实践、失败样例 |
+| Skill | [Skill](020203_Skill/AGENTS.md) | Skill、MCP、项目规则边界 | 官方机制、权限模型、团队复用方式 |
+| MCP | [MCP](020202_MCP/AGENTS.md) | 与 Skill 的边界、Server 工具参数设计、PostgreSQL MCP Server 结构化数据访问边界、生产系统接入设计模式、Chrome DevTools MCP 能力边界、协议三原语、异步通道、CLI/代码执行边界 | 鉴权、安全与观测、远程部署、Apps/Elicitation、Resources/Prompts 权限、浏览器工具评估 |
+| Tool Calling | [ToolCalling](020204_ToolCalling/AGENTS.md) | Tool Search 与工具上下文治理 | Function Calling 基础抽象、工具返回结构、工具调用评估 |
+| Computer Use | [ComputerUse](020201_ComputerUse/AGENTS.md) | 高权限 GUI/设备操作链路、沙箱与审批边界 | 官方能力边界、secure computer use、隔离环境实践、失败样例 |
 
 ## 待补技术和问题
 
@@ -64,7 +64,7 @@
 
 > 自动生成。初始化阶段只使用本地 `本地文章目录`、已有 `knowledge` 和本地 `wiki`，不联网补官网或外部证据。
 
-- 全量文章来源：[文章](文章/)
+- 全量文章来源已拆分到：[ComputerUse](020201_ComputerUse/文章)、[MCP](020202_MCP/文章)、[Skill](020203_Skill/文章)、[ToolCalling](020204_ToolCalling/文章)。低置信临时原文不再保留 `99` 目录，只在路由表中保留判断。
 - 全局明细：`scripts/output/knowledge-secondary-pools.json`
 
 | 指标 | 数量 |
@@ -90,21 +90,21 @@
 
 | 技术对象 | 原文 | 冲突点 | 处理建议 |
 |---|---|---|---|
-| MCP | [2025最好用的MCP平台一览表](文章/2025最好用的MCP平台一览表.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| MCP | [AceFlow MCP - AI Agent的终极项目管理工具](文章/AceFlow MCP - AI Agent的终极项目管理工具.md) | 标题/观点需要降权 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| MCP | [Aiops探索：基于 n8n + Ansible MCP Server 的智能运维实践](文章/Aiops探索：基于 n8n + Ansible MCP Server 的智能运维实践.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| MCP | [Anthropic Skills深度解析：从MCP到智能工作流的进化之路](文章/Anthropic Skills深度解析：从MCP到智能工作流的进化之路.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| MCP | [Chrome DevTools MCP vs Playwright MCP：AI 浏览器自动化工具深度对比](文章/Chrome DevTools MCP vs Playwright MCP：AI 浏览器自动化工具深度对比.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| MCP | [Chrome DevTools MCP 更新：支持 coding agent 直接接管当前的浏览器窗口](文章/Chrome DevTools MCP 更新：支持 coding agent 直接接管当前的浏览器窗口.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| MCP | [LangChain DeepAgents + MCP 构建深度研究型智能体应用](文章/LangChain DeepAgents + MCP 构建深度研究型智能体应用.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| MCP | [MCP代码执行：构建高效Agent的新范式（98.7%效率提升背后的架构革新）](文章/MCP代码执行：构建高效Agent的新范式（98.7%效率提升背后的架构革新）.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| MCP | [MCP综合应用:打造自动化工作助手](文章/MCP综合应用_打造自动化工作助手.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| MCP | [Memory MCP - 使用本地知识图谱打造“有记忆”的智能助手](文章/Memory MCP - 使用本地知识图谱打造“有记忆”的智能助手.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| MCP | [Trae + 设计 MCP ：实现 UI 到网页自动化](文章/Trae + 设计 MCP ：实现 UI 到网页自动化.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| MCP | [以自然语言的方式使用 Playwright MCP 进行浏览器自动化操作](文章/以自然语言的方式使用 Playwright MCP 进行浏览器自动化操作.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| MCP | [别再死磕 MCP 了！Claude 新出的 Skills，才是普通开发者的真正外挂](文章/别再死磕 MCP 了！Claude 新出的 Skills，才是普通开发者的真正外挂.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| MCP | [如何去编写一个MCP？Anthropic 官方教程“逐字稿”](文章/如何去编写一个MCP？Anthropic 官方教程“逐字稿”.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| MCP | [王炸！SpringBoot+MCP 让你的 CRUD 系统秒变AI助手](文章/王炸！SpringBoot+MCP 让你的 CRUD 系统秒变AI助手.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MCP | [2025最好用的MCP平台一览表](020202_MCP/文章/2025最好用的MCP平台一览表.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MCP | [AceFlow MCP - AI Agent的终极项目管理工具](<020202_MCP/文章/AceFlow MCP - AI Agent的终极项目管理工具.md>) | 标题/观点需要降权 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MCP | [Aiops探索：基于 n8n + Ansible MCP Server 的智能运维实践](<020202_MCP/文章/Aiops探索：基于 n8n + Ansible MCP Server 的智能运维实践.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MCP | [Anthropic Skills深度解析：从MCP到智能工作流的进化之路](<020203_Skill/文章/Anthropic Skills深度解析：从MCP到智能工作流的进化之路.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MCP | [Chrome DevTools MCP vs Playwright MCP：AI 浏览器自动化工具深度对比](<020202_MCP/文章/Chrome DevTools MCP vs Playwright MCP：AI 浏览器自动化工具深度对比.md>) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MCP | [Chrome DevTools MCP 更新：支持 coding agent 直接接管当前的浏览器窗口](<020202_MCP/文章/Chrome DevTools MCP 更新：支持 coding agent 直接接管当前的浏览器窗口.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MCP | [LangChain DeepAgents + MCP 构建深度研究型智能体应用](<020202_MCP/文章/LangChain DeepAgents + MCP 构建深度研究型智能体应用.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MCP | [MCP代码执行：构建高效Agent的新范式（98.7%效率提升背后的架构革新）](<020202_MCP/文章/MCP代码执行：构建高效Agent的新范式（98.7%效率提升背后的架构革新）.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MCP | [MCP综合应用:打造自动化工作助手](020202_MCP/文章/MCP综合应用_打造自动化工作助手.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MCP | [Memory MCP - 使用本地知识图谱打造“有记忆”的智能助手](<../0211_Memory Management/文章/Memory MCP - 使用本地知识图谱打造“有记忆”的智能助手.md>) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MCP | [Trae + 设计 MCP ：实现 UI 到网页自动化](<020202_MCP/文章/Trae + 设计 MCP ：实现 UI 到网页自动化.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MCP | [以自然语言的方式使用 Playwright MCP 进行浏览器自动化操作](<020202_MCP/文章/以自然语言的方式使用 Playwright MCP 进行浏览器自动化操作.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MCP | [别再死磕 MCP 了！Claude 新出的 Skills，才是普通开发者的真正外挂](<020203_Skill/文章/别再死磕 MCP 了！Claude 新出的 Skills，才是普通开发者的真正外挂.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MCP | [如何去编写一个MCP？Anthropic 官方教程“逐字稿”](<020202_MCP/文章/如何去编写一个MCP？Anthropic 官方教程“逐字稿”.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| MCP | [王炸！SpringBoot+MCP 让你的 CRUD 系统秒变AI助手](<020202_MCP/文章/王炸！SpringBoot+MCP 让你的 CRUD 系统秒变AI助手.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
 
 ### 冲突与缺口
 
@@ -121,4 +121,3 @@
 | P1 | 对已有核心知识点补充排重依据和认知校准点 |
 | P2 | 精修阶段再补官网、GitHub、版本状态和官方架构图 |
 <!-- AUTO:SECONDARY_INIT_END -->
-

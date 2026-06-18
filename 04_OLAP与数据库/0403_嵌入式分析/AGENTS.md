@@ -1,9 +1,9 @@
 # 嵌入式分析
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[流程化知识点总览](knowledge/04_OLAP与数据库/0403_嵌入式分析/核心知识点/流程化知识点总览.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](040300_核心知识点/知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `040300_核心知识点/`。
 
 
 ## 类目定位
@@ -12,17 +12,17 @@
 |---|---|
 | 一级类目 | OLAP 与数据库 |
 | 二级类目 | 嵌入式分析 |
-| 核心问题 | 如何在本地文件、Notebook、应用进程或轻量分析任务中完成列式分析和 SQL 查询 |
-| 不解决什么 | 不承担服务化 OLAP 集群、高并发报表查询、在线事务库或离线数仓建模 |
-| 用户当前认知假设 | DuckDB L2：知道它适合本地分析，需要补执行模型、并发边界、与 SQLite/PostgreSQL/ClickHouse 的差异 |
+| 核心问题 | 如何在本地文件、Notebook、应用进程、单应用服务器或轻量任务中完成嵌入式查询、分析和事务型本地存储 |
+| 不解决什么 | 不承担服务化 OLAP 集群、高并发报表查询、多服务共享写入的在线事务库或离线数仓建模 |
+| 用户当前认知假设 | DuckDB L2：知道它适合本地分析，需要补执行模型、并发边界、与 SQLite/PostgreSQL/ClickHouse 的差异；SQLite draft L2：知道它是单文件数据库，需要补 WAL、锁、类型系统和适用边界 |
 
 ## 用户认知重点
 
 | 认知项 | 当前假设 | 后续整理策略 |
 |---|---|---|
-| 已知基础 | DuckDB 适合本地分析和文件查询 | 不重复讲“DuckDB 是什么” |
-| 待补边界 | 进程内分析、服务化 OLAP、OLTP、DataFrame 工具的边界 | 每篇文章必须写横向对标 |
-| 易偏差点 | 容易把 DuckDB 简化成“小型数据库”或误当 ClickHouse 替代 | 强调嵌入式、本地、单机、文件扫描和并发限制 |
+| 已知基础 | DuckDB 适合本地分析和文件查询；SQLite 适合本地单文件事务型存储 | 不重复讲“DuckDB/SQLite 是什么” |
+| 待补边界 | 进程内分析、嵌入式事务、本地优先应用、服务化 OLAP、client/server OLTP、DataFrame 工具的边界 | 每篇文章必须写横向对标 |
+| 易偏差点 | 容易把 DuckDB 简化成“小型数据库”，或把 SQLite 当成 PostgreSQL 的低配替代 | 强调嵌入式、本地、单机、文件边界、单写者和服务化限制 |
 
 ## 排重准则
 
@@ -35,22 +35,28 @@
 | 判断项 | 排重规则 |
 |---|---|
 | 都是 DuckDB 快 | 按向量化执行、列式存储、文件扫描、优化器、并行执行拆分 |
+| 都是 SQLite 单文件 | 按 WAL/锁、类型系统、索引、备份迁移、扩展能力和应用集成边界拆分 |
 | 都是本地分析 | 如果只多了使用案例、不改变边界和机制，只追加原文 |
 | 与 OLAP 引擎混淆 | 服务化、高并发、集群查询归 OLAP 引擎；进程内本地分析归本类 |
 | 与 SQLite 混淆 | 事务型嵌入式应用看 SQLite；分析型 SQL 和大文件扫描看 DuckDB |
+| 与关系数据库混淆 | client/server、权限治理、HA、集中运维归关系数据库；单文件、本地、单应用服务器归本类 |
 
 ## 已覆盖技术
 
 | 技术 | index | 已覆盖问题 | 还缺什么 |
 |---|---|---|---|
-| DuckDB | [DuckDB](DuckDB/AGENTS.md) | 嵌入式分析定位、向量化执行与 Pipeline | MVCC、优化器、扩展机制、Morsel-Driven 并行、与 Polars/Pandas 对标 |
+| DuckDB | [DuckDB](040301_DuckDB/AGENTS.md) | 嵌入式分析定位、向量化执行与 Pipeline | MVCC、优化器、扩展机制、Morsel-Driven 并行、与 Polars/Pandas 对标 |
+| SQLite | [SQLite](040302_SQLite/AGENTS.md) | 单文件嵌入式事务型数据库定位、WAL/单写者边界、类型系统和 STRICT 表候选文章 | B-tree/Pager、WAL/checkpoint、锁与并发、FTS/JSON/扩展、备份迁移、与 PostgreSQL/DuckDB 对标 |
 
 ## 待补技术和问题
 
 | 技术/问题 | 为什么要补 | 优先级 |
 |---|---|---|
 | DuckDB MVCC / 并发边界 | 需要明确它能不能替代服务型数据库 | 高 |
+| SQLite WAL / 锁 / 单写者边界 | 需要明确它适合哪些本地和单应用服务器场景，不能把它当成 PostgreSQL 低配版 | 高 |
+| SQLite 类型亲和性 / STRICT 表 | 影响数据约束、迁移和应用建模，容易被传统关系库经验误导 | 中 |
 | DuckDB 优化器与文件扫描 | 影响 Parquet/CSV 本地分析效率 | 中 |
+| DuckDB vs SQLite vs PostgreSQL | 帮助判断本地分析、嵌入式事务和服务端业务库选型 | 中 |
 | DuckDB vs Pandas/Polars/ClickHouse | 帮助判断本地分析和服务化分析选型 | 中 |
 
 <!-- AUTO:SECONDARY_INIT_START -->
@@ -58,7 +64,7 @@
 
 > 自动生成。初始化阶段只使用本地 `本地文章目录`、已有 `knowledge` 和本地 `wiki`，不联网补官网或外部证据。
 
-- 全量文章来源：[文章](文章/)
+- 全量文章来源：各三级节点的 `文章/`
 - 全局明细：`scripts/output/knowledge-secondary-pools.json`
 
 | 指标 | 数量 |
@@ -83,21 +89,21 @@
 
 | 技术对象 | 原文 | 冲突点 | 处理建议 |
 |---|---|---|---|
-| DuckDB | [AliSQL DuckDB：数据压缩与归档分析实践](文章/AliSQL DuckDB：数据压缩与归档分析实践.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| DuckDB | [DuckDB CTE 完全指南：从基础到高级优化，解锁递归查询新姿势](文章/DuckDB CTE 完全指南：从基础到高级优化，解锁递归查询新姿势.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| DuckDB | [DuckDB Extensions：让本地分析更强大的秘密武器](文章/DuckDB Extensions：让本地分析更强大的秘密武器.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| DuckDB | [DuckDB:从使用到内核——我们学到了什么？—— DuckDB 的设计哲学与启示](文章/DuckDB_从使用到内核——我们学到了什么？—— DuckDB 的设计哲学与启示.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| DuckDB | [DuckDB：你可能不知道的 SQL 超能力](文章/DuckDB：你可能不知道的 SQL 超能力.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| DuckDB | [DuckDB：并行执行与 Morsel-Driven 调度-多核 CPU 是怎么被充分利用的？](文章/DuckDB：并行执行与 Morsel-Driven 调度-多核 CPU 是怎么被充分利用的？.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| DuckDB | [DuckDB：扩展机制与生态系统—— DuckDB 的"插件商店"是怎么实现的？](文章/DuckDB：扩展机制与生态系统—— DuckDB 的_插件商店_是怎么实现的？.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| DuckDB | [DuckDB核心函数详解与系统架构设计](文章/DuckDB核心函数详解与系统架构设计.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| DuckDB | [DuckDB花470亿存了一部电影, 你猜它要干什么？](文章/DuckDB花470亿存了一部电影, 你猜它要干什么？.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| DuckDB | [OpenClaw-Observability：基于 DuckDB 构建 OpenClaw 的全链路可观测体系](文章/OpenClaw-Observability：基于 DuckDB 构建 OpenClaw 的全链路可观测体系.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| DuckDB | [Postgres扛不住，DuckDB崩了，他们花两年自建了一个AI专用数据库](文章/Postgres扛不住，DuckDB崩了，他们花两年自建了一个AI专用数据库.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| DuckDB | [从 75 秒到 0.24 秒：Polars/DuckDB 的魅力](文章/从 75 秒到 0.24 秒：Polars_DuckDB 的魅力.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| DuckDB | [最高加速4.7万倍！如何重构经典Join算法让DuckDB跑得更快](文章/最高加速4.7万倍！如何重构经典Join算法让DuckDB跑得更快.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| DuckDB | [告别大栈，拥抱轻量 —— DuckDB 让数据更快更简单](文章/告别大栈，拥抱轻量 —— DuckDB 让数据更快更简单.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| DuckDB | [深入分析DuckDB的向量化执行](文章/深入分析DuckDB的向量化执行.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| DuckDB | [AliSQL DuckDB：数据压缩与归档分析实践](<040301_DuckDB/文章/AliSQL DuckDB：数据压缩与归档分析实践.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| DuckDB | [DuckDB CTE 完全指南：从基础到高级优化，解锁递归查询新姿势](<040301_DuckDB/文章/DuckDB CTE 完全指南：从基础到高级优化，解锁递归查询新姿势.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| DuckDB | [DuckDB Extensions：让本地分析更强大的秘密武器](<040301_DuckDB/文章/DuckDB Extensions：让本地分析更强大的秘密武器.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| DuckDB | [DuckDB:从使用到内核——我们学到了什么？—— DuckDB 的设计哲学与启示](<040301_DuckDB/文章/DuckDB_从使用到内核——我们学到了什么？—— DuckDB 的设计哲学与启示.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| DuckDB | [DuckDB：你可能不知道的 SQL 超能力](<040301_DuckDB/文章/DuckDB：你可能不知道的 SQL 超能力.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| DuckDB | [DuckDB：并行执行与 Morsel-Driven 调度-多核 CPU 是怎么被充分利用的？](<040301_DuckDB/文章/DuckDB：并行执行与 Morsel-Driven 调度-多核 CPU 是怎么被充分利用的？.md>) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| DuckDB | [DuckDB：扩展机制与生态系统—— DuckDB 的"插件商店"是怎么实现的？](<040301_DuckDB/文章/DuckDB：扩展机制与生态系统—— DuckDB 的_插件商店_是怎么实现的？.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| DuckDB | [DuckDB核心函数详解与系统架构设计](040301_DuckDB/文章/DuckDB核心函数详解与系统架构设计.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| DuckDB | [DuckDB花470亿存了一部电影, 你猜它要干什么？](<040301_DuckDB/文章/DuckDB花470亿存了一部电影, 你猜它要干什么？.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| DuckDB | [OpenClaw-Observability：基于 DuckDB 构建 OpenClaw 的全链路可观测体系](<040301_DuckDB/文章/OpenClaw-Observability：基于 DuckDB 构建 OpenClaw 的全链路可观测体系.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| DuckDB | [Postgres扛不住，DuckDB崩了，他们花两年自建了一个AI专用数据库](040301_DuckDB/文章/Postgres扛不住，DuckDB崩了，他们花两年自建了一个AI专用数据库.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| DuckDB | [从 75 秒到 0.24 秒：Polars/DuckDB 的魅力](<040301_DuckDB/文章/从 75 秒到 0.24 秒：Polars_DuckDB 的魅力.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| DuckDB | [最高加速4.7万倍！如何重构经典Join算法让DuckDB跑得更快](040301_DuckDB/文章/最高加速4.7万倍！如何重构经典Join算法让DuckDB跑得更快.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| DuckDB | [告别大栈，拥抱轻量 —— DuckDB 让数据更快更简单](<040301_DuckDB/文章/告别大栈，拥抱轻量 —— DuckDB 让数据更快更简单.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| DuckDB | [深入分析DuckDB的向量化执行](040301_DuckDB/文章/深入分析DuckDB的向量化执行.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
 
 ### 冲突与缺口
 
@@ -114,4 +120,3 @@
 | P1 | 对已有核心知识点补充排重依据和认知校准点 |
 | P2 | 精修阶段再补官网、GitHub、版本状态和官方架构图 |
 <!-- AUTO:SECONDARY_INIT_END -->
-

@@ -1,9 +1,9 @@
 # 实时计算
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[流程化知识点总览](knowledge/03_数据工程与数仓/0303_实时计算/核心知识点/流程化知识点总览.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](030300_核心知识点/知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `030300_核心知识点/`。
 
 
 ## 类目定位
@@ -21,8 +21,8 @@
 | 认知项 | 当前假设 | 后续整理策略 |
 |---|---|---|
 | 已知基础 | 用户知道实时计算服务实时数仓、CDC、流式加工 | 不重复讲流批区别 |
-| 待补边界 | Flink 与 Kafka、Paimon、Doris、Spark Streaming 的分工 | 每篇文章必须说清是计算、存储、消息、查询还是调度 |
-| 易偏差点 | 调优文章容易只给参数，不讲语义边界 | 优先抽取状态、时间、容错和下游一致性 |
+| 待补边界 | Flink、Flink CDC、Kafka、Paimon、Doris、Spark Streaming 的分工 | 每篇文章必须说清是采集、计算、存储、消息、查询还是调度 |
+| 易偏差点 | 调优文章容易只给参数，CDC 文章容易只讲跑通链路不讲事件语义和恢复边界 | 优先抽取状态、时间、容错、事件语义和下游一致性 |
 
 ## 排重准则
 
@@ -44,14 +44,16 @@
 
 | 技术 | index | 已覆盖问题 | 还缺什么 |
 |---|---|---|---|
-| Flink | [Flink](Flink/AGENTS.md) | 双流 Join 状态膨胀与构建端选择、KeyGroup 状态分配与扩缩容、状态后端选型、State TTL 状态生命周期治理、窗口触发与状态淘汰、Flink SQL 大状态作业调优、通用增量 Checkpoint、Checkpoint 完整链路与 Savepoint 边界、反压排查入口 | Connector、端到端 Exactly Once、窗口/Checkpoint/State TTL 和 SQL 状态调优的生产指标验证 |
-| Kafka | [Kafka](Kafka/AGENTS.md) | 消费滞后定位与治理、分区策略与 Flink 写入边界、Exactly Once 语义、Consumer Rebalance 机制 | 存储日志、KRaft、Kafka 与 Flink 端到端一致性实测 |
+| Flink | [Flink](030301_Flink/AGENTS.md) | 双流 Join 状态膨胀与构建端选择、KeyGroup 状态分配与扩缩容、状态后端选型、State TTL 状态生命周期治理、窗口触发与状态淘汰、Flink SQL 大状态作业调优、通用增量 Checkpoint、Checkpoint 完整链路与 Savepoint 边界、反压排查入口 | Connector、端到端 Exactly Once、窗口/Checkpoint/State TTL 和 SQL 状态调优的生产指标验证 |
+| Flink CDC | [Flink CDC](<030302_Flink CDC/AGENTS.md>) | CDC 定位、3.x Pipeline 架构、全增量切换、MySQL Source Enumerator、事件模型、MySQL `server_id` 冲突、PostgreSQL WAL 膨胀、Doris/StarRocks/Kafka 下游一致性、生产切换双跑对数 | Schema 演进生产限制、DDL 冲突恢复、端到端恢复实验、当前官方版本补证 |
+| Kafka | [Kafka](030304_Kafka/AGENTS.md) | 消费滞后定位与治理、分区策略与 Flink 写入边界、Exactly Once 语义、Consumer Rebalance 机制 | 存储日志、KRaft、Kafka 与 Flink 端到端一致性实测 |
 
 ## 待补技术和问题
 
 | 技术/问题 | 为什么要补 | 优先级 |
 |---|---|---|
 | Flink + Kafka Exactly Once | 影响端到端一致性，需要和 Kafka 事务区分 | 高 |
+| Flink CDC Schema 演进与 DDL 恢复 | 整库同步和下游表结构正确性的核心风险 | 高 |
 | 反压与 Checkpoint 排障 | 生产问题高频 | 高 |
 | Flink 窗口触发与迟到数据验证 | 机制已沉淀，仍缺固定输入序列、迟到侧输出和状态清理实验 | 高 |
 | Flink State TTL 生产验证 | TTL 机制已覆盖，仍缺指标、版本和 savepoint 兼容性验证 | 高 |
@@ -61,14 +63,14 @@
 
 | 技术/问题 | 应归类到哪里 | 理由 |
 |---|---|---|
-| Flink CDC | [数据集成 / Flink CDC](../0307_数据集成/Flink CDC/AGENTS.md) | 主问题是数据库变更捕获和数据同步，不是 Flink 状态、窗口或流式计算本体 |
+| Flink CDC | [Flink CDC](<030302_Flink CDC/AGENTS.md>) | 主问题是数据库变更捕获、CDC Pipeline、事件语义、下游写入一致性或生产迁移时归这里；如果主问题是 Paimon 表格式或 Doris 查询优化，再归相邻目录 |
 
 <!-- AUTO:SECONDARY_INIT_START -->
 ## 全量文章来源初始化
 
 > 自动生成。初始化阶段只使用本地 `本地文章目录`、已有 `knowledge` 和本地 `wiki`，不联网补官网或外部证据。
 
-- 全量文章来源：[文章](文章/)
+- 全量文章来源：各三级节点的 `文章/`
 - 全局明细：`scripts/output/knowledge-secondary-pools.json`
 
 | 指标 | 数量 |
@@ -94,21 +96,21 @@
 
 | 技术对象 | 原文 | 冲突点 | 处理建议 |
 |---|---|---|---|
-| Flink | [《Flink 性能调优保姆级教程：并行度怎么设？反压怎么查？这篇讲透了！》](文章/《Flink 性能调优保姆级教程：并行度怎么设？反压怎么查？这篇讲透了！》.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Flink | [Agentic风控：Flink+Fluss+大模型构建Agent全链路风险感知与实时告警](文章/Agentic风控：Flink+Fluss+大模型构建Agent全链路风险感知与实时告警.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Flink | [Airwallex 基于 Flink 打造实时风控系统](文章/Airwallex 基于 Flink 打造实时风控系统.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Flink | [Apache Flink错误处理实战手册：2年生产环境调试经验总结](文章/Apache Flink错误处理实战手册：2年生产环境调试经验总结.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Flink | [Flink JobManager 宕机了怎么办？一文讲透 Flink HA 原理与配置](文章/Flink JobManager 宕机了怎么办？一文讲透 Flink HA 原理与配置.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Flink | [flink lookup join tps 测试 hbase mysql starrocks](文章/flink lookup join tps 测试 hbase mysql starrocks.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Flink | [Flink RocksDB 状态后端深度调优](文章/Flink RocksDB 状态后端深度调优.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Flink | [Flink SQL 实战](文章/Flink SQL 实战.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Flink | [Flink Table API & SQL Planner 演变](文章/Flink Table API & SQL Planner 演变.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Flink | [Flink 写Doris原理解析和性能调优](文章/Flink 写Doris原理解析和性能调优.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Flink | [Flink 存储 \| 阿里云实时计算企业级状态存储引擎 Gemini 技术解读](文章/Flink 存储 _ 阿里云实时计算企业级状态存储引擎 Gemini 技术解读.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Flink | [Flink 实践 \| Flink 替换 Logstash 解决日志收集丢失问题](文章/Flink 实践 _ Flink 替换 Logstash 解决日志收集丢失问题.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Flink | [Flink 实践 \| 字节跳动使用 Flink State 的经验分享](文章/Flink 实践 _ 字节跳动使用 Flink State 的经验分享.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Flink | [Flink 性能调优实战](文章/Flink 性能调优实战.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Flink | [Flink 超大状态作业优化实战](文章/Flink 超大状态作业优化实战.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Flink | [《Flink 性能调优保姆级教程：并行度怎么设？反压怎么查？这篇讲透了！》](<030301_Flink/文章/《Flink 性能调优保姆级教程：并行度怎么设？反压怎么查？这篇讲透了！》.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Flink | [Agentic风控：Flink+Fluss+大模型构建Agent全链路风险感知与实时告警](030303_Fluss/文章/Agentic风控：Flink+Fluss+大模型构建Agent全链路风险感知与实时告警.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Flink | [Airwallex 基于 Flink 打造实时风控系统](<030301_Flink/文章/Airwallex 基于 Flink 打造实时风控系统.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Flink | [Apache Flink错误处理实战手册：2年生产环境调试经验总结](<030301_Flink/文章/Apache Flink错误处理实战手册：2年生产环境调试经验总结.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Flink | [Flink JobManager 宕机了怎么办？一文讲透 Flink HA 原理与配置](<030301_Flink/文章/Flink JobManager 宕机了怎么办？一文讲透 Flink HA 原理与配置.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Flink | [flink lookup join tps 测试 hbase mysql starrocks](<030301_Flink/文章/flink lookup join tps 测试 hbase mysql starrocks.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Flink | [Flink RocksDB 状态后端深度调优](<030301_Flink/文章/Flink RocksDB 状态后端深度调优.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Flink | [Flink SQL 实战](<030301_Flink/文章/Flink SQL 实战.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Flink | [Flink Table API & SQL Planner 演变](<030301_Flink/文章/Flink Table API & SQL Planner 演变.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Flink | [Flink 写Doris原理解析和性能调优](<030301_Flink/文章/Flink 写Doris原理解析和性能调优.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Flink | [Flink 存储 \| 阿里云实时计算企业级状态存储引擎 Gemini 技术解读](<030301_Flink/文章/Flink 存储 _ 阿里云实时计算企业级状态存储引擎 Gemini 技术解读.md>) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Flink | [Flink 实践 \| Flink 替换 Logstash 解决日志收集丢失问题](<030301_Flink/文章/Flink 实践 _ Flink 替换 Logstash 解决日志收集丢失问题.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Flink | [Flink 实践 \| 字节跳动使用 Flink State 的经验分享](<030301_Flink/文章/Flink 实践 _ 字节跳动使用 Flink State 的经验分享.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Flink | [Flink 性能调优实战](<030301_Flink/文章/Flink 性能调优实战.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Flink | [Flink 超大状态作业优化实战](<030301_Flink/文章/Flink 超大状态作业优化实战.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
 
 ### 冲突与缺口
 

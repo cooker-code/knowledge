@@ -2,9 +2,9 @@
 
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[流程化知识点总览](knowledge/04_OLAP与数据库/0405_缓存与KV/核心知识点/流程化知识点总览.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](040500_核心知识点/知识地图.md)。
 - 新文章必须先判断主问题是缓存/KV 技术本体，还是后端应用层缓存策略。
-- `文章/` 只作为临时入口；正式归档必须落到 `Redis/`、`Kvrocks/`、`Redisson/` 或后续新增的具体技术目录。
+- `文章/` 只作为临时入口；正式归档必须落到 `Redis/`、`Kvrocks/`、`040503_Redisson/` 或后续新增的具体技术目录。
 
 ## 类目定位
 
@@ -22,16 +22,16 @@
 |---|---|---|
 | 讲 Redis 服务端机制、协议、数据结构、持久化、Pipeline、Lua、双活、延迟排查 | `Redis/` | Redis Pipeline、RDB/AOF、Lua、双活、慢请求 |
 | 讲 Redis 兼容持久化 KV 或 Redis 协议替代实现 | `Kvrocks/` | Kvrocks 版本、新特性、持久化 KV 边界 |
-| 讲 Redisson 分布式对象、分布式锁、看门狗、公平锁等 Redis 客户端抽象 | `Redisson/` | Redisson 分布式锁源码和 Lua 脚本 |
+| 讲 Redisson 分布式对象、分布式锁、看门狗、公平锁等 Redis 客户端抽象 | `040503_Redisson/` | Redisson 分布式锁源码和 Lua 脚本 |
 | 讲后端三层缓存、HTTP 缓存、Caffeine/Guava 与业务代码组合 | 移到 `07_工程与架构/0701_后端架构/` | 主问题是后端架构和应用缓存策略 |
 
 ## 技术子目录
 
 | 技术 | 目录 | 文章数 | 定位 |
 |---|---|---:|---|
-| Redis | [Redis/](Redis/) | 9 | 内存 KV、缓存、数据结构、持久化和高可用 |
-| Kvrocks | [Kvrocks/](Kvrocks/) | 1 | Redis 兼容、基于 RocksDB 的持久化 KV |
-| Redisson | [Redisson/](Redisson/) | 1 | Java Redis 客户端与分布式对象/锁抽象 |
+| Redis | [Redis/](040502_Redis) | 9 | 内存 KV、缓存、数据结构、持久化和高可用 |
+| Kvrocks | [Kvrocks/](040501_Kvrocks) | 1 | Redis 兼容、基于 RocksDB 的持久化 KV |
+| Redisson | [040503_Redisson/](040503_Redisson) | 1 | Java Redis 客户端与分布式对象/锁抽象 |
 
 ## 排重准则
 

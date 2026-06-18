@@ -1,9 +1,9 @@
 # 数据集成
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[流程化知识点总览](knowledge/03_数据工程与数仓/0307_数据集成/核心知识点/流程化知识点总览.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](030700_核心知识点/知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `030700_核心知识点/`。
 
 
 ## 类目定位
@@ -14,7 +14,7 @@
 | 二级类目 | 数据集成 |
 | 核心问题 | 如何把业务数据库、日志、消息和外部系统的数据稳定同步到数仓、湖仓、OLAP 或实时链路 |
 | 不解决什么 | 不直接承担下游建模、OLAP 查询优化、调度编排或指标口径治理 |
-| 用户当前认知假设 | L2：知道 CDC、DataX、SeaTunnel、Flink CDC 等入口，但需要补全量/增量切换、Schema 演进、Exactly Once 和下游边界 |
+| 用户当前认知假设 | L2：知道 CDC、DataX、SeaTunnel、Debezium 等入口；Flink CDC 已迁入实时计算目录，本目录重点保留通用数据集成工具和跨引擎同步边界 |
 
 ## 用户认知重点
 
@@ -22,7 +22,7 @@
 |---|---|---|
 | 已知基础 | 用户知道数据同步是数仓入口，不需要重复讲“什么是同步” | 重点看链路语义、失败模式和对下游的影响 |
 | 待补边界 | 数据集成与实时计算、调度、湖仓表格式、OLAP 导入的边界 | 每篇文章先判断主问题是采集、计算、存储还是查询 |
-| 易偏差点 | Flink CDC 容易因名字误归为实时计算，Doris/StarRocks 同步文章容易误归为 OLAP | 按文章主问题和技术本体归类 |
+| 易偏差点 | Doris/StarRocks 同步文章容易误归为 OLAP；Flink CDC 相关文章现在优先进入实时计算 / Flink CDC | 按文章主问题和技术本体归类 |
 
 ## 排重准则
 
@@ -44,9 +44,8 @@
 
 | 技术 | index | 已覆盖问题 | 还缺什么 |
 |---|---|---|---|
-| Flink CDC | [Flink CDC](Flink CDC/AGENTS.md) | CDC 定位、版本演进、Source Connector 到 Data Integration Engine 的边界、3.x Pipeline 架构、MySQL `server_id` 冲突排障、PostgreSQL slot、Doris/StarRocks/Kafka 下游边界、MySQL Source Enumerator、生产切换双跑对数 | Schema 演进生产限制、DDL 冲突恢复、当前官方版本补证、端到端恢复实验 |
-| SeaTunnel | [SeaTunnel](SeaTunnel/AGENTS.md) | 批式同步与 CDC 常驻任务边界、Source/Transform/Sink、MySQL-CDC 多表路由、SeaTunnel + Hive 在超大 Upsert 场景的边界 | 官方版本补证、SeaTunnel Engine 架构、Checkpoint 和 Sink 一致性实验 |
-| Debezium | [Debezium](Debezium/AGENTS.md) | Debezium -> Kafka/Schema Registry -> Hudi Deltastreamer 低延迟入湖链路、初始快照与 bootstrap、source ordering field、删除语义 | 当前版本补证、Kafka Connect 运行边界、Schema Registry 兼容、入湖恢复实验 |
+| SeaTunnel | [SeaTunnel](030702_SeaTunnel/AGENTS.md) | 批式同步与 CDC 常驻任务边界、Source/Transform/Sink、MySQL-CDC 多表路由、SeaTunnel + Hive 在超大 Upsert 场景的边界 | 官方版本补证、SeaTunnel Engine 架构、Checkpoint 和 Sink 一致性实验 |
+| Debezium | [Debezium](030701_Debezium/AGENTS.md) | Debezium -> Kafka/Schema Registry -> Hudi Deltastreamer 低延迟入湖链路、初始快照与 bootstrap、source ordering field、删除语义 | 当前版本补证、Kafka Connect 运行边界、Schema Registry 兼容、入湖恢复实验 |
 
 ## 待补技术和问题
 
@@ -54,9 +53,7 @@
 |---|---|---|
 | DataX / Chunjun | 离线同步和批式集成常见工具 | 中 |
 | SeaTunnel 一致性与恢复实验 | 已建技术入口，但缺端到端恢复和 Sink 幂等验证 | 高 |
-| Flink CDC 全增量切换实验 | 已补 Source Enumerator 机制，仍需最小实验验证 | 高 |
-| Schema 演进生产限制 | 直接影响整库同步和下游表结构 | 高 |
-| 下游写入一致性 | MySQL -> Kafka/Paimon/Doris/StarRocks 的核心风险 | 高 |
+| CDC 工具横向边界 | Debezium、SeaTunnel CDC、Flink CDC、Canal 的职责和运行模型容易混淆 | 高 |
 | Debezium 当前版本和运行边界 | 已补入湖链路，但官方版本、Kafka Connect 和 Schema Registry 边界未校准 | 中 |
 
 ## 本轮并行精读沉淀
@@ -66,8 +63,8 @@
 | 路由明细 | [本轮精读路由](本轮精读路由.md) |
 | 处理范围 | `本地文章目录` 中 11 篇精读候选 |
 | 正式沉淀 | 7 篇原文，产出 5 个核心知识点 |
-| 新增技术入口 | [SeaTunnel](SeaTunnel/AGENTS.md)、[Debezium](Debezium/AGENTS.md) |
-| 主要合并 | StarRocks + Kafka 合并为下游一致性主题；SeaTunnel 三篇合并为 CDC 与批式同步边界；Meetup/官宣写入排重结论 |
+| 新增技术入口 | [SeaTunnel](030702_SeaTunnel/AGENTS.md)、[Debezium](030701_Debezium/AGENTS.md) |
+| 主要合并 | Flink CDC 相关沉淀已迁移到 [实时计算 / Flink CDC](<../0303_实时计算/030302_Flink CDC/AGENTS.md>)；SeaTunnel 三篇合并为 CDC 与批式同步边界 |
 | 主要跳过 | N8N 文章技术本体跨域，暂不写入本目录正式核心知识点 |
 
 <!-- AUTO:SECONDARY_INIT_START -->
@@ -75,7 +72,7 @@
 
 > 自动生成。初始化阶段只使用本地 `本地文章目录`、已有 `knowledge` 和本地 `wiki`，不联网补官网或外部证据。
 
-- 全量文章来源：[文章](文章/)
+- 全量文章来源：已拆分到各三级节点的 `文章/`；低置信原文不再保留 `99` 临时目录，只在路由表中记录。
 - 全局明细：`scripts/output/knowledge-secondary-pools.json`
 
 | 指标 | 数量 |
@@ -94,7 +91,7 @@
 
 | 技术/主题 | 文章数 | 正式沉淀 | 精读候选 | 原图缺失 | 处理决策 | 认知校准点 |
 |---|---:|---:|---:|---:|---|---|
-| Flink CDC | 20 | 10 | 0 | 7 | 已形成初始锚点，后续补缺口 | 原目录存在误导，按技术本体重路由；有技术图缺失，精修时需回原文或重建；Flink CDC 归数据集成，不按 Flink 名称归实时计算 |
+| Flink CDC（已迁移） | 0 | 0 | 0 | 0 | 详见 [实时计算 / Flink CDC](<../0303_实时计算/030302_Flink CDC/AGENTS.md>) | 2026-06-17 按用户要求迁入实时计算目录 |
 | 数据集成 | 9 | 2 | 1 | 2 | 以已有核心知识点为排重基线，只补边界、失败场景或实践证据 | 原目录存在误导，按技术本体重路由；有技术图缺失，精修时需回原文或重建 |
 | SeaTunnel | 5 | 3 | 0 | 1 | 已形成初始锚点，后续补缺口 | 原目录存在误导，按技术本体重路由；有技术图缺失，精修时需回原文或重建 |
 
@@ -102,7 +99,7 @@
 
 | 技术对象 | 原文 | 冲突点 | 处理建议 |
 |---|---|---|---|
-| 数据集成 | [用N8N开发企业级数据同步后，我踩了这4个大坑（新手必看）](文章/用N8N开发企业级数据同步后，我踩了这4个大坑（新手必看）.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| 数据集成 | 用N8N开发企业级数据同步后，我踩了这4个大坑（新手必看，当前原文缺失） | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
 
 ### 冲突与缺口
 
@@ -119,4 +116,3 @@
 | P1 | 对已有核心知识点补充排重依据和认知校准点 |
 | P2 | 精修阶段再补官网、GitHub、版本状态和官方架构图 |
 <!-- AUTO:SECONDARY_INIT_END -->
-

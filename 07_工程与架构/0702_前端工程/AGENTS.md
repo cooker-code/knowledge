@@ -2,8 +2,7 @@
 
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[流程化知识点总览](核心知识点/流程化知识点总览.md)。
-- 本轮拆分路由表：[文章拆分路由表](核心知识点/文章拆分路由表.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](070200_核心知识点/知识地图.md)。
 - 新文章必须先归入具体技术路线，再判断是补充、冲突、不同层次还是降权。
 - `文章/` 根目录不再作为长期入口；文章锚点放到具体路线目录的 `文章/` 下。
 
@@ -17,7 +16,7 @@
 2. 每篇文章优化哪个流程节点。
 3. 当前沉淀是补充、冲突、不同层次还是降权。
 4. 文章是否只提供资讯或工具推荐，不能直接写成工程准则。
-5. 文章文件只放在对应路线目录的 `文章/` 下，长期知识进入 `核心知识点/`。
+5. 文章文件只放在对应路线目录的 `文章/` 下，长期知识进入 `070200_核心知识点/`。
 
 ## 类目定位
 
@@ -33,12 +32,12 @@
 
 | 路线 | 流程入口 | 当前文章数 | 当前状态 |
 |---|---|---:|---|
-| React | [React/AGENTS.md](React/AGENTS.md) | 12 | 覆盖组件组合、Next/TanStack Start、React Query、质量扫描、非浏览器渲染；需要补真实项目分层与测试 |
-| Vue | [Vue/AGENTS.md](Vue/AGENTS.md) | 5 | 覆盖 Pinia、样式工程、高交互组件、数字孪生和 BI 组件；需要补组合式函数、路由、测试和部署 |
-| Nuxt | [Nuxt/AGENTS.md](Nuxt/AGENTS.md) | 8 | 覆盖 Nuxt 4、Layers、Nitro、认证、服务端/客户端组件、MDC；需要补生产部署和缓存策略 |
-| TypeScript | [TypeScript/AGENTS.md](TypeScript/AGENTS.md) | 2 | 当前只有基础梳理和函数接口文章，先作为前端类型边界入口；不能替代运行时校验和框架架构 |
-| 前端 AI 应用 | [前端AI应用/AGENTS.md](前端AI应用/AGENTS.md) | 7 | 覆盖 Tambo、TanStack AI、AI Elements Vue、AI 版 Chrome、Ant Design AI；重点是 UI、模型、工具调用和权限边界 |
-| 前端工程化与质量 | [前端工程化与质量/AGENTS.md](前端工程化与质量/AGENTS.md) | 5 | 覆盖前端趋势、ESLint、Flutter/Web Install 资讯和 CLI E2E 测试；需要补构建、质量门禁、性能、可访问性和发布闭环 |
+| React | [React/AGENTS.md](070202_React/AGENTS.md) | 12 | 覆盖组件组合、Next/TanStack Start、React Query、质量扫描、非浏览器渲染；需要补真实项目分层与测试 |
+| Vue | [Vue/AGENTS.md](070204_Vue/AGENTS.md) | 7 | 覆盖 Pinia、样式工程、高交互组件、数字孪生、BI 组件、前端框架资讯和 Vue3 + FastAPI 全栈案例；需要补组合式函数、路由、测试和部署 |
+| Nuxt | [Nuxt/AGENTS.md](070201_Nuxt/AGENTS.md) | 8 | 覆盖 Nuxt 4、Layers、Nitro、认证、服务端/客户端组件、MDC；需要补生产部署和缓存策略 |
+| TypeScript | [TypeScript/AGENTS.md](070203_TypeScript/AGENTS.md) | 2 | 当前只有基础梳理和函数接口文章，先作为前端类型边界入口；不能替代运行时校验和框架架构 |
+| 前端 AI 应用 | [前端AI应用/AGENTS.md](070205_前端AI应用/AGENTS.md) | 7 | 覆盖 Tambo、TanStack AI、AI Elements Vue、AI 版 Chrome、Ant Design AI；重点是 UI、模型、工具调用和权限边界 |
+| 前端工程化与质量 | [前端工程化与质量/AGENTS.md](070206_前端工程化与质量/AGENTS.md) | 5 | 覆盖前端趋势、ESLint、Flutter/Web Install 资讯和 CLI E2E 测试；需要补构建、质量门禁、性能、可访问性和发布闭环 |
 
 ## 统一前端流程
 
@@ -69,9 +68,9 @@ flowchart TD
 
 | 原文章 | 处理 |
 |---|---|
-| `用FastAPI-Users插件：10分钟搞定用户认证系统.md` | 移到 [0701_后端架构/Python/文章](../0701_后端架构/Python/文章/)；主问题是 FastAPI 后端认证 |
-| `Spring Boot集成 Playwright及Groovy 动态自动化测试脚本.md` | 移到 [0703_工程实践与质量保障/测试质量/文章](../0703_工程实践与质量保障/测试质量/文章/)；主问题是测试质量与自动化 |
-| `Skills之前端设计技能...`、`Impeccable...`、`前端设计 SVG skills...` | 移到 [02_Agent与AI工程/0205_AI编程工具/文章](../../02_Agent与AI工程/0205_AI编程工具/文章/)；主问题是 AI 编程/设计技能规则 |
+| `用FastAPI-Users插件：10分钟搞定用户认证系统.md` | 移到 [0701_后端架构/070103_Python/文章](../0701_后端架构/070103_Python/文章)；主问题是 FastAPI 后端认证 |
+| `Spring Boot集成 Playwright及Groovy 动态自动化测试脚本.md` | 移到 [0703_工程实践与质量保障/070305_测试质量/文章](../0703_工程实践与质量保障/070305_测试质量/文章)；主问题是测试质量与自动化 |
+| `Skills之前端设计技能...`、`Impeccable...`、`前端设计 SVG skills...` | 移到 `02_Agent与AI工程/0205_AI编程工具` 各三级节点的 `文章/`；主问题是 AI 编程/设计技能规则 |
 
 ## 新文章进入时的处理流程
 

@@ -1,9 +1,9 @@
 # OLAP 引擎
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[流程化知识点总览](knowledge/04_OLAP与数据库/0401_OLAP引擎/核心知识点/流程化知识点总览.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](040100_核心知识点/知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `040100_核心知识点/`。
 
 
 ## 类目定位
@@ -44,9 +44,9 @@ OLAP 引擎 + 查询/存储/导入/索引模块 + 核心机制 + 解决问题 + 
 
 | 技术 | index | 已覆盖问题 | 还缺什么 |
 |---|---|---|---|
-| Doris | [Doris](Doris/AGENTS.md) | 点查短路径、行存、Row Cache、BE 内存排障、FE 运维 SOP、FE 元数据恢复、Compaction、数据导入、表模型、OLAP 定位 | 索引、物化视图、统计信息与 CBO、FE 元数据故障官方补证 |
-| ClickHouse | [ClickHouse](ClickHouse/AGENTS.md) | OLAP 定位、Skip Index 原理、MergeTree 批处理预排序、AggregateFunction 与物化视图、分布式 JOIN | Upsert/实时更新边界、日志留存、MergeTree 官方补证 |
-| StarRocks | [StarRocks](StarRocks/AGENTS.md) | Primary Key 实时更新模型、PK 事务与 DelVector、Query Cache 中间聚合缓存、存算分离 Compaction 机制、物化视图建模与透明加速 | 湖仓查询、资源隔离、物化视图命中排查、PK 内存与 Commit 指标 |
+| Doris | [Doris](040102_Doris/AGENTS.md) | 点查短路径、行存、Row Cache、BE 内存排障、FE 运维 SOP、FE 元数据恢复、Compaction、数据导入、表模型、OLAP 定位 | 索引、物化视图、统计信息与 CBO、FE 元数据故障官方补证 |
+| ClickHouse | [ClickHouse](040101_ClickHouse/AGENTS.md) | OLAP 定位、Skip Index 原理、MergeTree 批处理预排序、AggregateFunction 与物化视图、分布式 JOIN | Upsert/实时更新边界、日志留存、MergeTree 官方补证 |
+| StarRocks | [StarRocks](040103_StarRocks/AGENTS.md) | Primary Key 实时更新模型、PK 事务与 DelVector、Query Cache 中间聚合缓存、存算分离 Compaction 机制、物化视图建模与透明加速 | 湖仓查询、资源隔离、物化视图命中排查、PK 内存与 Commit 指标 |
 
 ## 待补技术和问题
 
@@ -67,7 +67,7 @@ OLAP 引擎 + 查询/存储/导入/索引模块 + 核心机制 + 解决问题 + 
 
 > 自动生成。初始化阶段只使用本地 `本地文章目录`、已有 `knowledge` 和本地 `wiki`，不联网补官网或外部证据。
 
-- 全量文章来源：[文章](文章/)
+- 全量文章来源：各三级节点的 `文章/`
 - 全局明细：`scripts/output/knowledge-secondary-pools.json`
 
 | 指标 | 数量 |
@@ -94,21 +94,21 @@ OLAP 引擎 + 查询/存储/导入/索引模块 + 核心机制 + 解决问题 + 
 
 | 技术对象 | 原文 | 冲突点 | 处理建议 |
 |---|---|---|---|
-| ClickHouse | [1w字详解 ClickHouse漏斗模型实践方案（收藏）](文章/1w字详解 ClickHouse漏斗模型实践方案（收藏）.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| ClickHouse | [ClickHouse 直接读取 MySQL Dump 文件：高效数据迁移与分析的进阶指南](文章/ClickHouse 直接读取 MySQL Dump 文件：高效数据迁移与分析的进阶指南.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| ClickHouse | [使用 ClickHouse 实现 Medallion 架构](文章/使用 ClickHouse 实现 Medallion 架构.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| ClickHouse | [使用ClickHouse、Grafana和WarpStream规模化的解决可预测成本的日志留存](文章/使用ClickHouse、Grafana和WarpStream规模化的解决可预测成本的日志留存.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| ClickHouse | [火山引擎：ClickHouse增强计划之“Upsert”](文章/火山引擎：ClickHouse增强计划之“Upsert”.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| ClickHouse | [1w字详解 ClickHouse漏斗模型实践方案（收藏）](<040101_ClickHouse/文章/1w字详解 ClickHouse漏斗模型实践方案（收藏）.md>) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| ClickHouse | [ClickHouse 直接读取 MySQL Dump 文件：高效数据迁移与分析的进阶指南](<040101_ClickHouse/文章/ClickHouse 直接读取 MySQL Dump 文件：高效数据迁移与分析的进阶指南.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| ClickHouse | [使用 ClickHouse 实现 Medallion 架构](<040101_ClickHouse/文章/使用 ClickHouse 实现 Medallion 架构.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| ClickHouse | [使用ClickHouse、Grafana和WarpStream规模化的解决可预测成本的日志留存](040101_ClickHouse/文章/使用ClickHouse、Grafana和WarpStream规模化的解决可预测成本的日志留存.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| ClickHouse | [火山引擎：ClickHouse增强计划之“Upsert”](040101_ClickHouse/文章/火山引擎：ClickHouse增强计划之“Upsert”.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
 | Doris | [[技术调研]OLAP数据库执行引擎的NUMA优化](文章/[技术调研]OLAP数据库执行引擎的NUMA优化.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Doris | [「硬刚Doris系列」Apache Doris的向量化和Roaring BitMap](文章/「硬刚Doris系列」Apache Doris的向量化和Roaring BitMap.md) | 原目录与最终归类不一致；标题/观点需要降权；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Doris | [「硬刚Doris系列」官方常见问题小汇总](文章/「硬刚Doris系列」官方常见问题小汇总.md) | 标题/观点需要降权 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Doris | [0代码！教会你用Doris+DeepSeek+Dify搭建ChatBI系统（附完整DSL）](文章/0代码！教会你用Doris+DeepSeek+Dify搭建ChatBI系统（附完整DSL）.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Doris | [3步！教会你用 Doris MCP + LangChain 搭建AI问数系统（保姆级教程）](文章/3步！教会你用 Doris MCP + LangChain 搭建AI问数系统（保姆级教程）.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Doris | [AI+数据分析来了！Doris 让SQL直接调用DeepSeek、ChatGPT、Claude...](文章/AI+数据分析来了！Doris 让SQL直接调用DeepSeek、ChatGPT、Claude....md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Doris | [Apache Doris Compaction优化百科全书](文章/Apache Doris Compaction优化百科全书.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Doris | [Apache Doris 为分析而生开篇：整体架构！](文章/Apache Doris 为分析而生开篇：整体架构！.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Doris | [Apache Doris 故障自助排查指南（P0 篇）](文章/Apache Doris 故障自助排查指南（P0 篇）.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| Doris | [Doris 解析 \| Apache Doris 极速1.0版本解析与未来规划](文章/Doris 解析 _ Apache Doris 极速1.0版本解析与未来规划.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Doris | [「硬刚Doris系列」Apache Doris的向量化和Roaring BitMap](<040102_Doris/文章/「硬刚Doris系列」Apache Doris的向量化和Roaring BitMap.md>) | 原目录与最终归类不一致；标题/观点需要降权；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Doris | [「硬刚Doris系列」官方常见问题小汇总](040102_Doris/文章/「硬刚Doris系列」官方常见问题小汇总.md) | 标题/观点需要降权 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Doris | [0代码！教会你用Doris+DeepSeek+Dify搭建ChatBI系统（附完整DSL）](040102_Doris/文章/0代码！教会你用Doris+DeepSeek+Dify搭建ChatBI系统（附完整DSL）.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Doris | [3步！教会你用 Doris MCP + LangChain 搭建AI问数系统（保姆级教程）](<040102_Doris/文章/3步！教会你用 Doris MCP + LangChain 搭建AI问数系统（保姆级教程）.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Doris | [AI+数据分析来了！Doris 让SQL直接调用DeepSeek、ChatGPT、Claude...](<040102_Doris/文章/AI+数据分析来了！Doris 让SQL直接调用DeepSeek、ChatGPT、Claude....md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Doris | [Apache Doris Compaction优化百科全书](<040102_Doris/文章/Apache Doris Compaction优化百科全书.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Doris | [Apache Doris 为分析而生开篇：整体架构！](<040102_Doris/文章/Apache Doris 为分析而生开篇：整体架构！.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Doris | [Apache Doris 故障自助排查指南（P0 篇）](<040102_Doris/文章/Apache Doris 故障自助排查指南（P0 篇）.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| Doris | [Doris 解析 \| Apache Doris 极速1.0版本解析与未来规划](<040102_Doris/文章/Doris 解析 _ Apache Doris 极速1.0版本解析与未来规划.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
 
 ### 冲突与缺口
 

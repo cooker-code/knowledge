@@ -1,9 +1,9 @@
 # RAG 与知识库
 ## 知识点入口
 
-- 本模块先看宏观流程，再看文章：[流程化知识点总览](knowledge/02_Agent与AI工程/0203_RAG与知识库/核心知识点/流程化知识点总览.md)。
+- 本模块先看宏观流程，再看文章：[知识地图](020300_核心知识点/知识地图.md)。
 - 新文章必须先归入流程节点，再判断是补充、冲突、不同层次还是降权。
-- `文章/` 只保留原文锚点，长期知识必须沉淀到 `核心知识点/`。
+- `文章/` 只保留原文锚点，长期知识必须沉淀到 `020300_核心知识点/`。
 
 
 ## 类目定位
@@ -44,10 +44,10 @@
 
 | 技术 | index | 已覆盖问题 | 还缺什么 |
 |---|---|---|---|
-| RAG | [RAG](RAG/AGENTS.md) | 文档解析分层选型、切分与重排边界、Agentic RAG 查询链路治理、RAG 评估体系、知识生命周期与实时更新 | 引用正确率实验、混合检索权重、RAG/LLM Wiki 对比实验 |
-| RAGFlow | [RAGFlow](RAGFlow/AGENTS.md) | Markdown 语义切块机制、召回策略、多格式切分与参数门槛 | 评估、MCP/Agent 能力、当前源码版本补证 |
-| LLM Wiki | [LLM Wiki](LLM Wiki/AGENTS.md) | 预编译知识库模式、Ingest/Query/Lint、Git 预编译知识库与 lint 闭环、RAG 与 knowledge 的边界 | knowledge lint、断链检查、重复问题指纹检查、人工裁决流程 |
-| GraphRAG | [GraphRAG](GraphRAG/AGENTS.md) | 图谱构建、Schema/Cypher 检索、多模态图谱边界 | 官方锚点补证、LightRAG/GraphRAG 横向对比、最小实验 |
+| RAG | [RAG](020303_RAG/AGENTS.md) | 文档解析分层选型、切分与重排边界、Agentic RAG 查询链路治理、RAG 评估体系、知识生命周期与实时更新 | 引用正确率实验、混合检索权重、RAG/LLM Wiki 对比实验 |
+| RAGFlow | [RAGFlow](020304_RAGFlow/AGENTS.md) | Markdown 语义切块机制、召回策略、多格式切分与参数门槛 | 评估、MCP/Agent 能力、当前源码版本补证 |
+| LLM Wiki | [LLM Wiki](<020302_LLM Wiki/AGENTS.md>) | 预编译知识库模式、Ingest/Query/Lint、Git 预编译知识库与 lint 闭环、RAG 与 knowledge 的边界 | knowledge lint、断链检查、重复问题指纹检查、人工裁决流程 |
+| GraphRAG | [GraphRAG](020301_GraphRAG/AGENTS.md) | 图谱构建、Schema/Cypher 检索、多模态图谱边界 | 官方锚点补证、LightRAG/020301_GraphRAG 横向对比、最小实验 |
 
 ## 待补技术和问题
 
@@ -58,7 +58,7 @@
 | knowledge lint | 已有机制沉淀，仍需项目内规则或脚本落地 | 高 |
 | RAGFlow 评估 | 已覆盖 Markdown 切块和召回，下一步要补评估闭环 | 高 |
 | 文档解析工具 | 已覆盖 RAGFlow 多格式解析，仍需 MinerU/Docling 等工具补证和实测 | 高 |
-| GraphRAG/多模态图谱 | 关系、多跳和图表文档是向量 RAG 的重要边界 | 高 |
+| 020301_GraphRAG/多模态图谱 | 关系、多跳和图表文档是向量 RAG 的重要边界 | 高 |
 
 ## 本轮人工精读沉淀
 
@@ -68,7 +68,7 @@
 | 处理文章来源原文 | 14 篇 |
 | 本地 wiki 支撑页 | 5 个 |
 | 正式新增核心知识点 | 5 篇 |
-| 新增技术目录 | [GraphRAG](GraphRAG/AGENTS.md) |
+| 新增技术目录 | [GraphRAG](020301_GraphRAG/AGENTS.md) |
 | 主要处理策略 | 按主题合并，不逐篇机械扩写；模型排行、版本、性能数字均标为后续补证 |
 
 <!-- AUTO:SECONDARY_INIT_START -->
@@ -76,7 +76,7 @@
 
 > 自动生成。初始化阶段只使用本地 `本地文章目录`、已有 `knowledge` 和本地 `wiki`，不联网补官网或外部证据。
 
-- 全量文章来源：[文章](文章/)
+- 全量文章来源：各三级节点的 `文章/`
 - 全局明细：`scripts/output/knowledge-secondary-pools.json`
 
 | 指标 | 数量 |
@@ -102,21 +102,21 @@
 
 | 技术对象 | 原文 | 冲突点 | 处理建议 |
 |---|---|---|---|
-| RAG | [Agentic RAG实战：基于LangGraph与Qwen的智能自适应知识增强方案](文章/Agentic RAG实战：基于LangGraph与Qwen的智能自适应知识增强方案.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| RAG | [AI智能知识库-传统RAG的末日-从RAG到Agentic Full-text Retrieval模式](文章/AI智能知识库-传统RAG的末日-从RAG到Agentic Full-text Retrieval模式.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| RAG | [ALL-IN-ONE RAG：全模态大统一RAG框架，Github开源狂揽1w star](文章/ALL-IN-ONE RAG：全模态大统一RAG框架，Github开源狂揽1w star.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| RAG | [Memori：让 AI 拥有 "持久记忆" 的开源RAG引擎](文章/Memori：让 AI 拥有 _持久记忆_ 的开源RAG引擎.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| RAG | [RAG 2.0 时代：从检索增强到主动推理的演进之路](文章/RAG 2.0 时代：从检索增强到主动推理的演进之路.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| RAG | [RAG 落地全干货深度分享：从“效果不理想”到生产级 RAG 系统的进化之路](文章/RAG 落地全干货深度分享：从“效果不理想”到生产级 RAG 系统的进化之路.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| RAG | [RAG 项目怎么提升含金量？](文章/RAG 项目怎么提升含金量？.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| RAG | [RAG又牛了！阿里提出SkillRouter](文章/RAG又牛了！阿里提出SkillRouter.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| RAG | [TrustGraph: 下一代知识图谱与RAG平台,程序员的新武器](文章/TrustGraph_ 下一代知识图谱与RAG平台,程序员的新武器.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| RAG | [UI Design Brain：给 Cursor 增加 60+ 组件设计知识库，让 AI 生成更像“资深产品设计”](文章/UI Design Brain：给 Cursor 增加 60+ 组件设计知识库，让 AI 生成更像“资深产品设计”.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| RAG | [万字大白话RAG Retriever：从哪里来，要干什么（表格+图解邪修版）](文章/万字大白话RAG Retriever：从哪里来，要干什么（表格+图解邪修版）.md) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| RAG | [京东大模型二面：你的RAG系统首字响应要5秒，怎么优化？](文章/京东大模型二面：你的RAG系统首字响应要5秒，怎么优化？.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| RAG | [从"死记硬背"到"主动思考"：用 Microsoft Agent Framework 重新定义 RAG](文章/从_死记硬背_到_主动思考_：用 Microsoft Agent Framework 重新定义 RAG.md) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| RAG | [你存进去的知识，为什么一条都没用上？Obsidian + Claude 这样让知识库自己变聪明](文章/你存进去的知识，为什么一条都没用上？Obsidian + Claude 这样让知识库自己变聪明.md) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
-| RAG | [关于多模态应用的几个疑问，以及多模态应该怎么应用于RAG？](文章/关于多模态应用的几个疑问，以及多模态应该怎么应用于RAG？.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| RAG | [Agentic RAG实战：基于LangGraph与Qwen的智能自适应知识增强方案](<020303_RAG/文章/Agentic RAG实战：基于LangGraph与Qwen的智能自适应知识增强方案.md>) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| RAG | [AI智能知识库-传统RAG的末日-从RAG到Agentic Full-text Retrieval模式](<020303_RAG/文章/AI智能知识库-传统RAG的末日-从RAG到Agentic Full-text Retrieval模式.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| RAG | [ALL-IN-ONE RAG：全模态大统一RAG框架，Github开源狂揽1w star](<020303_RAG/文章/ALL-IN-ONE RAG：全模态大统一RAG框架，Github开源狂揽1w star.md>) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| RAG | [Memori：让 AI 拥有 "持久记忆" 的开源RAG引擎](<../0211_Memory Management/文章/Memori：让 AI 拥有 _持久记忆_ 的开源RAG引擎.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| RAG | [RAG 2.0 时代：从检索增强到主动推理的演进之路](<020303_RAG/文章/RAG 2.0 时代：从检索增强到主动推理的演进之路.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| RAG | [RAG 落地全干货深度分享：从“效果不理想”到生产级 RAG 系统的进化之路](<020303_RAG/文章/RAG 落地全干货深度分享：从“效果不理想”到生产级 RAG 系统的进化之路.md>) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| RAG | [RAG 项目怎么提升含金量？](<020303_RAG/文章/RAG 项目怎么提升含金量？.md>) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| RAG | [RAG又牛了！阿里提出SkillRouter](020303_RAG/文章/RAG又牛了！阿里提出SkillRouter.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| RAG | [TrustGraph: 下一代知识图谱与RAG平台,程序员的新武器](<020301_GraphRAG/文章/TrustGraph_ 下一代知识图谱与RAG平台,程序员的新武器.md>) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| RAG | [UI Design Brain：给 Cursor 增加 60+ 组件设计知识库，让 AI 生成更像“资深产品设计”](<020303_RAG/文章/UI Design Brain：给 Cursor 增加 60+ 组件设计知识库，让 AI 生成更像“资深产品设计”.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| RAG | [万字大白话RAG Retriever：从哪里来，要干什么（表格+图解邪修版）](<020303_RAG/文章/万字大白话RAG Retriever：从哪里来，要干什么（表格+图解邪修版）.md>) | - | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| RAG | [京东大模型二面：你的RAG系统首字响应要5秒，怎么优化？](020303_RAG/文章/京东大模型二面：你的RAG系统首字响应要5秒，怎么优化？.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| RAG | [从"死记硬背"到"主动思考"：用 Microsoft Agent Framework 重新定义 RAG](<020303_RAG/文章/从_死记硬背_到_主动思考_：用 Microsoft Agent Framework 重新定义 RAG.md>) | 正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| RAG | [你存进去的知识，为什么一条都没用上？Obsidian + Claude 这样让知识库自己变聪明](<020303_RAG/文章/你存进去的知识，为什么一条都没用上？Obsidian + Claude 这样让知识库自己变聪明.md>) | 原目录与最终归类不一致 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
+| RAG | [关于多模态应用的几个疑问，以及多模态应该怎么应用于RAG？](020303_RAG/文章/关于多模态应用的几个疑问，以及多模态应该怎么应用于RAG？.md) | 原目录与最终归类不一致；正文提到技术图但 Markdown 无图 | 先判问题指纹，能补边界/失败/实践再正式沉淀 |
 
 ### 冲突与缺口
 
